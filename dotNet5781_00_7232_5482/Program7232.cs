@@ -15,7 +15,7 @@ namespace dotNet5781_00_7232_5482
             Console.ReadKey();
 
         }
-        static partial void Welcome5482();
+        static  partial void Welcome5482();
         private static void Welcome7232()
         {
             Console.Write("Enter your name: ");
