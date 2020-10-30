@@ -34,9 +34,9 @@ namespace dotNet5781_01_7232_5482
         public double Km
         {
             get { return km; }
-            set { 
-                if(value<km)
-                    {throw new Exception();}
+            set {
+                if (value < km)
+                { throw new Exception(); }
                 km = value; }
         }
 
@@ -55,7 +55,7 @@ namespace dotNet5781_01_7232_5482
             set { startDate = value; }
         }
 
-        public string LicenseNum
+        public int LicenseNum
         {
             get { return licenseNum; }
             set { licenseNum = value; }
@@ -69,10 +69,10 @@ namespace dotNet5781_01_7232_5482
 דרך ההצגה של מספר רישוי תתבצע בהתאמה לפי הפורמט הבא: 67-345-12 או 678-45-123
              * 
              */
-            
+
             string s_l = LicenseNum.ToString();
             string prefix, middle, suffix;
-            if (startdate.Year < 2018)
+            if (startDate.Year < 2018)
             {
                 prefix = s_l.Substring(0, 2);
                 middle = s_l.Substring(2, 3);
@@ -80,37 +80,46 @@ namespace dotNet5781_01_7232_5482
             }
             else
             {
-                prefix = LicenseNum.Substring(0, 3);
-                middle = LicenseNum.Substring(3, 2);
-                suffix = LicenseNum.Substring(5, 3);
-                }
+                prefix = s_l.Substring(0, 3);
+                middle = s_l.Substring(3, 2);
+                suffix = s_l.Substring(5, 3);
+            }
             string registrationString = String.Format("{0}-{1}-{2}", prefix, middle, suffix);
             return registrationString;
 
         }
+//        public bool check_yaer()
+//        {
+//            if (this.lastTreat + 1)
+//                return false;
+//        }
+
+//}
+        
 
         //האם צריך טיפול? נסע 20000 קמ מאז הטיפול האחרון או עבר שנה מהטיפול
         //b.needTreat()
         public bool needTreat()
         {
-            
-            return ((this.kmAfterTreat>=20000) || ((DateTime.Now - this.lastTreat).TotalDays()>=365));
+            return ((this.kmaftertreat >= 20000) || 
+                    ((DateTime.Now - this.lastTreat).TotalDays >= 365));
         
         }
 
         public Bus ()
 	    {
+            this.licenseNum = 0;
             this.km = 0;
             this.kmaftertreat = 0;
-            this.
-            ///
-	    }
+          
+        }
 
-        public Bus (int l, DateTime dt, int km=0)
+        public Bus (int licNum, DateTime dt, int km=0)
 	    {
             //this();
-            this.licenseNum = l;
             this.startDate = dt;
+            this.licenseNum = licNum;
+            
 	    }
 
 
