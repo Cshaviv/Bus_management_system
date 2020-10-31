@@ -75,7 +75,7 @@ namespace dotNet5781_01_7232_5482
             string choose = string.Empty;
             while (choose != "E")
             { 
-                Console.WriteLine("Hi, please choose one of the following options");
+            Console.WriteLine("Hi, please choose one of the following options");
             Console.WriteLine("A: Adding a bus to the list of buses in the company");
             Console.WriteLine("B: Adding a bus to the list of buses in the company");
             Console.WriteLine("C: Refueling or handling a bus");
@@ -140,8 +140,40 @@ namespace dotNet5781_01_7232_5482
                         {
                              if (b.LicenseNum == licNum1)
                             {
-                                Console.WriteLine("already exist");
+                                 Random randKm= new Random(DateTime.Now.Millisecond);
+                                double KmForRide;
+                                succ= double.TryParse(randKm, out KmForRide );
+                                if (!succ)
+                                {
+                                    Console.WriteLine("ERROR! ");
+                                    break;
+                                }
+                                if(b.kmafterrefueling+KmForRide>1200)
+                                {
+                                       Console.WriteLine("You do not have enough fuel to go on this trip");
+                                    break;
+                                }
+                                if(needTreat(b))
+                                {
+                                     Console.WriteLine("The bus needs treatment");
+                                     break;
+                                }
+                                b.kmafterrefueling=b.kmafterrefueling+ KmForRide;
+                                b.kmaftertreat= b.kmaftertreat+KmForRide;
+                                b.km=b.Km+KmForRide;
+                                
+                             }
+                             else 
+                             {
+                                Console.WriteLine("The bus does not exist in the reservoir");
                                 break;
+                             }
+
+
+
+
+                                     
+                        
                             }
                         }
                         break;

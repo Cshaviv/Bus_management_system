@@ -99,10 +99,10 @@ namespace dotNet5781_01_7232_5482
 
         //האם צריך טיפול? נסע 20000 קמ מאז הטיפול האחרון או עבר שנה מהטיפול
         //b.needTreat()
-        public bool needTreat()
+        public bool needTreat(Bus b)
         {
-            return ((this.kmaftertreat >= 20000) || 
-                    ((DateTime.Now - this.lastTreat).TotalDays >= 365));
+            return ((b.kmaftertreat >= 20000) || 
+                    ((DateTime.Now - b.lastTreat).TotalDays >= 365));
         
         }
 
