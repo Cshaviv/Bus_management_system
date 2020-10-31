@@ -1,4 +1,4 @@
-﻿AYALA CHAGIT
+﻿//AYALA CHAGIT
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -72,18 +72,18 @@ namespace dotNet5781_01_7232_5482
         static void Main(string[] args)
         {
             List<Bus> Buss = new List<Bus>();
-
-            Console.WriteLine("Hi, please choose one of the following options");
+            string choose = string.Empty;
+            while (choose != "E")
+            { 
+                Console.WriteLine("Hi, please choose one of the following options");
             Console.WriteLine("A: Adding a bus to the list of buses in the company");
             Console.WriteLine("B: Adding a bus to the list of buses in the company");
             Console.WriteLine("C: Refueling or handling a bus");
             Console.WriteLine("D: Pr{esentation of the passenger since the last treatment for all vehicles in the company.");
             Console.WriteLine("E: Exit");
-            string choose = Console.ReadLine();
+             choose = Console.ReadLine();
             bool succ;
 
-            while (choose != "E")
-            {
                 switch (choose)
                 {
                     case "A":
@@ -97,7 +97,14 @@ namespace dotNet5781_01_7232_5482
                             Console.WriteLine("ERROR! ");
                             break;
                         }
-
+                        foreach (Bus b in Buss)// b ptr
+                        {
+                            if (b.LicenseNum == licNum)
+                            {
+                                Console.WriteLine("already exist");
+                                break;
+                            }
+                        }
                         Console.WriteLine("Enter an activity start date");
                         String date = Console.ReadLine();
                         DateTime dt;
@@ -114,19 +121,29 @@ namespace dotNet5781_01_7232_5482
                             break;
                         }
 
-                        foreach (Bus b in Buss)// b ptr
-                        {
-                            if (b.LicenseNum == licNum)
-                            {
-                                Console.WriteLine("already exist");
-                                break;
-                            }
-                        }
+                     
                         Bus NewBus = new Bus(licNum, dt);
                         Buss.Add(NewBus);
 
                         break;
                     case "B":
+                        Console.WriteLine("Enter the bus license number");
+                        string Lnum1 = Console.ReadLine();
+                        int licNum1;
+                        succ = Int32.TryParse(Lnum1, out licNum1);
+                        if (!succ)
+                        {
+                            Console.WriteLine("ERROR! ");
+                            break;
+                        }
+                        foreach (Bus b in Buss)// b ptr
+                        {
+                             if (b.LicenseNum == licNum1)
+                            {
+                                Console.WriteLine("already exist");
+                                break;
+                            }
+                        }
                         break;
                     case "C":
                         break;
