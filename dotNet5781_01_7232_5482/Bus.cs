@@ -61,7 +61,7 @@ namespace dotNet5781_01_7232_5482
             set { licenseNum = value; }
         }
 
-        public string get_s()
+        public void  get_s()
         {
 
             /*
@@ -70,7 +70,7 @@ namespace dotNet5781_01_7232_5482
              * 
              */
 
-            string s_l = LicenseNum.ToString();
+            string s_l = this.LicenseNum.ToString();
             string prefix, middle, suffix;
             if (startDate.Year < 2018)
             {
@@ -85,7 +85,7 @@ namespace dotNet5781_01_7232_5482
                 suffix = s_l.Substring(5, 3);
             }
             string registrationString = String.Format("{0}-{1}-{2}", prefix, middle, suffix);
-            return registrationString;
+            Console.WriteLine(registrationString+"/n");
 
         }
 //        public bool check_yaer()
@@ -99,10 +99,10 @@ namespace dotNet5781_01_7232_5482
 
         //האם צריך טיפול? נסע 20000 קמ מאז הטיפול האחרון או עבר שנה מהטיפול
         //b.needTreat()
-        public bool needTreat(Bus b)
+        public bool needTreat()
         {
-            return ((b.kmaftertreat >= 20000) || 
-                    ((DateTime.Now - b.lastTreat).TotalDays >= 365));
+            return ((this.kmaftertreat >= 20000) || 
+                    ((DateTime.Now - this.lastTreat).TotalDays >= 365));
         
         }
 
@@ -114,14 +114,25 @@ namespace dotNet5781_01_7232_5482
           
         }
 
-        public Bus (int licNum, DateTime dt, int km=0)
+        public Bus(int licNum, DateTime dt, double km1 = 0, double kmaftertreat1 = 0, double kmafterrefueling1 = 0)
 	    {
             //this();
             this.startDate = dt;
             this.licenseNum = licNum;
-            
-	    }
+            this.Km = km1;
+            this.kmaftertreat = kmaftertreat1;
+            this.kmafterrefueling = kmafterrefueling1;
 
 
-    }
+
+
+        }
+
+    //private int licenseNum;
+    //private DateTime startDate;
+    //private DateTime lastTreat;
+    //private double km;
+    //private double kmafterrefueling;
+    //private double kmaftertreat;
+}
 }
