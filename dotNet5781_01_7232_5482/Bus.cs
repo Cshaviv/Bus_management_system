@@ -85,7 +85,7 @@ namespace dotNet5781_01_7232_5482
                 suffix = s_l.Substring(5, 3);
             }
             string registrationString = String.Format("{0}-{1}-{2}", prefix, middle, suffix);
-            Console.WriteLine(registrationString+"/n");
+            Console.WriteLine(registrationString);
 
         }
 //        public bool check_yaer()
@@ -99,9 +99,9 @@ namespace dotNet5781_01_7232_5482
 
         //האם צריך טיפול? נסע 20000 קמ מאז הטיפול האחרון או עבר שנה מהטיפול
         //b.needTreat()
-        public bool needTreat()
+        public bool needTreat(int RandKm1)
         {
-            return ((this.kmaftertreat >= 20000) || 
+            return ((this.kmaftertreat+RandKm1 >= 20000) || 
                     ((DateTime.Now - this.lastTreat).TotalDays >= 365));
         
         }
