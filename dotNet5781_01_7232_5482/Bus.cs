@@ -12,18 +12,18 @@ namespace dotNet5781_01_7232_5482
         private int licenseNum;
         private DateTime startDate;
         private DateTime lastTreat;
-        private double km;
-        private double kmafterrefueling;
-        private double kmaftertreat;
+        private int km;
+        private int kmafterrefueling;
+        private int kmaftertreat;
 
-        public double Kmaftertreat
+        public int Kmaftertreat
         {
             get { return kmaftertreat; }
             set { kmaftertreat = value; }
         }
 
 
-        public double Kmafterrefueling
+        public int Kmafterrefueling
         {
             get { return kmafterrefueling; }
             set { kmafterrefueling = value; }
@@ -31,7 +31,7 @@ namespace dotNet5781_01_7232_5482
 
 
 
-        public double Km
+        public int Km
         {
             get { return km; }
             set {
@@ -114,13 +114,14 @@ namespace dotNet5781_01_7232_5482
           
         }
 
-        public Bus(int licNum, DateTime dt, double km1 = 0, double kmaftertreat1 = 0, double kmafterrefueling1 = 0)
-	    {
+        public Bus(int licNum, DateTime dt, int kmaftertreat1 = 0, int km1 = 0,  int kmafterrefueling1 = 0)
+        {
             //this();
             this.startDate = dt;
             this.licenseNum = licNum;
-            this.Km = km1;
             this.kmaftertreat = kmaftertreat1;
+            this.Km = km1;
+            this.lastTreat = dt;
             this.kmafterrefueling = kmafterrefueling1;
 
 

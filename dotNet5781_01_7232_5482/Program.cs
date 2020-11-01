@@ -107,17 +107,19 @@ namespace dotNet5781_01_7232_5482
             }
             return true;
         }
-        static double RandKm()
+        static int RandKm()
         {
             Random randKm = new Random(DateTime.Now.Millisecond);
-            double KmForRide;
-            bool succ = double.TryParse(randKm.ToString(), out KmForRide);
-            if (!succ)
-            {
-                Console.WriteLine("ERROR! 2");
-                double x = 0.0;
-                return x;
-            }
+            int KmForRide = randKm.Next(1200);
+
+            //bool succ = double.TryParse(randKm.ToString(), out KmForRide);
+            //if (!succ)
+            //{
+            //    Console.WriteLine("ERROR! 2");
+            //    double x = 0.0;
+            //    return x;
+            //}
+            //int KmForRide = rand.Next(1, 2000);
             return KmForRide;
         }
 
@@ -136,7 +138,7 @@ namespace dotNet5781_01_7232_5482
                 Console.WriteLine("E: Exit");
                 choose = Console.ReadLine();
                 bool succ;
-                bool ActSecc = false;
+                
 
                 switch (choose)
                 {
@@ -176,31 +178,22 @@ namespace dotNet5781_01_7232_5482
                             }
                             if (!(CheckLicAndDt(Lic_Num, dt)))//בדיקה נוספת של תקינות תאריך ומספר רישוי
                                 break;
-
-                            Bus NewBus = new Bus(Lic_Num, dt);// הוספה של האוטובוס למאגר
+                
+                            Bus NewBus = new Bus(Lic_Num, dt) ;// הוספה של האוטובוס למאגר
                             Buss.Add(NewBus);
-                            ActSecc = true;
+                            
 
                             break;
                         }
                     case "B":
                         {
-                            //Console.WriteLine("Enter the bus license number");
-                            //string Lnum1 = Console.ReadLine();
-                            //int licNum1;
-                            //succ = Int32.TryParse(Lnum1, out licNum1);
-                            //if (!succ)
-                            //{
-                            //    Console.WriteLine("ERROR! ");
-                            //    break;
-                            //}
 
                             int Lic_Num = LicNum();//המספר רישוי שהמשתמש הכניס
                             if (Lic_Num == 0)// בדיקה אם המספר תקין
                             {
                                 break;
                             }
-
+                            bool found1 = false;
                             bool found = false;
                             foreach (Bus b in Buss)// b ptr
                             {
@@ -216,12 +209,12 @@ namespace dotNet5781_01_7232_5482
                                     //    break;
                                     //}
 
-                                    if (RandKm() == 0.0)
-                                    {
-                                        found = true;
-                                        break;
-                                    }
-                                    
+                                    //if (RandKm() == 0.0)
+                                    //{
+                                    //    found = true;
+                                    //    break;
+                                    //}
+                                    found1 = true;
                                     if (b.Kmafterrefueling + RandKm() > 1200)
                                     {
                                         Console.WriteLine("You do not have enough fuel to go on this trip");
@@ -237,23 +230,25 @@ namespace dotNet5781_01_7232_5482
                                     b.Kmafterrefueling = b.Kmafterrefueling + RandKm();
                                     b.Kmaftertreat = b.Kmaftertreat + RandKm();
                                     b.Km = b.Km + RandKm();
+                                    Console.WriteLine("The bus can go for a ride");
                                 }
-                                else
-                                {
-                                    Console.WriteLine("The bus does not exist in the reservoir");
-                                    found = true;
-                                    break;
-                                }
-
 
 
                             }
+                            if (!found1)
+                            {
+                                Console.WriteLine("The bus does not exist in the reservoir");
+                                break;
+                            }
+                           
+                            
+                               
+                            
                             if (found)
                             {
                                 break;
                             }
 
-                            ActSecc = true;
                             break;
                         }
                        
@@ -261,15 +256,7 @@ namespace dotNet5781_01_7232_5482
             
                     case "C":
                         {
-                            //Console.WriteLine("Enter the bus license number");
-                            //string Lnum2 = Console.ReadLine();
-                            //int licNum2;
-                            //succ = Int32.TryParse(Lnum2, out licNum2);
-                            //if (!succ)
-                            //{
-                            //    Console.WriteLine("ERROR! ");
-                            //    break;
-                            //}
+                         
                             int Lic_Num = LicNum();//המספר רישוי שהמשתמש הכניס
                             if (Lic_Num == 0)// בדיקה אם המספר תקין
                             {
@@ -333,7 +320,7 @@ namespace dotNet5781_01_7232_5482
 
                             }
                         }
-                        ActSecc = true;
+                        
                         break;
                     default:
                         {
@@ -342,10 +329,10 @@ namespace dotNet5781_01_7232_5482
                         }
                     
                 }
-                if (ActSecc)
-                {
-                    Console.WriteLine("The operation was performed correct");
-                }
+                //if (ActSecc)
+                //{
+                //    Console.WriteLine("The operation was performed correct");
+                //}
             }
 
 
