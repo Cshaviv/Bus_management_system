@@ -38,6 +38,7 @@ namespace dotNet5781_01_7232_5482
 
             return licNum;
         }
+    
        
         static bool CheckLicAndDt(int Lic_Num, DateTime dt)//The function checks if the date of commencement of operation of the bus and the length of the license number are correct
         {
@@ -48,6 +49,34 @@ namespace dotNet5781_01_7232_5482
             }
           
             return true;
+        }
+        static bool CheeckLicenum( int Lic_Num)
+        {
+             int LicesNember = Lic_Num;
+            if (!((LicesNember.ToString().Length == 8) || (LicesNember.ToString().Length == 7)))//If the length of the license number is incorrect - print ERROR
+            {
+                Console.WriteLine("The license number is incorrect");
+                return false;
+            }
+            return true;
+        }
+        static DateTime StartDateTime()//The function license number are correct
+        {
+            Console.WriteLine("Enter an activity start date");//Request the user to enter an activity start date.
+            String date = Console.ReadLine();
+            DateTime DT;
+            bool succes = DateTime.TryParseExact(date, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DT);
+            if (!succes)
+            {
+                Console.WriteLine("ERROR!, Please enter a valid date");
+                return StartDateTime();
+            }
+            if((DT-(DateTime.Now )).TotalDays > 0)
+            {
+                Console.WriteLine("Sorry, the date you typed is incorrect");
+                return StartDateTime();
+            }
+            return DT;
         }
         static double BusTotalKm()
        
@@ -192,6 +221,11 @@ namespace dotNet5781_01_7232_5482
                     Console.WriteLine("ERROR!,Please enter a valid date");
                     DateOfLastTreat();
                 }
+                if ((DT - (DateTime.Now)).TotalDays > 0)
+                {
+                    Console.WriteLine("Sorry, the date you typed is incorrect");
+                    return StartDateTime();
+                }
                 Console.WriteLine("This figure has been updated successfully");
                 return DT;
 
@@ -257,33 +291,30 @@ namespace dotNet5781_01_7232_5482
                                 }
 
                             }
+     
                             if(found)//If the license number exists in the system, go to the main menu.
                                 {
                                     break;
                                 }
-                            if (!((Lic_Num.ToString().Length == 8) || (Lic_Num.ToString().Length == 7)))//If the length of the license number is incorrect - print ERROR
-                            {
-                                Console.WriteLine("ERROR");
+                            if(! (CheeckLicenum(Lic_Num)))
                                 break;
+                            
+                            //If the length of the license number is incorrect - print ERROR
+                            //{
+                            //    Console.WriteLine("ERROR");
+                            //    break;
 
-                            }
+                            //}
 
-                            Console.WriteLine("Enter an activity start date");//Request the user to enter an activity start date.
-                            String date = Console.ReadLine();
-                            DateTime DT;
-                            succ = DateTime.TryParseExact(date, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DT);
-                            if (!succ)
-                            {
-                                Console.WriteLine("ERROR!, Please enter a valid date");
-                                break;
-                            }
-                            if (!(CheckLicAndDt(Lic_Num, DT)))//Call to function of integrity check.
+
+                            DateTime My_DT = StartDateTime();
+                            if (!(CheckLicAndDt(Lic_Num, My_DT)))//Call to function of integrity check.
                                 break;
                             double TotalKm = BusTotalKm();
                             double KmFromLastTreat = LastTreat(TotalKm);
                             double KmFromLastRefuling = LastRefueling(TotalKm);
                             DateTime DateFromLastTreat = DateOfLastTreat();
-                            Bus NewBus = new Bus(Lic_Num, DT, DateFromLastTreat, TotalKm, KmFromLastTreat, KmFromLastRefuling) ;// Add the bus to the list
+                            Bus NewBus = new Bus(Lic_Num, My_DT, DateFromLastTreat, TotalKm, KmFromLastTreat, KmFromLastRefuling) ;// Add the bus to the list
                             Buss.Add(NewBus);
                             Console.WriteLine("The bus successfully added to the list of buses");
                             
