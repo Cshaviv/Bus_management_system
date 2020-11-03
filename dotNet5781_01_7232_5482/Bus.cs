@@ -27,9 +27,6 @@ namespace dotNet5781_01_7232_5482
             get { return kmafterrefueling; }
             set { kmafterrefueling = value; }
         }
-
-
-
         public double Km
         {
             get { return km; }
@@ -45,9 +42,6 @@ namespace dotNet5781_01_7232_5482
             set { lastTreat = value; }
         }
 
-
-
-
         public DateTime StartDate
         {
             get { return startDate; }
@@ -60,14 +54,8 @@ namespace dotNet5781_01_7232_5482
             set { licenseNum = value; }
         }
 
-        public void  get_LicesNum()
-        {
-
-            /*
-             מספר רישוי הוא מספר בן 7 לאוטובוסים שנכנסו לפעילות לפני שנת 2018 ו8 ספרות לשאר.
-דרך ההצגה של מספר רישוי תתבצע בהתאמה לפי הפורמט הבא: 67-345-12 או 678-45-123
-             * 
-             */
+        public void  get_LicesNum()//Prints the license number in the appropriate format
+        { 
 
             string s_l = this.LicenseNum.ToString();
             string prefix, middle, suffix;
@@ -89,9 +77,6 @@ namespace dotNet5781_01_7232_5482
         }
 
         
-
-        //האם צריך טיפול? נסע 20000 קמ מאז הטיפול האחרון או עבר שנה מהטיפול
-        //b.needTreat()
         public bool needTreat(double RandKm1)
         {
             return ((this.kmaftertreat + RandKm1 >= 20000) || ((DateTime.Now - this.lastTreat).TotalDays >= 365));
@@ -100,19 +85,12 @@ namespace dotNet5781_01_7232_5482
 
         public Bus(int licNum, DateTime dt, DateTime My_DT, double My_Km = 0, double My_Kmaftertreat = 0, double My_Kmafterrefueling = 0)
         {
-            //this();
             this.startDate = dt;
             this.licenseNum = licNum;
             this.lastTreat = My_DT;
             this.Km = My_Km;
             this.kmaftertreat = My_Kmaftertreat;
             this.kmafterrefueling = My_Kmafterrefueling;
-
-
-
-
-        }
-
-   
+        }  
 }
 }

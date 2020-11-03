@@ -1,4 +1,4 @@
-﻿//AYALA CHAGIT
+﻿//Ayala Israeli 324207232. Chagit Shaviv 322805482.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,10 +8,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-//       enum choose
-//{
-//           exit, add, drive, treat
-//}
 
 
 
@@ -57,7 +53,7 @@ namespace dotNet5781_01_7232_5482
                 return false;
             }
             return true;
-        }
+        }//Check if the license number is not the appropriate length
         static DateTime StartDateTime()//The function license number are correct
         {
             Console.WriteLine("Enter an activity start date");//Request the user to enter an activity start date.
@@ -114,7 +110,7 @@ namespace dotNet5781_01_7232_5482
                 return BusTotalKm();
             }
 
-        }
+        }//Data reception for the new bus
         static double LastTreat(double TotalKm)
         {
             double My_TotalKm = TotalKm;
@@ -157,8 +153,8 @@ namespace dotNet5781_01_7232_5482
                 Console.WriteLine("Sorry, this option does not exist");
                 return LastTreat(My_TotalKm);
             }
-           
-        }
+
+        }//Data reception for the new bus
         static double LastRefueling(double TotalKm)
         {
             Console.WriteLine("Press 'Y' to update the number of kilometers the bus has traveled since last refueling or 'N' to skip");
@@ -201,8 +197,8 @@ namespace dotNet5781_01_7232_5482
                 Console.WriteLine("Sorry, this option does not exist");
                 return LastRefueling(TotalKm);
             }
-           
-        }
+
+        }//Data reception for the new bus
 
         static DateTime DateOfLastTreat(DateTime My_DT)
         {
@@ -242,7 +238,7 @@ namespace dotNet5781_01_7232_5482
                 DateOfLastTreat(StartDate);
             }
             return StartDate;
-        }
+        }//Data reception for the new bus
         static double RandKm()//The guerrilla function has a number. (km to ride)
         {
             Random randKm = new Random(DateTime.Now.Millisecond);
@@ -268,7 +264,7 @@ namespace dotNet5781_01_7232_5482
             b.Km = b.Km + KmForRide;
             Console.WriteLine("The bus can go for a ride");
             return;
-        }
+        }//Check if it is possible to go on a trip
 
         static void Treat_OR_Refuel(Bus b)
         {
@@ -300,7 +296,7 @@ namespace dotNet5781_01_7232_5482
                 Console.WriteLine("This option does not exist");
                 return;
             }
-        }
+        }//Request for refueling or treatment
         static void Main(string[] args)
         {
 
@@ -389,7 +385,6 @@ namespace dotNet5781_01_7232_5482
                             {
                                 break;
                             }
-                            //bool Found = false;
                             bool Found = false;
                             foreach (Bus b in Buss)
                             {
