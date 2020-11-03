@@ -1,4 +1,4 @@
-﻿//Ayala Israeli 324207232. Chagit Shaviv 322805482.//lalala
+﻿//Ayala Israeli 324207232. Chagit Shaviv 322805482.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
