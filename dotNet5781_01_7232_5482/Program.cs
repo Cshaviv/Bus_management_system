@@ -206,8 +206,9 @@ namespace dotNet5781_01_7232_5482
             return 0;
         }
 
-        static DateTime DateOfLastTreat()
+        static DateTime DateOfLastTreat(DateTime My_DT)
         {
+            DateTime StartDate = My_DT;
             Console.WriteLine("Press 'Y' To type in what date was the last treatment of the bus  or 'N' to skip ");
             string choose = Console.ReadLine();
             if ((choose == "Y") || (choose == "y"))
@@ -219,12 +220,17 @@ namespace dotNet5781_01_7232_5482
                 if (!succses)
                 {
                     Console.WriteLine("ERROR!,Please enter a valid date");
-                    DateOfLastTreat();
+                    DateOfLastTreat(StartDate);
                 }
-                if ((DT - (DateTime.Now)).TotalDays > 0)
+                if (((DT - (DateTime.Now)).TotalDays > 0)||((My_DT-( DT)).TotalDays>0))
                 {
                     Console.WriteLine("Sorry, the date you typed is incorrect");
-                    return StartDateTime();
+                    DateOfLastTreat(StartDate);
+                }
+                if((StartDate.Year>= 2018)&&(DT.Year<2018))
+                {
+                    Console.WriteLine("Sorry, the date you typed is incorrect");
+                    DateOfLastTreat(StartDate);
                 }
                 Console.WriteLine("This figure has been updated successfully");
                 return DT;
@@ -240,7 +246,7 @@ namespace dotNet5781_01_7232_5482
             else
             {
                 Console.WriteLine("Sorry, this option does not exist");
-                DateOfLastTreat();
+                DateOfLastTreat(StartDate);
             }
             return DateTime.Now ;
         }
@@ -249,6 +255,26 @@ namespace dotNet5781_01_7232_5482
             Random randKm = new Random(DateTime.Now.Millisecond);
             double KmForRide = randKm.NextDouble()*(1200.0-0.0)+(0.0);
             return KmForRide;
+        }
+        static void CheckBus(Bus b,double KmForRide)
+
+        {
+            double My_Km = KmForRide;
+            if (b.Kmafterrefueling + My_Km > 1200)//Check if the bus has enough fuel for the trip.
+            {
+                Console.WriteLine("You do not have enough fuel to go on this trip");
+                return ;
+            }
+            if (b.needTreat(My_Km))//Check if the bus does not need treatment.
+            {
+                Console.WriteLine("The bus needs treatment");
+                return ;
+            }
+            b.Kmafterrefueling = b.Kmafterrefueling + KmForRide;//Update bus fields due to travel.
+            b.Kmaftertreat = b.Kmaftertreat + KmForRide;
+            b.Km = b.Km + KmForRide;
+            Console.WriteLine("The bus can go for a ride");
+            return;
         }
 
 
@@ -313,7 +339,7 @@ namespace dotNet5781_01_7232_5482
                             double TotalKm = BusTotalKm();
                             double KmFromLastTreat = LastTreat(TotalKm);
                             double KmFromLastRefuling = LastRefueling(TotalKm);
-                            DateTime DateFromLastTreat = DateOfLastTreat();
+                            DateTime DateFromLastTreat = DateOfLastTreat(My_DT);
                             Bus NewBus = new Bus(Lic_Num, My_DT, DateFromLastTreat, TotalKm, KmFromLastTreat, KmFromLastRefuling) ;// Add the bus to the list
                             Buss.Add(NewBus);
                             Console.WriteLine("The bus successfully added to the list of buses");
@@ -335,25 +361,27 @@ namespace dotNet5781_01_7232_5482
                             {
                                 if (b.LicenseNum == Lic_Num)//Check if the license number is on the list
                                 {
-              
+
                                     found = true;
                                     double KmForRide = RandKm();
-                                    if (b.Kmafterrefueling + KmForRide > 1200)//Check if the bus has enough fuel for the trip.
-                                    {
-                                        Console.WriteLine("You do not have enough fuel to go on this trip");
-                                        //found = true;
-                                        break;
-                                    }
-                                    if (b.needTreat(KmForRide))//Check if the bus does not need treatment.
-                                    {
-                                        Console.WriteLine("The bus needs treatment");
-                                        //found = true;
-                                        break;
-                                    }
-                                    b.Kmafterrefueling = b.Kmafterrefueling + KmForRide;//Update bus fields due to travel.
-                                    b.Kmaftertreat = b.Kmaftertreat + KmForRide;
-                                    b.Km = b.Km + KmForRide;
-                                    Console.WriteLine("The bus can go for a ride");
+                                    CheckBus( b,  KmForRide);
+                                  
+                                    //if (b.Kmafterrefueling + KmForRide > 1200)//Check if the bus has enough fuel for the trip.
+                                    //{
+                                    //    Console.WriteLine("You do not have enough fuel to go on this trip");
+                                    //    //found = true;
+                                    //    break;
+                                    //}
+                                    //if (b.needTreat(KmForRide))//Check if the bus does not need treatment.
+                                    //{
+                                    //    Console.WriteLine("The bus needs treatment");
+                                    //    //found = true;
+                                    //    break;
+                                    //}
+                                    //b.Kmafterrefueling = b.Kmafterrefueling + KmForRide;//Update bus fields due to travel.
+                                    //b.Kmaftertreat = b.Kmaftertreat + KmForRide;
+                                    //b.Km = b.Km + KmForRide;
+                                    //Console.WriteLine("The bus can go for a ride");
                                 }
 
 
@@ -361,9 +389,7 @@ namespace dotNet5781_01_7232_5482
                             if (!found)
                             {
                                 Console.WriteLine("The bus does not exist in the reservoir");//if the bus doesnt exist in the list
-                                break;
                             }
-                       
 
                             break;
                         }
