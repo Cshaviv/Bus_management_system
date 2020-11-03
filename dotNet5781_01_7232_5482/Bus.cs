@@ -12,18 +12,17 @@ namespace dotNet5781_01_7232_5482
         private int licenseNum;
         private DateTime startDate;
         private DateTime lastTreat;
-        private int km;
-        private int kmafterrefueling;
-        private int kmaftertreat;
+        private double km;
+        private double kmafterrefueling;
+        private double kmaftertreat;
 
-        public int Kmaftertreat
+        public double Kmaftertreat
         {
             get { return kmaftertreat; }
             set { kmaftertreat = value; }
         }
 
-
-        public int Kmafterrefueling
+        public double Kmafterrefueling
         {
             get { return kmafterrefueling; }
             set { kmafterrefueling = value; }
@@ -31,7 +30,7 @@ namespace dotNet5781_01_7232_5482
 
 
 
-        public int Km
+        public double Km
         {
             get { return km; }
             set {
@@ -61,7 +60,7 @@ namespace dotNet5781_01_7232_5482
             set { licenseNum = value; }
         }
 
-        public void  get_s()
+        public void  get_LicesNum()
         {
 
             /*
@@ -88,52 +87,32 @@ namespace dotNet5781_01_7232_5482
             Console.WriteLine(registrationString);
 
         }
-//        public bool check_yaer()
-//        {
-//            if (this.lastTreat + 1)
-//                return false;
-//        }
 
-//}
         
 
         //האם צריך טיפול? נסע 20000 קמ מאז הטיפול האחרון או עבר שנה מהטיפול
         //b.needTreat()
-        public bool needTreat(int RandKm1)
+        public bool needTreat(double RandKm1)
         {
-            return ((this.kmaftertreat+RandKm1 >= 20000) || 
-                    ((DateTime.Now - this.lastTreat).TotalDays >= 365));
-        
+            return ((this.kmaftertreat + RandKm1 >= 20000) || ((DateTime.Now - this.lastTreat).TotalDays >= 365));
         }
 
-        public Bus ()
-	    {
-            this.licenseNum = 0;
-            this.km = 0;
-            this.kmaftertreat = 0;
-          
-        }
 
-        public Bus(int licNum, DateTime dt, int kmaftertreat1 = 0, int km1 = 0,  int kmafterrefueling1 = 0)
+        public Bus(int licNum, DateTime dt, DateTime My_DT, double My_Km = 0, double My_Kmaftertreat = 0, double My_Kmafterrefueling = 0)
         {
             //this();
             this.startDate = dt;
             this.licenseNum = licNum;
-            this.kmaftertreat = kmaftertreat1;
-            this.Km = km1;
-            this.lastTreat = dt;
-            this.kmafterrefueling = kmafterrefueling1;
+            this.lastTreat = My_DT;
+            this.Km = My_Km;
+            this.kmaftertreat = My_Kmaftertreat;
+            this.kmafterrefueling = My_Kmafterrefueling;
 
 
 
 
         }
 
-    //private int licenseNum;
-    //private DateTime startDate;
-    //private DateTime lastTreat;
-    //private double km;
-    //private double kmafterrefueling;
-    //private double kmaftertreat;
+   
 }
 }
