@@ -8,10 +8,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
-
-
 namespace dotNet5781_01_7232_5482
 {
     class Program
