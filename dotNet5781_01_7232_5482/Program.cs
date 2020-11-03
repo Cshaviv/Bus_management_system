@@ -1,4 +1,4 @@
-﻿//Ayala Israeli 324207232. Chagit Shaviv 322805482.
+﻿//Ayala Israeli 324207232. Chagit Shaviv 322805482.//lalala
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -423,17 +423,3 @@ namespace dotNet5781_01_7232_5482
     
        
 }
-   
-
-
-
-
-        
-
-
-
-
-    
-
-    
-
