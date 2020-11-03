@@ -277,7 +277,37 @@ namespace dotNet5781_01_7232_5482
             return;
         }
 
-
+        static void Treat_OR_Refuel(Bus b)
+        {
+            Console.WriteLine("Type 1 if you are interested in refueling the bus.Type 2 if you are interested in treatment");
+            string Choose1or2 = Console.ReadLine();//choose 1 or 2
+            int YourChoose;
+           bool succes = Int32.TryParse(Choose1or2, out YourChoose);
+            if (!succes)
+            {
+                Console.WriteLine("ERROR! ");//Incorrect input.
+                                             //Found = true;
+                return;
+            }
+            if (YourChoose == 1)//refueling
+            {
+                b.Kmafterrefueling = 0;
+                Console.WriteLine("The fuel tank is full");
+                return;
+            }
+            else if (YourChoose == 2)//treatment
+            {
+                b.LastTreat = DateTime.Now;
+                b.Kmaftertreat = 0;
+                Console.WriteLine("The treatment was performed successfully");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("This option does not exist");
+                return;
+            }
+        }
         static void Main(string[] args)
         {
 
@@ -324,15 +354,7 @@ namespace dotNet5781_01_7232_5482
                                 }
                             if(! (CheeckLicenum(Lic_Num)))
                                 break;
-                            
-                            //If the length of the license number is incorrect - print ERROR
-                            //{
-                            //    Console.WriteLine("ERROR");
-                            //    break;
-
-                            //}
-
-
+                   
                             DateTime My_DT = StartDateTime();
                             if (!(CheckLicAndDt(Lic_Num, My_DT)))//Call to function of integrity check.
                                 break;
@@ -365,26 +387,7 @@ namespace dotNet5781_01_7232_5482
                                     found = true;
                                     double KmForRide = RandKm();
                                     CheckBus( b,  KmForRide);
-                                  
-                                    //if (b.Kmafterrefueling + KmForRide > 1200)//Check if the bus has enough fuel for the trip.
-                                    //{
-                                    //    Console.WriteLine("You do not have enough fuel to go on this trip");
-                                    //    //found = true;
-                                    //    break;
-                                    //}
-                                    //if (b.needTreat(KmForRide))//Check if the bus does not need treatment.
-                                    //{
-                                    //    Console.WriteLine("The bus needs treatment");
-                                    //    //found = true;
-                                    //    break;
-                                    //}
-                                    //b.Kmafterrefueling = b.Kmafterrefueling + KmForRide;//Update bus fields due to travel.
-                                    //b.Kmaftertreat = b.Kmaftertreat + KmForRide;
-                                    //b.Km = b.Km + KmForRide;
-                                    //Console.WriteLine("The bus can go for a ride");
                                 }
-
-
                             }
                             if (!found)
                             {
@@ -405,51 +408,20 @@ namespace dotNet5781_01_7232_5482
                                 break;
                             }
                             //bool Found = false;
-                            bool Found1 = false;
+                            bool Found = false;
                             foreach (Bus b in Buss)
                             {
                                 if (b.LicenseNum == Lic_Num)
                                 {
-                                    Found1 = true;
-                                    Console.WriteLine("Type 1 if you are interested in refueling the bus.Type 2 if you are interested in treatment");
-                                    string Choose1or2 = Console.ReadLine();//choose 1 or 2
-                                    int YourChoose;
-                                    succ = Int32.TryParse(Choose1or2, out YourChoose);
-                                    if (!succ)
-                                    {
-                                        Console.WriteLine("ERROR! ");//Incorrect input.
-                                        //Found = true;
-                                        break;
-                                    }
-                                    if (YourChoose == 1)//refueling
-                                    {
-                                        b.Kmafterrefueling = 0;
-                                        Console.WriteLine("The fuel tank is full");
-                                    }
-                                    else if (YourChoose == 2)//treatment
-                                    {
-                                        b.LastTreat = DateTime.Now;
-                                        b.Kmaftertreat = 0;
-                                        Console.WriteLine("The treatment was performed successfully");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("This option does not exist");
-                                    }
+                                    Found = true;
+                                    Treat_OR_Refuel(b);
                                 }
                               
                             }
-                             if(!Found1)//the bus dosent exist in the list
+                             if(!Found)//the bus dosent exist in the list
                             {
                                 Console.WriteLine("The bus does not exist in the reservoir");
-                                break;
-                           
                             }
-                            //if (Found)//the bus need to treat or refueling-(exit from the case)
-                            //{
-                            //    break;
-                            //}
-                            
                             break;
                         }
                     case "D":
@@ -458,8 +430,6 @@ namespace dotNet5781_01_7232_5482
                             {
                                 b.get_LicesNum();//Printing of the list of buses with license number and km.
                                 Console.WriteLine(b.Km+"\n");
-
-
                             }
                         }
                         
