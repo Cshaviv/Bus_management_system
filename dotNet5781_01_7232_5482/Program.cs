@@ -38,8 +38,6 @@ namespace dotNet5781_01_7232_5482
 
             return licNum;
         }
-    
-       
         static bool CheckLicAndDt(int Lic_Num, DateTime dt)//The function checks if the date of commencement of operation of the bus and the length of the license number are correct
         {
             if (!((dt.Year >= 2018) && (Lic_Num.ToString().Length == 8) || (dt.Year < 2018)&&(Lic_Num.ToString().Length == 7)))
@@ -79,7 +77,7 @@ namespace dotNet5781_01_7232_5482
             return DT;
         }
         static double BusTotalKm()
-       
+
         {
             Console.WriteLine("Press 'Y' to update the number of kilometers the bus has traveled or 'N' to skip ");
             string choose = Console.ReadLine();
@@ -92,13 +90,13 @@ namespace dotNet5781_01_7232_5482
                 if (!succses)
                 {
                     Console.WriteLine("ERROR!, Please type digits only");
-                    BusTotalKm();
+                    return BusTotalKm();
 
                 }
-                if(TotalKm<0)
+                if (TotalKm < 0)
                 {
                     Console.WriteLine("Sorry this km number could not be true");
-                    BusTotalKm();
+                    return BusTotalKm();
                 }
                 Console.WriteLine("This figure has been updated successfully");
                 return TotalKm;
@@ -113,9 +111,9 @@ namespace dotNet5781_01_7232_5482
             else
             {
                 Console.WriteLine("Sorry, this option does not exist");
-                BusTotalKm();
+                return BusTotalKm();
             }
-            return 0;
+
         }
         static double LastTreat(double TotalKm)
         {
@@ -133,12 +131,12 @@ namespace dotNet5781_01_7232_5482
                     Console.WriteLine("ERROR!, Please type digits only");
                     return LastTreat(My_TotalKm);
                 }
-                if(KmFromLastTreat>20000)
+                if (KmFromLastTreat > 20000)
                 {
                     Console.WriteLine("Sorry this km number could not be true");
                     return LastTreat(My_TotalKm);
                 }
-                if (KmFromLastTreat>TotalKm)
+                if (KmFromLastTreat > TotalKm)
                 {
                     Console.WriteLine("Sorry this km number could not be true");
                     return LastTreat(My_TotalKm);
@@ -159,7 +157,7 @@ namespace dotNet5781_01_7232_5482
                 Console.WriteLine("Sorry, this option does not exist");
                 return LastTreat(My_TotalKm);
             }
-            return 0;
+           
         }
         static double LastRefueling(double TotalKm)
         {
@@ -175,17 +173,17 @@ namespace dotNet5781_01_7232_5482
                 if (!succses)
                 {
                     Console.WriteLine("ERROR!, Please type digits only");
-                    LastRefueling(TotalKm);
+                    return LastRefueling(TotalKm);
                 }
                 if (KmFromLastrefueling > 1200)
                 {
                     Console.WriteLine("Sorry this km number could not be true");
-                    LastRefueling(TotalKm);
+                   return LastRefueling(TotalKm);
                 }
                 if (KmFromLastrefueling > TotalKm)
                 {
                     Console.WriteLine("Sorry this km number could not be true");
-                    LastTreat(My_TotalKm);
+                    return LastRefueling(TotalKm);
                 }
                 Console.WriteLine("This figure has been updated successfully");
                 return KmFromLastrefueling;
@@ -201,9 +199,9 @@ namespace dotNet5781_01_7232_5482
             else
             {
                 Console.WriteLine("Sorry, this option does not exist");
-                LastRefueling(TotalKm);
+                return LastRefueling(TotalKm);
             }
-            return 0;
+           
         }
 
         static DateTime DateOfLastTreat(DateTime My_DT)
@@ -222,16 +220,11 @@ namespace dotNet5781_01_7232_5482
                     Console.WriteLine("ERROR!,Please enter a valid date");
                     DateOfLastTreat(StartDate);
                 }
-                if (((DT - (DateTime.Now)).TotalDays > 0)||((My_DT-( DT)).TotalDays>0))
+                if (((DT - (DateTime.Now)).TotalDays > 0)||((My_DT - (DT)).TotalDays>0)|| ((DT-(My_DT)).TotalDays>365))
                 {
                     Console.WriteLine("Sorry, the date you typed is incorrect");
                     DateOfLastTreat(StartDate);
-                }
-                if((StartDate.Year>= 2018)&&(DT.Year<2018))
-                {
-                    Console.WriteLine("Sorry, the date you typed is incorrect");
-                    DateOfLastTreat(StartDate);
-                }
+                }               
                 Console.WriteLine("This figure has been updated successfully");
                 return DT;
 
@@ -240,7 +233,7 @@ namespace dotNet5781_01_7232_5482
             else if ((choose == "N") || (choose == "n"))
             {
                 Console.WriteLine("This figure has been given a default value");
-                return DateTime.Now;
+                return StartDate;
 
             }
             else
@@ -248,7 +241,7 @@ namespace dotNet5781_01_7232_5482
                 Console.WriteLine("Sorry, this option does not exist");
                 DateOfLastTreat(StartDate);
             }
-            return DateTime.Now ;
+            return StartDate;
         }
         static double RandKm()//The guerrilla function has a number. (km to ride)
         {
@@ -322,9 +315,6 @@ namespace dotNet5781_01_7232_5482
                 Console.WriteLine("D: Presentation of the passenger since the last treatment for all vehicles in the company.");
                 Console.WriteLine("E: Exit");
                 choose = Console.ReadLine();
-                bool succ;
-                
-
                 switch (choose)
                 {
                     case "A":
@@ -333,8 +323,7 @@ namespace dotNet5781_01_7232_5482
                             if (Lic_Num == 0)//Check if the number invalid. 
                             {
                                 break;
-                            }
-                            
+                            }                           
                             bool found=false;
                             foreach (Bus b in Buss)// b ptr
                             {
@@ -346,8 +335,7 @@ namespace dotNet5781_01_7232_5482
 
                                 }
 
-                            }
-     
+                            }     
                             if(found)//If the license number exists in the system, go to the main menu.
                                 {
                                     break;
@@ -364,9 +352,7 @@ namespace dotNet5781_01_7232_5482
                             DateTime DateFromLastTreat = DateOfLastTreat(My_DT);
                             Bus NewBus = new Bus(Lic_Num, My_DT, DateFromLastTreat, TotalKm, KmFromLastTreat, KmFromLastRefuling) ;// Add the bus to the list
                             Buss.Add(NewBus);
-                            Console.WriteLine("The bus successfully added to the list of buses");
-                            
-
+                            Console.WriteLine("The bus successfully added to the list of buses");                          
                             break;
                         }
                     case "B":
@@ -378,15 +364,14 @@ namespace dotNet5781_01_7232_5482
                                 break;
                             }
                             bool found = false;
-                            //bool found = false;
                             foreach (Bus b in Buss)// b ptr
                             {
                                 if (b.LicenseNum == Lic_Num)//Check if the license number is on the list
                                 {
-
                                     found = true;
                                     double KmForRide = RandKm();
                                     CheckBus( b,  KmForRide);
+                                    break;
                                 }
                             }
                             if (!found)
@@ -396,12 +381,9 @@ namespace dotNet5781_01_7232_5482
 
                             break;
                         }
-                       
-                
-            
+                                                  
                     case "C":
-                        {
-                         
+                        {                       
                             int Lic_Num = LicNum();//The license number entered by the user.
                             if (Lic_Num == 0)// Check if the number invalid.
                             {
