@@ -1,4 +1,5 @@
 ﻿//Ayala Israeli 324207232. Chagit Shaviv 322805482.
+//עשינו את זההההה
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -427,17 +428,3 @@ namespace dotNet5781_01_7232_5482
     
        
 }
-   
-
-
-
-
-        
-
-
-
-
-    
-
-    
-
