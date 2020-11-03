@@ -313,7 +313,7 @@ namespace dotNet5781_01_7232_5482
                         {
                             foreach (Bus b in Buss)
                             {
-                                b.get_s();//Printing of the list of buses with license number and km.
+                                b.get_s();//Printing of the list of buses with license number and km..
                                 Console.WriteLine(b.Km+"\n");
 
 
