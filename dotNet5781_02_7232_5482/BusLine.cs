@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,39 +25,132 @@ namespace dotNet5781_02_7232_5482
         public BusLineStation FirstStation { get => Stations[0]; set => Stations[0] = value; }
         public BusLineStation LastStation { get => Stations[stations.Count - 1]; set => Stations[stations.Count - 1] = value; }
         public BusLineStation this[int index] => stations[index];
-        public void AddFirst(BusLineStation b)
+
+        public int FindIndex(string PrevStation)
         {
-            Stations.Insert(0, b);
-            FirstStation = Stations[0];
-        }
-        public void AddLast(BusLineStation b)
-        {
-            Stations.Add(b);
-            LastStation = Stations[Stations.Count - 1];
-        }
-        public void Add(int index, BusLineStation b)
-        {
-            if (index == 0)
+            int index = 0;
+            foreach (BusLineStation b in Stations)
             {
-                AddFirst(b);
+                
+                if(b.BusStationKey== PrevStation)
+                {
+                    return index;
+                }
+                index++;
+            }
+            index = -1;
+            return index;
+        }
+        public void CheckStationExist(BusLineStation bus)
+        {
+            foreach (BusLineStation b in Stations)
+            {
+
+                if (b.BusStationKey == bus.BusStationKey)
+                {
+                    throw new BusException("the previous station entered exist");
+                }
+            }
+            return;
+         
+        }
+        public void AddStation(BusLineStation b , Insert Choice)
+        {
+            CheckStationExist(b);//צריך לעשות חריגה ביציאה מהפונקציה הזאת
+            if (Choice==Insert.FIRST)
+            {
+                Stations.Add(b);
+                FirstStation = b;
+                return;
+            }
+            if (Choice == Insert.MIDDLE)
+            {
+                Console.WriteLine("Enter th code of the station before the station you want to add");
+                int PrevStation;
+                if (!int.TryParse(Console.ReadLine(), out PrevStation))
+                    throw new BusException("Error, InvalidCastException output");
+                int index = FindIndex(PrevStation.ToString());
+                if (index == -1)
+                {
+                    throw new BusException("the previous station entered doesn't exist");
+                }
+                stations.Insert(++index, b);
+                return;
             }
             else
             {
-                if (index > Stations.Count)
+                stations.Insert(stations.Count - 1, b);
+                LastStation = b;
+                return;
+            }
+
+        }
+    
+        public double timeBetween(BusLineStation one, BusLineStation two)
+        {
+            return one.Time.Subtract(two.Time).TotalMinutes;
+        }
+
+        public void DeleteStation(BusLineStation bus)
+        {
+            int index = 0;
+            foreach( BusLineStation b in Stations)
+            {
+                if(b.BusStationKey==bus.BusStationKey)
                 {
-                    throw new ArgumentOutOfRangeException("index", "index should be less than or equal to" + busstations.Count);
+                    Stations.RemoveAt(index);
+                    return;
                 }
-                if (index == Stations.Count)
+                index++;
+            }
+            return;
+        }
+
+        public bool CheckStationInBusLIne( string StationKey)
+        {
+            bool flag = false;
+            for(int i = 0; i<this.stations.Count; i++)
+            {
+                if(this.stations[i].BusStationKey == StationKey)
                 {
-                    Stations.Insert(index, b);
-                    LastStation = Stations[Stations.Count - 1];
+                    flag = true;
+                    return flag;
                 }
             }
+            return flag;
         }
-        public override string ToString()
+
+        public double DistanceBetweenStations(BusLineStation stat1, BusLineStation stat2)
         {
-            PrintStations();
-            return String.Format(" Number: {0}, Area: {1}", BusNumber, Area );
+            int index1 = FindIndex(stat1.BusStationKey);
+            int index2 = FindIndex(stat2.BusStationKey);
+            if(index1==-1||index2==-1)
+            {
+                throw new BusException("the previous station entered doesn't exist on the route of this line bus");
+            }
+            double distance = 0;
+            for(int i=index1+1; i<index2+1; i++)
+            {
+                distance = distance + Stations[i].My_Distance;
+            }
+            return distance;
+
+        }
+
+        public TimeSpan TimeBetweenStations(BusLineStation stat1, BusLineStation stat2)
+        {
+            int index1 = FindIndex(stat1.BusStationKey);
+            int index2 = FindIndex(stat2.BusStationKey);
+            if (index1 == -1 || index2 == -1)
+            {
+                throw new BusException(" the ststion doesn't exist on the route of this bus line");
+            }
+            TimeSpan time=TimeSpan.Zero;
+            for (int i = index1 + 1; i < index2 + 1; i++)
+            {
+                time = time + Stations[i].My_Time;
+            }
+            return time;
 
         }
         public void PrintStations()
@@ -66,27 +160,31 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine(b.BusStationKey);
             }
         }
-        public double timeBetween(BusLineStation one, BusLineStation two)
+        public override string ToString()
         {
-            return one.Time.Subtract(two.Time).TotalMinutes;
+           
+
+            return String.Format(" Number: {0}, Area: {1}, ListOfStation:{2}", BusNumber, Area, PrintStations());
+
         }
-        public int CompareTo(BusLine other)
+        //private double totalTime()
+        //{
+        //    double total = 0;
+        //    for (int i = 0; i < Stations.Count - 1; i++)
+        //    {
+        //        total += timeBetween(Stations[i], Stations[i + 1]);
+        //    }
+
+        //    return total;
+        //}
+
+        public int CompareTo(BusLine other)//לא ברור צריך לעבור על זה
         {
-            double mytotal = totalTime();
-            double othertotal = other.totalTime();
-
-            return mytotal.CompareTo(othertotal);
+            TimeSpan time1 = TimeBetweenStations(this.FirstStation, this.LastStation);
+            TimeSpan time2 = TimeBetweenStations(other.FirstStation, other.LastStation);
+            return time1.CompareTo(time2);
         }
 
-        private double totalTime()
-        {
-            double total = 0;
-            for (int i = 0; i < Stations.Count - 1; i++)
-            {
-                total += timeBetween(Stations[i], Stations[i + 1]);
-            }
 
-            return total;
-        }
     }
 }

@@ -12,13 +12,10 @@ namespace dotNet5781_02_7232_5482
         private double Distance;
         public TimeSpan Time;
 
-        public double My_Distance
+        public double My_Distance//לא לשכוח לקלוט מהמשתמש מספר במיין 
         {
             get { return Distance; }
-            set
-            {
-                Distance = rand.NextDouble();
-            }
+            set { Distance = value; }
         }
         public TimeSpan My_Time
         {
