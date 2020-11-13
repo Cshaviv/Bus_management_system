@@ -10,16 +10,14 @@ namespace dotNet5781_02_7232_5482
     class BusLine : IComparable<BusLine>
     {
         public int BusNumber { get; set; }
-
-        private List<BusLineStation> stations = new List<BusLineStation>();
+        private List<BusLineStation> stations;
 
         public List<BusLineStation> Stations
         {
-            get
-            {
-                return stations;
-            }
+            get { return stations; }
+            set { stations = value; }
         }
+
         public Area Area { get; set; }
 
         public BusLineStation FirstStation { get => Stations[0]; set => Stations[0] = value; }
@@ -178,20 +176,31 @@ namespace dotNet5781_02_7232_5482
             }
             return bus;
        }
-        public void PrintStations()
+        public string PrintStations()
         {
+            string station = " ";
             foreach (BusLineStation b in Stations)
             {
-                Console.WriteLine(b.BusStationKey);
+                station += b.BusStationKey+ " ";
             }
+            return station;
         }
         public override string ToString()
         {
            
 
-            return String.Format(" Number: {0}, Area: {1}, ListOfStation:{2}", BusNumber, Area, PrintStations());
+            return String.Format(" Bus Number: {0}, Area: {1}, ListOfStation:{2}", BusNumber, Area, PrintStations());
 
         }
+   
+
+        public int CompareTo(BusLine other)//לא ברור צריך לעבור על זה
+        {
+            TimeSpan time1 = TimeBetweenStations(this.FirstStation, this.LastStation);
+            TimeSpan time2 = TimeBetweenStations(other.FirstStation, other.LastStation);
+            return time1.CompareTo(time2);
+        }
+
         //private double totalTime()
         //{
         //    double total = 0;
@@ -202,14 +211,5 @@ namespace dotNet5781_02_7232_5482
 
         //    return total;
         //}
-
-        public int CompareTo(BusLine other)//לא ברור צריך לעבור על זה
-        {
-            TimeSpan time1 = TimeBetweenStations(this.FirstStation, this.LastStation);
-            TimeSpan time2 = TimeBetweenStations(other.FirstStation, other.LastStation);
-            return time1.CompareTo(time2);
-        }
-
-
     }
 }
