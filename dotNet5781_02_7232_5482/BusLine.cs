@@ -26,6 +26,15 @@ namespace dotNet5781_02_7232_5482
         public BusLineStation LastStation { get => Stations[stations.Count - 1]; set => Stations[stations.Count - 1] = value; }
         public BusLineStation this[int index] => stations[index];
 
+        public BusLine(List<BusLineStation> L ,int BusNumber, BusLineStation first,   BusLineStation last, Area a)
+         {
+            this.Stations=L;
+            this.BusNumber=BusNumber;
+            this.FirstStation=first;
+            this.LastStation=last;
+            this.Area=a;
+         }
+
         public int FindIndex(string PrevStation)
         {
             int index = 0;
@@ -153,6 +162,22 @@ namespace dotNet5781_02_7232_5482
             return time;
 
         }
+        public BusLine SubPath (BusLineStation first, BusLineStation last)
+         {
+            List<BusLineStation> UserStations=new List<BusLineStation>();
+            BusLine bus=new BusLine(UserStations,this.BusNumber, first, last, this.Area);
+            int firstIndex=FindIndex(first.BusStationKey); 
+            int lastIndex=FindIndex(last.BusStationKey); 
+            if(firstIndex==-1||lastIndex==-1)
+            {   
+                throw new BusException(" one of the  ststion doesn't exist on the route of this bus line");
+            }
+            for(int i=firstIndex+1;i<lastIndex+1;i++)
+            {
+                bus.Stations.Add(Stations[i]);
+            }
+            return bus;
+       }
         public void PrintStations()
         {
             foreach (BusLineStation b in Stations)

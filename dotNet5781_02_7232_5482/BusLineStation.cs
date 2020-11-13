@@ -17,10 +17,19 @@ namespace dotNet5781_02_7232_5482
             get { return Distance; }
             set { Distance = value; }
         }
+        //חישבנו את המהירןת לפי ק"מ לדקה 
         public TimeSpan My_Time
         {
             get { return Time; }
             set { }
+        }
+
+        public  TimeSpan TravelTime()
+        {
+            double speed=1;//km for miniute
+            double Time= this.My_Distance/speed;
+           TimeSpan TimePerMin= TimeSpan.FromMinutes(Time);
+            return TimePerMin;
         }
         public override string ToString()
         {
