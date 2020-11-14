@@ -11,28 +11,25 @@ namespace dotNet5781_02_7232_5482
     {
         public int BusNumber { get; set; }
         private List<BusLineStation> stations;
-
         public List<BusLineStation> Stations
         {
             get { return stations; }
             set { stations = value; }
         }
-
         public Area Area { get; set; }
-
         public BusLineStation FirstStation { get => Stations[0]; set => Stations[0] = value; }
         public BusLineStation LastStation { get => Stations[stations.Count - 1]; set => Stations[stations.Count - 1] = value; }
         public BusLineStation this[int index] => stations[index];
-
-        public BusLine(List<BusLineStation> L ,int BusNumber, BusLineStation first,   BusLineStation last, Area a)
+        public BusLine(/*List<BusLineStation> L ,*/int BusNumber, BusLineStation first,   BusLineStation last, Area a)
          {
-            this.Stations=L;
+            //this.Stations=L;
             this.BusNumber=BusNumber;
             this.FirstStation=first;
             this.LastStation=last;
+            this.Stations[0] = FirstStation;
+            this.Stations[Stations.Count-1] = LastStation;
             this.Area=a;
          }
-
         public int FindIndex(string PrevStation)
         {
             int index = 0;
@@ -72,7 +69,7 @@ namespace dotNet5781_02_7232_5482
             }
             if (Choice == Insert.MIDDLE)
             {
-                Console.WriteLine("Enter th code of the station before the station you want to add");
+                Console.WriteLine("Enter the code of the station before the station you want to add");
                 int PrevStation;
                 if (!int.TryParse(Console.ReadLine(), out PrevStation))
                     throw new BusException("Error, InvalidCastException output");
@@ -91,13 +88,11 @@ namespace dotNet5781_02_7232_5482
                 return;
             }
 
-        }
-    
+        } 
         public double timeBetween(BusLineStation one, BusLineStation two)
         {
             return one.Time.Subtract(two.Time).TotalMinutes;
         }
-
         public void DeleteStation(BusLineStation bus)
         {
             int index = 0;
@@ -112,7 +107,6 @@ namespace dotNet5781_02_7232_5482
             }
             return;
         }
-
         public bool CheckStationInBusLIne( string StationKey)
         {
             bool flag = false;
@@ -126,7 +120,6 @@ namespace dotNet5781_02_7232_5482
             }
             return flag;
         }
-
         public double DistanceBetweenStations(BusLineStation stat1, BusLineStation stat2)
         {
             int index1 = FindIndex(stat1.BusStationKey);
@@ -143,7 +136,6 @@ namespace dotNet5781_02_7232_5482
             return distance;
 
         }
-
         public TimeSpan TimeBetweenStations(BusLineStation stat1, BusLineStation stat2)
         {
             int index1 = FindIndex(stat1.BusStationKey);
@@ -192,24 +184,11 @@ namespace dotNet5781_02_7232_5482
             return String.Format(" Bus Number: {0}, Area: {1}, ListOfStation:{2}", BusNumber, Area, PrintStations());
 
         }
-   
-
-        public int CompareTo(BusLine other)//לא ברור צריך לעבור על זה
+        public int CompareTo(BusLine other)
         {
             TimeSpan time1 = TimeBetweenStations(this.FirstStation, this.LastStation);
             TimeSpan time2 = TimeBetweenStations(other.FirstStation, other.LastStation);
             return time1.CompareTo(time2);
-        }
-
-        //private double totalTime()
-        //{
-        //    double total = 0;
-        //    for (int i = 0; i < Stations.Count - 1; i++)
-        //    {
-        //        total += timeBetween(Stations[i], Stations[i + 1]);
-        //    }
-
-        //    return total;
-        //}
+        }  
     }
 }

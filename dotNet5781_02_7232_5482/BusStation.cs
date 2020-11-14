@@ -31,13 +31,13 @@ namespace dotNet5781_02_7232_5482
 
         }
 
-        //public BusStation(string code, string adress = " ")
-        //{
-        //    this.BusStationKey = code;
-        //    this.Latitude = rand.NextDouble() * (33.3 - 31) + 31;
-        //    this.Longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;
-        //    this.AdressStation = adress;
-        //}
+        public BusStation(string code, string adress = " ")
+        {
+            this.BusStationKey = code;
+            this.Latitude = rand.NextDouble() * (33.3 - 31) + 31;
+            this.Longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;
+            this.AdressStation = adress;
+        }
 
         public override string ToString()
         {
