@@ -86,8 +86,14 @@ namespace dotNet5781_02_7232_5482
             string NewStat = GetStat(out NewStat);
             if (bus.CheckStationExist(NewStat))
                 throw new BusException("This station already exist");
-            if(!SearchStat(NewStat,  AllStations))
-                ReturnStation(AllStations,  NewStat)
+            if (SearchStat(NewStat, AllStations))
+            {
+                ReturnStation(AllStations, NewStat)
+
+            }
+            
+                
+
             /*bus.AddStations()*/;
         }
         static public void AddNewBus(List<BusStation> AllStations, BusCollection AllBuses)
@@ -206,18 +212,17 @@ namespace dotNet5781_02_7232_5482
             }
             throw new BusException("Sorry, this bus doesn't exist");
         }
-        static public BusStation ReturnStation(List<BusStation> AllStations, string statnum)
+        static public BusStation ReturnStation(List<BusStation> AllStations, string statnum)//נקרא לפונקציה זו רק לאחר שנדע שהתחנה המבוקשת קיימת ברשימה
         {
-            foreach(BusStation b in AllStations)
+
+            foreach (BusStation b in AllStations)
             {
                 if (b.BusStationKey == statnum)
                     return b;
             }
+            throw new BusException("bechlal lo tagia lepo :)");
         }
     }
-
-
-
 }
 
     
