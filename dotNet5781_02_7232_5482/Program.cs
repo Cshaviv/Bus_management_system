@@ -56,7 +56,14 @@ namespace dotNet5781_02_7232_5482
                     throw new BusException("your choice is incorrect");
                 else if (choice == 1)
                     AddNewBus( AllStations,AllBuses);
+                else if (choice == 2)
+                {
+                    BusLine bus= SearchBus(AllBuses);
 
+
+
+
+                }
 
             }
             catch (FormatException)
@@ -171,6 +178,21 @@ namespace dotNet5781_02_7232_5482
             double Time = distance / speed;
             TimeSpan TimePerMin = TimeSpan.FromMinutes(Time);
             return TimePerMin;
+        }
+        static public BusLine SearchBus(BusCollection AllBuses, string firstStat, string lastStat)
+        {
+            foreach(BusLine b in AllBuses)
+            {
+                Console.WriteLine("Enter the bus number to which you want to add a stop");
+                int num =GetNum();
+                if (b.BusNumber == num)
+                {
+
+                    if ((b.FirstStation.BusStationKey == firstStat) && (b.LastStation.BusStationKey == lastStat))
+                        return b;                  
+                }                 
+            }
+            throw new BusException("Sorry, this bus doesn't exist");
         }
 
     }

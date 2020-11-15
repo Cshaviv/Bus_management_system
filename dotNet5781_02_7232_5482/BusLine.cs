@@ -58,35 +58,60 @@ namespace dotNet5781_02_7232_5482
             return;
 
         }
-        public void AddStation(BusLineStation b, Insert Choice)
+        public void AddStation(BusLineStation b/*, Insert Choice*/)
         {
-            CheckStationExist(b);//צריך לעשות חריגה ביציאה מהפונקציה הזאת
-            if (Choice == Insert.FIRST)
+            int choose;
+            
+            do
             {
-                Stations.Add(b);
-                FirstStation = b;
-                return;
-            }
-            if (Choice == Insert.MIDDLE)
-            {
-                Console.WriteLine("Enter the code of the station before the station you want to add");
-                int PrevStation;
-                if (!int.TryParse(Console.ReadLine(), out PrevStation))
-                    throw new BusException("Error, InvalidCastException output");
-                int index = FindIndex(PrevStation.ToString());
-                if (index == -1)
+                Insert Choice;
+                bool success = Enum.TryParse(Console.ReadLine(), out Choice);
+
+                while (success == false)
                 {
-                    throw new BusException("the previous station entered doesn't exist");
+                    Console.WriteLine("enter your choice again");
+                    success = Enum.TryParse(Console.ReadLine(), out Choice);
                 }
-                stations.Insert(++index, b);
-                return;
+                CheckStationExist(b);//צריך לעשות חריגה ביציאה מהפונקציה הזאת
+                if (Choice == Insert.FIRST)
+                {
+                    Stations.Add(b);
+                    FirstStation = b;
+
+                }
+                else if (Choice == Insert.MIDDLE)
+                {
+                    Console.WriteLine("Enter the code of the station before the station you want to add");
+                    int PrevStation;
+                    if (!int.TryParse(Console.ReadLine(), out PrevStation))
+                        throw new BusException("Error, InvalidCastException output");
+                    int index = FindIndex(PrevStation.ToString());
+                    if (index == -1)
+                    {
+                        throw new BusException("the previous station entered doesn't exist");
+                    }
+                    stations.Insert(++index, b);
+
+                }
+                else
+                {
+                    stations.Insert(stations.Count - 1, b);
+                    LastStation = b;
+
+                }
+
+                Console.WriteLine("Enter 1 if you want to add another station, if you want to exit enter 0");
+                choose = int.Parse(Console.ReadLine());
+                while (choose != 0 && choose != 1)
+                {
+                    choose = int.Parse(Console.ReadLine());
+                    if (choose != 0 && choose != 1)
+                        Console.WriteLine("ERROR, try enter number again");
+                }
             }
-            else
-            {
-                stations.Insert(stations.Count - 1, b);
-                LastStation = b;
-                return;
-            }
+            while (choose == 1);
+
+
 
         }
         public double timeBetween(BusLineStation one, BusLineStation two)

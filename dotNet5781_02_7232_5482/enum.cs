@@ -17,6 +17,6 @@ namespace dotNet5781_02_7232_5482
         GENERAL, NORTH, SOUTH, CENTER, JERUSALEM
     }
     public enum Insert
-    { FIRST, MIDDLE, LAST }
+    { FIRST=1, MIDDLE, LAST }
 }
 
