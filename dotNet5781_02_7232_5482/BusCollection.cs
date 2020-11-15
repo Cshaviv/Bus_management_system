@@ -20,13 +20,13 @@ namespace dotNet5781_02_7232_5482
 
             Buses.Add(NewBus);
         }
-        public void CheckBus(string first, string last, int num)
+        public void CheckBus(BusLine newbus)
         {
             foreach(BusLine b in Buses)
             {
-                if(num == b.BusNumber)
+                if(newbus.BusNumber == b.BusNumber)
                 {
-                    if((b.FirstStation.BusStationKey== last) &&(b.LastStation.BusStationKey== first))
+                    if((b.FirstStation.BusStationKey== newbus.LastStation.BusStationKey) &&(b.LastStation.BusStationKey== newbus.FirstStation.BusStationKey))
                     {
                         return;
                     }

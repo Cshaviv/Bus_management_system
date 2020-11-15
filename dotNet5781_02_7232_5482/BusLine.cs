@@ -20,9 +20,9 @@ namespace dotNet5781_02_7232_5482
         public BusLineStation FirstStation { get => Stations[0]; set => Stations[0] = value; }
         public BusLineStation LastStation { get => Stations[stations.Count - 1]; set => Stations[stations.Count - 1] = value; }
         public BusLineStation this[int index] => stations[index];
-        public BusLine(/*List<BusLineStation> L ,*/int BusNumber, BusLineStation first,   BusLineStation last, Area a)
+        public BusLine(List<BusLineStation> L, int BusNumber, BusLineStation first,   BusLineStation last, Area a)
          {
-            //this.Stations=L;
+            this.Stations = L;
             this.BusNumber=BusNumber;
             this.FirstStation=first;
             this.LastStation=last;
@@ -190,5 +190,11 @@ namespace dotNet5781_02_7232_5482
             TimeSpan time2 = TimeBetweenStations(other.FirstStation, other.LastStation);
             return time1.CompareTo(time2);
         }  
+        public BusLine(int busnum, int firststat,int laststat)
+        {
+            this.BusNumber = busnum;
+            this.FirstStation.BusStationKey = firststat.ToString();
+            this.LastStation.BusStationKey = laststat.ToString();
+        }
     }
 }
