@@ -26,7 +26,7 @@ namespace dotNet5781_02_7232_5482
                 switch (choice)
                 {
                     case CHOICE.ADD:
-                        AddNew( AllStations,AllBuses);
+                        AddNew(AllStations, AllBuses);
                         break;
                     case CHOICE.DELETE:
                         break;
@@ -51,16 +51,15 @@ namespace dotNet5781_02_7232_5482
 
 
 
-            int choice = int.Parse(Console.ReadLine());
+                int choice = int.Parse(Console.ReadLine());
                 if (choice != 1 || choice != 2)
                     throw new BusException("your choice is incorrect");
                 else if (choice == 1)
-                    AddNewBus( AllStations,AllBuses);
+                    AddNewBus(AllStations, AllBuses);
                 else if (choice == 2)
                 {
-                    BusLine bus= SearchBus(AllBuses);
-
-
+                    //BusLine bus= SearchBus(AllBuses);
+                    NewStation(AllBuses, AllStations);
 
 
                 }
@@ -74,11 +73,28 @@ namespace dotNet5781_02_7232_5482
 
 
         }
+        static public void NewStation(BusCollection AllBuses, List<BusStation> AllStations)
+        {
+            Console.WriteLine("Enter the bus number to which you want to add a station");
+            int num = GetNum();
+            Console.WriteLine("Enter the first station");
+            string first = GetStat(out first);
+            Console.WriteLine("Enter the last station");
+            string last = GetStat(out last);
+            BusLine bus = SearchBus(AllBuses, num, first, last);
+            Console.WriteLine("Enter the station number you want to add");
+            string NewStat = GetStat(out NewStat);
+            if (bus.CheckStationExist(NewStat))
+                throw new BusException("This station already exist");
+            if(!SearchStat(NewStat,  AllStations))
+                ReturnStation(AllStations,  NewStat)
+            /*bus.AddStations()*/;
+        }
         static public void AddNewBus(List<BusStation> AllStations, BusCollection AllBuses)
         {
             List<BusLineStation> ListStation = new List<BusLineStation>();
             Console.WriteLine("Enter a number of bus line");
-            int num = GetNumBus();
+            int num = GetNum();
             int YourChoice;
             Console.WriteLine("Enter at least 2 stations");
             do
@@ -111,7 +127,7 @@ namespace dotNet5781_02_7232_5482
                             Console.WriteLine("You already entered this bus station");
                         }
                     if (!flag)
-                        ListStation.Add(new BusLineStation(stringnum, " ",distance, time));
+                        ListStation.Add(new BusLineStation(stringnum, " ", distance, time));
                 }
             }
             while (YourChoice != 2);
@@ -119,19 +135,15 @@ namespace dotNet5781_02_7232_5482
             {
                 ListStation[0].My_Distance = 0;
                 ListStation[0].My_Time = TimeSpan.Zero;
-                AllBuses.AddBus(new BusLine(ListStation, num, ListStation[0], ListStation[ListStation.Count - 1], Area.GENERAL)) ; 
+                AllBuses.AddBus(new BusLine(ListStation, num, ListStation[0], ListStation[ListStation.Count - 1], Area.GENERAL));
             }
             else
                 throw new BusException("You entered less than 2 stations, so the bus line was not added to the collection");
 
-            
+
         }
-        static public int GetNumBus()
-        {
-            int numbus = int.Parse(Console.ReadLine());
-             return(numbus);
-        }
-        static void GetStat(out string stringnum)
+
+        static string GetStat(out string stringnum)
         {
             stringnum = Console.ReadLine();
             int StatNum;
@@ -148,18 +160,19 @@ namespace dotNet5781_02_7232_5482
                 while (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum)));
             }
 
+            return StatNum.ToString();
         }
         static public int GetNum()
         {
             int num = int.Parse(Console.ReadLine());
             return num;
         }
-     static public bool SearchStat(string num, List<BusStation> AllStations)
+        static public bool SearchStat(string num, List<BusStation> AllStations)
         {
             bool flag = false;
-            foreach(BusStation b in AllStations)
+            foreach (BusStation b in AllStations)
             {
-                if(b.BusStationKey == num)
+                if (b.BusStationKey == num)
                 {
                     flag = true;
                     return flag;
@@ -179,22 +192,28 @@ namespace dotNet5781_02_7232_5482
             TimeSpan TimePerMin = TimeSpan.FromMinutes(Time);
             return TimePerMin;
         }
-        static public BusLine SearchBus(BusCollection AllBuses, string firstStat, string lastStat)
+        static public BusLine SearchBus(BusCollection AllBuses, int num, string firstStat, string lastStat)
         {
-            foreach(BusLine b in AllBuses)
+            foreach (BusLine b in AllBuses)
             {
-                Console.WriteLine("Enter the bus number to which you want to add a stop");
-                int num =GetNum();
+
                 if (b.BusNumber == num)
                 {
 
                     if ((b.FirstStation.BusStationKey == firstStat) && (b.LastStation.BusStationKey == lastStat))
-                        return b;                  
-                }                 
+                        return b;
+                }
             }
             throw new BusException("Sorry, this bus doesn't exist");
         }
-
+        static public BusStation ReturnStation(List<BusStation> AllStations, string statnum)
+        {
+            foreach(BusStation b in AllStations)
+            {
+                if (b.BusStationKey == statnum)
+                    return b;
+            }
+        }
     }
 
 

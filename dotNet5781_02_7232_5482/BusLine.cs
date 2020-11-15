@@ -45,20 +45,22 @@ namespace dotNet5781_02_7232_5482
             index = -1;
             return index;
         }
-        public void CheckStationExist(BusLineStation bus)
+        public bool CheckStationExist(string numstat)
         {
+            bool flag = false;
             foreach (BusLineStation b in Stations)
             {
 
-                if (b.BusStationKey == bus.BusStationKey)
+                if (b.BusStationKey == numstat)
                 {
-                    throw new BusException("the previous station entered exist");
+                    flag = true;
+                    return flag;
                 }
             }
-            return;
+            return flag;
 
         }
-        public void AddStation(BusLineStation b/*, Insert Choice*/)
+        public void AddStations(BusLineStation b)
         {
             int choose;
             
