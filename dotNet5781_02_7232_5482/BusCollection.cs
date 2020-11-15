@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace dotNet5781_02_7232_5482
 {
+
+
     class BusCollection : IEnumerable
     {
         public List<BusLine> Buses { get; set; }
@@ -22,11 +24,11 @@ namespace dotNet5781_02_7232_5482
         }
         public void CheckBus(BusLine newbus)
         {
-            foreach(BusLine b in Buses)
+            foreach (BusLine b in Buses)
             {
-                if(newbus.BusNumber == b.BusNumber)
+                if (newbus.BusNumber == b.BusNumber)
                 {
-                    if((b.FirstStation.BusStationKey== newbus.LastStation.BusStationKey) &&(b.LastStation.BusStationKey== newbus.FirstStation.BusStationKey))
+                    if ((b.FirstStation.BusStationKey == newbus.LastStation.BusStationKey) && (b.LastStation.BusStationKey == newbus.FirstStation.BusStationKey))
                     {
                         return;
                     }
@@ -54,17 +56,17 @@ namespace dotNet5781_02_7232_5482
         public string stations(string StationKey)
         {
             string AllBuses = " ";
-            foreach(BusLine b in Buses)
+            foreach (BusLine b in Buses)
             {
-                foreach(BusLineStation bus in b.Stations)
+                foreach (BusLineStation bus in b.Stations)
                 {
-                    if(bus.BusStationKey== StationKey)
+                    if (bus.BusStationKey == StationKey)
                     {
                         AllBuses += b.BusNumber + " ";//  לא בדקנו אם יש כפילות של קווי אוטובוס הלוך וחזור שעוברים בתחנה המבוקשת
                     }
                 }
             }
-            if(AllBuses==" ")
+            if (AllBuses == " ")
             {
                 throw new BusException("At this station no bus line passes");
             }
@@ -75,13 +77,13 @@ namespace dotNet5781_02_7232_5482
             List<BusLine> list1 = new List<BusLine>(Buses);
             list1.Sort();
             return list1;
-                
+
         }
         public string Indexer(int busNumber)
         {
             foreach (BusLine b in Buses)
             {
-                if(b.BusNumber== busNumber)
+                if (b.BusNumber == busNumber)
                 {
                     return b.ToString();
                 }
@@ -92,7 +94,7 @@ namespace dotNet5781_02_7232_5482
         {
             foreach (BusLine b in Buses)
             {
-                if(b.BusNumber==num)
+                if (b.BusNumber == num)
                 {
                     return;
                 }
@@ -100,5 +102,8 @@ namespace dotNet5781_02_7232_5482
             throw new BusException("This bus doesn't exist");
         }
     }
-}   
+}
+
+
+
 

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1ABBEB1F-ACC2-445E-AF9F-604F8700C25C}</ProjectGuid>
+    <ProjectGuid>{D081A686-4590-4209-A3AB-3C423947E0E8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>dotNet5781_02_7232_5482</RootNamespace>
     <AssemblyName>dotNet5781_02_7232_5482</AssemblyName>
@@ -48,7 +48,7 @@
     <Compile Include="BusLine.cs" />
     <Compile Include="BusLineStation.cs" />
     <Compile Include="BusStation.cs" />
-    <Compile Include="enums.cs" />
+    <Compile Include="enum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

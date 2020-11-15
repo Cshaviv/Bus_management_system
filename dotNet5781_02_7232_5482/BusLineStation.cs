@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7232_5482
 {
+
+
     class BusLineStation : BusStation
     {
         static Random rand = new Random();
         private double Distance;
         public TimeSpan Time;
 
-        public double My_Distance//לא לשכוח לקלוט מהמשתמש מספר במיין 
+        public double My_Distance//לא לשכוח לקלוט מהמשתמש מספר במיין
         {
             get { return Distance; }
             set { Distance = value; }
         }
-        //חישבנו את המהירןת לפי ק"מ לדקה 
+        //חישבנו את המהירןת לפי ק"מ לדקה
         public TimeSpan My_Time
         {
             get { return Time; }
@@ -43,7 +45,7 @@ namespace dotNet5781_02_7232_5482
             int choice = int.Parse(Console.ReadLine());
         }
 
-        public BusLineStation(string code1, string adress1, double Distance1, TimeSpan Time1) : base( code1, adress1) 
+        public BusLineStation(string code1, string adress1, double Distance1, TimeSpan Time1) : base(code1, adress1)
         {
             this.Distance = Distance1;
             this.Time = Time1;

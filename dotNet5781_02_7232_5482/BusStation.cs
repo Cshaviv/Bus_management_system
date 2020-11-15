@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7232_5482
 {
-    public class BusStation 
+    class BusStation
     {
+
         /// </מספר תחנה>
         public string BusStationKey { get; set; }
-        public double Latitude { get; set; }//קו רוחב 
+        public double Latitude { get; set; }//קו רוחב
         public double Longitude { get; set; }//קו אורך
         static Random rand = new Random();
         public string AdressStation { get; set; }
@@ -46,3 +47,6 @@ namespace dotNet5781_02_7232_5482
 
     }
 }
+
+
+
