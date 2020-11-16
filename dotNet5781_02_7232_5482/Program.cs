@@ -35,6 +35,7 @@ namespace dotNet5781_02_7232_5482
                         Find();
                         break;
                     case CHOICE.PRINT:
+                        Print(AllBuses, AllStations);
                         break;
                     case CHOICE.EXIT:
                         break;
@@ -354,7 +355,27 @@ namespace dotNet5781_02_7232_5482
             AllBuses.stations(stat);
             Console.WriteLine("The transaction completed successfully");
         }
-
+        static public void Print(BusCollection AllBuses, List<BusStation> AllStations)
+        {
+            Console.WriteLine("Enter 1 to print all bus lines, enter 2 to print all the list of stations and buses passing through them");
+            int choice = GetNum();
+            if(choice==1)
+            {
+                foreach(BusLine b in AllBuses)
+                {
+                    Console.WriteLine(b.BusNumber+" " );
+                }
+            }
+            if (choice == 2)
+            {
+                foreach(BusStation b in AllStations)
+                {
+                    
+                }
+            }
+            else
+                throw new BusException("ERROR,this option doesn't exist");
+        }
 
     }
 
