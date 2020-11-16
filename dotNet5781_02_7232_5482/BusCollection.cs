@@ -72,6 +72,24 @@ namespace dotNet5781_02_7232_5482
             }
             return AllBuses;
         }
+        public int SearchBus( int num, string firstStat, string lastStat)
+        {
+            int count = 0;
+            foreach (BusLine b in Buses)
+            {
+
+                if (b.BusNumber == num)
+                {
+                    if ((b.FirstStation.BusStationKey == firstStat) && (b.LastStation.BusStationKey == lastStat))
+                    {
+                        return count;
+                    }
+                        
+                }
+                count++;
+            }
+            return -1;
+        }
         public List<BusLine> SortedList()
         {
             List<BusLine> list1 = new List<BusLine>(Buses);
@@ -79,16 +97,22 @@ namespace dotNet5781_02_7232_5482
             return list1;
 
         }
-        public string Indexer(int busNumber)
+       
+          public BusLine this[int numbus,string firstStat,string lastStat]
         {
-            foreach (BusLine b in Buses)
+            get
             {
-                if (b.BusNumber == busNumber)
-                {
-                    return b.ToString();
-                }
+                if (SearchBus(numbus, firstStat, lastStat) == -1)
+                    throw new BusException("ERROR! this bus line doesn't exist");
+                return Buses[SearchBus(numbus,firstStat,lastStat)];
             }
-            throw new BusException("this bus doesn't exist");
+            set
+            {
+                if (SearchBus(numbus, firstStat, lastStat) == -1)
+                    throw new BusException("ERROR! this bus line doesn't exist");
+                Buses[SearchBus(numbus, firstStat, lastStat)] = value;
+            }
+
         }
         public void search(int num)
         {
