@@ -20,7 +20,7 @@ namespace dotNet5781_02_7232_5482
         public BusLineStation FirstStation { get => Stations[0]; set => Stations[0] = value; }
         public BusLineStation LastStation { get => Stations[stations.Count - 1]; set => Stations[stations.Count - 1] = value; }
         public BusLineStation this[int index] => stations[index];
-        public BusLine(List<BusLineStation> L, int BusNumber, BusLineStation first, BusLineStation last, Area a)
+        public BusLine(List<BusLineStation> L, int BusNumber, BusLineStation first, BusLineStation last, Area a = Area.JERUSALEM)
         {
             this.Stations = L;
             this.BusNumber = BusNumber;
@@ -59,10 +59,10 @@ namespace dotNet5781_02_7232_5482
             return flag;
 
         }
-        public void AddStations( BusStation b )
+        public void AddStations(BusStation b)
         {
             int choose;
-            
+
             do
             {
                 Insert Choice;
@@ -235,7 +235,7 @@ namespace dotNet5781_02_7232_5482
             this.FirstStation.BusStationKey = firststat;
             this.LastStation.BusStationKey = laststat;
         }
-         public double GetDoubleNum()
+        public double GetDoubleNum()
         {
             bool success = true;
             double num;
@@ -248,7 +248,7 @@ namespace dotNet5781_02_7232_5482
             while (!success);
             return num;
         }
-         public int GetIntNum()
+        public int GetIntNum()
         {
             bool success = true;
             int num;

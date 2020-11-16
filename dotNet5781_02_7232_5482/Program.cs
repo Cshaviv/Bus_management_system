@@ -97,14 +97,24 @@ namespace dotNet5781_02_7232_5482
                 AllStations.Add(new BusStation(lastnum, " "));
             }
             BusStation LastStat = ReturnStation(AllStations, lastnum);
-            BusLine NuwBus = new BusLine(busnum,firstnum,lastnum);
-            Console.WriteLine("Enter the first station");
-            string first = GetStat(out first);
-            Console.WriteLine("Enter the last station");
-            string last = GetStat(out last);
-           
-
-
+            List<BusLineStation> BusStations = new List<BusLineStation>();
+            BusLineStation FirstStation = new BusLineStation(firstnum," ",0, TimeSpan.Zero);
+            FirstStation.Latitude = FirstStat.Latitude;
+            FirstStation.Longitude = FirstStat.Longitude;
+            Console.WriteLine("Type the distance of the last station from the first station (km)");
+            double distanceFromPrev = GetDoubleNum();
+            TimeSpan TimeFromPrev = TimeSpan.FromMinutes(distanceFromPrev);
+            BusLineStation LastStation = new BusLineStation(lastnum, " ", distanceFromPrev, TimeFromPrev);
+            LastStation.Latitude = LastStat.Latitude;
+            LastStation.Longitude = LastStat.Longitude;
+            BusLine NuwBus = new BusLine(BusStations,busnum, FirstStation,LastStation);
+            Console.WriteLine("Enter 1 if you want to add another station, and 0 to continue ");
+            int choose = GetIntNum();
+            if(choose==1)
+            {
+                AddStation(NuwBus, AllStations);
+            }
+            AllBuses.AddBus(NuwBus);
         }
         static public void NewStation(BusCollection AllBuses, List<BusStation> AllStations)
         {
@@ -119,6 +129,11 @@ namespace dotNet5781_02_7232_5482
                 throw new Exception("this bus doesn't exist");
             }
             BusLine bus = ReturnBus(AllBuses, num, first, last);
+            AddStation(bus,AllStations)
+                /*bus.AddStations()*/;
+        }
+        static public void AddStation(BusLine bus, List<BusStation> AllStations)
+        {
             int choose = 1;
             do
             {
@@ -139,12 +154,11 @@ namespace dotNet5781_02_7232_5482
                     bus.AddStations(b);
                 }
 
-                Console.WriteLine("Enter 1 if you whant to add another station, and 0 to exit ");
+                Console.WriteLine("Enter 1 if you want to add another station, and 0 to exit ");
                 choose = GetIntNum();
 
             }
-            while (choose==1);
-            /*bus.AddStations()*/;
+            while (choose == 1);
         }
         //static public void AddNewBus(List<BusStation> AllStations, BusCollection AllBuses)
         //{
@@ -301,6 +315,19 @@ namespace dotNet5781_02_7232_5482
 
             }
             while (!success||num!=0||num!=1);
+            return num;
+        }
+        static public double GetDoubleNum()
+        {
+            bool success = true;
+            double num;
+            do
+            {
+                if (!success)
+                    Console.WriteLine("ERROR! try enter number again");
+                success = double.TryParse(Console.ReadLine(), out num);
+            }
+            while (!success);
             return num;
         }
     }
