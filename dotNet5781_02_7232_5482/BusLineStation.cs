@@ -26,10 +26,10 @@ namespace dotNet5781_02_7232_5482
             set { }
         }
 
-        public TimeSpan TravelTime()
+        public TimeSpan TravelTime( double Distance)
         {
             double speed = 1;//km for miniute
-            double Time = this.My_Distance / speed;
+            double Time = this.Distance / speed;
             TimeSpan TimePerMin = TimeSpan.FromMinutes(Time);
             return TimePerMin;
         }
@@ -50,6 +50,15 @@ namespace dotNet5781_02_7232_5482
             this.Distance = Distance1;
             this.Time = Time1;
         }
+        //public BusLineStation(BusStation b, double Distance1, TimeSpan Time1): base (b.BusStationKey,b.AdressStation,b.Latitude,b.Latitude)
+        //{
+        //    this.BusStationKey = b.BusStationKey;
+        //    this.AdressStation = b.AdressStation;
+        //    this.Latitude = b.Latitude;
+        //    this.Longitude = b.Longitude;
+        //    this.My_Distance = Distance1;
+        //    this.My_Time = Time1;
+        //}
     }
 
 

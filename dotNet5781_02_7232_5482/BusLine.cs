@@ -42,8 +42,7 @@ namespace dotNet5781_02_7232_5482
                 }
                 index++;
             }
-            index = -1;
-            return index;
+            throw new BusException("the previous station entered doesn't exist");
         }
         public bool CheckStationExist(string numstat)
         {
@@ -77,36 +76,45 @@ namespace dotNet5781_02_7232_5482
                /* CheckStationExist(b)*/;//צריך לעשות חריגה ביציאה מהפונקציה הזאת
                 if (Choice == Insert.FIRST)
                 {
-                    BusLineStation newstat = new BusLineStation(b.BusStationKey, b.AdressStation, 0, TimeSpan.Zero);
+                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", 0, TimeSpan.Zero);
+                    newstat.Latitude = b.Latitude;
+                    newstat.Latitude = b.Longitude;
                     Stations.Add(newstat);
                     FirstStation = newstat;
                     Console.WriteLine("Enter the distance of the new station from the next station (km)");
                     double distanceFromPrev = GetDoubleNum();
                     stations[1].My_Distance = distanceFromPrev;
-                    stations[1].My_Time = ;
+                    stations[1].My_Time = newstat.TravelTime(distanceFromPrev);
                 }
                 else if (Choice == Insert.MIDDLE)
                 {
                     Console.WriteLine("Enter the code of the station before the station you want to add");
-                    int PrevStation;
-                    if (!int.TryParse(Console.ReadLine(), out PrevStation))
-                        throw new BusException("Error, InvalidCastException output");
+                    int PrevStation = GetIntNum();
                     int index = FindIndex(PrevStation.ToString());
-                    if (index == -1)
-                    {
-                        throw new BusException("the previous station entered doesn't exist");
-                    }
-                    stations.Insert(++index, b);
-
+                    Console.WriteLine("Type the distance of the new station from the previous station (km)");
+                    double distanceFromPrev = GetDoubleNum();
+                    TimeSpan TimePerMin = TimeSpan.FromMinutes(distanceFromPrev);
+                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev, TimePerMin);
+                    newstat.Latitude = b.Latitude;
+                    newstat.Latitude = b.Longitude;
+                    stations.Insert(++index, newstat);
+                    stations[index + 2].My_Distance = stations[index + 2].My_Distance - newstat.My_Distance;
+                    stations[index + 2].My_Time = TimeSpan.FromMinutes(stations[index + 2].My_Distance);
                 }
                 else
                 {
-                    stations.Insert(stations.Count - 1, b);
-                    LastStation = b;
+                    Console.WriteLine("Type the distance of the new station from the previous station (km)");
+                    double distanceFromPrev = GetDoubleNum();
+                    TimeSpan TimePerMin = TimeSpan.FromMinutes(distanceFromPrev);
+                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev, TimePerMin);
+                    newstat.Latitude = b.Latitude;
+                    newstat.Latitude = b.Longitude;
+                    stations.Insert(stations.Count - 1, newstat);
+                    LastStation = newstat;
 
                 }
 
-                6 Console.WriteLine("Enter 1 if you want to add another station, if you want to exit enter 0");
+                Console.WriteLine("Enter 1 if you want to add another station, if you want to exit enter 0");
                 choose = int.Parse(Console.ReadLine());
                 while (choose != 0 && choose != 1)
                 {
@@ -236,6 +244,19 @@ namespace dotNet5781_02_7232_5482
                 if (!success)
                     Console.WriteLine("ERROR! try enter number again");
                 success = double.TryParse(Console.ReadLine(), out num);
+            }
+            while (!success);
+            return num;
+        }
+        static public int GetIntNum()
+        {
+            bool success = true;
+            int num;
+            do
+            {
+                if (!success)
+                    Console.WriteLine("ERROR! try enter number again");
+                success = int.TryParse(Console.ReadLine(), out num);
             }
             while (!success);
             return num;

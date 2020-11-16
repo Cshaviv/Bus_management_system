@@ -89,14 +89,16 @@ namespace dotNet5781_02_7232_5482
             if (SearchStat(NewStat, AllStations))
             {
                BusStation b= ReturnStation(AllStations, NewStat);
+                bus.AddStations(b);
             }
             else
             {
                 
                 BusStation b = new BusStation(NewStat);
                 AllStations.Add(b);
+                bus.AddStations(b);
             }
-            bus.AddStations(b);
+           
 
 
             /*bus.AddStations()*/;
