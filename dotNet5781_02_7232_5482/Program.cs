@@ -32,6 +32,7 @@ namespace dotNet5781_02_7232_5482
                         Delete_(AllBuses);
                         break;
                     case CHOICE.FIND:
+                        Find();
                         break;
                     case CHOICE.PRINT:
                         break;
@@ -49,10 +50,8 @@ namespace dotNet5781_02_7232_5482
             try
             {
                 Console.WriteLine("Enter 1 if you want to add bus line,Enter 2 if you want to add station");
-                int choice = int.Parse(Console.ReadLine());
-                if (choice != 1 && choice != 2)
-                    throw new BusException("your choice is incorrect");
-                else if (choice == 1)
+                int choice = GetIntNum1_2();
+                if (choice == 1)
                     AddNewBus(AllStations, AllBuses);
                 else if (choice == 2)
                 {
@@ -264,6 +263,20 @@ namespace dotNet5781_02_7232_5482
             while (!success || (num != 0 && num != 1));
             return num;
         }
+        static public int GetIntNum1_2()
+        {
+            bool success = true;
+            int num = 1;
+            do
+            {
+                if (!success || (num != 1 && num !=2))
+                    Console.WriteLine("ERROR! try enter number again");
+                success = int.TryParse(Console.ReadLine(), out num);
+
+            }
+            while (!success || (num != 2 && num != 1));
+            return num;
+        }
         static public double GetDoubleNum()
         {
             bool success = true;
@@ -279,13 +292,13 @@ namespace dotNet5781_02_7232_5482
         }
         static public void Delete_(BusCollection AllBuses)
         {
-            Console.WriteLine("Enter 0 if you want to delete bus line,Enter 1 if you want to delete station from bus line");
-            int choice = GetIntNum();
-            if (choice == 0)
+            Console.WriteLine("Enter 1 if you want to delete bus line,Enter 2 if you want to delete station from bus line");
+            int choice = GetIntNum1_2();
+            if (choice == 1)
             {
                 DeleteBus(AllBuses);
             }
-            if (choice == 1)
+            if (choice == 2)
             {
                 DeleteStat( AllBuses);
             }
@@ -316,6 +329,33 @@ namespace dotNet5781_02_7232_5482
             string stat = GetStat(out stat);
             bus.DeleteStation(stat);
         }
+        static public void Find(BusCollection AllBuses, List<BusStation> AllStations)
+        {
+            Console.WriteLine("Enter 1 to search for lines that pass through the station, enter 2 to print the options for traveling between 2 stations");
+            int choice = GetIntNum1_2();
+            if(choice==1)
+            {
+                findLineInStat(AllBuses, AllStations);
+            }
+            if(choice==2)
+            {
+                FindOptionTravel();
+            }
+            
+        }
+        static public void findLineInStat(BusCollection AllBuses, List<BusStation> AllStations)
+        {
+            Console.WriteLine("Enter the station number you want to know which lines go through it");
+            string stat = GetStat(out stat);
+            if (!SearchStat(stat, AllStations))
+            {
+                throw new BusException("This statin doesn't exist");
+            }
+            AllBuses.stations(stat);
+            Console.WriteLine("The transaction completed successfully");
+        }
+
+
     }
 
 }
