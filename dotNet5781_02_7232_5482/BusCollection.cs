@@ -52,7 +52,6 @@ namespace dotNet5781_02_7232_5482
             }
             throw new BusException("this bus line dosn't exist");
         }
-
         public string stations(string StationKey)
         {
             string AllBuses = " ";
@@ -72,7 +71,7 @@ namespace dotNet5781_02_7232_5482
             }
             return AllBuses;
         }
-        public int SearchBus( int num, string firstStat, string lastStat)
+        public int SearchBus(int num, string firstStat, string lastStat)
         {
             int count = 0;
             foreach (BusLine b in Buses)
@@ -84,7 +83,7 @@ namespace dotNet5781_02_7232_5482
                     {
                         return count;
                     }
-                        
+
                 }
                 count++;
             }
@@ -97,14 +96,13 @@ namespace dotNet5781_02_7232_5482
             return list1;
 
         }
-       
-          public BusLine this[int numbus,string firstStat,string lastStat]
+        public BusLine this[int numbus, string firstStat, string lastStat]
         {
             get
             {
                 if (SearchBus(numbus, firstStat, lastStat) == -1)
                     throw new BusException("ERROR! this bus line doesn't exist");
-                return Buses[SearchBus(numbus,firstStat,lastStat)];
+                return Buses[SearchBus(numbus, firstStat, lastStat)];
             }
             set
             {

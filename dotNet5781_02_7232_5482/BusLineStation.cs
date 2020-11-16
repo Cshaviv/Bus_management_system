@@ -13,7 +13,6 @@ namespace dotNet5781_02_7232_5482
         static Random rand = new Random();
         private double Distance;
         public TimeSpan Time;
-
         public double My_Distance//לא לשכוח לקלוט מהמשתמש מספר במיין
         {
             get { return Distance; }
@@ -25,7 +24,6 @@ namespace dotNet5781_02_7232_5482
             get { return Time; }
             set { }
         }
-
         public TimeSpan TravelTime( double Distance)
         {
             double speed = 1;//km for miniute
@@ -44,21 +42,11 @@ namespace dotNet5781_02_7232_5482
             Console.WriteLine("Enter ths bus station key:");
             int choice = int.Parse(Console.ReadLine());
         }
-
         public BusLineStation(string code1, string adress1, double Distance1, TimeSpan Time1) : base(code1, adress1)
         {
             this.Distance = Distance1;
             this.Time = Time1;
-        }
-        //public BusLineStation(BusStation b, double Distance1, TimeSpan Time1): base (b.BusStationKey,b.AdressStation,b.Latitude,b.Latitude)
-        //{
-        //    this.BusStationKey = b.BusStationKey;
-        //    this.AdressStation = b.AdressStation;
-        //    this.Latitude = b.Latitude;
-        //    this.Longitude = b.Longitude;
-        //    this.My_Distance = Distance1;
-        //    this.My_Time = Time1;
-        //}
+        }    
     }
 
 
