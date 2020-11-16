@@ -29,6 +29,7 @@ namespace dotNet5781_02_7232_5482
                         AddNew(AllStations, AllBuses);
                         break;
                     case CHOICE.DELETE:
+                        Delete_(AllBuses);
                         break;
                     case CHOICE.FIND:
                         break;
@@ -54,7 +55,7 @@ namespace dotNet5781_02_7232_5482
                 else if (choice == 1)
                     AddNewBus(AllStations, AllBuses);
                 else if (choice == 2)
-                {               
+                {
                     NewStation(AllBuses, AllStations);
                 }
             }
@@ -96,7 +97,7 @@ namespace dotNet5781_02_7232_5482
             }
             BusStation LastStat = ReturnStation(AllStations, lastnum);
             List<BusLineStation> BusStations = new List<BusLineStation>();
-            BusLineStation FirstStation = new BusLineStation(firstnum," ",0, TimeSpan.Zero);
+            BusLineStation FirstStation = new BusLineStation(firstnum, " ", 0, TimeSpan.Zero);
             FirstStation.Latitude = FirstStat.Latitude;
             FirstStation.Longitude = FirstStat.Longitude;
             Console.WriteLine("Type the distance of the last station from the first station (km)");
@@ -105,10 +106,10 @@ namespace dotNet5781_02_7232_5482
             BusLineStation LastStation = new BusLineStation(lastnum, " ", distanceFromPrev, TimeFromPrev);
             LastStation.Latitude = LastStat.Latitude;
             LastStation.Longitude = LastStat.Longitude;
-            BusLine NuwBus = new BusLine(BusStations,busnum, FirstStation,LastStation);
+            BusLine NuwBus = new BusLine(BusStations, busnum, FirstStation, LastStation);
             Console.WriteLine("Enter 1 if you want to add another station, and 0 to continue ");
             int choose = GetIntNum();
-            if(choose==1)
+            if (choose == 1)
             {
                 AddStation(NuwBus, AllStations);
             }
@@ -127,7 +128,7 @@ namespace dotNet5781_02_7232_5482
                 throw new Exception("this bus doesn't exist");
             }
             BusLine bus = ReturnBus(AllBuses, num, first, last);
-            AddStation(bus,AllStations)
+            AddStation(bus, AllStations)
                 /*bus.AddStations()*/;
         }
         static public void AddStation(BusLine bus, List<BusStation> AllStations)
@@ -218,7 +219,7 @@ namespace dotNet5781_02_7232_5482
 
                     if ((b.FirstStation.BusStationKey == firstStat) && (b.LastStation.BusStationKey == lastStat))
                         flag = true;
-                        return flag;
+                    return flag;
                 }
             }
             return flag;
@@ -247,7 +248,7 @@ namespace dotNet5781_02_7232_5482
                 if (b.BusStationKey == statnum)
                     return b;
             }
-            throw new BusException("bechlal lo tagia lepo :)");
+            throw new BusException("Sorry, this station doesn't exist");
         }
         static public int GetIntNum()
         {
@@ -260,7 +261,7 @@ namespace dotNet5781_02_7232_5482
                 success = int.TryParse(Console.ReadLine(), out num);
 
             }
-            while (!success||(num!=0&&num!=1));
+            while (!success || (num != 0 && num != 1));
             return num;
         }
         static public double GetDoubleNum()
@@ -275,6 +276,36 @@ namespace dotNet5781_02_7232_5482
             }
             while (!success);
             return num;
+        }
+        static public void Delete_(BusCollection AllBuses)
+        {
+            Console.WriteLine("Enter 0 if you want to delete bus line,Enter 1 if you want to delete station from bus line");
+            int choice = GetIntNum();
+            if (choice == 0)
+            {
+                DeleteBus(AllBuses);
+            }
+            if (choice == 1)
+            {
+                DeleteStat();
+            }
+        }
+        static public void DeleteBus(BusCollection AllBuses)
+        {
+
+            Console.WriteLine("Enter the bus number which you want to delete");
+            int busNum = GetNum();
+            Console.WriteLine("Enter the first station number");
+            string firstStat = GetStat(out firstStat);
+            Console.WriteLine("Enter the last station number");
+            string lastStat = GetStat(out lastStat);
+            BusLine bus = ReturnBus(AllBuses, busNum, firstStat, lastStat);
+            AllBuses.RemoveBus(bus);
+            Console.WriteLine("The bus line was successfully removed");
+        }
+        static public void DeleteStat()
+        {
+
         }
     }
 
