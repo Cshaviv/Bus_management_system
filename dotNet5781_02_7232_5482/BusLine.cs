@@ -60,7 +60,7 @@ namespace dotNet5781_02_7232_5482
             return flag;
 
         }
-        public void AddStations(BusLineStation b)
+        public void AddStations( BusStation b )
         {
             int choose;
             
@@ -74,12 +74,16 @@ namespace dotNet5781_02_7232_5482
                     Console.WriteLine("enter your choice again");
                     success = Enum.TryParse(Console.ReadLine(), out Choice);
                 }
-                CheckStationExist(b);//צריך לעשות חריגה ביציאה מהפונקציה הזאת
+               /* CheckStationExist(b)*/;//צריך לעשות חריגה ביציאה מהפונקציה הזאת
                 if (Choice == Insert.FIRST)
                 {
-                    Stations.Add(b);
-                    FirstStation = b;
-
+                    BusLineStation newstat = new BusLineStation(b.BusStationKey, b.AdressStation, 0, TimeSpan.Zero);
+                    Stations.Add(newstat);
+                    FirstStation = newstat;
+                    Console.WriteLine("Enter the distance of the new station from the next station (km)");
+                    double distanceFromPrev = GetDoubleNum();
+                    stations[1].My_Distance = distanceFromPrev;
+                    stations[1].My_Time = ;
                 }
                 else if (Choice == Insert.MIDDLE)
                 {
@@ -102,7 +106,7 @@ namespace dotNet5781_02_7232_5482
 
                 }
 
-                Console.WriteLine("Enter 1 if you want to add another station, if you want to exit enter 0");
+                6 Console.WriteLine("Enter 1 if you want to add another station, if you want to exit enter 0");
                 choose = int.Parse(Console.ReadLine());
                 while (choose != 0 && choose != 1)
                 {
@@ -222,6 +226,19 @@ namespace dotNet5781_02_7232_5482
             this.BusNumber = busnum;
             this.FirstStation.BusStationKey = firststat.ToString();
             this.LastStation.BusStationKey = laststat.ToString();
+        }
+        static public double GetDoubleNum()
+        {
+            bool success = true;
+            double num;
+            do
+            {
+                if (!success)
+                    Console.WriteLine("ERROR! try enter number again");
+                success = double.TryParse(Console.ReadLine(), out num);
+            }
+            while (!success);
+            return num;
         }
     }
 }
