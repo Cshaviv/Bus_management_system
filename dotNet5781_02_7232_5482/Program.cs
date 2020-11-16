@@ -287,7 +287,7 @@ namespace dotNet5781_02_7232_5482
             }
             if (choice == 1)
             {
-                DeleteStat();
+                DeleteStat( AllBuses);
             }
         }
         static public void DeleteBus(BusCollection AllBuses)
@@ -303,9 +303,18 @@ namespace dotNet5781_02_7232_5482
             AllBuses.RemoveBus(bus);
             Console.WriteLine("The bus line was successfully removed");
         }
-        static public void DeleteStat()
+        static public void DeleteStat(BusCollection AllBuses)
         {
-
+            Console.WriteLine("Enter the line number from which you want to delete a station");
+            int busNum = GetNum();
+            Console.WriteLine("Enter the first station number");
+            string firstStat = GetStat(out firstStat);
+            Console.WriteLine("Enter the last station number");
+            string lastStat = GetStat(out lastStat);
+            BusLine bus = ReturnBus(AllBuses, busNum, firstStat, lastStat);
+            Console.WriteLine("Enter the station number which you want to delete");
+            string stat = GetStat(out stat);
+            bus.DeleteStation(stat);
         }
     }
 

@@ -132,19 +132,19 @@ namespace dotNet5781_02_7232_5482
         {
             return one.Time.Subtract(two.Time).TotalMinutes;
         }
-        public void DeleteStation(BusLineStation bus)
+        public void DeleteStation(string StatNum)
         {
             int index = 0;
             foreach (BusLineStation b in Stations)
             {
-                if (b.BusStationKey == bus.BusStationKey)
+                if (b.BusStationKey == StatNum)
                 {
                     Stations.RemoveAt(index);
                     return;
                 }
                 index++;
             }
-            return;
+            throw new BusException("Sorry, this station doesn't exist in this bus line");
         }
         public bool CheckStationInBusLIne(string StationKey)
         {
