@@ -368,10 +368,13 @@ namespace dotNet5781_02_7232_5482
             }
             if (choice == 2)
             {
-                foreach(BusStation b in AllStations)
-                {
-                    
-                }
+                
+                    foreach(BusStation b in AllStations)
+                    {
+                    Console.WriteLine(b);
+                    Console.WriteLine(AllBuses.stations(b.BusStationKey)); 
+                    }
+                
             }
             else
                 throw new BusException("ERROR,this option doesn't exist");
