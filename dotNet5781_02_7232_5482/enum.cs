@@ -10,7 +10,7 @@ namespace dotNet5781_02_7232_5482
 
     public enum CHOICE
     {
-        ADD, DELETE, FIND, PRINT, EXIT = -1
+        ADD=1, DELETE, FIND, PRINT, EXIT = -1
     }
     public enum Area
     {

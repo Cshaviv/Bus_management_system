@@ -52,7 +52,7 @@ namespace dotNet5781_02_7232_5482
             }
             throw new BusException("this bus line dosn't exist");
         }
-        
+
         public string stations(string StationKey)
         {
             string AllBuses = " ";
@@ -71,7 +71,7 @@ namespace dotNet5781_02_7232_5482
                 throw new BusException("At this station no bus line passes");
             }
             return AllBuses;
-        //}
+        }
         public List<BusLine> SortedList()
         {
             List<BusLine> list1 = new List<BusLine>(Buses);
@@ -103,6 +103,7 @@ namespace dotNet5781_02_7232_5482
         }
     }
 }
+
 
 
 

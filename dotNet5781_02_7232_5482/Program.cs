@@ -20,7 +20,12 @@ namespace dotNet5781_02_7232_5482
             do
             {
                 Console.WriteLine("Make your mind:");
-                Console.WriteLine("ADD,DELETE,FIND,PRINT,EXIT= -1");
+                //Console.WriteLine("ADD,DELETE,FIND,PRINT,EXIT= -1");
+                Console.WriteLine("Enter 1 to ADD");
+                Console.WriteLine("Enter 2 to DELETE");
+                Console.WriteLine("Enter 3 to FIND");
+                Console.WriteLine("Enter 4 to PRINT");
+                Console.WriteLine("Enter -1 to EXIT");
                 bool success = Enum.TryParse(Console.ReadLine(), out choice);
 
                 switch (choice)
@@ -32,7 +37,7 @@ namespace dotNet5781_02_7232_5482
                         Delete_(AllBuses);
                         break;
                     case CHOICE.FIND:
-                        Find();
+                        Find(AllBuses, AllStations);
                         break;
                     case CHOICE.PRINT:
                         Print(AllBuses, AllStations);
@@ -43,7 +48,8 @@ namespace dotNet5781_02_7232_5482
                         break;
                 }
 
-            } while (choice != CHOICE.EXIT);
+            } 
+            while (choice != CHOICE.EXIT);
         }
 
         static public void AddNew(List<BusStation> AllStations, BusCollection AllBuses)
@@ -51,17 +57,24 @@ namespace dotNet5781_02_7232_5482
             try
             {
                 Console.WriteLine("Enter 1 if you want to add bus line,Enter 2 if you want to add station");
-                int choice = GetIntNum1_2();
+                int choice = GetNum();
                 if (choice == 1)
                     AddNewBus(AllStations, AllBuses);
                 else if (choice == 2)
                 {
                     NewStation(AllBuses, AllStations);
                 }
+                else
+                    throw new BusException("ERROR,this option doesn't exist");
+
             }
             catch (FormatException)
             {
                 Console.WriteLine("The value must be numeric");
+            }
+            catch (BusException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         static public void AddNewBus(List<BusStation> AllStations, BusCollection AllBuses)
@@ -270,7 +283,7 @@ namespace dotNet5781_02_7232_5482
             int num = 1;
             do
             {
-                if (!success || (num != 1 && num !=2))
+                if (!success || (num != 1 && num != 2))
                     Console.WriteLine("ERROR! try enter number again");
                 success = int.TryParse(Console.ReadLine(), out num);
 
@@ -293,15 +306,29 @@ namespace dotNet5781_02_7232_5482
         }
         static public void Delete_(BusCollection AllBuses)
         {
-            Console.WriteLine("Enter 1 if you want to delete bus line,Enter 2 if you want to delete station from bus line");
-            int choice = GetIntNum1_2();
-            if (choice == 1)
+            try
             {
-                DeleteBus(AllBuses);
+                Console.WriteLine("Enter 1 if you want to delete bus line,Enter 2 if you want to delete station from bus line");
+                int choice = GetNum();
+                if (choice == 1)
+                {
+                    DeleteBus(AllBuses);
+                }
+                else if (choice == 2)
+                {
+                    DeleteStat(AllBuses);
+                }
+                else
+                    throw new BusException("ERROR,this option doesn't exist");
             }
-            if (choice == 2)
+
+            catch (FormatException)
             {
-                DeleteStat( AllBuses);
+                Console.WriteLine("The value must be numeric");
+            }
+            catch (BusException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         static public void DeleteBus(BusCollection AllBuses)
@@ -332,17 +359,29 @@ namespace dotNet5781_02_7232_5482
         }
         static public void Find(BusCollection AllBuses, List<BusStation> AllStations)
         {
-            Console.WriteLine("Enter 1 to search for lines that pass through the station, enter 2 to print the options for traveling between 2 stations");
-            int choice = GetIntNum1_2();
-            if(choice==1)
+            try
             {
-                findLineInStat(AllBuses, AllStations);
+                Console.WriteLine("Enter 1 to search for lines that pass through the station, enter 2 to print the options for traveling between 2 stations");
+                int choice = GetNum();
+                if (choice == 1)
+                {
+                    findLineInStat(AllBuses, AllStations);
+                }
+                else if (choice == 2)
+                {
+                  //  FindOptionTravel();
+                }
+                else
+                    throw new BusException("ERROR,this option doesn't exist");
             }
-            if(choice==2)
+            catch (FormatException)
             {
-                FindOptionTravel();
+                Console.WriteLine("The value must be numeric");
             }
-            
+            catch (BusException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         static public void findLineInStat(BusCollection AllBuses, List<BusStation> AllStations)
         {
@@ -357,27 +396,38 @@ namespace dotNet5781_02_7232_5482
         }
         static public void Print(BusCollection AllBuses, List<BusStation> AllStations)
         {
-            Console.WriteLine("Enter 1 to print all bus lines, enter 2 to print all the list of stations and buses passing through them");
-            int choice = GetNum();
-            if(choice==1)
+            try
             {
-                foreach(BusLine b in AllBuses)
+                Console.WriteLine("Enter 1 to print all bus lines, enter 2 to print all the list of stations and buses passing through them");
+                int choice = GetNum();
+                if (choice == 1)
                 {
-                    Console.WriteLine(b.BusNumber+" " );
-                }
-            }
-            if (choice == 2)
-            {
-                
-                    foreach(BusStation b in AllStations)
+                    foreach (BusLine b in AllBuses)
                     {
-                    Console.WriteLine(b);
-                    Console.WriteLine(AllBuses.stations(b.BusStationKey)); 
+                        Console.WriteLine(b.BusNumber + " ");
                     }
-                
+                }
+                if (choice == 2)
+                {
+
+                    foreach (BusStation b in AllStations)
+                    {
+                        Console.WriteLine(b);
+                        Console.WriteLine(AllBuses.stations(b.BusStationKey));
+                    }
+
+                }
+                else
+                    throw new BusException("ERROR,this option doesn't exist");
             }
-            else
-                throw new BusException("ERROR,this option doesn't exist");
+            catch (FormatException)
+            {
+                Console.WriteLine("The value must be numeric");
+            }
+            catch (BusException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
     }
