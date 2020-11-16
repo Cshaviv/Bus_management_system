@@ -49,16 +49,14 @@ namespace dotNet5781_02_7232_5482
             {
                 Console.WriteLine("Enter 1 if you want to add bus line,Enter 2 if you want to add station");
                 int choice = int.Parse(Console.ReadLine());
-                if (choice != 1 || choice != 2)
+                if (choice != 1 && choice != 2)
                     throw new BusException("your choice is incorrect");
                 else if (choice == 1)
                     AddNewBus(AllStations, AllBuses);
                 else if (choice == 2)
-                {
-                    //BusLine bus= SearchBus(AllBuses);
+                {               
                     NewStation(AllBuses, AllStations);
                 }
-
             }
             catch (FormatException)
             {
@@ -160,58 +158,6 @@ namespace dotNet5781_02_7232_5482
             }
             while (choose == 1);
         }
-        //static public void AddNewBus(List<BusStation> AllStations, BusCollection AllBuses)
-        //{
-        //    List<BusLineStation> ListStation = new List<BusLineStation>();
-        //    Console.WriteLine("Enter a number of bus line");
-        //    int num = GetNum();
-        //    int YourChoice;
-        //    Console.WriteLine("Enter at least 2 stations");
-        //    do
-        //    {
-        //        Console.WriteLine("for enter station enter 1,for stop enter 2");
-        //        YourChoice = GetNum();
-        //        while (YourChoice != 0 && YourChoice != 1)
-        //        {
-        //            YourChoice = GetNum();
-        //            if (YourChoice != 0 && YourChoice != 1)
-        //                Console.WriteLine("ERROR, try enter number again");
-        //        }
-        //        if (YourChoice == 1)
-        //        {
-        //            Console.WriteLine("Insert bus station number");
-        //            string stringnum;
-        //            GetStat(out stringnum);
-        //            if (!SearchStat(stringnum, AllStations))
-        //                AllStations.Add(new BusStation(stringnum));
-        //            Console.WriteLine("Enter distance in km from last station");
-        //            double distance = GetNumDistance();
-        //            Console.WriteLine("Insert time from last station (format hh:mm::ss)");
-        //            TimeSpan time = TravelTime(distance);
-        //            YourChoice = -1;
-        //            bool flag = false;
-        //            foreach (BusLineStation b in ListStation)
-        //                if (b.BusStationKey == stringnum)
-        //                {
-        //                    flag = true;
-        //                    Console.WriteLine("You already entered this bus station");
-        //                }
-        //            if (!flag)
-        //                ListStation.Add(new BusLineStation(stringnum, " ", distance, time));
-        //        }
-        //    }
-        //    while (YourChoice != 2);
-        //    if (ListStation.Count > 1)
-        //    {
-        //        ListStation[0].My_Distance = 0;
-        //        ListStation[0].My_Time = TimeSpan.Zero;
-        //        AllBuses.AddBus(new BusLine(ListStation, num, ListStation[0], ListStation[ListStation.Count - 1], Area.GENERAL));
-        //    }
-        //    else
-        //        throw new BusException("You entered less than 2 stations, so the bus line was not added to the collection");
-
-
-        //}
         static string GetStat(out string stringnum)
         {
             stringnum = Console.ReadLine();
@@ -309,12 +255,12 @@ namespace dotNet5781_02_7232_5482
             int num = 1;
             do
             {
-                if (!success || num != 1 || num != 0)
+                if (!success || (num != 1 && num != 0))
                     Console.WriteLine("ERROR! try enter number again");
                 success = int.TryParse(Console.ReadLine(), out num);
 
             }
-            while (!success||num!=0||num!=1);
+            while (!success||(num!=0&&num!=1));
             return num;
         }
         static public double GetDoubleNum()
