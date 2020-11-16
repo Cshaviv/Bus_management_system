@@ -66,6 +66,8 @@ namespace dotNet5781_02_7232_5482
             do
             {
                 Insert Choice;
+                Console.WriteLine("Choose where you want to add a station from the following options:");
+                Console.WriteLine(@"Enter 1 to choose FIRST, Enter 2 to choose MIDDLE, Enter 3 to choose LAST" );
                 bool success = Enum.TryParse(Console.ReadLine(), out Choice);
 
                 while (success == false)
