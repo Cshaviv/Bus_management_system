@@ -78,7 +78,7 @@ namespace dotNet5781_02_7232_5482
                 {
                     BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", 0, TimeSpan.Zero);
                     newstat.Latitude = b.Latitude;
-                    newstat.Latitude = b.Longitude;
+                    newstat.Longitude = b.Longitude;
                     Stations.Add(newstat);
                     FirstStation = newstat;
                     Console.WriteLine("Enter the distance of the new station from the next station (km)");
@@ -229,13 +229,13 @@ namespace dotNet5781_02_7232_5482
             TimeSpan time2 = TimeBetweenStations(other.FirstStation, other.LastStation);
             return time1.CompareTo(time2);
         }
-        public BusLine(int busnum, int firststat, int laststat)
+        public BusLine(int busnum, string firststat, string laststat)
         {
             this.BusNumber = busnum;
-            this.FirstStation.BusStationKey = firststat.ToString();
-            this.LastStation.BusStationKey = laststat.ToString();
+            this.FirstStation.BusStationKey = firststat;
+            this.LastStation.BusStationKey = laststat;
         }
-        static public double GetDoubleNum()
+         public double GetDoubleNum()
         {
             bool success = true;
             double num;
@@ -248,7 +248,7 @@ namespace dotNet5781_02_7232_5482
             while (!success);
             return num;
         }
-        static public int GetIntNum()
+         public int GetIntNum()
         {
             bool success = true;
             int num;
