@@ -27,7 +27,6 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine("Enter 4 to PRINT");
                 Console.WriteLine("Enter -1 to EXIT");
                 bool success = Enum.TryParse(Console.ReadLine(), out choice);
-
                 switch (choice)
                 {
                     case CHOICE.ADD:
@@ -47,11 +46,9 @@ namespace dotNet5781_02_7232_5482
                     default:
                         break;
                 }
-
             } 
             while (choice != CHOICE.EXIT);
         }
-
         static public void AddNew(List<BusStation> AllStations, BusCollection AllBuses)
         {
             try
@@ -109,14 +106,16 @@ namespace dotNet5781_02_7232_5482
                 AllStations.Add(new BusStation(lastnum, " "));
             }
             BusStation LastStat = ReturnStation(AllStations, lastnum);
-            List<BusLineStation> BusStations = new List<BusLineStation>();
+            List<BusLineStation> BusStations = new List<BusLineStation>();         
             BusLineStation FirstStation = new BusLineStation(firstnum, " ", 0, TimeSpan.Zero);
+            FirstStation.Adress();
             FirstStation.Latitude = FirstStat.Latitude;
             FirstStation.Longitude = FirstStat.Longitude;
             Console.WriteLine("Type the distance of the last station from the first station (km)");
-            double distanceFromPrev = GetDoubleNum();
-            TimeSpan TimeFromPrev = TimeSpan.FromMinutes(distanceFromPrev);
+             double distanceFromPrev = GetDoubleNum();
+            TimeSpan TimeFromPrev = TimeSpan.FromMinutes(distanceFromPrev);            
             BusLineStation LastStation = new BusLineStation(lastnum, " ", distanceFromPrev, TimeFromPrev);
+            LastStation.Adress();
             LastStation.Latitude = LastStat.Latitude;
             LastStation.Longitude = LastStat.Longitude;
             BusLine NuwBus = new BusLine(BusStations, busnum, FirstStation, LastStation);
@@ -429,6 +428,8 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine(ex.Message);
             }
         }
+
+            
     }
 }
 

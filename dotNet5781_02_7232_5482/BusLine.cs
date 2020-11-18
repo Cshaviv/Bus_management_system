@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7232_5482
 {
-
     class BusLine : IComparable<BusLine>
     {
         public int BusNumber { get; set; }
@@ -79,6 +78,7 @@ namespace dotNet5781_02_7232_5482
                 if (Choice == Insert.FIRST)
                 {
                     BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", 0, TimeSpan.Zero);
+                    newstat.Adress();
                     newstat.Latitude = b.Latitude;
                     newstat.Longitude = b.Longitude;
                     Stations.Add(newstat);
@@ -97,6 +97,7 @@ namespace dotNet5781_02_7232_5482
                     double distanceFromPrev = GetDoubleNum();
                     TimeSpan TimePerMin = TimeSpan.FromMinutes(distanceFromPrev);
                     BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev, TimePerMin);
+                    newstat.Adress();
                     newstat.Latitude = b.Latitude;
                     newstat.Latitude = b.Longitude;
                     stations.Insert(++index, newstat);
@@ -109,6 +110,7 @@ namespace dotNet5781_02_7232_5482
                     double distanceFromPrev = GetDoubleNum();
                     TimeSpan TimePerMin = TimeSpan.FromMinutes(distanceFromPrev);
                     BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev, TimePerMin);
+                    newstat.Adress();
                     newstat.Latitude = b.Latitude;
                     newstat.Latitude = b.Longitude;
                     stations.Insert(stations.Count - 1, newstat);
