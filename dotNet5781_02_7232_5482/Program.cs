@@ -6,9 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace dotNet5781_02_7232_5482
-{
-
-    //  enum Options { InsertBus, InsertStation, RemoveBus, RemoveStation, LinesPassStation, LinesPassRoute, PrintAllLines, PrintStations, Exit };
+{ 
     class Program
     {
         static void Main(string[] args)
@@ -20,7 +18,6 @@ namespace dotNet5781_02_7232_5482
             do
             {
                 Console.WriteLine("Make your mind:");
-                //Console.WriteLine("ADD,DELETE,FIND,PRINT,EXIT= -1");
                 Console.WriteLine("Enter 1 to ADD");
                 Console.WriteLine("Enter 2 to DELETE");
                 Console.WriteLine("Enter 3 to FIND");
@@ -79,15 +76,17 @@ namespace dotNet5781_02_7232_5482
             List<BusLineStation> ListStation = new List<BusLineStation>();
             Console.WriteLine("Enter a number of bus line");
             int busnum = GetNum();
+            Console.WriteLine("Please enter the bus travel area");
+            Area area = TheArea();
             Console.WriteLine("Enter the first station number");
             string firstnum = GetStat(out firstnum);
             Console.WriteLine("Enter the last station number");
             string lastnum = GetStat(out lastnum);
             foreach (BusLine b in AllBuses)
             {
-                if (b.BusNumber == busnum)
+                if ((b.BusNumber == busnum)&&(b.Area==area))
                 {
-                    if (!SearchBus(AllBuses, busnum, firstnum, lastnum))
+                    if (!SearchBus(AllBuses, busnum, firstnum, lastnum, area))
                     {
                         throw new BusException("Sorry, this bus number already exist");
                     }
@@ -106,19 +105,19 @@ namespace dotNet5781_02_7232_5482
                 AllStations.Add(new BusStation(lastnum, " "));
             }
             BusStation LastStat = ReturnStation(AllStations, lastnum);
-            List<BusLineStation> BusStations = new List<BusLineStation>();         
+            List<BusLineStation> BusStations = new List<BusLineStation>();
             BusLineStation FirstStation = new BusLineStation(firstnum, " ", 0, TimeSpan.Zero);
             FirstStation.Adress();
             FirstStation.Latitude = FirstStat.Latitude;
             FirstStation.Longitude = FirstStat.Longitude;
             Console.WriteLine("Type the distance of the last station from the first station (km)");
-             double distanceFromPrev = GetDoubleNum();
-            TimeSpan TimeFromPrev = TimeSpan.FromMinutes(distanceFromPrev);            
+            double distanceFromPrev = GetDoubleNum();
+            TimeSpan TimeFromPrev = TimeSpan.FromMinutes(distanceFromPrev);
             BusLineStation LastStation = new BusLineStation(lastnum, " ", distanceFromPrev, TimeFromPrev);
             LastStation.Adress();
             LastStation.Latitude = LastStat.Latitude;
             LastStation.Longitude = LastStat.Longitude;
-            BusLine NuwBus = new BusLine(BusStations, busnum, FirstStation, LastStation);
+            BusLine NuwBus = new BusLine(BusStations, busnum, FirstStation, LastStation, area);
             Console.WriteLine("Enter 1 if you want to add another station, and 0 to continue ");
             int choose = GetIntNum();
             if (choose == 1)
@@ -131,15 +130,17 @@ namespace dotNet5781_02_7232_5482
         {
             Console.WriteLine("Enter the bus number to which you want to add a station");
             int num = GetNum();
+            Console.WriteLine("Please enter the bus travel area");
+            Area area = TheArea();
             Console.WriteLine("Enter the first station");
             string first = GetStat(out first);
             Console.WriteLine("Enter the last station");
             string last = GetStat(out last);
-            if (!SearchBus(AllBuses, num, first, last))
+            if (!SearchBus(AllBuses, num, first, last, area))
             {
                 throw new Exception("this bus doesn't exist");
             }
-            BusLine bus = ReturnBus(AllBuses, num, first, last);
+            BusLine bus = ReturnBus(AllBuses, num, first, last, area);
             AddStation(bus, AllStations)
                 /*bus.AddStations()*/;
         }
@@ -220,13 +221,13 @@ namespace dotNet5781_02_7232_5482
             TimeSpan TimePerMin = TimeSpan.FromMinutes(Time);
             return TimePerMin;
         }
-        static public bool SearchBus(BusCollection AllBuses, int num, string firstStat, string lastStat)
+        static public bool SearchBus(BusCollection AllBuses, int num, string firstStat, string lastStat,Area area)
         {
             bool flag = false;
             foreach (BusLine b in AllBuses)
             {
 
-                if (b.BusNumber == num)
+                if ((b.BusNumber == num)&&(b.Area ==area))
                 {
 
                     if ((b.FirstStation.BusStationKey == firstStat) && (b.LastStation.BusStationKey == lastStat))
@@ -236,13 +237,13 @@ namespace dotNet5781_02_7232_5482
             }
             return flag;
         }
-        static public BusLine ReturnBus(BusCollection AllBuses, int num, string firstStat, string lastStat)
+        static public BusLine ReturnBus(BusCollection AllBuses, int num, string firstStat, string lastStat, Area area)
         {
 
             foreach (BusLine b in AllBuses)
             {
 
-                if (b.BusNumber == num)
+                if ((b.BusNumber == num) && (b.Area == area))
                 {
 
                     if ((b.FirstStation.BusStationKey == firstStat) && (b.LastStation.BusStationKey == lastStat))
@@ -335,11 +336,13 @@ namespace dotNet5781_02_7232_5482
 
             Console.WriteLine("Enter the bus number which you want to delete");
             int busNum = GetNum();
+            Console.WriteLine("Please enter the bus travel area");
+            Area area = TheArea();
             Console.WriteLine("Enter the first station number");
             string firstStat = GetStat(out firstStat);
             Console.WriteLine("Enter the last station number");
             string lastStat = GetStat(out lastStat);
-            BusLine bus = ReturnBus(AllBuses, busNum, firstStat, lastStat);
+            BusLine bus = ReturnBus(AllBuses, busNum, firstStat, lastStat, area);
             AllBuses.RemoveBus(bus);
             Console.WriteLine("The bus line was successfully removed");
         }
@@ -347,11 +350,13 @@ namespace dotNet5781_02_7232_5482
         {
             Console.WriteLine("Enter the line number from which you want to delete a station");
             int busNum = GetNum();
+            Console.WriteLine("Please enter the bus travel area");
+            Area area = TheArea();
             Console.WriteLine("Enter the first station number");
             string firstStat = GetStat(out firstStat);
             Console.WriteLine("Enter the last station number");
             string lastStat = GetStat(out lastStat);
-            BusLine bus = ReturnBus(AllBuses, busNum, firstStat, lastStat);
+            BusLine bus = ReturnBus(AllBuses, busNum, firstStat, lastStat, area);
             Console.WriteLine("Enter the station number which you want to delete");
             string stat = GetStat(out stat);
             bus.DeleteStation(stat);
@@ -428,7 +433,28 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine(ex.Message);
             }
         }
+        static public Area TheArea()
+        {
+            Area area = Area.JERUSALEM;
+            bool success = true;
+            do
+            {                            
+                Console.WriteLine("1: to GENERAL");
+                Console.WriteLine("2: to NORTH");
+                Console.WriteLine("3: to SOUTH ");
+                Console.WriteLine("4: to CENTER");
+                Console.WriteLine("5: to JERUSALEM");
+                success = Enum.TryParse(Console.ReadLine(), out area);
+                if (!success)
+                {
+                    Console.WriteLine("Sorry,please enter one of the available options");
+                }
+            }
+            while (!success);
+            
+            return area;
 
+        }
             
     }
 }

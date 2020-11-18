@@ -66,12 +66,13 @@ namespace dotNet5781_02_7232_5482
             {
                 Insert Choice;
                 Console.WriteLine("Choose where you want to add a station from the following options:");
-                Console.WriteLine(@"Enter 1 to choose FIRST, Enter 2 to choose MIDDLE, Enter 3 to choose LAST" );
+                Console.WriteLine(@"Enter 1 to choose FIRST, 2 to choose MIDDLE and 3 to choose LAST");
                 bool success = Enum.TryParse(Console.ReadLine(), out Choice);
 
                 while (success == false)
                 {
                     Console.WriteLine("enter your choice again");
+                    Console.WriteLine(@"Enter 1 to choose FIRST, 2 to choose MIDDLE and 3 to choose LAST");
                     success = Enum.TryParse(Console.ReadLine(), out Choice);
                 }
                /* CheckStationExist(b)*/;//צריך לעשות חריגה ביציאה מהפונקציה הזאת
@@ -219,14 +220,7 @@ namespace dotNet5781_02_7232_5482
                 station += b.BusStationKey + " ";
             }
             return station;
-        }
-        public override string ToString()
-        {
-
-
-            return String.Format(" Bus Number: {0}, Area: {1}, ListOfStation:{2}", BusNumber, Area, PrintStations());
-
-        }
+        }       
         public int CompareTo(BusLine other)
         {
             TimeSpan time1 = TimeBetweenStations(this.FirstStation, this.LastStation);
@@ -264,6 +258,13 @@ namespace dotNet5781_02_7232_5482
             }
             while (!success);
             return num;
+        }
+        public override string ToString()
+        {
+
+
+            return String.Format(" Bus Number: {0}, Area: {1}, ListOfStation:{2}", BusNumber, Area, PrintStations());
+
         }
     }
 }

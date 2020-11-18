@@ -12,9 +12,9 @@ namespace dotNet5781_02_7232_5482
     {
         ADD=1, DELETE, FIND, PRINT, EXIT = -1
     }
-    public enum Area
+     public enum Area
     {
-        GENERAL, NORTH, SOUTH, CENTER, JERUSALEM
+        GENERAL=1, NORTH, SOUTH, CENTER, JERUSALEM
     }
     public enum Insert
     { FIRST=1, MIDDLE, LAST }
