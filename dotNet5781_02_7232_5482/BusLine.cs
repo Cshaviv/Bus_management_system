@@ -195,24 +195,44 @@ namespace dotNet5781_02_7232_5482
             return time;
 
         }
-        public BusLine SubPath(BusLineStation first, BusLineStation last)
+        //public BusLine SubPath(BusLineStation first, BusLineStation last)
+        //{
+        //    List<BusLineStation> UserStations = new List<BusLineStation>();
+        //    UserStations[0] = first;
+        //    UserStations[UserStations.Count-1] = last;
+        //    BusLine bus = new BusLine(UserStations, this.BusNumber, this.Area);
+        //    int firstIndex = FindIndex(first.BusStationKey);
+        //    int lastIndex = FindIndex(last.BusStationKey);
+        //    if (firstIndex == -1 || lastIndex == -1)
+        //    {
+        //        throw new BusException(" one of the  ststion doesn't exist on the route of this bus line");
+        //    }
+        //    for (int i = firstIndex + 1; i < lastIndex + 1; i++)
+        //    {
+        //        bus.Stations.Add(Stations[i]);
+        //    }
+        //    return bus;
+        //}
+        public BusLine SubPath(int stop1, int stop2)//creating a sub route presented by a bus line
         {
-            List<BusLineStation> UserStations = new List<BusLineStation>();
-            UserStations[0] = first;
-            UserStations[UserStations.Count-1] = last;
-            BusLine bus = new BusLine(UserStations, this.BusNumber, this.Area);
-            int firstIndex = FindIndex(first.BusStationKey);
-            int lastIndex = FindIndex(last.BusStationKey);
-            if (firstIndex == -1 || lastIndex == -1)
+            if (!(CheckStationExist(stop1.ToString()) && CheckStationExist(stop2.ToString())))
             {
-                throw new BusException(" one of the  ststion doesn't exist on the route of this bus line");
+                throw new BusException("ERROR, one or more of the stations entered don't exist in the bus line");
             }
-            for (int i = firstIndex + 1; i < lastIndex + 1; i++)
+            List<BusLineStation>buses = new List<BusLineStation>();
+            int index1 = FindIndex(stop1.ToString());
+            int index2 = FindIndex(stop2.ToString());
+            if (index1 >= index2)
             {
-                bus.Stations.Add(Stations[i]);
+                throw new BusException("there is no route");
             }
-            return bus;
+            for (int i = index1; i <= index2; i++)
+            {
+                buses.Add(stations[i]);
+            }
+            return new BusLine(Stations , BusNumber, Area);
         }
+
         public string PrintStations()
         {
             string station = " ";

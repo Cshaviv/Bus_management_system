@@ -119,35 +119,41 @@ namespace dotNet5781_02_7232_5482
                     }
                 }
             }
+            bool flag = false;
             if (!SearchStat(firstnum, ref AllStations))
             {
                 AllStations.Add(new BusStation(firstnum, " "));
-                BusStation FirstStat = ReturnStation(ref AllStations, firstnum);
-                BusLineStation FirstStation = new BusLineStation(firstnum, " ", 0);
-                FirstStation.Latitude = FirstStat.Latitude;
-                FirstStation.Longitude = FirstStat.Longitude;
-                FirstStation.Adress();
+                flag = true;
             }
-            else
+       
+            BusStation FirstStat = ReturnStation(ref AllStations, firstnum);
+            BusLineStation FirstStation = new BusLineStation(firstnum, " ", 0);
+            FirstStation.Latitude = FirstStat.Latitude;
+            FirstStation.Longitude = FirstStat.Longitude;
+            if(flag)
             {
-               BusStation FirstStat = ReturnStation(ref AllStations, firstnum);
-
+                Console.WriteLine("About the first station");
+                FirstStation.Adress();
 
             }
+            bool flag1 = false;
             if (!SearchStat(lastnum, ref AllStations))
             {
                 AllStations.Add(new BusStation(lastnum, " "));
+                 flag1 = true;
             }
             BusStation LastStat = ReturnStation(ref AllStations, lastnum);
             List<BusLineStation> BusStations = new List<BusLineStation>();
-            
-           
             Console.WriteLine("Type the distance of the last station from the first station (km)");
-            double distanceFromPrev = GetDoubleNum();
-            BusLineStation LastStation = new BusLineStation(lastnum, " ", distanceFromPrev);
-            LastStation.Adress();
+            double distanceFromPrev = GetDoubleNum();       
+          BusLineStation LastStation = new BusLineStation(lastnum, " ", distanceFromPrev);    
             LastStation.Latitude = LastStat.Latitude;
             LastStation.Longitude = LastStat.Longitude;
+            if (flag1)
+            {
+                Console.WriteLine("About the last station");
+                LastStation.Adress();
+            }
             BusStations[0] = FirstStation;
             BusStations[BusStations.Count-1] = LastStation;
             BusLine NuwBus = new BusLine(BusStations, busnum, area);
@@ -336,20 +342,20 @@ namespace dotNet5781_02_7232_5482
             while (!success || (num != 0 && num != 1));
             return num;
         }
-        static public int GetIntNum1_2()
-        {
-            bool success = true;
-            int num = 1;
-            do
-            {
-                if (!success || (num != 1 && num != 2))
-                    Console.WriteLine("ERROR! try enter number again");
-                success = int.TryParse(Console.ReadLine(), out num);
+        //static public int GetIntNum1_2()
+        //{
+        //    bool success=false;
+        //   int num = 1;
+        //    do
+        //    {
+        //        if (!success || (num != 1 && num != 2 && num!=3 && num!=4 && num!=5))
+        //            Console.WriteLine("ERROR! try enter number again");
+        //        success = int.TryParse(Console.ReadLine(), out num);
 
-            }
-            while (!success || (num != 2 && num != 1));
-            return num;
-        }
+        //    }
+        //    while (!success || (num != 1 && num != 2 &&  num != 3 && num != 4 && num != 5));
+        //    return num;
+        //}
         static public double GetDoubleNum()
         {
             bool success = true;
@@ -437,7 +443,7 @@ namespace dotNet5781_02_7232_5482
                 }
                 else if (choice == 2)
                 {
-                  //  FindOptionTravel();
+                    //  FindOptionTravel();
                 }
                 else
                     throw new BusException("ERROR,this option doesn't exist");
@@ -513,7 +519,7 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine("4: to CENTER");
                 Console.WriteLine("5: to JERUSALEM");
                 success = Enum.TryParse(Console.ReadLine(), out area);
-                if (!success)
+                if (!success||(area!=Area.CENTER&&area!=Area.GENERAL&& area != Area.JERUSALEM &&area != Area.NORTH && area != Area.SOUTH))
                 {
                     Console.WriteLine("Sorry,please enter one of the available options");
                 }
@@ -531,6 +537,31 @@ namespace dotNet5781_02_7232_5482
                     return;
             }
             throw new BusException("This bus doesn't exist");
+        }
+        public static void BusesInRoute(BusCollection AllBuses)
+        {
+            Console.WriteLine("enter the code of the source station");
+            int code1 = int.Parse(Console.ReadLine());//the code of the source station
+            Console.WriteLine("enter the code of the destination station");
+            int code2 = int.Parse(Console.ReadLine());//the code of the destination station
+            List<BusLine> buses = new List<BusLine>();//lis of all the sub routes of the buses that pass in those stations
+            foreach (BusLine b in AllBuses)
+            {
+                try
+                {
+                    BusLine busRoute = b.SubPath(code1, code2);
+                    buses.Add(busRoute);
+                }
+                catch (BusException) { }//if the stations do not exist in the bus
+            }
+            if (buses.Count == 0)//if there is no bus that pass on those stations
+                throw new BusException("There is no line that matches this route");
+            BusCollection sortedByTime = new BusCollection();//sort the buses by their travel time
+            buses = sortedByTime.SortedList();
+            foreach (BusLine bus in buses)//print the buses
+            {
+                Console.WriteLine(bus.BusNumber);
+            }
         }
     }
 }
