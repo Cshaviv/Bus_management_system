@@ -113,26 +113,35 @@ namespace dotNet5781_02_7232_5482
                     {
                         throw new BusException("Sorry, this bus number already exist");
                     }
-
+                    if(!SearchUpsideBus(AllBuses, busnum, firstnum, lastnum, area))
+                    {
+                        throw new BusException("Sorry, this bus number already exist");
+                    }
                 }
             }
-
             if (!SearchStat(firstnum, ref AllStations))
             {
                 AllStations.Add(new BusStation(firstnum, " "));
+                BusStation FirstStat = ReturnStation(ref AllStations, firstnum);
+                BusLineStation FirstStation = new BusLineStation(firstnum, " ", 0);
+                FirstStation.Latitude = FirstStat.Latitude;
+                FirstStation.Longitude = FirstStat.Longitude;
+                FirstStation.Adress();
             }
-            BusStation FirstStat = ReturnStation(ref AllStations, firstnum);
+            else
+            {
+               BusStation FirstStat = ReturnStation(ref AllStations, firstnum);
 
+
+            }
             if (!SearchStat(lastnum, ref AllStations))
             {
                 AllStations.Add(new BusStation(lastnum, " "));
             }
             BusStation LastStat = ReturnStation(ref AllStations, lastnum);
             List<BusLineStation> BusStations = new List<BusLineStation>();
-            BusLineStation FirstStation = new BusLineStation(firstnum, " ", 0);
-            FirstStation.Adress();
-            FirstStation.Latitude = FirstStat.Latitude;
-            FirstStation.Longitude = FirstStat.Longitude;
+            
+           
             Console.WriteLine("Type the distance of the last station from the first station (km)");
             double distanceFromPrev = GetDoubleNum();
             BusLineStation LastStation = new BusLineStation(lastnum, " ", distanceFromPrev);
@@ -261,8 +270,28 @@ namespace dotNet5781_02_7232_5482
                 {
 
                     if ((b.FirstStation.BusStationKey == firstStat) && (b.LastStation.BusStationKey == lastStat))
+                    {
                         flag = true;
-                    return flag;
+                        return flag;
+                    }
+                }
+            }
+            return flag;
+        }
+        static public bool SearchUpsideBus(BusCollection AllBuses, int num, string firstStat, string lastStat, Area area)
+        {
+            bool flag = false;
+            foreach (BusLine b in AllBuses)
+            {
+
+                if ((b.BusNumber == num) && (b.Area == area))
+                {
+
+                    if ((b.FirstStation.BusStationKey == lastStat) && (b.LastStation.BusStationKey == firstStat))
+                    {
+                        flag = true;
+                        return flag;
+                    }
                 }
             }
             return flag;
