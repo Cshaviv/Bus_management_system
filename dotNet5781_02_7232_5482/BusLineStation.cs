@@ -64,11 +64,9 @@ namespace dotNet5781_02_7232_5482
                 adress = Console.ReadLine();
                 this.AdressStation = adress;
                 return;
-                return;
             }
             else if (num==0)
             {
-
                 this.AdressStation = adress;
                 return;
             }
