@@ -11,7 +11,7 @@ namespace dotNet5781_02_7232_5482
     class BusLineStation : BusStation
     {
         static Random rand = new Random();
-        private double Distance;
+        public double Distance;
         public TimeSpan Time;
         public double My_Distance//לא לשכוח לקלוט מהמשתמש מספר במיין
         {
@@ -42,10 +42,10 @@ namespace dotNet5781_02_7232_5482
             Console.WriteLine("Enter ths bus station key:");
             int choice = int.Parse(Console.ReadLine());
         }
-        public BusLineStation(string code1, string adress1, double Distance1, TimeSpan Time1) : base(code1, adress1)
+        public BusLineStation(string code1, string adress1, double Distance1) : base(code1, adress1)
         {
             this.Distance = Distance1;
-            this.Time = Time1;
+            this.Time = TravelTime(Distance1);
         }
          public void Adress()
         {

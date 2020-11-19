@@ -19,14 +19,12 @@ namespace dotNet5781_02_7232_5482
         public BusLineStation FirstStation { get => Stations[0]; set => Stations[0] = value; }
         public BusLineStation LastStation { get => Stations[stations.Count - 1]; set => Stations[stations.Count - 1] = value; }
         public BusLineStation this[int index] => stations[index];
-        public BusLine(List<BusLineStation> L, int BusNumber, BusLineStation first, BusLineStation last, Area a = Area.JERUSALEM)
+        public BusLine(List<BusLineStation> L, int BusNumber, /*BusLineStation first, BusLineStation last,*/ Area a = Area.JERUSALEM)
         {
             this.Stations = L;
             this.BusNumber = BusNumber;
-            this.FirstStation = first;
-            this.LastStation = last;
-            this.Stations[0] = FirstStation;
-            this.Stations[Stations.Count - 1] = LastStation;
+            this.FirstStation = Stations[0];
+            this.LastStation = Stations[Stations.Count - 1];
             this.Area = a;
         }
         public int FindIndex(string PrevStation)
@@ -78,7 +76,7 @@ namespace dotNet5781_02_7232_5482
                /* CheckStationExist(b)*/;//צריך לעשות חריגה ביציאה מהפונקציה הזאת
                 if (Choice == Insert.FIRST)
                 {
-                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", 0, TimeSpan.Zero);
+                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", 0);
                     newstat.Adress();
                     newstat.Latitude = b.Latitude;
                     newstat.Longitude = b.Longitude;
@@ -96,8 +94,7 @@ namespace dotNet5781_02_7232_5482
                     int index = FindIndex(PrevStation.ToString());
                     Console.WriteLine("Type the distance of the new station from the previous station (km)");
                     double distanceFromPrev = GetDoubleNum();
-                    TimeSpan TimePerMin = TimeSpan.FromMinutes(distanceFromPrev);
-                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev, TimePerMin);
+                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev);
                     newstat.Adress();
                     newstat.Latitude = b.Latitude;
                     newstat.Latitude = b.Longitude;
@@ -109,8 +106,7 @@ namespace dotNet5781_02_7232_5482
                 {
                     Console.WriteLine("Type the distance of the new station from the previous station (km)");
                     double distanceFromPrev = GetDoubleNum();
-                    TimeSpan TimePerMin = TimeSpan.FromMinutes(distanceFromPrev);
-                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev, TimePerMin);
+                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev);
                     newstat.Adress();
                     newstat.Latitude = b.Latitude;
                     newstat.Latitude = b.Longitude;
@@ -199,7 +195,9 @@ namespace dotNet5781_02_7232_5482
         public BusLine SubPath(BusLineStation first, BusLineStation last)
         {
             List<BusLineStation> UserStations = new List<BusLineStation>();
-            BusLine bus = new BusLine(UserStations, this.BusNumber, first, last, this.Area);
+            UserStations[0] = first;
+            UserStations[UserStations.Count-1] = last;
+            BusLine bus = new BusLine(UserStations, this.BusNumber, this.Area);
             int firstIndex = FindIndex(first.BusStationKey);
             int lastIndex = FindIndex(last.BusStationKey);
             if (firstIndex == -1 || lastIndex == -1)
