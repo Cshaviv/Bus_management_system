@@ -80,12 +80,13 @@ namespace dotNet5781_02_7232_5482
                     newstat.Adress();
                     newstat.Latitude = b.Latitude;
                     newstat.Longitude = b.Longitude;
-                    Stations.Add(newstat);
+                    Stations.Add(newstat);                   
                     FirstStation = newstat;
                     Console.WriteLine("Enter the distance of the new station from the next station (km)");
                     double distanceFromPrev = GetDoubleNum();
                     stations[1].My_Distance = distanceFromPrev;
                     stations[1].My_Time = newstat.TravelTime(distanceFromPrev);
+                    Console.WriteLine("The station was successfully added");
                 }
                 else if (Choice == Insert.MIDDLE)
                 {
@@ -101,6 +102,8 @@ namespace dotNet5781_02_7232_5482
                     stations.Insert(++index, newstat);
                     stations[index + 2].My_Distance = stations[index + 2].My_Distance - newstat.My_Distance;
                     stations[index + 2].My_Time = TimeSpan.FromMinutes(stations[index + 2].My_Distance);
+                    Console.WriteLine("The station was successfully added");
+
                 }
                 else
                 {
@@ -112,6 +115,8 @@ namespace dotNet5781_02_7232_5482
                     newstat.Latitude = b.Longitude;
                     stations.Insert(stations.Count - 1, newstat);
                     LastStation = newstat;
+                    Console.WriteLine("The station was successfully added");
+
 
                 }
 
@@ -125,9 +130,7 @@ namespace dotNet5781_02_7232_5482
                 }
             }
             while (choose == 1);
-
-
-
+            return;
         }
         public double timeBetween(BusLineStation one, BusLineStation two)
         {

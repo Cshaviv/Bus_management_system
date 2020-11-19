@@ -16,11 +16,15 @@ namespace dotNet5781_02_7232_5482
         {
             return Buses.GetEnumerator();
         }
+        public BusCollection()
+        {
+            Buses = new List<BusLine>();
+        }
         public void AddBus(BusLine NewBus)
         {
             CheckBus(NewBus);
-
             Buses.Add(NewBus);
+            return;
         }
         public void CheckBus(BusLine newbus)
         {
@@ -61,7 +65,7 @@ namespace dotNet5781_02_7232_5482
                 {
                     if (bus.BusStationKey == StationKey)
                     {
-                        AllBuses += b.BusNumber + " ";//  לא בדקנו אם יש כפילות של קווי אוטובוס הלוך וחזור שעוברים בתחנה המבוקשת
+                        AllBuses += b.BusNumber + " ";
                     }
                 }
             }

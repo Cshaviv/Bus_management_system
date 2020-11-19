@@ -41,6 +41,7 @@ namespace dotNet5781_02_7232_5482
         {
             Console.WriteLine("Enter ths bus station key:");
             int choice = int.Parse(Console.ReadLine());
+            return;
         }
         public BusLineStation(string code1, string adress1, double Distance1) : base(code1, adress1)
         {
@@ -49,25 +50,30 @@ namespace dotNet5781_02_7232_5482
         }
          public void Adress()
         {
+            int num;
             Console.WriteLine("Enter 1 if you want to add the station's adrees, and 0 to continue");
-            bool success = true;
-            int num = 0;
-            do
-            {
-                if (!success || (num != 1 && num != 0))
-                    Console.WriteLine("ERROR! try enter number again");
-                success = int.TryParse(Console.ReadLine(), out num);
-
-            }
-            while (!success || (num != 2 && num != 1));
+            bool success = int.TryParse(Console.ReadLine(), out num);
             string adress = " ";
+            if (!success || (num != 1 && num != 0))
+            {
+                throw new BusException("This option doesn't exist");
+            }
             if (num == 1)
             {
                 Console.WriteLine("Please enter the adress");
                 adress = Console.ReadLine();
+                this.AdressStation = adress;
+                return;
+                return;
+            }
+            else if (num==0)
+            {
+
+                this.AdressStation = adress;
+                return;
             }
 
-            AdressStation = adress;
+            return;
         }
     }
 

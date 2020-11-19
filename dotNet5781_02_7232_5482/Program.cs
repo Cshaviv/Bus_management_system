@@ -58,6 +58,8 @@ namespace dotNet5781_02_7232_5482
                 counter++;
             }
 
+            Console.WriteLine(AllStations[8].BusStationKey);
+            Console.WriteLine(AllStations[11].BusStationKey);
 
             AllBuses.AddBus(new BusLine( new List<BusLineStation>() { new BusLineStation(AllStations[0].BusStationKey, " ", 0), new BusLineStation(AllStations[1].BusStationKey, " ", 0.7), new BusLineStation(AllStations[2].BusStationKey, " ", 2), new BusLineStation(AllStations[3].BusStationKey, " ", 2.5) },280, Area.GENERAL));
             AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[4].BusStationKey, " ", 0), new BusLineStation(AllStations[5].BusStationKey, " ", 4), new BusLineStation(AllStations[6].BusStationKey, " ", 2), new BusLineStation(AllStations[7].BusStationKey, " ", 3.3) }, 14, Area.CENTER));
@@ -94,6 +96,7 @@ namespace dotNet5781_02_7232_5482
             {
                 Console.WriteLine(ex.Message);
             }
+            return;
         }
         static public void AddNewBus(ref List<BusStation> AllStations, BusCollection AllBuses)
         {
@@ -147,9 +150,11 @@ namespace dotNet5781_02_7232_5482
             int choose = GetIntNum();
             if (choose == 1)
             {
-                AddStation(NuwBus, ref AllStations);
+                AddStation_(NuwBus, ref AllStations);
             }
             AllBuses.AddBus(NuwBus);
+            Console.WriteLine("The bus was successfully added");
+            return;
         }
         static public void NewStation(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
@@ -166,10 +171,11 @@ namespace dotNet5781_02_7232_5482
                 throw new Exception("this bus doesn't exist");
             }
             BusLine bus = ReturnBus(AllBuses, num, first, last, area);
-            AddStation(bus, ref AllStations)
+            AddStation_(bus, ref AllStations)
                 /*bus.AddStations()*/;
+            return;
         }
-        static public void AddStation(BusLine bus, ref List<BusStation> AllStations)
+        static public void AddStation_(BusLine bus, ref List<BusStation> AllStations)
         {
             int choose = 1;
             do
@@ -196,6 +202,7 @@ namespace dotNet5781_02_7232_5482
 
             }
             while (choose == 1);
+            return;
         }
         static string GetStat(out string stringnum)
         {
@@ -355,6 +362,7 @@ namespace dotNet5781_02_7232_5482
             {
                 Console.WriteLine(ex.Message);
             }
+            return;
         }
         static public void DeleteBus(BusCollection AllBuses)
         {
@@ -370,6 +378,7 @@ namespace dotNet5781_02_7232_5482
             BusLine bus = ReturnBus(AllBuses, busNum, firstStat, lastStat, area);
             AllBuses.RemoveBus(bus);
             Console.WriteLine("The bus line was successfully removed");
+            return;
         }
         static public void DeleteStat(BusCollection AllBuses)
         {
@@ -385,6 +394,7 @@ namespace dotNet5781_02_7232_5482
             Console.WriteLine("Enter the station number which you want to delete");
             string stat = GetStat(out stat);
             bus.DeleteStation(stat);
+            return;
         }
         static public void Find(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
@@ -411,6 +421,7 @@ namespace dotNet5781_02_7232_5482
             {
                 Console.WriteLine(ex.Message);
             }
+            return;
         }
         static public void findLineInStat(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
@@ -422,6 +433,7 @@ namespace dotNet5781_02_7232_5482
             }
             AllBuses.stations(stat);
             Console.WriteLine("The transaction completed successfully");
+            return;
         }
         static public void Print(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
@@ -457,6 +469,7 @@ namespace dotNet5781_02_7232_5482
             {
                 Console.WriteLine(ex.Message);
             }
+            return;
         }
         static public Area TheArea()
         {

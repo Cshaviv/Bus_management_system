@@ -8,7 +8,6 @@ namespace dotNet5781_02_7232_5482
 {
     class BusStation
     {
-
         /// </מספר תחנה>
         public string BusStationKey { get; set; }
         public double Latitude { get; set; }//קו רוחב
@@ -19,7 +18,6 @@ namespace dotNet5781_02_7232_5482
         {
             int BusCode;
             bool succ = Int32.TryParse(c, out BusCode);
-
             if (!succ)
             {
                 throw new ArgumentException(String.Format("{0} The code is invalid", c), "Code");
@@ -29,9 +27,7 @@ namespace dotNet5781_02_7232_5482
                 throw new ArgumentException(String.Format("{0} The code is invalid", c), "Code");
             }
             return;
-
         }
-
         public BusStation(string code, string adress = " ")
         {
             this.BusStationKey = code;
@@ -39,7 +35,6 @@ namespace dotNet5781_02_7232_5482
             this.Longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;
             this.AdressStation = adress;
         }
-
         public override string ToString()
         {
             return String.Format("Bus Station Code: {0}, {1}°N {2}°E", BusStationKey, Latitude, Longitude);
