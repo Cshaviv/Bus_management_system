@@ -79,6 +79,7 @@ namespace dotNet5781_02_7232_5482
                 else if (choice == 2)
                 {
                     NewStation(AllBuses, ref AllStations);
+                    return;
                 }
                 else
                     throw new BusException("ERROR,this option doesn't exist");
@@ -103,8 +104,13 @@ namespace dotNet5781_02_7232_5482
             Area area = TheArea();
             Console.WriteLine("Enter the first station number");
             string firstnum = GetStat(out firstnum);
-            Console.WriteLine("Enter the last station number");
+            Console.WriteLine("Enter the last station number"); 
             string lastnum = GetStat(out lastnum);
+            while(firstnum== lastnum)
+            {
+                Console.WriteLine("ERROR, Enter the last station number again");
+                 lastnum = GetStat(out lastnum);
+            }
             foreach (BusLine b in AllBuses)
             {
                 if ((b.BusNumber == busnum)&&(b.Area==area))
@@ -154,17 +160,19 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine("About the last station");
                 LastStation.Adress();
             }
-            BusStations[0] = FirstStation;
-            BusStations[BusStations.Count-1] = LastStation;
+            BusStations.Add(FirstStation);
+            BusStations.Add(LastStation);
             BusLine NuwBus = new BusLine(BusStations, busnum, area);
-            Console.WriteLine("Enter 1 if you want to add another station, and 0 to continue ");
+            AllBuses.AddBus(NuwBus);
+            Console.WriteLine("The bus was successfully added");
+            Console.WriteLine("Enter 1 if you want to add another station to this bus, and 0 to continue ");
             int choose = GetIntNum();
             if (choose == 1)
             {
                 AddStation_(NuwBus, ref AllStations);
             }
-            AllBuses.AddBus(NuwBus);
-            Console.WriteLine("The bus was successfully added");
+            //AllBuses.AddBus(NuwBus);
+            //Console.WriteLine("The bus was successfully added");
             return;
         }
         static public void NewStation(BusCollection AllBuses, ref List<BusStation> AllStations)
@@ -184,14 +192,17 @@ namespace dotNet5781_02_7232_5482
                 throw new Exception("this bus doesn't exist");
             }
             BusLine bus = ReturnBus(AllBuses, num, first, last, area);
-            AddStation_(bus, ref AllStations)
+            AddStation_(bus, ref AllStations);
+            //Console.WriteLine( "The station was successfully added");
+
                 /*bus.AddStations()*/;
             return;
         }
         static public void AddStation_(BusLine bus, ref List<BusStation> AllStations)
         {
-            //do
-            //{
+            int choose = 1;
+            do
+            {
                 Console.WriteLine("Enter the station number you want to add");
                 string NewStat = GetStat(out NewStat);
                 if (bus.CheckStationExist(NewStat))
@@ -200,21 +211,20 @@ namespace dotNet5781_02_7232_5482
             {
                 BusStation b = ReturnStation(ref AllStations, NewStat);
                 bus.AddStations(b);
-                Console.WriteLine("The station was seccessfully added");
+                Console.WriteLine("The station was successfully added");
             }
             else
             {
-
                 BusStation b = new BusStation(NewStat);
-                Console.WriteLine("blabla");
                 AllStations.Add(b);
                 bus.AddStations(b);
             }
-            //    Console.WriteLine("Enter 1 if you want to add another station, and 0 to exit ");
-            //    choose = GetIntNum();
+                Console.WriteLine("Enter 1 if you want to add another station, and 0 to exit ");
+                choose = GetIntNum();
 
-            //}
-            //while (choose == 1);
+
+            }
+            while (choose == 1);
             return;
         }
         static string GetStat(out string stringnum)
@@ -479,10 +489,14 @@ namespace dotNet5781_02_7232_5482
                 int choice = GetNum();
                 if (choice == 1)
                 {
+                    Console.WriteLine("The buses lines is:");
+                    string lines=null;
                     foreach (BusLine b in AllBuses)
                     {
-                        Console.WriteLine(b.BusNumber + " ");
+                        lines=+ b.BusNumber + ", ";
+                        
                     }
+                    Console.WriteLine(lines);
                 }
                 if (choice == 2)
                 {

@@ -60,8 +60,6 @@ namespace dotNet5781_02_7232_5482
         {
             int choose;
 
-            do
-            {
                 Insert Choice;
                 Console.WriteLine("Choose where you want to add a station from the following options:");
                 Console.WriteLine(@"Enter 1 to choose FIRST, 2 to choose MIDDLE and 3 to choose LAST");
@@ -73,6 +71,7 @@ namespace dotNet5781_02_7232_5482
                     Console.WriteLine(@"Enter 1 to choose FIRST, 2 to choose MIDDLE and 3 to choose LAST");
                     success = Enum.TryParse(Console.ReadLine(), out Choice);
                 }
+                
                /* CheckStationExist(b)*/;//צריך לעשות חריגה ביציאה מהפונקציה הזאת
                 if (Choice == Insert.FIRST)
                 {
@@ -100,8 +99,8 @@ namespace dotNet5781_02_7232_5482
                     newstat.Latitude = b.Latitude;
                     newstat.Latitude = b.Longitude;
                     stations.Insert(++index, newstat);
-                    stations[index + 2].My_Distance = stations[index + 2].My_Distance - newstat.My_Distance;
-                    stations[index + 2].My_Time = TimeSpan.FromMinutes(stations[index + 2].My_Distance);
+                    stations[index + 1].My_Distance = stations[index + 1].My_Distance - newstat.My_Distance;
+                    stations[index + 1].My_Time = TimeSpan.FromMinutes(stations[index + 1].My_Distance);
                     Console.WriteLine("The station was successfully added");
 
                 }
@@ -120,16 +119,16 @@ namespace dotNet5781_02_7232_5482
 
                 }
 
-                Console.WriteLine("Enter 1 if you want to add another station, if you want to exit enter 0");
-                choose = int.Parse(Console.ReadLine());
-                while (choose != 0 && choose != 1)
-                {
-                    choose = int.Parse(Console.ReadLine());
-                    if (choose != 0 && choose != 1)
-                        Console.WriteLine("ERROR, try enter number again");
-                }
-            }
-            while (choose == 1);
+                //Console.WriteLine("Enter 1 if you want to add another station, if you want to exit enter 0");
+                //choose = int.Parse(Console.ReadLine());
+                //while (choose != 0 && choose != 1)
+                //{
+                //    choose = int.Parse(Console.ReadLine());
+                //    if (choose != 0 && choose != 1)
+                //        Console.WriteLine("ERROR, try enter number again");
+                //}
+            
+           
             return;
         }
         public double timeBetween(BusLineStation one, BusLineStation two)
