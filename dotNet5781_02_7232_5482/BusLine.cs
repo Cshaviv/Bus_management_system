@@ -58,7 +58,7 @@ namespace dotNet5781_02_7232_5482
         }
         public void AddStations(BusStation b)
         {
-            int choose;
+            //int choose;
 
                 Insert Choice;
                 Console.WriteLine("Choose where you want to add a station from the following options:");
@@ -85,7 +85,7 @@ namespace dotNet5781_02_7232_5482
                     double distanceFromPrev = GetDoubleNum();
                     stations[1].My_Distance = distanceFromPrev;
                     stations[1].My_Time = newstat.TravelTime(distanceFromPrev);
-                    Console.WriteLine("The station was successfully added");
+                    //Console.WriteLine("The station was successfully added");
                 }
                 else if (Choice == Insert.MIDDLE)
                 {
@@ -101,7 +101,7 @@ namespace dotNet5781_02_7232_5482
                     stations.Insert(++index, newstat);
                     stations[index + 1].My_Distance = stations[index + 1].My_Distance - newstat.My_Distance;
                     stations[index + 1].My_Time = TimeSpan.FromMinutes(stations[index + 1].My_Distance);
-                    Console.WriteLine("The station was successfully added");
+                   // Console.WriteLine("The station was successfully added");
 
                 }
                 else
@@ -114,7 +114,7 @@ namespace dotNet5781_02_7232_5482
                     newstat.Latitude = b.Longitude;
                     stations.Insert(stations.Count - 1, newstat);
                     LastStation = newstat;
-                    Console.WriteLine("The station was successfully added");
+                    //Console.WriteLine("The station was successfully added");
 
 
                 }

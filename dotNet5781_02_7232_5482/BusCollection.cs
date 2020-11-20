@@ -58,22 +58,22 @@ namespace dotNet5781_02_7232_5482
         }
         public string stations(string StationKey)
         {
-            string AllBuses = " ";
+            string AllBuses_ = " ";
             foreach (BusLine b in Buses)
             {
                 foreach (BusLineStation bus in b.Stations)
                 {
                     if (bus.BusStationKey == StationKey)
                     {
-                        AllBuses += b.BusNumber + " ";
+                        AllBuses_ += b.BusNumber + " ";
                     }
                 }
             }
-            if (AllBuses == " ")
+            if (AllBuses_ == " ")
             {
                 throw new BusException("At this station no bus line passes");
             }
-            return AllBuses;
+            return AllBuses_;
         }
         public int SearchBus(int num, string firstStat, string lastStat)
         {

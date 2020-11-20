@@ -51,12 +51,15 @@ namespace dotNet5781_02_7232_5482
 
         static public void CreatStatAndBus(ref List<BusStation> AllStations, BusCollection AllBuses)
         {
-            int counter = 1;
+            //AllStations = new List<BusStation>();
+            //int counter = 0;
+            //AllStations.Add(new BusStation(counter.ToString(), " "));
             for (int i = 0; i < 40; i++)
-            {
-                AllStations.Add(new BusStation(counter.ToString(), " "));
-                counter++;
+            {               
+                AllStations.Add(new BusStation(i.ToString(), " "));
+                
             }
+ 
             //    AllBuses.AddBus(new BusLine( new List<BusLineStation>() { new BusLineStation(AllStations[0].BusStationKey, " ", 0), new BusLineStation(AllStations[1].BusStationKey, " ", 0.7), new BusLineStation(AllStations[2].BusStationKey, " ", 2), new BusLineStation(AllStations[3].BusStationKey, " ", 2.5) },280, Area.GENERAL));
             //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[4].BusStationKey, " ", 0), new BusLineStation(AllStations[5].BusStationKey, " ", 4), new BusLineStation(AllStations[6].BusStationKey, " ", 2), new BusLineStation(AllStations[7].BusStationKey, " ", 3.3) }, 14, Area.CENTER));
             //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[8].BusStationKey, " ", 0), new BusLineStation(AllStations[9].BusStationKey, " ", 2.9), new BusLineStation(AllStations[10].BusStationKey, " ", 1.87), new BusLineStation(AllStations[11].BusStationKey, " ", 3.8) }, 160, Area.JERUSALEM));
@@ -129,6 +132,7 @@ namespace dotNet5781_02_7232_5482
             if (!SearchStat(firstnum, ref AllStations))
             {
                 AllStations.Add(new BusStation(firstnum, " "));
+
                 flag = true;
             }
        
@@ -170,6 +174,10 @@ namespace dotNet5781_02_7232_5482
             if (choose == 1)
             {
                 AddStation_(NuwBus, ref AllStations);
+            }
+            else
+            {
+                return;
             }
             //AllBuses.AddBus(NuwBus);
             //Console.WriteLine("The bus was successfully added");
