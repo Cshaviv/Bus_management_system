@@ -54,6 +54,7 @@ namespace dotNet5781_02_7232_5482
             //AllStations = new List<BusStation>();
             //int counter = 0;
             //AllStations.Add(new BusStation(counter.ToString(), " "));
+   
             for (int i = 0; i < 40; i++)
             {               
                 AllStations.Add(new BusStation(i.ToString(), " "));
@@ -118,7 +119,7 @@ namespace dotNet5781_02_7232_5482
             {
                 if ((b.BusNumber == busnum)&&(b.Area==area))
                 {
-                    if (!SearchBus(AllBuses, busnum, firstnum, lastnum, area))
+                    if (SearchBus(AllBuses, busnum, firstnum, lastnum, area))
                     {
                         throw new BusException("Sorry, this bus number already exist");
                     }
@@ -143,7 +144,7 @@ namespace dotNet5781_02_7232_5482
             if(flag)
             {
                 Console.WriteLine("About the first station");
-                FirstStation.Adress();
+                FirstStation.Address();
 
             }
             bool flag1 = false;
@@ -162,7 +163,7 @@ namespace dotNet5781_02_7232_5482
             if (flag1)
             {
                 Console.WriteLine("About the last station");
-                LastStation.Adress();
+                LastStation.Address();
             }
             BusStations.Add(FirstStation);
             BusStations.Add(LastStation);
@@ -296,6 +297,7 @@ namespace dotNet5781_02_7232_5482
                     if ((b.FirstStation.BusStationKey == firstStat) && (b.LastStation.BusStationKey == lastStat))
                     {
                         flag = true;
+                        Console.WriteLine("raaaa");
                         return flag;
                     }
                 }
@@ -304,7 +306,7 @@ namespace dotNet5781_02_7232_5482
         }
         static public bool SearchUpsideBus(BusCollection AllBuses, int num, string firstStat, string lastStat, Area area)
         {
-            bool flag = false;
+            bool flag1 = false;
             foreach (BusLine b in AllBuses)
             {
 
@@ -313,12 +315,13 @@ namespace dotNet5781_02_7232_5482
 
                     if ((b.FirstStation.BusStationKey == lastStat) && (b.LastStation.BusStationKey == firstStat))
                     {
-                        flag = true;
-                        return flag;
+                        flag1 = true;
+                        Console.WriteLine("blaaaa");
+                        return flag1;
                     }
                 }
             }
-            return flag;
+            return flag1;
         }
         static public BusLine ReturnBus(BusCollection AllBuses, int num, string firstStat, string lastStat, Area area)
         {
@@ -511,8 +514,17 @@ namespace dotNet5781_02_7232_5482
 
                     foreach (BusStation b in AllStations)
                     {
-                        Console.WriteLine(b);
-                        Console.WriteLine(AllBuses.stations(b.BusStationKey));
+                        try
+                        {
+                            Console.WriteLine(b);
+                            Console.WriteLine(AllBuses.stations(b.BusStationKey));
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+
+
                     }
 
                 }
@@ -546,7 +558,7 @@ namespace dotNet5781_02_7232_5482
                     Console.WriteLine("Sorry,please enter one of the available options");
                 }
             }
-            while (!success);
+            while (!success || (area != Area.CENTER && area != Area.GENERAL && area != Area.JERUSALEM && area != Area.NORTH && area != Area.SOUTH));
             
             return area;
 

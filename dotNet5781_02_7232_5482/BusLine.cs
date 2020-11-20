@@ -73,51 +73,53 @@ namespace dotNet5781_02_7232_5482
                 }
                 
                /* CheckStationExist(b)*/;//צריך לעשות חריגה ביציאה מהפונקציה הזאת
-                if (Choice == Insert.FIRST)
-                {
-                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", 0);
-                    newstat.Adress();
-                    newstat.Latitude = b.Latitude;
-                    newstat.Longitude = b.Longitude;
-                    Stations.Add(newstat);                   
-                    FirstStation = newstat;
-                    Console.WriteLine("Enter the distance of the new station from the next station (km)");
-                    double distanceFromPrev = GetDoubleNum();
-                    stations[1].My_Distance = distanceFromPrev;
-                    stations[1].My_Time = newstat.TravelTime(distanceFromPrev);
-                    //Console.WriteLine("The station was successfully added");
-                }
-                else if (Choice == Insert.MIDDLE)
-                {
-                    Console.WriteLine("Enter the code of the station before the station you want to add");
-                    int PrevStation = GetIntNum();
-                    int index = FindIndex(PrevStation.ToString());
-                    Console.WriteLine("Type the distance of the new station from the previous station (km)");
-                    double distanceFromPrev = GetDoubleNum();
-                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev);
-                    newstat.Adress();
-                    newstat.Latitude = b.Latitude;
-                    newstat.Latitude = b.Longitude;
-                    stations.Insert(++index, newstat);
-                    stations[index + 1].My_Distance = stations[index + 1].My_Distance - newstat.My_Distance;
-                    stations[index + 1].My_Time = TimeSpan.FromMinutes(stations[index + 1].My_Distance);
-                   // Console.WriteLine("The station was successfully added");
+            if (Choice == Insert.FIRST)
+            {
+                BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", 0);
+                newstat.Address();
+                newstat.Latitude = b.Latitude;
+                newstat.Longitude = b.Longitude;
+                Stations.Insert(0,newstat);
+                FirstStation = newstat;
+                Console.WriteLine("Enter the distance of the new station from the next station (km)");
+                double distanceFromPrev = GetDoubleNum();
+                stations[1].My_Distance = distanceFromPrev;
+                stations[1].My_Time = newstat.TravelTime(distanceFromPrev);
+                //Console.WriteLine("The station was successfully added");
+            }
+            else if (Choice == Insert.MIDDLE)
+            {
+                Console.WriteLine("Enter the code of the station before the station you want to add");
+                int PrevStation = GetIntNum();
+                int index = FindIndex(PrevStation.ToString());
+                Console.WriteLine("Type the distance of the new station from the previous station (km)");
+                double distanceFromPrev = GetDoubleNum();
+                BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev);
+                newstat.Address();
+                newstat.Latitude = b.Latitude;
+                newstat.Latitude = b.Longitude;
+                stations.Insert(++index, newstat);
+                stations[index + 1].My_Distance = stations[index + 1].My_Distance - newstat.My_Distance;
+                stations[index + 1].My_Time = TimeSpan.FromMinutes(stations[index + 1].My_Distance);
+                // Console.WriteLine("The station was successfully added");
 
-                }
-                else
-                {
-                    Console.WriteLine("Type the distance of the new station from the previous station (km)");
-                    double distanceFromPrev = GetDoubleNum();
-                    BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev);
-                    newstat.Adress();
-                    newstat.Latitude = b.Latitude;
-                    newstat.Latitude = b.Longitude;
-                    stations.Insert(stations.Count - 1, newstat);
-                    LastStation = newstat;
-                    //Console.WriteLine("The station was successfully added");
+            }
+            else
+            {
+                Console.WriteLine("Type the distance of the new station from the previous station (km)");
+                double distanceFromPrev = GetDoubleNum();
+                BusLineStation newstat = new BusLineStation(b.BusStationKey, " ", distanceFromPrev);
+                newstat.Address();
+                newstat.Latitude = b.Latitude;
+                newstat.Latitude = b.Longitude;
+                stations.Add( newstat);
+                Console.WriteLine(LastStation +"stat1");
+                LastStation = newstat;
+                Console.WriteLine(LastStation + "stat2");
+                //Console.WriteLine("The station was successfully added");
 
 
-                }
+            }
 
                 //Console.WriteLine("Enter 1 if you want to add another station, if you want to exit enter 0");
                 //choose = int.Parse(Console.ReadLine());

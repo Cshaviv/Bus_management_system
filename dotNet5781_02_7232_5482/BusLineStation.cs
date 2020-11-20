@@ -48,16 +48,22 @@ namespace dotNet5781_02_7232_5482
             this.Distance = Distance1;
             this.Time = TravelTime(Distance1);
         }
-         public void Adress()
+         public void Address()
         {
-            int num;
+            int num=1;
             Console.WriteLine("Enter 1 if you want to add the station's adrees, and 0 to continue");
-            bool success = int.TryParse(Console.ReadLine(), out num);
+            bool success = false;
             string adress = " ";
-            if (!success || (num != 1 && num != 0))
+            do
             {
-                throw new BusException("This option doesn't exist");
+                 success = int.TryParse(Console.ReadLine(), out num);
+             
+                if (!success || (num != 1 && num != 0))
+                {
+                    Console.WriteLine("This option doesn't exist, please enter number again");
+                }
             }
+            while (!success || (num != 1 && num != 0));
             if (num == 1)
             {
                 Console.WriteLine("Please enter the adress");
