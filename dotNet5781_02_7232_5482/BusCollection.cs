@@ -30,7 +30,7 @@ namespace dotNet5781_02_7232_5482
         {
             foreach (BusLine b in Buses)
             {
-                if (newbus.BusNumber == b.BusNumber)
+                if ((newbus.BusNumber == b.BusNumber)&&(newbus.Area==b.Area))
                 {
                     if ((b.FirstStation.BusStationKey == newbus.LastStation.BusStationKey) && (b.LastStation.BusStationKey == newbus.FirstStation.BusStationKey))
                     {
@@ -45,7 +45,7 @@ namespace dotNet5781_02_7232_5482
         {
             foreach (BusLine b in Buses)
             {
-                if (bus.BusNumber == b.BusNumber)
+                if ((bus.BusNumber == b.BusNumber)&&(bus.Area==b.Area))
                 {
                     if ((b.FirstStation == bus.FirstStation) && (b.LastStation == bus.LastStation))
                     {

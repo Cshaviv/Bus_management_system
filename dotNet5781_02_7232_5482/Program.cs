@@ -240,24 +240,33 @@ namespace dotNet5781_02_7232_5482
         {
             stringnum = Console.ReadLine();
             int StatNum;
-            if (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum)))
-            {
+            //if (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum)))
+            //{
                 do
                 {
-                    if (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum)))
+                    if (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum)&& StatNum >  0))
                     {
                         Console.WriteLine("ERROR, try enter bus station number again");
                         stringnum = Console.ReadLine();
                     }
                 }
                 while (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum)));
-            }
+            //}
 
             return StatNum.ToString();
         }
         static public int GetNum()
         {
-            int num = int.Parse(Console.ReadLine());
+            int num = -1;
+            do
+            {
+                num = int.Parse(Console.ReadLine());
+                if (num < 0)
+                {
+                    Console.WriteLine("ERROR ,please try enter again");
+                }
+            }
+            while (num < 0);
             return num;
         }
         static public bool SearchStat(string num, ref List<BusStation> AllStations)
@@ -275,7 +284,16 @@ namespace dotNet5781_02_7232_5482
         }
         static public double GetNumDistance()
         {
-            double distance = double.Parse(Console.ReadLine());
+            double distance = 0;
+            do
+            {
+                 distance = double.Parse(Console.ReadLine());
+                if (distance <= 0)
+                {
+                    Console.WriteLine("ERROR ,please try enter again");
+                }
+            }
+            while (distance <= 0);
             return distance;
         }
         static public TimeSpan TravelTime(double distance)
@@ -297,7 +315,6 @@ namespace dotNet5781_02_7232_5482
                     if ((b.FirstStation.BusStationKey == firstStat) && (b.LastStation.BusStationKey == lastStat))
                     {
                         flag = true;
-                        Console.WriteLine("raaaa");
                         return flag;
                     }
                 }
@@ -316,7 +333,6 @@ namespace dotNet5781_02_7232_5482
                     if ((b.FirstStation.BusStationKey == lastStat) && (b.LastStation.BusStationKey == firstStat))
                     {
                         flag1 = true;
-                        Console.WriteLine("blaaaa");
                         return flag1;
                     }
                 }
