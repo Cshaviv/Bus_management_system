@@ -112,7 +112,7 @@ namespace dotNet5781_02_7232_5482
                 newstat.Address();
                 newstat.Latitude = b.Latitude;
                 newstat.Latitude = b.Longitude;
-                stations.Add( newstat);
+                stations.Add(newstat);
                 Console.WriteLine(LastStation +"stat1");
                 LastStation = newstat;
                 Console.WriteLine(LastStation + "stat2");

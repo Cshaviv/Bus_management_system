@@ -519,9 +519,14 @@ namespace dotNet5781_02_7232_5482
                 bus.Stations[1].Distance = 0;
                 bus.Stations[1].Time = TimeSpan.Zero;
             }
-            if(index==bus.Stations.Count-1)
+            else if(index==bus.Stations.Count-1)
             {
-                b
+                return;
+            }
+            else
+            {
+                bus.Stations[index + 1].Distance = +bus.Stations[index].Distance;
+                bus.Stations[index + 1].Time = +bus.Stations[index].Time;
             }
         }
         static public void Find(BusCollection AllBuses, ref List<BusStation> AllStations)
@@ -576,10 +581,10 @@ namespace dotNet5781_02_7232_5482
                     string lines=null;
                     foreach (BusLine b in AllBuses)
                     {
-                        lines=+ b.BusNumber + ", ";
+                        lines += b.BusNumber + ", ";
                         
                     }
-                    Console.WriteLine(lines);
+                    Console.WriteLine(@lines);
                 }
                 if (choice == 2)
                 {
