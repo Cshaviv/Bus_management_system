@@ -28,18 +28,48 @@ namespace dotNet5781_02_7232_5482
                 switch (choice)
                 {
                     case CHOICE.ADD:
-                        AddNew(ref AllStations, AllBuses);
+                        try
+                        {
+                            AddNew(ref AllStations, AllBuses);
+                        
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
                     case CHOICE.DELETE:
-                        Delete_(AllBuses);
+                        try
+                        {
+                            Delete_(AllBuses);
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
                     case CHOICE.FIND:
-                        Find(AllBuses, ref AllStations);
+                        try 
+                        {
+                            Find(AllBuses, ref AllStations);
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
                     case CHOICE.PRINT:
-                        Print(AllBuses, ref AllStations);
+                        try
+                        {
+                            Print(AllBuses, ref AllStations);
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
                     case CHOICE.EXIT:
+                        Console.WriteLine("Good bay");
                         break;
                     default:
                         break;
@@ -352,7 +382,7 @@ namespace dotNet5781_02_7232_5482
                         return b;
                 }
             }
-            throw new Exception("this bus doesn't exist");
+            throw new BusException("this bus doesn't exist");
         }
         static public BusStation ReturnStation(ref List<BusStation> AllStations, string statnum)//נקרא לפונקציה זו רק לאחר שנדע שהתחנה המבוקשת קיימת ברשימה
 
@@ -436,19 +466,26 @@ namespace dotNet5781_02_7232_5482
         }
         static public void DeleteBus(BusCollection AllBuses)
         {
-
-            Console.WriteLine("Enter the bus number which you want to delete");
-            int busNum = GetNum();
-            SearchBusNum(AllBuses, busNum);
-            Console.WriteLine("Please enter the bus travel area");
-            Area area = TheArea();
-            Console.WriteLine("Enter the first station number");
-            string firstStat = GetStat(out firstStat);
-            Console.WriteLine("Enter the last station number");
-            string lastStat = GetStat(out lastStat);
-            BusLine bus = ReturnBus(AllBuses, busNum, firstStat, lastStat, area);
-            AllBuses.RemoveBus(bus);
-            Console.WriteLine("The bus line was successfully removed");
+            try
+            {
+                Console.WriteLine("Enter the bus number which you want to delete");
+                int busNum = GetNum();
+                SearchBusNum(AllBuses, busNum);
+                Console.WriteLine("Please enter the bus travel area");
+                Area area = TheArea();
+                Console.WriteLine("Enter the first station number");
+                string firstStat = GetStat(out firstStat);
+                Console.WriteLine("Enter the last station number");
+                string lastStat = GetStat(out lastStat);
+                BusLine bus = ReturnBus(AllBuses, busNum, firstStat, lastStat, area);
+                AllBuses.RemoveBus(bus);
+                Console.WriteLine("The bus line was successfully removed");
+            }
+          
+            catch (BusException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             return;
         }
         static public void DeleteStat(BusCollection AllBuses)
@@ -465,8 +502,27 @@ namespace dotNet5781_02_7232_5482
             BusLine bus = ReturnBus(AllBuses, busNum, firstStat, lastStat, area);
             Console.WriteLine("Enter the station number which you want to delete");
             string stat = GetStat(out stat);
+            if(bus.Stations.Count==2)
+            {
+                throw new BusException("Sorry this line has only 2 stations, so you can not delete this station");
+            }
+            int index = bus.FindIndex(stat);
+            DataUpdate(index, bus);
             bus.DeleteStation(stat);
+            Console.WriteLine("The station was successfully removed");
             return;
+        }
+        static public void DataUpdate(int index, BusLine bus)
+        {
+            if (index==0)
+            {
+                bus.Stations[1].Distance = 0;
+                bus.Stations[1].Time = TimeSpan.Zero;
+            }
+            if(index==bus.Stations.Count-1)
+            {
+
+            }
         }
         static public void Find(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
