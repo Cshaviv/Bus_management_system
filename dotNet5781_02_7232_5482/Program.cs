@@ -521,7 +521,7 @@ namespace dotNet5781_02_7232_5482
             }
             if(index==bus.Stations.Count-1)
             {
-
+                b
             }
         }
         static public void Find(BusCollection AllBuses, ref List<BusStation> AllStations)
