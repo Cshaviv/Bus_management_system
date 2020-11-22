@@ -113,9 +113,9 @@ namespace dotNet5781_02_7232_5482
                 newstat.Latitude = b.Latitude;
                 newstat.Latitude = b.Longitude;
                 stations.Add(newstat);
-                Console.WriteLine(LastStation +"stat1");
+                //Console.WriteLine(LastStation +"stat1");
                 LastStation = newstat;
-                Console.WriteLine(LastStation + "stat2");
+                //Console.WriteLine(LastStation + "stat2");
                 //Console.WriteLine("The station was successfully added");
 
 
@@ -180,22 +180,22 @@ namespace dotNet5781_02_7232_5482
             return distance;
 
         }
-        public TimeSpan TimeBetweenStations(BusLineStation stat1, BusLineStation stat2)
-        {
-            int index1 = FindIndex(stat1.BusStationKey);
-            int index2 = FindIndex(stat2.BusStationKey);
-            if (index1 == -1 || index2 == -1)
-            {
-                throw new BusException(" the ststion doesn't exist on the route of this bus line");
-            }
-            TimeSpan time = TimeSpan.Zero;
-            for (int i = index1 + 1; i < index2 + 1; i++)
-            {
-                time = time + Stations[i].My_Time;
-            }
-            return time;
+        //public TimeSpan TimeBetweenStations(BusLineStation stat1, BusLineStation stat2)
+        //{
+        //    int index1 = FindIndex(stat1.BusStationKey);
+        //    int index2 = FindIndex(stat2.BusStationKey);
+        //    if (index1 == -1 || index2 == -1)
+        //    {
+        //        throw new BusException(" the ststion doesn't exist on the route of this bus line");
+        //    }
+        //    TimeSpan time = TimeSpan.Zero;
+        //    for (int i = index1 + 1; i < index2 + 1; i++)
+        //    {
+        //        time = time + Stations[i].My_Time;
+        //    }
+        //    return time;
 
-        }
+        //}
         //public BusLine SubPath(BusLineStation first, BusLineStation last)
         //{
         //    List<BusLineStation> UserStations = new List<BusLineStation>();
@@ -214,13 +214,41 @@ namespace dotNet5781_02_7232_5482
         //    }
         //    return bus;
         //}
-        public BusLine SubPath(int stop1, int stop2)//creating a sub route presented by a bus line
+        //public BusLine SubPath(int stop1, int stop2)//creating a sub route presented by a bus line
+        //{
+        //    if (!(CheckStationExist(stop1.ToString()) && CheckStationExist(stop2.ToString())))
+        //    {
+        //        throw new BusException("ERROR, one or more of the stations entered don't exist in the bus line");
+        //    }
+        //    List<BusLineStation>buses = new List<BusLineStation>();
+        //    int index1 = FindIndex(stop1.ToString());
+        //    int index2 = FindIndex(stop2.ToString());
+        //    if (index1 >= index2)
+        //    {
+        //        throw new BusException("there is no route");
+        //    }
+        //    for (int i = index1; i <= index2; i++)
+        //    {
+        //        buses.Add(stations[i]);
+        //    }
+        //    return new BusLine(Stations , BusNumber, Area);
+        //}
+
+           
+        //public int CompareTo(BusLine other)
+        //{
+        //    TimeSpan time1 = TimeBetweenStations(this.FirstStation, this.LastStation);
+        //    TimeSpan time2 = TimeBetweenStations(other.FirstStation, other.LastStation);
+        //    return time1.CompareTo(time2);
+        //}
+
+        public BusLine SubRoute(int stop1, int stop2)//creating a sub route presented by a bus line
         {
             if (!(CheckStationExist(stop1.ToString()) && CheckStationExist(stop2.ToString())))
             {
                 throw new BusException("ERROR, one or more of the stations entered don't exist in the bus line");
             }
-            List<BusLineStation>buses = new List<BusLineStation>();
+            List<BusLineStation> route = new List<BusLineStation>();
             int index1 = FindIndex(stop1.ToString());
             int index2 = FindIndex(stop2.ToString());
             if (index1 >= index2)
@@ -229,25 +257,30 @@ namespace dotNet5781_02_7232_5482
             }
             for (int i = index1; i <= index2; i++)
             {
-                buses.Add(stations[i]);
+                route.Add(stations[i]);
             }
-            return new BusLine(Stations , BusNumber, Area);
+            return new BusLine(route, BusNumber, Area);
         }
-
-        public string PrintStations()
+        public TimeSpan TravelTime(BusLineStation b1, BusLineStation b2)//the function gets 2 stations, and returns the travel time between them.
         {
-            string station = " ";
-            foreach (BusLineStation b in Stations)
+            if (!(CheckStationExist(b1.BusStationKey) && CheckStationExist(b2.BusStationKey)))
             {
-                station += b.BusStationKey + " ";
+                throw new BusException("ERROR, one or more of the stations entered don't exist in the bus line");
             }
-            return station;
-        }       
-        public int CompareTo(BusLine other)
+            TimeSpan time = new TimeSpan(0, 0, 0);
+            int index1 = FindIndex(b1.BusStationKey);
+            int index2 = FindIndex(b2.BusStationKey);
+            for (int i = ++index1; i <= index2; i++)
+            {
+                time += stations[i].My_Time;
+            }
+            return time;
+        }
+        public int CompareTo(BusLine other)//the function compares between two bus lines
         {
-            TimeSpan time1 = TimeBetweenStations(this.FirstStation, this.LastStation);
-            TimeSpan time2 = TimeBetweenStations(other.FirstStation, other.LastStation);
-            return time1.CompareTo(time2);
+            TimeSpan t1 = TravelTime(this.FirstStation, this.LastStation);
+            TimeSpan t2 = other.TravelTime(other.FirstStation, other.LastStation);
+            return t1.CompareTo(t2);
         }
         public BusLine(int busnum, string firststat, string laststat)
         {
@@ -287,6 +320,15 @@ namespace dotNet5781_02_7232_5482
 
             return String.Format(" Bus Number: {0}, Area: {1}, ListOfStation:{2}", BusNumber, Area, PrintStations());
 
+        }
+        public string PrintStations()
+        {
+            string station = " ";
+            foreach (BusLineStation b in Stations)
+            {
+                station += b.BusStationKey + " ";
+            }
+            return station;
         }
     }
 }

@@ -77,8 +77,6 @@ namespace dotNet5781_02_7232_5482
             } 
             while (choice != CHOICE.EXIT);
         }
-
-
         static public void CreatStatAndBus(ref List<BusStation> AllStations, BusCollection AllBuses)
         {
             //AllStations = new List<BusStation>();
@@ -541,7 +539,7 @@ namespace dotNet5781_02_7232_5482
                 }
                 else if (choice == 2)
                 {
-                    //  FindOptionTravel();
+                    BusesInRoute(AllBuses);
                 }
                 else
                     throw new BusException("ERROR,this option doesn't exist");
@@ -577,14 +575,19 @@ namespace dotNet5781_02_7232_5482
                 int choice = GetNum();
                 if (choice == 1)
                 {
-                    Console.WriteLine("The buses lines is:");
                     string lines=null;
                     foreach (BusLine b in AllBuses)
                     {
                         lines += b.BusNumber + ", ";
                         
                     }
-                    Console.WriteLine(@lines);
+                    if(lines==null)
+                    {
+                        Console.WriteLine("There is no bus lines in the system");
+                        return;
+                    }
+                    Console.WriteLine("The buses lines is:");
+                    Console.WriteLine(lines);
                 }
                 if (choice == 2)
                 {
@@ -649,6 +652,31 @@ namespace dotNet5781_02_7232_5482
             }
             throw new BusException("This bus doesn't exist");
         }
+        //public static void BusesInRoute(BusCollection AllBuses)
+        //{
+        //    Console.WriteLine("enter the code of the source station");
+        //    int code1 = int.Parse(Console.ReadLine());//the code of the source station
+        //    Console.WriteLine("enter the code of the destination station");
+        //    int code2 = int.Parse(Console.ReadLine());//the code of the destination station
+        //    List<BusLine> buses = new List<BusLine>();//lis of all the sub routes of the buses that pass in those stations
+        //    foreach (BusLine b in AllBuses)
+        //    {
+        //        try
+        //        {
+        //            BusLine busRoute = b.SubPath(code1, code2);
+        //            buses.Add(busRoute);
+        //        }
+        //        catch (BusException) { }//if the stations do not exist in the bus
+        //    }
+        //    if (buses.Count == 0)//if there is no bus that pass on those stations
+        //        throw new BusException("There is no line that matches this route");
+        //    BusCollection sortedByTime = new BusCollection();//sort the buses by their travel time
+        //    buses = sortedByTime.SortedList();
+        //    foreach (BusLine bus in buses)//print the buses
+        //    {
+        //        Console.WriteLine(bus.BusNumber);
+        //    }
+        //}
         public static void BusesInRoute(BusCollection AllBuses)
         {
             Console.WriteLine("enter the code of the source station");
@@ -660,15 +688,20 @@ namespace dotNet5781_02_7232_5482
             {
                 try
                 {
-                    BusLine busRoute = b.SubPath(code1, code2);
+                    BusLine busRoute = b.SubRoute(code1, code2);
                     buses.Add(busRoute);
                 }
-                catch (BusException) { }//if the stations do not exist in the bus
+                catch (BusException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                //catch (BusLineException) { }//if the stations do not exist in the bus 
             }
             if (buses.Count == 0)//if there is no bus that pass on those stations
                 throw new BusException("There is no line that matches this route");
-            BusCollection sortedByTime = new BusCollection();//sort the buses by their travel time
+            BusCollection sortedByTime = new BusCollection(buses);//sort the buses by their travel time
             buses = sortedByTime.SortedList();
+            Console.WriteLine("The buses by their travel time:");
             foreach (BusLine bus in buses)//print the buses
             {
                 Console.WriteLine(bus.BusNumber);

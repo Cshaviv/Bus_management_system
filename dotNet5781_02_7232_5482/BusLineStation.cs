@@ -51,9 +51,9 @@ namespace dotNet5781_02_7232_5482
          public void Address()
         {
             int num=1;
-            Console.WriteLine("Enter 1 if you want to add the station's adrees, and 0 to continue");
+            Console.WriteLine("Enter 1 if you want to add the station's addrees, and 0 to continue");
             bool success = false;
-            string adress = " ";
+            string address = " ";
             do
             {
                  success = int.TryParse(Console.ReadLine(), out num);
@@ -66,14 +66,14 @@ namespace dotNet5781_02_7232_5482
             while (!success || (num != 1 && num != 0));
             if (num == 1)
             {
-                Console.WriteLine("Please enter the adress");
-                adress = Console.ReadLine();
-                this.AdressStation = adress;
+                Console.WriteLine("Please enter the address");
+                address = Console.ReadLine();
+                this.AddressStation = address;
                 return;
             }
             else if (num==0)
             {
-                this.AdressStation = adress;
+                this.AddressStation = " ";
                 return;
             }
 

@@ -13,7 +13,7 @@ namespace dotNet5781_02_7232_5482
         public double Latitude { get; set; }//קו רוחב
         public double Longitude { get; set; }//קו אורך
         static Random rand = new Random();
-        public string AdressStation { get; set; }
+        public string AddressStation { get; set; }
         public void CheckCode(string c)
         {
             int BusCode;
@@ -33,7 +33,7 @@ namespace dotNet5781_02_7232_5482
             this.BusStationKey = code;
             this.Latitude = rand.NextDouble() * (33.3 - 31) + 31;
             this.Longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;
-            this.AdressStation = adress;
+            this.AddressStation = adress;
         }
         public override string ToString()
         {

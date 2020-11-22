@@ -16,7 +16,7 @@ namespace dotNet5781_02_7232_5482
         {
             return Buses.GetEnumerator();
         }
-        public BusCollection()
+        public BusCollection(List<BusLine> Buses)
         {
             Buses = new List<BusLine>();
         }
@@ -58,14 +58,14 @@ namespace dotNet5781_02_7232_5482
         }
         public string stations(string StationKey)
         {
-            string AllBuses_ = " ";
+            string AllBuses_ = null;
             foreach (BusLine b in Buses)
             {
                 foreach (BusLineStation bus in b.Stations)
                 {
                     if (bus.BusStationKey == StationKey)
                     {
-                        AllBuses_ += b.BusNumber + " ";
+                        AllBuses_ += b.BusNumber + ", ";
                     }
                 }
             }
@@ -93,13 +93,13 @@ namespace dotNet5781_02_7232_5482
             }
             return -1;
         }
-        public List<BusLine> SortedList()
-        {
-            List<BusLine> list1 = new List<BusLine>(Buses);
-            list1.Sort();
-            return list1;
+        //public List<BusLine> SortedList()
+        //{
+        //    List<BusLine> list1 = new List<BusLine>(Buses);
+        //    list1.Sort();
+        //    return list1;
 
-        }
+        //}
         public BusLine this[int numbus, string firstStat, string lastStat]
         {
             get
@@ -126,6 +126,29 @@ namespace dotNet5781_02_7232_5482
                 }
             }
             throw new BusException("This bus doesn't exist");
+        }
+        public List<BusLine> SortedList()
+        {
+            BusLine[] busLineArr = new BusLine[Buses.Count];
+            Buses.CopyTo(busLineArr);//copy the buses to an arrry
+            List<BusLine> sortedlist = busLineArr.ToList();//copy the array to a list
+            sortedlist.Sort();//sort the list bu the travel time
+            return sortedlist;//return the sorted list
+        }
+        public List<BusLine> this[int lineNum]
+        {
+            get
+            {
+                List<BusLine> bsl = Buses.FindAll(item => item.LineNum == lineNum);//list of all the buses with the line number that the function got
+                if (bsl.Count != 0)//if there are buses with this line number
+                    return bsl;
+                else//if there are not buses with this line number
+                    throw new BusException("There is no buses with this line number");
+
+
+            }
+            //set { Lines[lineNum] = value; }
+
         }
     }
 }
