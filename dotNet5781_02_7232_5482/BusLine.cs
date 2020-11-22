@@ -234,7 +234,7 @@ namespace dotNet5781_02_7232_5482
         //    return new BusLine(Stations , BusNumber, Area);
         //}
 
-           
+
         //public int CompareTo(BusLine other)
         //{
         //    TimeSpan time1 = TimeBetweenStations(this.FirstStation, this.LastStation);
@@ -242,34 +242,36 @@ namespace dotNet5781_02_7232_5482
         //    return time1.CompareTo(time2);
         //}
 
-        public BusLine SubRoute(int stop1, int stop2)//creating a sub route presented by a bus line
+        public BusLine SubRoute(string firstStat, string lastStat)
         {
-            if (!(CheckStationExist(stop1.ToString()) && CheckStationExist(stop2.ToString())))
-            {
-                throw new BusException("ERROR, one or more of the stations entered don't exist in the bus line");
-            }
-            List<BusLineStation> route = new List<BusLineStation>();
-            int index1 = FindIndex(stop1.ToString());
-            int index2 = FindIndex(stop2.ToString());
-            if (index1 >= index2)
-            {
-                throw new BusException("there is no route");
-            }
-            for (int i = index1; i <= index2; i++)
-            {
-                route.Add(stations[i]);
-            }
-            return new BusLine(route, BusNumber, Area);
+            int indexFirst = FindIndex(firstStat);
+            int indexLast = FindIndex(lastStat);
+            //if (location1 == -1 || location2 == -1)
+            //{
+            //    Console.WriteLine("ERROR!the station doesn't exist on the route of this bus line ");
+            //    return null;
+            //}
+            //else
+            //{
+                List<BusLineStation> allStations = new List<BusLineStation>();
+                for (int i = indexFirst; i < indexLast + 1; i++)
+                {
+                    allStations.Add(Stations[i]);
+                }
+                BusLine bus = new BusLine(Stations = allStations, BusNumber = this.BusNumber, Area = this.Area);
+                return bus;
+            //}
+
         }
-        public TimeSpan TravelTime(BusLineStation b1, BusLineStation b2)//the function gets 2 stations, and returns the travel time between them.
+        public TimeSpan TimeOfTravel(BusLineStation bus1, BusLineStation bus2)//the function gets 2 stations, and returns the travel time between them.
         {
-            if (!(CheckStationExist(b1.BusStationKey) && CheckStationExist(b2.BusStationKey)))
+            if (!(CheckStationExist(bus1.BusStationKey) && CheckStationExist(bus2.BusStationKey)))
             {
                 throw new BusException("ERROR, one or more of the stations entered don't exist in the bus line");
             }
             TimeSpan time = new TimeSpan(0, 0, 0);
-            int index1 = FindIndex(b1.BusStationKey);
-            int index2 = FindIndex(b2.BusStationKey);
+            int index1 = FindIndex(bus1.BusStationKey);
+            int index2 = FindIndex(bus2.BusStationKey);
             for (int i = ++index1; i <= index2; i++)
             {
                 time += stations[i].My_Time;
@@ -278,8 +280,8 @@ namespace dotNet5781_02_7232_5482
         }
         public int CompareTo(BusLine other)//the function compares between two bus lines
         {
-            TimeSpan t1 = TravelTime(this.FirstStation, this.LastStation);
-            TimeSpan t2 = other.TravelTime(other.FirstStation, other.LastStation);
+            TimeSpan t1 = TimeOfTravel(this.FirstStation, this.LastStation);
+            TimeSpan t2 = other.TimeOfTravel(other.FirstStation, other.LastStation);
             return t1.CompareTo(t2);
         }
         public BusLine(int busnum, string firststat, string laststat)
