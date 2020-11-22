@@ -92,14 +92,7 @@ namespace dotNet5781_02_7232_5482
                 count++;
             }
             return -1;
-        }
-        //public List<BusLine> SortedList()
-        //{
-        //    List<BusLine> list1 = new List<BusLine>(Buses);
-        //    list1.Sort();
-        //    return list1;
-
-        //}
+        }  
         public BusLine this[int numbus, string firstStat, string lastStat]
         {
             get
@@ -127,33 +120,10 @@ namespace dotNet5781_02_7232_5482
             }
             throw new BusException("This bus doesn't exist");
         }
-        //public List<BusLine> SortedList()
-        //{
-        //    BusLine[] busLineArr = new BusLine[Buses.Count];
-        //    Buses.CopyTo(busLineArr);//copy the buses to an arrry
-        //    List<BusLine> sortedlist = busLineArr.ToList();//copy the array to a list
-        //    sortedlist.Sort();//sort the list bu the travel time
-        //    return sortedlist;//return the sorted list
-        //}
-        //public List<BusLine> this[int lineNum]
-        //{
-        //    get
-        //    {
-        //        List<BusLine> bsl = Buses.FindAll(item => item.LineNum == lineNum);//list of all the buses with the line number that the function got
-        //        if (bsl.Count != 0)//if there are buses with this line number
-        //            return bsl;
-        //        else//if there are not buses with this line number
-        //            throw new BusException("There is no buses with this line number");
-
-
-        //    }
-        //    //set { Lines[lineNum] = value; }
-
-        //}
         public List<BusLine> PassTheStation(string stationNum)
         {
             List<BusLine> busLines = new List<BusLine>();
-            BusLineStation station = new BusLineStation(stationNum, "", 0);
+            BusLineStation station = new BusLineStation(stationNum, " ", 0);
             foreach (BusLine b in Buses)
             {
                 try
@@ -162,14 +132,14 @@ namespace dotNet5781_02_7232_5482
                     busLines.Add(b);
                 }
                
-                 catch (BusException ex)
+                catch (BusException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
             }
             if (busLines.Count == 0)
             {
-                throw new BusException("The station does not exist on any bus line");
+                throw new BusException("The station doesn't exist on any bus line");
 
             }
             return busLines;
