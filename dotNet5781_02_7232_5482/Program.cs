@@ -102,7 +102,8 @@ namespace dotNet5781_02_7232_5482
             AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[32].BusStationKey, " ", 0), new BusLineStation(AllStations[33].BusStationKey, " ", 6), new BusLineStation(AllStations[34].BusStationKey, " ", 4.5), new BusLineStation(AllStations[35].BusStationKey, " ", 5.2) }, 32, Area.NORTH));
             AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[36].BusStationKey, " ", 0), new BusLineStation(AllStations[37].BusStationKey, " ", 6.25), new BusLineStation(AllStations[38].BusStationKey, " ", 7.4), new BusLineStation(AllStations[39].BusStationKey, " ", 8.5) }, 950, Area.SOUTH));
         }
-        static public void AddNew(ref List<BusStation> AllStations, BusCollection AllBuses)
+ 
+        static public void AddNew(ref List<BusStation> AllStations, BusCollection AllBuses)//the function add a bus or station according the user's choice
         {
             try
             {
@@ -129,7 +130,7 @@ namespace dotNet5781_02_7232_5482
             }
             return;
         }
-        static public void AddNewBus(ref List<BusStation> AllStations, BusCollection AllBuses)
+        static public void AddNewBus(ref List<BusStation> AllStations, BusCollection AllBuses)//the function add a bus 
         {
             List<BusLineStation> ListStation = new List<BusLineStation>();
             Console.WriteLine("Enter a number of bus line");
@@ -140,29 +141,29 @@ namespace dotNet5781_02_7232_5482
             string firstnum = GetStat(out firstnum);
             Console.WriteLine("Enter the last station number");
             string lastnum = GetStat(out lastnum);
-            while (firstnum == lastnum)
+            while (firstnum == lastnum)// if the first station and the the last station same
             {
                 Console.WriteLine("ERROR, Enter the last station number again");
-                lastnum = GetStat(out lastnum);
+                lastnum = GetStat(out lastnum);//ask for new station
             }
-            foreach (BusLine b in AllBuses)
+            foreach (BusLine b in AllBuses)//cheack if possible to add the bus
             {
                 if ((b.BusNumber == busnum) && (b.Area == area))
                 {
-                    if (SearchBus(AllBuses, busnum, firstnum, lastnum, area))
+                    if (SearchBus(AllBuses, busnum, firstnum, lastnum, area))//cheack if this bus alreadyb exist
                     {
                         throw new BusException("Sorry, this bus number already exist1");
                     }
-                    if (!SearchUpsideBus(AllBuses, busnum, firstnum, lastnum, area))
+                    if (!SearchUpsideBus(AllBuses, busnum, firstnum, lastnum, area))//check if the bus is the upside bus
                     {
                         throw new BusException("Sorry, this bus number already exist2");
                     }
                 }
             }
             bool flag = false;
-            if (!SearchStat(firstnum, ref AllStations))
+            if (!SearchStat(firstnum, ref AllStations))//cheack if the station akready exist
             {
-                AllStations.Add(new BusStation(firstnum, " "));
+                AllStations.Add(new BusStation(firstnum, " "));// add if the station doesn't exist
 
                 flag = true;
             }
@@ -178,13 +179,13 @@ namespace dotNet5781_02_7232_5482
 
             }
             bool flag1 = false;
-            if (!SearchStat(lastnum, ref AllStations))
+            if (!SearchStat(lastnum, ref AllStations))//cheack if the station akready exist
             {
-                AllStations.Add(new BusStation(lastnum, " "));
+                AllStations.Add(new BusStation(lastnum, " "));// add if the station doesn't exist
                 flag1 = true;
             }
             BusStation LastStat = ReturnStation(ref AllStations, lastnum);
-            List<BusLineStation> BusStations = new List<BusLineStation>();
+            List<BusLineStation> BusStations = new List<BusLineStation>();//new list of stations
             Console.WriteLine("Type the distance of the last station from the first station (km)");
             double distanceFromPrev = GetDoubleNum();
             BusLineStation LastStation = new BusLineStation(lastnum, " ", distanceFromPrev);
@@ -195,11 +196,10 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine("About the last station");
                 LastStation.Address();
             }
-            BusStations.Add(FirstStation);
-            BusStations.Add(LastStation);
+            BusStations.Add(FirstStation);//add the station
+            BusStations.Add(LastStation);//add the station
             BusLine NuwBus = new BusLine(BusStations, busnum, area);
-            AllBuses.AddBus(NuwBus);
-           // Console.WriteLine("The bus was successfully added");
+            AllBuses.AddBus(NuwBus);// add the bus
             Console.WriteLine("Enter 1 if you want to add another station to this bus, and 0 to continue ");
             int choose = GetIntNum();
             if (choose == 1)
@@ -207,12 +207,10 @@ namespace dotNet5781_02_7232_5482
                 AddStation_(NuwBus, ref AllStations, AllBuses);
                 if (checkRouteExist(NuwBus, AllBuses))
                 {
-                    Console.WriteLine("yofi");
                     return;
                 }
                 else
                 {
-                    Console.WriteLine("Tapuz");
                     Console.WriteLine("The bus was successfully added");
                 }
             }
@@ -684,25 +682,23 @@ namespace dotNet5781_02_7232_5482
             string busnum1= GetStat(out busnum1);
             Console.WriteLine("Enter the destination station");
             string busnum2 = GetStat(out busnum2);
-            List<BusLine> station1exists = new List<BusLine>(AllBuses.PassTheStation(busnum1));
-            List<BusLine> station2exists = new List<BusLine>(AllBuses.PassTheStation(busnum2));
-            BusCollection stations1and2exists = new BusCollection();
-            foreach (BusLine line1 in station1exists)
+            List<BusLine> stat1 = new List<BusLine>(AllBuses.PassTheStation(busnum1));//check if station 1 exist
+            List<BusLine> station2 = new List<BusLine>(AllBuses.PassTheStation(busnum2));//check if station 2 exist
+            BusCollection station1_2 = new BusCollection();
+            foreach (BusLine line1 in stat1)
             {
-                foreach (BusLine line2 in station2exists)
+                foreach (BusLine line2 in station2)
                 {
                     if (line1.BusNumber == line2.BusNumber &&(line1.Area==line2.Area)&& line1.FindIndex(busnum1) < line1.FindIndex(busnum2))
-                        stations1and2exists.AddBus(line1.SubRoute(busnum1, busnum2));
+                        station1_2.AddBus(line1.SubRoute(busnum1, busnum2));
                 }
             }
-            if (stations1and2exists.Buses.Count == 0)
-                throw new BusException("There is no bus that passes this route");
-            List<BusLine> sortedList = new List<BusLine>(stations1and2exists.SortLines());
-            Console.WriteLine("Sorted list of lines that pass through these 2 stations");
+            if (station1_2.Buses.Count == 0)
+                throw new BusException("There is no bus that has this route");
+            List<BusLine> sortedList = new List<BusLine>(station1_2.SortLines());
+            Console.WriteLine("Sorted list of buses that pass through these 2 stations");
             foreach (BusLine line in sortedList)
                 Console.WriteLine(line.BusNumber + " ");
-            Console.WriteLine();
-
         }
 
     }
