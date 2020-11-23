@@ -11,7 +11,7 @@ namespace dotNet5781_02_7232_5482
 
     class BusCollection : IEnumerable
     {
-        public List<BusLine> Buses { get; set; }
+        public List<BusLine> Buses { get; set; }//list of buses
         public IEnumerator GetEnumerator()
         {
             return Buses.GetEnumerator();
@@ -20,13 +20,13 @@ namespace dotNet5781_02_7232_5482
         {
             Buses = new List<BusLine>();
         }
-        public void AddBus(BusLine NewBus)
+        public void AddBus(BusLine NewBus)//add bus
         {
             CheckBus(NewBus);
             Buses.Add(NewBus);
             return;
         }
-        public void CheckBus(BusLine newbus)
+        public void CheckBus(BusLine newbus)//check if bus is unside bus line 
         {
             foreach (BusLine b in Buses)
             {
@@ -41,7 +41,7 @@ namespace dotNet5781_02_7232_5482
             }
             return;
         }
-        public void RemoveBus(BusLine bus)
+        public void RemoveBus(BusLine bus)//the func remove bas from list of buses
         {
             foreach (BusLine b in Buses)
             {
@@ -56,7 +56,7 @@ namespace dotNet5781_02_7232_5482
             }
             throw new BusException("this bus line dosn't exist");
         }
-        public string stations(string StationKey)
+        public string stations(string StationKey)//the func check which bus line go throught the station.
         {
             string AllBuses_ = null;
             foreach (BusLine b in Buses)
@@ -75,7 +75,7 @@ namespace dotNet5781_02_7232_5482
             }
             return AllBuses_;
         }
-        public int SearchBus(int num, string firstStat, string lastStat)
+        public int SearchBus(int num, string firstStat, string lastStat)//check if bus line exist in list of buses, the func returen count(index)
         {
             int count = 0;
             foreach (BusLine b in Buses)
@@ -109,7 +109,7 @@ namespace dotNet5781_02_7232_5482
             }
 
         }
-        public void search(int num)
+        public void search(int num)//search bus in list( bus line)
         {
             foreach (BusLine b in Buses)
             {
@@ -120,7 +120,7 @@ namespace dotNet5781_02_7232_5482
             }
             throw new BusException("This bus doesn't exist");
         }
-        public List<BusLine> PassTheStation(string stationNum)
+        public List<BusLine> PassTheStation(string stationNum)//check if station exist in any bus line
         {
             List<BusLine> busLines = new List<BusLine>();
             BusLineStation station = new BusLineStation(stationNum, " ", 0);
@@ -133,7 +133,7 @@ namespace dotNet5781_02_7232_5482
                 throw new BusException("The station doesn't exist on any bus line");
             return busLines;
         }
-        public List<BusLine> SortLines()
+        public List<BusLine> SortLines()//the func sorted buses
         {
             List<BusLine> buses = Buses;
             buses.Sort();
