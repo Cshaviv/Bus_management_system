@@ -30,7 +30,7 @@ namespace dotNet5781_02_7232_5482
         {
             foreach (BusLine b in Buses)
             {
-                if ((newbus.BusNumber == b.BusNumber)&&(newbus.Area==b.Area))
+                if ((newbus.BusNumber == b.BusNumber) && (newbus.Area == b.Area))
                 {
                     if ((b.FirstStation.BusStationKey == newbus.LastStation.BusStationKey) && (b.LastStation.BusStationKey == newbus.FirstStation.BusStationKey))
                     {
@@ -45,7 +45,7 @@ namespace dotNet5781_02_7232_5482
         {
             foreach (BusLine b in Buses)
             {
-                if ((bus.BusNumber == b.BusNumber)&&(bus.Area==b.Area))
+                if ((bus.BusNumber == b.BusNumber) && (bus.Area == b.Area))
                 {
                     if ((b.FirstStation == bus.FirstStation) && (b.LastStation == bus.LastStation))
                     {
@@ -92,7 +92,7 @@ namespace dotNet5781_02_7232_5482
                 count++;
             }
             return -1;
-        }  
+        }
         public BusLine this[int numbus, string firstStat, string lastStat]
         {
             get
@@ -126,22 +126,11 @@ namespace dotNet5781_02_7232_5482
             BusLineStation station = new BusLineStation(stationNum, " ", 0);
             foreach (BusLine b in Buses)
             {
-                try
-                {
-                    b.FindIndex(station.BusStationKey);
-                    busLines.Add(b);
-                }
-               
-                catch (BusException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                if (b.SearchStat(station.BusStationKey) != -1)                
+                    busLines.Add(b);              
             }
             if (busLines.Count == 0)
-            {
                 throw new BusException("The station doesn't exist on any bus line");
-
-            }
             return busLines;
         }
         public List<BusLine> SortLines()

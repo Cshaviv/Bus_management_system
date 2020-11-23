@@ -73,6 +73,7 @@ namespace dotNet5781_02_7232_5482
                         Console.WriteLine("Good bay");
                         break;
                     default:
+                        Console.WriteLine("This option doesn't exist, please try again");
                         break;
                 }
             }
@@ -90,16 +91,16 @@ namespace dotNet5781_02_7232_5482
 
             }
 
-            //    AllBuses.AddBus(new BusLine( new List<BusLineStation>() { new BusLineStation(AllStations[0].BusStationKey, " ", 0), new BusLineStation(AllStations[1].BusStationKey, " ", 0.7), new BusLineStation(AllStations[2].BusStationKey, " ", 2), new BusLineStation(AllStations[3].BusStationKey, " ", 2.5) },280, Area.GENERAL));
-            //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[4].BusStationKey, " ", 0), new BusLineStation(AllStations[5].BusStationKey, " ", 4), new BusLineStation(AllStations[6].BusStationKey, " ", 2), new BusLineStation(AllStations[7].BusStationKey, " ", 3.3) }, 14, Area.CENTER));
-            //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[8].BusStationKey, " ", 0), new BusLineStation(AllStations[9].BusStationKey, " ", 2.9), new BusLineStation(AllStations[10].BusStationKey, " ", 1.87), new BusLineStation(AllStations[11].BusStationKey, " ", 3.8) }, 160, Area.JERUSALEM));
-            //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[12].BusStationKey, " ", 0), new BusLineStation(AllStations[13].BusStationKey, " ", 2.65), new BusLineStation(AllStations[14].BusStationKey, " ", 0.9), new BusLineStation(AllStations[15].BusStationKey, " ", 3.4) }, 5, Area.SOUTH));
-            //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[16].BusStationKey, " ", 0), new BusLineStation(AllStations[17].BusStationKey, " ", 1.3), new BusLineStation(AllStations[18].BusStationKey, " ", 1.9), new BusLineStation(AllStations[19].BusStationKey, " ", 2.5) }, 76, Area.GENERAL));
-            //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[20].BusStationKey, " ", 0), new BusLineStation(AllStations[21].BusStationKey, " ", 0.87), new BusLineStation(AllStations[22].BusStationKey, " ", 2), new BusLineStation(AllStations[23].BusStationKey, " ", 2.8) }, 87, Area.CENTER));
-            //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[24].BusStationKey, " ", 0), new BusLineStation(AllStations[25].BusStationKey, " ", 6), new BusLineStation(AllStations[26].BusStationKey, " ", 4.5), new BusLineStation(AllStations[27].BusStationKey, " ", 4.8) }, 48, Area.JERUSALEM));
-            //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[28].BusStationKey, " ", 0), new BusLineStation(AllStations[29].BusStationKey, " ", 4.9), new BusLineStation(AllStations[29].BusStationKey, " ", 6.2), new BusLineStation(AllStations[30].BusStationKey, " ", 5.8) }, 80, Area.JERUSALEM));
-            //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[32].BusStationKey, " ", 0), new BusLineStation(AllStations[33].BusStationKey, " ", 6), new BusLineStation(AllStations[34].BusStationKey, " ", 4.5), new BusLineStation(AllStations[35].BusStationKey, " ", 5.2) }, 32, Area.JERUSALEM));
-            //    AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[36].BusStationKey, " ", 0), new BusLineStation(AllStations[37].BusStationKey, " ", 6.25), new BusLineStation(AllStations[38].BusStationKey, " ", 7.4), new BusLineStation(AllStations[39].BusStationKey, " ", 8.5) }, 950, Area.JERUSALEM));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[0].BusStationKey, " ", 0), new BusLineStation(AllStations[1].BusStationKey, " ", 0.7), new BusLineStation(AllStations[2].BusStationKey, " ", 2), new BusLineStation(AllStations[3].BusStationKey, " ", 2.5) }, 280, Area.GENERAL));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[4].BusStationKey, " ", 0), new BusLineStation(AllStations[5].BusStationKey, " ", 4), new BusLineStation(AllStations[6].BusStationKey, " ", 2), new BusLineStation(AllStations[7].BusStationKey, " ", 3.3) }, 14, Area.CENTER));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[8].BusStationKey, " ", 0), new BusLineStation(AllStations[9].BusStationKey, " ", 2.9), new BusLineStation(AllStations[10].BusStationKey, " ", 1.87), new BusLineStation(AllStations[11].BusStationKey, " ", 3.8) }, 160, Area.JERUSALEM));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[12].BusStationKey, " ", 0), new BusLineStation(AllStations[13].BusStationKey, " ", 2.65), new BusLineStation(AllStations[14].BusStationKey, " ", 0.9), new BusLineStation(AllStations[15].BusStationKey, " ", 3.4) }, 5, Area.SOUTH));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[16].BusStationKey, " ", 0), new BusLineStation(AllStations[17].BusStationKey, " ", 1.3), new BusLineStation(AllStations[18].BusStationKey, " ", 1.9), new BusLineStation(AllStations[19].BusStationKey, " ", 2.5) }, 76, Area.GENERAL));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[20].BusStationKey, " ", 0), new BusLineStation(AllStations[21].BusStationKey, " ", 0.87), new BusLineStation(AllStations[22].BusStationKey, " ", 2), new BusLineStation(AllStations[23].BusStationKey, " ", 2.8) }, 87, Area.CENTER));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[24].BusStationKey, " ", 0), new BusLineStation(AllStations[25].BusStationKey, " ", 6), new BusLineStation(AllStations[26].BusStationKey, " ", 4.5), new BusLineStation(AllStations[27].BusStationKey, " ", 4.8) }, 48, Area.JERUSALEM));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[28].BusStationKey, " ", 0), new BusLineStation(AllStations[29].BusStationKey, " ", 4.9), new BusLineStation(AllStations[30].BusStationKey, " ", 6.2), new BusLineStation(AllStations[31].BusStationKey, " ", 5.8) }, 80, Area.GENERAL));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[32].BusStationKey, " ", 0), new BusLineStation(AllStations[33].BusStationKey, " ", 6), new BusLineStation(AllStations[34].BusStationKey, " ", 4.5), new BusLineStation(AllStations[35].BusStationKey, " ", 5.2) }, 32, Area.NORTH));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[36].BusStationKey, " ", 0), new BusLineStation(AllStations[37].BusStationKey, " ", 6.25), new BusLineStation(AllStations[38].BusStationKey, " ", 7.4), new BusLineStation(AllStations[39].BusStationKey, " ", 8.5) }, 950, Area.SOUTH));
         }
         static public void AddNew(ref List<BusStation> AllStations, BusCollection AllBuses)
         {
@@ -150,11 +151,11 @@ namespace dotNet5781_02_7232_5482
                 {
                     if (SearchBus(AllBuses, busnum, firstnum, lastnum, area))
                     {
-                        throw new BusException("Sorry, this bus number already exist");
+                        throw new BusException("Sorry, this bus number already exist1");
                     }
                     if (!SearchUpsideBus(AllBuses, busnum, firstnum, lastnum, area))
                     {
-                        throw new BusException("Sorry, this bus number already exist");
+                        throw new BusException("Sorry, this bus number already exist2");
                     }
                 }
             }
@@ -209,8 +210,6 @@ namespace dotNet5781_02_7232_5482
             {
                 return;
             }
-            //AllBuses.AddBus(NuwBus);
-            //Console.WriteLine("The bus was successfully added");
             return;
         }
         static public void NewStation(BusCollection AllBuses, ref List<BusStation> AllStations)
@@ -226,7 +225,7 @@ namespace dotNet5781_02_7232_5482
             string last = GetStat(out last);
             if (!SearchBus(AllBuses, num, first, last, area))
             {
-                throw new Exception("this bus doesn't exist");
+                throw new BusException("this bus doesn't exist");
             }
             BusLine bus = ReturnBus(AllBuses, num, first, last, area);
             AddStation_(bus, ref AllStations);
@@ -265,17 +264,15 @@ namespace dotNet5781_02_7232_5482
         {
             stringnum = Console.ReadLine();
             int StatNum;
-            //if (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum)))
-            //{
             do
             {
-                if (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum) && StatNum > 0))
+                if (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum) && StatNum >= 0))
                 {
                     Console.WriteLine("ERROR, try enter bus station number again");
                     stringnum = Console.ReadLine();
                 }
             }
-            while (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum)));
+            while (!(stringnum.Length < 7 && int.TryParse(stringnum, out StatNum) && StatNum >= 0));
             //}
 
             return StatNum.ToString();
@@ -357,8 +354,7 @@ namespace dotNet5781_02_7232_5482
 
                     if ((b.FirstStation.BusStationKey == lastStat) && (b.LastStation.BusStationKey == firstStat))
                     {
-                        flag1 = true;
-                        return flag1;
+                        flag1 = true;                   
                     }
                 }
             }
@@ -404,20 +400,6 @@ namespace dotNet5781_02_7232_5482
             while (!success || (num != 0 && num != 1));
             return num;
         }
-        //static public int GetIntNum1_2()
-        //{
-        //    bool success=false;
-        //   int num = 1;
-        //    do
-        //    {
-        //        if (!success || (num != 1 && num != 2 && num!=3 && num!=4 && num!=5))
-        //            Console.WriteLine("ERROR! try enter number again");
-        //        success = int.TryParse(Console.ReadLine(), out num);
-
-        //    }
-        //    while (!success || (num != 1 && num != 2 &&  num != 3 && num != 4 && num != 5));
-        //    return num;
-        //}
         static public double GetDoubleNum()
         {
             bool success = true;
@@ -528,7 +510,8 @@ namespace dotNet5781_02_7232_5482
         {
             try
             {
-                Console.WriteLine("Enter 1 to search for lines that pass through the station, enter 2 to print the options for traveling between 2 stations");
+                Console.WriteLine("Enter 1 to search for lines that pass through the station,");
+                Console.WriteLine("Enter 2 to print the options for traveling between 2 stations");
                 int choice = GetNum();
                 if (choice == 1)
                 {
