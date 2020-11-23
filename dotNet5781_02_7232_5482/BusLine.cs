@@ -10,7 +10,7 @@ namespace dotNet5781_02_7232_5482
     {
         public int BusNumber { get; set; }
         private List<BusLineStation> stations;
-        public List<BusLineStation> Stations
+        public List<BusLineStation> Stations// list of stations
         {
             get { return stations; }
             set { stations = value; }
@@ -19,14 +19,14 @@ namespace dotNet5781_02_7232_5482
         public BusLineStation FirstStation { get => Stations[0]; set => Stations[0] = value; }
         public BusLineStation LastStation { get => Stations[stations.Count - 1]; set => Stations[stations.Count - 1] = value; }
         public BusLineStation this[int index] => stations[index];
-        public BusLine(List<BusLineStation> L, int BusNumber, /*BusLineStation first, BusLineStation last,*/ Area a = Area.JERUSALEM)
+        public BusLine(List<BusLineStation> L, int BusNumber,  Area a = Area.JERUSALEM)
         {
             this.Stations = L;
             this.BusNumber = BusNumber;
             this.FirstStation = Stations[0];
             this.LastStation = Stations[Stations.Count - 1];
             this.Area = a;
-        }
+        }//constructor
         public int FindIndex(string PrevStation)
         {
             int index = 0;
@@ -40,7 +40,7 @@ namespace dotNet5781_02_7232_5482
                 index++;
             }
             throw new BusException("the previous station entered doesn't exist");
-        }
+        }//the func find the index of statin in the list
         public int SearchStat(string PrevStation)
         {
             int index = 0;
@@ -55,7 +55,7 @@ namespace dotNet5781_02_7232_5482
             }
             index = -1;
             return index;
-        }
+        }//the func search the station in list
         public bool CheckStationExist(string numstat)
         {
             bool flag = false;
@@ -70,7 +70,7 @@ namespace dotNet5781_02_7232_5482
             }
             return flag;
 
-        }
+        }//check if station exist
         public void AddStations(BusStation b)
         {
             //int choose;
@@ -136,11 +136,11 @@ namespace dotNet5781_02_7232_5482
 
             }           
             return;
-        }
+        }//add station to  line 
         public double timeBetween(BusLineStation one, BusLineStation two)
         {
             return one.Time.Subtract(two.Time).TotalMinutes;
-        }
+        }// time between two stations
         public void DeleteStation(string StatNum)
         {
             int index = 0;
@@ -154,7 +154,7 @@ namespace dotNet5781_02_7232_5482
                 index++;
             }
             throw new BusException("Sorry, this station doesn't exist in this bus line");
-        }
+        }//delete station from line
         public bool CheckStationInBusLIne(string StationKey)
         {
             bool flag = false;
@@ -167,7 +167,7 @@ namespace dotNet5781_02_7232_5482
                 }
             }
             return flag;
-        }
+        }//check if station in bus line
         public double DistanceBetweenStations(BusLineStation stat1, BusLineStation stat2)
         {
             int index1 = FindIndex(stat1.BusStationKey);
@@ -183,7 +183,7 @@ namespace dotNet5781_02_7232_5482
             }
             return distance;
 
-        }    
+        }    //distance between tow stations
         public BusLine SubRoute(string firstStat, string lastStat)
         {
             int indexFirst = FindIndex(firstStat);
@@ -204,7 +204,7 @@ namespace dotNet5781_02_7232_5482
                 return bus;
             //}
 
-        }
+        }//
         public TimeSpan TimeBetweenStations(BusLineStation bus1, BusLineStation bus2)//the function gets 2 stations, and returns the travel time between them.
         {
             if (!(CheckStationExist(bus1.BusStationKey) && CheckStationExist(bus2.BusStationKey)))
@@ -231,7 +231,7 @@ namespace dotNet5781_02_7232_5482
             this.BusNumber = busnum;
             this.FirstStation.BusStationKey = firststat;
             this.LastStation.BusStationKey = laststat;
-        }
+        }//constructor
         public double GetDoubleNum()
         {
             bool success = true;
@@ -244,7 +244,7 @@ namespace dotNet5781_02_7232_5482
             }
             while (!success);
             return num;
-        }
+        }//check if number is correct
         public int GetIntNum()
         {
             bool success = true;
@@ -257,7 +257,7 @@ namespace dotNet5781_02_7232_5482
             }
             while (!success);
             return num;
-        }
+        }//check if number is correct
         public override string ToString()
         {
 
@@ -273,7 +273,7 @@ namespace dotNet5781_02_7232_5482
                 station += b.BusStationKey + " ";
             }
             return station;
-        }
+        }//print all stations
     }
 }
 
