@@ -161,7 +161,7 @@ namespace dotNet5781_02_7232_5482
                 }
             }
             bool flag = false;
-            if (!SearchStat(firstnum, ref AllStations))//cheack if the station akready exist
+            if (!SearchStat(firstnum, ref AllStations))//cheack if the station already exist
             {
                 AllStations.Add(new BusStation(firstnum, " "));// add if the station doesn't exist
 
@@ -205,7 +205,7 @@ namespace dotNet5781_02_7232_5482
             if (choose == 1)
             {
                 AddStation_(NuwBus, ref AllStations, AllBuses);
-                if (checkRouteExist(NuwBus, AllBuses))
+                if (checkRouteExist(NuwBus, AllBuses))//check if there is another line passing the same route
                 {
                     return;
                 }
@@ -216,14 +216,13 @@ namespace dotNet5781_02_7232_5482
             }
             else
             {
-                if ( checkRouteExist(NuwBus, AllBuses))
+                if ( checkRouteExist(NuwBus, AllBuses))//check if there is another line passing the same route
                     return;
                else
                     Console.WriteLine("The bus was successfully added");
             }
             return;
         }
-        
         static public void NewStation(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
             Console.WriteLine("Enter the bus number to which you want to add a station");
@@ -235,14 +234,14 @@ namespace dotNet5781_02_7232_5482
             string first = GetStat(out first);
             Console.WriteLine("Enter the last station");
             string last = GetStat(out last);
-            if (!SearchBus(AllBuses, num, first, last, area))
+            if (!SearchBus(AllBuses, num, first, last, area))// cheack if the bus exist
             {
                 throw new BusException("this bus doesn't exist");
             }
             BusLine bus = ReturnBus(AllBuses, num, first, last, area);
-            AddStation_(bus, ref AllStations, AllBuses);
+            AddStation_(bus, ref AllStations, AllBuses);// transmits a function that add station
             return;
-        }
+        }//add  station
         static public void AddStation_(BusLine bus, ref List<BusStation> AllStations, BusCollection AllBuses)
         {
             int choose = 1;
@@ -250,18 +249,18 @@ namespace dotNet5781_02_7232_5482
             {
                 Console.WriteLine("Enter the station number you want to add");
                 string NewStat = GetStat(out NewStat);
-                if (bus.CheckStationExist(NewStat))
+                if (bus.CheckStationExist(NewStat))//chaeck if the station exist
                     throw new BusException("This station already exist");
                 if (SearchStat(NewStat, ref AllStations))
                 {
                     BusStation b = ReturnStation(ref AllStations, NewStat);
-                    bus.AddStations(b);
+                    bus.AddStations(b);//add the station
                     Console.WriteLine("The station was successfully added");
                 }
                 else
                 {
-                    BusStation b = new BusStation(NewStat);
-                    AllStations.Add(b);
+                    BusStation b = new BusStation(NewStat);//create a new station
+                    AllStations.Add(b);//add the station to the station's list
                     bus.AddStations(b);
                 }
                 Console.WriteLine("Enter 1 if you want to add another station, and 0 to exit ");
@@ -271,7 +270,7 @@ namespace dotNet5781_02_7232_5482
             }
             while (choose == 1);
           
-        }
+        }//add station
         static bool checkRouteExist(BusLine bus, BusCollection AllBuses)
         {
             int index = 0;
@@ -304,7 +303,7 @@ namespace dotNet5781_02_7232_5482
                 flag = false;
             }
             return false;
-        }
+        }//cheack if there is another bus line passing the same rout
         static string GetStat(out string stringnum)
         {
             stringnum = Console.ReadLine();
@@ -321,7 +320,7 @@ namespace dotNet5781_02_7232_5482
             //}
 
             return StatNum.ToString();
-        }
+        }//cheack  if the station's number is correct
         static public int GetNum()
         {
             int num = -1;
@@ -335,7 +334,7 @@ namespace dotNet5781_02_7232_5482
             }
             while (num < 0);
             return num;
-        }
+        }//cheack if the number is correct
         static public bool SearchStat(string num, ref List<BusStation> AllStations)
         {
             bool flag = false;
@@ -348,7 +347,7 @@ namespace dotNet5781_02_7232_5482
                 }
             }
             return flag;
-        }
+        }//search if station exist
         static public double GetNumDistance()
         {
             double distance = 0;
@@ -362,14 +361,14 @@ namespace dotNet5781_02_7232_5482
             }
             while (distance <= 0);
             return distance;
-        }
+        }// cheack if the distance is correct
         static public TimeSpan TravelTime(double distance)
         {
             double speed = 1;//km for miniute
             double Time = distance / speed;
             TimeSpan TimePerMin = TimeSpan.FromMinutes(Time);
             return TimePerMin;
-        }
+        }//calculates the length of the trip
         static public bool SearchBus(BusCollection AllBuses, int num, string firstStat, string lastStat, Area area)
         {
             bool flag = false;
@@ -387,7 +386,7 @@ namespace dotNet5781_02_7232_5482
                 }
             }
             return flag;
-        }
+        }//search if bus exist
         static public bool SearchUpsideBus(BusCollection AllBuses, int num, string firstStat, string lastStat, Area area)
         {
             bool flag1 = false;
@@ -404,7 +403,7 @@ namespace dotNet5781_02_7232_5482
                 }
             }
             return flag1;
-        }
+        }//check if bus is the upside of another bus
         static public BusLine ReturnBus(BusCollection AllBuses, int num, string firstStat, string lastStat, Area area)
         {
 
@@ -419,7 +418,7 @@ namespace dotNet5781_02_7232_5482
                 }
             }
             throw new BusException("this bus doesn't exist");
-        }
+        }//return bus
         static public BusStation ReturnStation(ref List<BusStation> AllStations, string statnum)//נקרא לפונקציה זו רק לאחר שנדע שהתחנה המבוקשת קיימת ברשימה
 
         {
@@ -430,7 +429,7 @@ namespace dotNet5781_02_7232_5482
                     return b;
             }
             throw new BusException("Sorry, this station doesn't exist");
-        }
+        }//return station
         static public int GetIntNum()
         {
             bool success = true;
@@ -444,7 +443,7 @@ namespace dotNet5781_02_7232_5482
             }
             while (!success || (num != 0 && num != 1));
             return num;
-        }
+        }//cheack if the number is incorrect
         static public double GetDoubleNum()
         {
             bool success = true;
@@ -457,7 +456,7 @@ namespace dotNet5781_02_7232_5482
             }
             while (!success);
             return num;
-        }
+        }// cheack if the number is incorrect
         static public void Delete_(BusCollection AllBuses)
         {
             try
@@ -485,8 +484,7 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine(ex.Message);
             }
             return;
-        }
-        
+        }//delete bus or station according the user's choice       
         static public void DeleteBus(BusCollection AllBuses)
         {
             try
@@ -510,7 +508,7 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine(ex.Message);
             }
             return;
-        }
+        }//delete bus
         static public void DeleteStat(BusCollection AllBuses)
         {
             Console.WriteLine("Enter the line number from which you want to delete a station");
@@ -534,7 +532,7 @@ namespace dotNet5781_02_7232_5482
             bus.DeleteStation(stat);
             Console.WriteLine("The station was successfully removed");
             return;
-        }
+        }//delete station
         static public void DataUpdate(int index, BusLine bus)
         {
             if (index == 0)
@@ -551,7 +549,7 @@ namespace dotNet5781_02_7232_5482
                 bus.Stations[index + 1].Distance = +bus.Stations[index].Distance;
                 bus.Stations[index + 1].Time = +bus.Stations[index].Time;
             }
-        }
+        }//after the user add a station this function updata the data
         static public void Find(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
             try
@@ -579,7 +577,7 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine(ex.Message);
             }
             return;
-        }
+        }// the function find according the user's choice 
         static public void findLineInStat(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
             Console.WriteLine("Enter the station number you want to know which lines go through it");
@@ -592,7 +590,7 @@ namespace dotNet5781_02_7232_5482
             Console.WriteLine(buses);
             Console.WriteLine("The transaction completed successfully");
             return;
-        }
+        }// find all lines that passing station
         static public void Print(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
             try
@@ -646,7 +644,7 @@ namespace dotNet5781_02_7232_5482
                 Console.WriteLine(ex.Message);
             }
             return;
-        }
+        }//print according the user's choice 
         static public Area TheArea()
         {
             Area area = Area.JERUSALEM;
@@ -668,7 +666,7 @@ namespace dotNet5781_02_7232_5482
 
             return area;
 
-        }
+        }//check if area is correct
         static void SearchBusNum(BusCollection AllBuses, int busnum)
         {
             foreach (BusLine b in AllBuses)
@@ -677,8 +675,8 @@ namespace dotNet5781_02_7232_5482
                     return;
             }
             throw new BusException("This bus doesn't exist");
-        }
-        public static void BusesInRoute(BusCollection AllBuses)
+        }//search if bus number exist
+        public static void BusesInRoute(BusCollection AllBuses)//create a line between to stations
         {
             Console.WriteLine("Enter the departure station");
             string busnum1= GetStat(out busnum1);
@@ -701,7 +699,7 @@ namespace dotNet5781_02_7232_5482
             Console.WriteLine("Sorted list of buses that pass through these 2 stations");
             foreach (BusLine line in sortedList)
                 Console.WriteLine(line.BusNumber + " ");
-        }
+        }//cheack if bus in rout
 
     }
 
