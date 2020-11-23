@@ -102,7 +102,7 @@ namespace dotNet5781_02_7232_5482
             AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[32].BusStationKey, " ", 0), new BusLineStation(AllStations[33].BusStationKey, " ", 6), new BusLineStation(AllStations[34].BusStationKey, " ", 4.5), new BusLineStation(AllStations[35].BusStationKey, " ", 5.2) }, 32, Area.NORTH));
             AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[36].BusStationKey, " ", 0), new BusLineStation(AllStations[37].BusStationKey, " ", 6.25), new BusLineStation(AllStations[38].BusStationKey, " ", 7.4), new BusLineStation(AllStations[39].BusStationKey, " ", 8.5) }, 950, Area.SOUTH));
         }
- 
+        
         static public void AddNew(ref List<BusStation> AllStations, BusCollection AllBuses)//the function add a bus or station according the user's choice
         {
             try
@@ -223,6 +223,7 @@ namespace dotNet5781_02_7232_5482
             }
             return;
         }
+        
         static public void NewStation(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
             Console.WriteLine("Enter the bus number to which you want to add a station");
@@ -485,6 +486,7 @@ namespace dotNet5781_02_7232_5482
             }
             return;
         }
+        
         static public void DeleteBus(BusCollection AllBuses)
         {
             try

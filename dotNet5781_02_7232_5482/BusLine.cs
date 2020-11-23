@@ -200,7 +200,7 @@ namespace dotNet5781_02_7232_5482
                 {
                     allStations.Add(Stations[i]);
                 }
-                BusLine bus = new BusLine(Stations = allStations, BusNumber = this.BusNumber, Area = this.Area);
+                BusLine bus = new BusLine(allStations,this.BusNumber,this.Area);
                 return bus;
             //}
 
