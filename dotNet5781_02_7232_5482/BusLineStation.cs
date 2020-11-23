@@ -10,21 +10,19 @@ namespace dotNet5781_02_7232_5482
 
     class BusLineStation : BusStation
     {
-        static Random rand = new Random();
-        public double Distance;
-        public TimeSpan Time;
-        public double My_Distance//לא לשכוח לקלוט מהמשתמש מספר במיין
+        public double Distance;// distance from previous station
+        public TimeSpan Time;//time from previous station
+        public double My_Distance 
         {
             get { return Distance; }
             set { Distance = value; }
         }
-        //חישבנו את המהירןת לפי ק"מ לדקה
         public TimeSpan My_Time
         {
             get { return Time; }
             set { }
         }
-        public TimeSpan TravelTime( double Distance)
+        public TimeSpan TravelTime( double Distance)// one km to a minutes
         {
             double speed = 1;//km for miniute
             double Time = this.Distance / speed;
@@ -43,13 +41,12 @@ namespace dotNet5781_02_7232_5482
             int choice = int.Parse(Console.ReadLine());
             return;
         }
-        public BusLineStation(string code1, string adress1, double Distance1) : base(code1, adress1)
+        public BusLineStation(string code1, string adress1, double Distance1) : base(code1, adress1)//Constractor
         {
             this.Distance = Distance1;
             this.Time = TravelTime(Distance1);
-        }
-       
-         public void Address()
+        }     
+         public void Address()//ask if the user whant to add adress
         {
             int num=1;
             Console.WriteLine("Enter 1 if you want to add the station's addrees, and 0 to continue");
