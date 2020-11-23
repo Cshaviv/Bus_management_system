@@ -206,9 +206,15 @@ namespace dotNet5781_02_7232_5482
             {
                 AddStation_(NuwBus, ref AllStations, AllBuses);
                 if (checkRouteExist(NuwBus, AllBuses))
+                {
+                    Console.WriteLine("yofi");
                     return;
+                }
                 else
+                {
+                    Console.WriteLine("Tapuz");
                     Console.WriteLine("The bus was successfully added");
+                }
             }
             else
             {
@@ -265,13 +271,13 @@ namespace dotNet5781_02_7232_5482
 
             }
             while (choose == 1);
-          return;
+          
         }
         static bool checkRouteExist(BusLine bus, BusCollection AllBuses)
         {
             int index = 0;
             bool flag = false;
-            bool flag2 = false;
+           // bool flag2 = false;
             foreach(BusLine b in AllBuses)//אם יש אותו מסלול בדיוק יחזור false
             {
                 if ((bus.Area == b.Area) && (b.Stations.Count == bus.Stations.Count))
@@ -291,12 +297,14 @@ namespace dotNet5781_02_7232_5482
                     {
                         Console.WriteLine("There is a bus with the exact same route so this bus cannot be added");
                         AllBuses.RemoveBus(bus);
-                        flag2 = true;
-                        return flag2;
-                    }                
+                       // flag2 = true;
+                        return true;
+                    }
+                    //flag = false;
                 }
+                flag = false;
             }
-            return flag2;
+            return false;
         }
         static string GetStat(out string stringnum)
         {
