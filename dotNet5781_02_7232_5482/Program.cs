@@ -199,16 +199,23 @@ namespace dotNet5781_02_7232_5482
             BusStations.Add(LastStation);
             BusLine NuwBus = new BusLine(BusStations, busnum, area);
             AllBuses.AddBus(NuwBus);
-            Console.WriteLine("The bus was successfully added");
+           // Console.WriteLine("The bus was successfully added");
             Console.WriteLine("Enter 1 if you want to add another station to this bus, and 0 to continue ");
             int choose = GetIntNum();
             if (choose == 1)
             {
-                AddStation_(NuwBus, ref AllStations);
+                AddStation_(NuwBus, ref AllStations, AllBuses);
+                if (checkRouteExist(NuwBus, AllBuses))
+                    return;
+                else
+                    Console.WriteLine("The bus was successfully added");
             }
             else
             {
-                return;
+                if ( checkRouteExist(NuwBus, AllBuses))
+                    return;
+               else
+                    Console.WriteLine("The bus was successfully added");
             }
             return;
         }
@@ -228,10 +235,10 @@ namespace dotNet5781_02_7232_5482
                 throw new BusException("this bus doesn't exist");
             }
             BusLine bus = ReturnBus(AllBuses, num, first, last, area);
-            AddStation_(bus, ref AllStations);
+            AddStation_(bus, ref AllStations, AllBuses);
             return;
         }
-        static public void AddStation_(BusLine bus, ref List<BusStation> AllStations)
+        static public void AddStation_(BusLine bus, ref List<BusStation> AllStations, BusCollection AllBuses)
         {
             int choose = 1;
             do
@@ -258,7 +265,38 @@ namespace dotNet5781_02_7232_5482
 
             }
             while (choose == 1);
-            return;
+          return;
+        }
+        static bool checkRouteExist(BusLine bus, BusCollection AllBuses)
+        {
+            int index = 0;
+            bool flag = false;
+            bool flag2 = false;
+            foreach(BusLine b in AllBuses)//אם יש אותו מסלול בדיוק יחזור false
+            {
+                if ((bus.Area == b.Area) && (b.Stations.Count == bus.Stations.Count))
+                {
+                    for (int i = 0; i < bus.Stations.Count; i++)
+                    {
+                        if (b.Stations[i].BusStationKey != bus.Stations[i].BusStationKey)
+                        {
+                            flag = true;     
+                        }
+                    }
+                    if (flag == false)
+                    {
+                        index++;
+                    }
+                    if (index == 2)//יש אוטובוס כזב במערכת(אחד זה אותו אחד שעכשיו הוספנו ועוד אחד אם אותו מסלול)
+                    {
+                        Console.WriteLine("There is a bus with the exact same route so this bus cannot be added");
+                        AllBuses.RemoveBus(bus);
+                        flag2 = true;
+                        return flag2;
+                    }                
+                }
+            }
+            return flag2;
         }
         static string GetStat(out string stringnum)
         {
@@ -540,7 +578,7 @@ namespace dotNet5781_02_7232_5482
             string stat = GetStat(out stat);
             if (!SearchStat(stat, ref AllStations))
             {
-                throw new BusException("This statin doesn't exist");
+                throw new BusException("This station doesn't exist");
             }
             string buses = AllBuses.stations(stat);
             Console.WriteLine(buses);
@@ -645,7 +683,7 @@ namespace dotNet5781_02_7232_5482
             {
                 foreach (BusLine line2 in station2exists)
                 {
-                    if (line1.BusNumber == line2.BusNumber && line1.FindIndex(busnum1) < line1.FindIndex(busnum2))
+                    if (line1.BusNumber == line2.BusNumber &&(line1.Area==line2.Area)&& line1.FindIndex(busnum1) < line1.FindIndex(busnum2))
                         stations1and2exists.AddBus(line1.SubRoute(busnum1, busnum2));
                 }
             }
