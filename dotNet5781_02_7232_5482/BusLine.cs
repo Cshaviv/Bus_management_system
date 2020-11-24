@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Ayala Israeli 324207232, Chagit Shaviv 322805482
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -262,7 +263,7 @@ namespace dotNet5781_02_7232_5482
         {
 
 
-            return String.Format(" Bus Number: {0}, Area: {1}, ListOfStation:{2}", BusNumber, Area, PrintStations());
+            return String.Format(" Bus Number: {0}, Area: {1}, ListOfStation:{2} {3}" , BusNumber, Area, PrintStations() ,Environment.NewLine);
 
         }
         public string PrintStations()
