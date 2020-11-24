@@ -1,4 +1,4 @@
-﻿//Ayala and C hagit
+﻿//Ayala Israeli 324207232, Chagit Shaviv 322805482
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,9 +81,6 @@ namespace dotNet5781_02_7232_5482
         }
         static public void CreatStatAndBus(ref List<BusStation> AllStations, BusCollection AllBuses)
         {
-            //AllStations = new List<BusStation>();
-            //int counter = 0;
-            //AllStations.Add(new BusStation(counter.ToString(), " "));
 
             for (int i = 0; i < 40; i++)
             {
@@ -102,7 +99,7 @@ namespace dotNet5781_02_7232_5482
             AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[32].BusStationKey, " ", 0), new BusLineStation(AllStations[33].BusStationKey, " ", 6), new BusLineStation(AllStations[34].BusStationKey, " ", 4.5), new BusLineStation(AllStations[35].BusStationKey, " ", 5.2) }, 32, Area.NORTH));
             AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[36].BusStationKey, " ", 0), new BusLineStation(AllStations[37].BusStationKey, " ", 6.25), new BusLineStation(AllStations[38].BusStationKey, " ", 7.4), new BusLineStation(AllStations[39].BusStationKey, " ", 8.5) }, 950, Area.SOUTH));
         }
-        
+        #region ADD
         static public void AddNew(ref List<BusStation> AllStations, BusCollection AllBuses)//the function add a bus or station according the user's choice
         {
             try
@@ -304,6 +301,7 @@ namespace dotNet5781_02_7232_5482
             }
             return false;
         }//cheack if there is another bus line passing the same rout
+        #endregion
         static string GetStat(out string stringnum)
         {
             stringnum = Console.ReadLine();
@@ -457,6 +455,7 @@ namespace dotNet5781_02_7232_5482
             while (!success);
             return num;
         }// cheack if the number is incorrect
+        #region DELETE
         static public void Delete_(BusCollection AllBuses)
         {
             try
@@ -550,6 +549,8 @@ namespace dotNet5781_02_7232_5482
                 bus.Stations[index + 1].Time = +bus.Stations[index].Time;
             }
         }//after the user add a station this function updata the data
+        #endregion
+        #region FIND
         static public void Find(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
             try
@@ -591,6 +592,8 @@ namespace dotNet5781_02_7232_5482
             Console.WriteLine("The transaction completed successfully");
             return;
         }// find all lines that passing station
+        #endregion
+        #region PRINT
         static public void Print(BusCollection AllBuses, ref List<BusStation> AllStations)
         {
             try
@@ -645,6 +648,7 @@ namespace dotNet5781_02_7232_5482
             }
             return;
         }//print according the user's choice 
+        #endregion
         static public Area TheArea()
         {
             Area area = Area.JERUSALEM;
