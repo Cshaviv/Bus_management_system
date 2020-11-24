@@ -602,7 +602,7 @@ namespace dotNet5781_02_7232_5482
                     string lines = null;
                     foreach (BusLine b in AllBuses)
                     {
-                        lines += b.BusNumber + ", ";
+                        lines += /*b.BusNumber*/  /*", "*/b.ToString();
 
                     }
                     if (lines == null)
