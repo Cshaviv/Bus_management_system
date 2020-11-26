@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace dotNet5781_02_7232_5482
 {
 
-    class BusException : Exception
+    public class BusException : Exception
     {
         public BusException() : base() { }
         public BusException(string message) : base(message) { }

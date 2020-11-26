@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7232_5482
 {
-    class BusStation
+    public class BusStation
     {   
         public string BusStationKey { get; set; }//station number
         public double Latitude { get; set; }//latitude

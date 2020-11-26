@@ -10,7 +10,7 @@ namespace dotNet5781_02_7232_5482
 {
 
 
-    class BusCollection : IEnumerable
+    public class BusCollection : IEnumerable
     {
         public List<BusLine> Buses { get; set; }//list of buses
         public IEnumerator GetEnumerator()

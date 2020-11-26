@@ -1,4 +1,4 @@
-﻿//Ayala Israeli 324207232, Chagit Shaviv 322805482.
+﻿//Ayala Israeli 324207232, Chagit Shaviv 322805482
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7232_5482
 {
-    class Program
+   public class Program
     {
         static void Main(string[] args)
         {

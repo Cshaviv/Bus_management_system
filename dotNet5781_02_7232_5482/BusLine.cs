@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7232_5482
 {
-    class BusLine : IComparable<BusLine>
+    public class  BusLine : IComparable<BusLine>
     {
         public int BusNumber { get; set; }
         private List<BusLineStation> stations;
