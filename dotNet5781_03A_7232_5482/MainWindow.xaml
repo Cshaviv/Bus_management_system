@@ -21,11 +21,11 @@ VerticalAlignment="Stretch" Width="auto" Grid.RowSpan="2">
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
         </Grid>
-        <ComboBox x:Name="cbBusLines" HorizontalAlignment= "Stretch" Margin="238,26,414,10" VerticalAlignment= "Stretch" RenderTransformOrigin="0.5,0.5" SelectionChanged="ComboBox_SelectionChanged" Grid.RowSpan="2"/>
+        <ComboBox Name="cbBusLines" HorizontalAlignment= "Stretch" Margin="238,26,414,0" RenderTransformOrigin="0.5,0.5" SelectionChanged="ComboBox_SelectionChanged" Grid.RowSpan="2" Height="32" VerticalAlignment="Top"/>
         <Label Content="Bus Line Number:" HorizontalAlignment="Left" Margin="5,17,0,0" VerticalAlignment="Top" Height="58" Width="228" Grid.RowSpan="3" FontSize="24" FontFamily="Segoe UI Semibold"/>
-        <Label x:Name="Area" Content="Area:" HorizontalAlignment="Left" Margin="466,0,0,10" VerticalAlignment="Bottom" Height="45" Width="100" Grid.RowSpan="2" FontSize="24" FontFamily="Segoe UI Semibold"/>
-        <TextBox x:Name="tbArea" HorizontalAlignment= "Stretch" Margin="545,17,0,524" Grid.RowSpan="3" TextWrapping="Wrap" VerticalAlignment= "Stretch" TextChanged="tbArea_TextChanged" FontSize="24" Text="Here will be the area"/>
-        <ListBox x:Name="lbBusLineStations" HorizontalAlignment="Left" Height="322" Margin="85,85,0,0" Grid.Row="2" VerticalAlignment="Top" Width="193" ItemsSource="{Binding}" />
+        <Label Name="Area" Content="Area:" HorizontalAlignment="Left" Margin="466,0,0,10" VerticalAlignment="Bottom" Height="45" Width="100" Grid.RowSpan="2" FontSize="24" FontFamily="Segoe UI Semibold"/>
+        <TextBox Name="tbArea" HorizontalAlignment= "Stretch" Margin="545,17,0,524" Grid.RowSpan="3" TextWrapping="Wrap" VerticalAlignment= "Stretch" TextChanged="tbArea_TextChanged" FontSize="24" Text="Here will be the area" IsEnabled="False"/> 
+        <ListBox Name="lbBusLineStations" HorizontalAlignment="Left" Height="322" Margin="85,85,0,0" Grid.Row="2" VerticalAlignment="Top" Width="193" ItemsSource="{Binding}" />
     </Grid>
 
 </Window>

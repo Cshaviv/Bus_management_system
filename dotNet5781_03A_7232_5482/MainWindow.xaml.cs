@@ -36,6 +36,8 @@ namespace dotNet5781_03A_7232_5482
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowBusLine((cbBusLines.SelectedValue as BusLine).BusNumber);
+            tbArea.Text = (cbBusLines.SelectedValue as BusLine).Area.ToString();
+
         }
         private void ShowBusLine(int index)
         {
@@ -43,9 +45,9 @@ namespace dotNet5781_03A_7232_5482
             UpGrid.DataContext = currentDisplayBusLine;
             lbBusLineStations.DataContext = currentDisplayBusLine.Stations;
         }
-        //private void tbArea_TextChanged(object sender, TextChangedEventArgs e)
-        //{
+        private void tbArea_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
-        //}
+        }
     }
 }

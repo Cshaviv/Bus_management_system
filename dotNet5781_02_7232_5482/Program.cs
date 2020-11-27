@@ -81,14 +81,18 @@ namespace dotNet5781_02_7232_5482
         }
         static public void CreatStatAndBus(ref List<BusStation> AllStations, BusCollection AllBuses)
         {
-
+             //Random rand = new Random();
             for (int i = 0; i < 40; i++)
             {
                 AllStations.Add(new BusStation(i.ToString(), " "));
 
             }
+            //Random RandomArea = new Random(DateTime.Now.Millisecond);
+            //Random BusNumberRandom = new Random(DateTime.Now.Millisecond);
+            //int area = RandomArea.Next(1, 6);
+            //int busNumberR = BusNumberRandom.Next(1, 999);
 
-            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[0].BusStationKey, " ", 0), new BusLineStation(AllStations[1].BusStationKey, " ", 0.7), new BusLineStation(AllStations[2].BusStationKey, " ", 2), new BusLineStation(AllStations[3].BusStationKey, " ", 2.5) }, 280, Area.GENERAL));
+            AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[0].BusStationKey, " ", 0), new BusLineStation(AllStations[1].BusStationKey, " ", 0.7), new BusLineStation(AllStations[2].BusStationKey, " ", 2), new BusLineStation(AllStations[3].BusStationKey, " ", 2.5) }, 280, Area.GENERAL)) ;
             AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[4].BusStationKey, " ", 0), new BusLineStation(AllStations[5].BusStationKey, " ", 4), new BusLineStation(AllStations[6].BusStationKey, " ", 2), new BusLineStation(AllStations[7].BusStationKey, " ", 3.3) }, 14, Area.CENTER));
             AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[8].BusStationKey, " ", 0), new BusLineStation(AllStations[9].BusStationKey, " ", 2.9), new BusLineStation(AllStations[10].BusStationKey, " ", 1.87), new BusLineStation(AllStations[11].BusStationKey, " ", 3.8) }, 160, Area.JERUSALEM));
             AllBuses.AddBus(new BusLine(new List<BusLineStation>() { new BusLineStation(AllStations[12].BusStationKey, " ", 0), new BusLineStation(AllStations[13].BusStationKey, " ", 2.65), new BusLineStation(AllStations[14].BusStationKey, " ", 0.9), new BusLineStation(AllStations[15].BusStationKey, " ", 3.4) }, 5, Area.SOUTH));

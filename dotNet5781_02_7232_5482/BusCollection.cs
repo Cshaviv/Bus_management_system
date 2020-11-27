@@ -94,12 +94,21 @@ namespace dotNet5781_02_7232_5482
             }
             return -1;
         }
-        public BusLine this[int numbus, string firstStat, string lastStat]
+        public BusLine this[int numbus, string firstStat=null, string lastStat=null]
         {
             get
             {
+                //if (SearchBus(numbus, firstStat, lastStat) == -1)
+                //    throw new BusException("ERROR! this bus line doesn't exist");
+                if (firstStat == null && lastStat == null)
+                    foreach (BusLine b in Buses)
+                    {
+                        if (b.BusNumber == numbus)
+                            return b;
+                    }
                 if (SearchBus(numbus, firstStat, lastStat) == -1)
                     throw new BusException("ERROR! this bus line doesn't exist");
+               
                 return Buses[SearchBus(numbus, firstStat, lastStat)];
             }
             set
