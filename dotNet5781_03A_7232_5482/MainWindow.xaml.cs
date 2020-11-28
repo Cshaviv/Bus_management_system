@@ -33,12 +33,17 @@ namespace dotNet5781_03A_7232_5482
             cbBusLines.DisplayMemberPath = "BusNumber";
             cbBusLines.SelectedIndex = 0;
         }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowBusLine((cbBusLines.SelectedValue as BusLine).BusNumber);
             tbArea.Text = (cbBusLines.SelectedValue as BusLine).Area.ToString();
-
         }
+        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    ShowBusLine((cbBusLines.SelectedValue as BusLine).BusNumber);
+        //    tbArea.Text = (cbBusLines.SelectedValue as BusLine).Area.ToString();
+
+        //}
         private void ShowBusLine(int index)
         {
             currentDisplayBusLine = busLines[index];
@@ -46,6 +51,11 @@ namespace dotNet5781_03A_7232_5482
             lbBusLineStations.DataContext = currentDisplayBusLine.Stations;
         }
         private void tbArea_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void lbBusLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
