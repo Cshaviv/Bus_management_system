@@ -13,11 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using dotNet5781_02_7232_5482;
-namespace dotNet5781_03A_7232_5482
+
+namespace dotNet5781_3a_7232_5482
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+ 
     public partial class MainWindow : Window
     {
         private BusLine currentDisplayBusLine;
@@ -38,12 +40,12 @@ namespace dotNet5781_03A_7232_5482
             ShowBusLine((cbBusLines.SelectedValue as BusLine).BusNumber);
             tbArea.Text = (cbBusLines.SelectedValue as BusLine).Area.ToString();
         }
-        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    ShowBusLine((cbBusLines.SelectedValue as BusLine).BusNumber);
-        //    tbArea.Text = (cbBusLines.SelectedValue as BusLine).Area.ToString();
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowBusLine((cbBusLines.SelectedValue as BusLine).BusNumber);
+            tbArea.Text = (cbBusLines.SelectedValue as BusLine).Area.ToString();
 
-        //}
+        }
         private void ShowBusLine(int index)
         {
             currentDisplayBusLine = busLines[index];
@@ -60,10 +62,5 @@ namespace dotNet5781_03A_7232_5482
 
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ShowBusLine((cbBusLines.SelectedValue as BusLine).BusNumber);
-            tbArea.Text = (cbBusLines.SelectedValue as BusLine).Area.ToString();
-        }
     }
 }

@@ -13,6 +13,10 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="102*"/>
+            <ColumnDefinition Width="691*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
@@ -20,20 +24,22 @@
             <RowDefinition Height="68*"/>
             <RowDefinition Height="541*"/>-->
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto" Grid.RowSpan="2">
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto" Grid.RowSpan="2" Background="#FFF5EFEF" Margin="0,0,0.334,-0.333" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="199*"/>
+                <ColumnDefinition Width="102*"/>
+                <ColumnDefinition Width="96*"/>
+                <ColumnDefinition Width="198*"/>
+                <ColumnDefinition Width="198*"/>
             </Grid.ColumnDefinitions >
-            
+            <ComboBox Name="cbBusLines" HorizontalAlignment= "Stretch" Margin="39.333,26,63.104,9.667" RenderTransformOrigin="0.5,0.5" SelectionChanged="cbBusLines_SelectionChanged" Grid.Column="1"/>
+            <Label Content="Bus Line Number:" HorizontalAlignment="Left" Margin="5,17,0,0" VerticalAlignment="Top" Height="58" Width="228" FontSize="24" FontFamily="Segoe UI Semibold" Grid.ColumnSpan="2"/>
+            <TextBox Name="tbArea" HorizontalAlignment= "Stretch" Margin="147.666,17,50.334,9.667" TextWrapping="Wrap" VerticalAlignment= "Stretch" TextChanged="tbArea_TextChanged" FontSize="24" Text="Here will be the area" IsEnabled="False" Grid.Column="3"/>
+            <Label Name="Area" Content="Area:" HorizontalAlignment="Left" Margin="87.667,0,0,521.667" VerticalAlignment="Bottom" Height="45" Width="100" FontSize="24" FontFamily="Segoe UI Semibold" Grid.Column="1" Grid.ColumnSpan="2"/>
+            <ComboBox Grid.Column="3" HorizontalAlignment="Left" Margin="28.667,25,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
         </Grid>
-        <ComboBox Name="cbBusLines" HorizontalAlignment= "Stretch" Margin="238,26,452,10" RenderTransformOrigin="0.5,0.5" SelectionChanged="cbBusLines_SelectionChanged"/>
-        <Label Content="Bus Line Number:" HorizontalAlignment="Left" Margin="5,17,0,0" VerticalAlignment="Top" Height="58" Width="228" Grid.RowSpan="3" FontSize="24" FontFamily="Segoe UI Semibold"/>
-        <TextBox Name="tbArea" HorizontalAlignment= "Stretch" Margin="545,17,10,10" TextWrapping="Wrap" VerticalAlignment= "Stretch" TextChanged="tbArea_TextChanged" FontSize="24" Text="Here will be the area" IsEnabled="False"/>
-        <Label Name="Area" Content="Area:" HorizontalAlignment="Left" Margin="400,0,0,10" VerticalAlignment="Bottom" Height="45" Width="100" FontSize="24" FontFamily="Segoe UI Semibold"/>
-        <ListBox Name="lbBusLineStations" HorizontalAlignment="Left" Height="322" Margin="85,85,0,0" Grid.Row="2" VerticalAlignment="Top" Width="481" ItemsSource="{Binding}" />
+
+        <ListBox Name="lbBusLineStations" HorizontalAlignment="Left" Height="322" Margin="83,68,0,0" Grid.Row="1" VerticalAlignment="Top" Width="481" ItemsSource="{Binding}" SelectionChanged="lbBusLineStations_SelectionChanged" Grid.ColumnSpan="2" />
     </Grid>
 
 </Window>
