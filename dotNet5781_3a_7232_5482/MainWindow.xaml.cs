@@ -62,5 +62,11 @@ namespace dotNet5781_3a_7232_5482
 
         }
 
+        private void tbArea_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        
     }
 }
