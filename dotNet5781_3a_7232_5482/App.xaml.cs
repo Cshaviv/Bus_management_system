@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace dotNet5781_3a_7232_5482
+namespace dotNet5781_03A_7232_5482
 {
     /// <summary>
     /// Interaction logic for App.xaml
