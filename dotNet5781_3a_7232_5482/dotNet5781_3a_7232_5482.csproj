@@ -118,5 +118,17 @@
   <ItemGroup>
     <Resource Include="img778068.jpgבלבבבבבבבבבלב.jpg11.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="מטרופולין-להבות-1.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img2.jpg111.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="dan.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
