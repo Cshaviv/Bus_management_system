@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Ayala Israeli 324207232 and Chagit Shaviv 322805482
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,32 +31,24 @@ namespace dotNet5781_03A_7232_5482
             List<BusStation> AllStations = new List<BusStation>();
             List<BusLine> lines = new List<BusLine>();
             busLines = new BusCollection();
-            Program.CreatStatAndBus(ref AllStations, busLines);
+            Program.CreatStatAndBus(ref AllStations, busLines);//add random buses and random stations
             cbBusLines.ItemsSource = busLines;
             cbBusLines.DisplayMemberPath = "BusNumber";
             cbBusLines.SelectedIndex = 0;
         }
-        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)//bus line show in combobox
         {
             ShowBusLine((cbBusLines.SelectedValue as BusLine).BusNumber);
-            tbArea.Text = (cbBusLines.SelectedValue as BusLine).Area.ToString();
+            tbArea.Text = (cbBusLines.SelectedValue as BusLine).Area.ToString();//area show in textbox
         }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ShowBusLine((cbBusLines.SelectedValue as BusLine).BusNumber);
-            tbArea.Text = (cbBusLines.SelectedValue as BusLine).Area.ToString();
-
-        }
-        private void ShowBusLine(int index)
+       
+        private void ShowBusLine(int index)//in func the busline accepted from the bus collection
         {
             currentDisplayBusLine = busLines[index];
             UpGrid.DataContext = currentDisplayBusLine;
             lbBusLineStations.DataContext = currentDisplayBusLine.Stations;
         }
-        private void tbArea_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        
 
         private void lbBusLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -66,7 +59,5 @@ namespace dotNet5781_03A_7232_5482
         {
 
         }
-
-        
     }
 }

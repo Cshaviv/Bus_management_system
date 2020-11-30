@@ -101,31 +101,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images.jpgאוטובוס.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="הורדה.jpg אוטובוסססססס.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="הורדה.jpgאוטובוס 2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="IMG_20201130_172949.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="img778068.jpgבלבבבבבבבבבלב.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="img778068.jpgבלבבבבבבבבבלב.jpg11.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="bus.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="מטרופולין-להבות-1.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="img2.jpg111.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="dan.png" />
