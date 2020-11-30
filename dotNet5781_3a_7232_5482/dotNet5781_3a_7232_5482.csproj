@@ -103,5 +103,20 @@
   <ItemGroup>
     <Resource Include="images.jpgאוטובוס.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="הורדה.jpg אוטובוסססססס.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="הורדה.jpgאוטובוס 2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMG_20201130_172949.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img778068.jpgבלבבבבבבבבבלב.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img778068.jpgבלבבבבבבבבבלב.jpg11.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
