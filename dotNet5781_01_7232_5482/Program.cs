@@ -109,7 +109,7 @@ namespace dotNet5781_01_7232_5482
         }//Data reception for the new bus
         static double LastTreat(double TotalKm)
         {
-            double My_TotalKm = TotalKm;
+            double My_TotalKm = TotalKm; 
             Console.WriteLine("Press 'Y' to update the number of kilometers the bus has traveled since last treatmant or 'N' to skip  ");
             string choose = Console.ReadLine();
             double KmFromLastTreat = 0.0;
@@ -151,7 +151,7 @@ namespace dotNet5781_01_7232_5482
             }
 
         }//Data reception for the new bus
-        static double LastRefueling(double TotalKm)
+        static double LastRefueling(double TotalKm )
         {
             Console.WriteLine("Press 'Y' to update the number of kilometers the bus has traveled since last refueling or 'N' to skip");
             string choose = Console.ReadLine();
@@ -196,7 +196,7 @@ namespace dotNet5781_01_7232_5482
 
         }//Data reception for the new bus
 
-        static DateTime DateOfLastTreat(DateTime My_DT)
+        static DateTime DateOfLastTreat(DateTime My_DT) 
         {
             DateTime StartDate = My_DT;
             Console.WriteLine("Press 'Y' To type in what date was the last treatment of the bus  or 'N' to skip ");
@@ -245,16 +245,25 @@ namespace dotNet5781_01_7232_5482
 
         {
             double My_Km = KmForRide;
+            if (b.needTreat(My_Km))//Check if the bus does not need treatment.
+            {
+                if (b.Kmafterrefueling + My_Km > 1200)
+                {
+                    Console.WriteLine("The bus need treat and fuel");
+
+                }
+                else
+                {
+                    Console.WriteLine("The bus needs treatment");
+                }
+                return;
+            }
             if (b.Kmafterrefueling + My_Km > 1200)//Check if the bus has enough fuel for the trip.
             {
                 Console.WriteLine("You do not have enough fuel to go on this trip");
                 return ;
             }
-            if (b.needTreat(My_Km))//Check if the bus does not need treatment.
-            {
-                Console.WriteLine("The bus needs treatment");
-                return ;
-            }
+            
             b.Kmafterrefueling = b.Kmafterrefueling + KmForRide;//Update bus fields due to travel.
             b.Kmaftertreat = b.Kmaftertreat + KmForRide;
             b.Km = b.Km + KmForRide;
@@ -264,10 +273,10 @@ namespace dotNet5781_01_7232_5482
 
         static void Treat_OR_Refuel(Bus b)
         {
-            Console.WriteLine("Type 1 if you are interested in refueling the bus.Type 2 if you are interested in treatment");
-            string Choose1or2 = Console.ReadLine();//choose 1 or 2
+            Console.WriteLine("Type 1 if you are interested in refueling the bus.Type 2 if you are interested in treatment. Type 3 if yor are interested in treatment and refueling");
+            string Choose1or2or3 = Console.ReadLine();//choose 1 or 2 or 3
             int YourChoose;
-           bool succes = Int32.TryParse(Choose1or2, out YourChoose);
+           bool succes = Int32.TryParse(Choose1or2or3, out YourChoose);
             if (!succes)
             {
                 Console.WriteLine("ERROR! ");//Incorrect input.
@@ -285,6 +294,15 @@ namespace dotNet5781_01_7232_5482
                 b.LastTreat = DateTime.Now;
                 b.Kmaftertreat = 0;
                 Console.WriteLine("The treatment was performed successfully");
+                return;
+            }
+            else if (YourChoose == 3)//treatment
+            {
+                b.LastTreat = DateTime.Now;
+                b.Kmaftertreat = 0;
+                b.Kmafterrefueling = 0;
+                Console.WriteLine("The treatment was performed successfully");
+                Console.WriteLine("The fuel tank is full");
                 return;
             }
             else
