@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dotNet5781_01_7232_5482
+namespace dotNet5781_03B_7232_5482
 {
   public  class Bus
     {
@@ -15,6 +15,12 @@ namespace dotNet5781_01_7232_5482
         private double km;
         private double kmafterrefueling;
         private double kmaftertreat;
+        private Enum STATUS;
+        public Enum BusStatus
+        {
+            get { return STATUS; }
+            set { STATUS = value; }
+        }
 
         public double Kmaftertreat
         {

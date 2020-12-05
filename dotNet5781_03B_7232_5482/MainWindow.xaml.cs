@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
-using dotNet5781_01_7232_5482;
 
+//xmlns: local = "clr-namespace:dotNet5781_03B_7232_5482"
 
 namespace dotNet5781_03B_7232_5482
 {
@@ -39,7 +29,7 @@ namespace dotNet5781_03B_7232_5482
             BusesCollection.Add(new Bus(1223344, new DateTime(2016, 03, 09), new DateTime(2017, 11, 01), 10000, 1000, 500));
             BusesCollection.Add(new Bus(1284666, new DateTime(2015, 06, 12), new DateTime(2016, 05, 01), 10000, 1000, 500));
             BusesCollection.Add(new Bus(1239997, new DateTime(2016, 03, 04), new DateTime(2017, 03, 04), 10000, 1000, 500));
-
+            
 
 
 
@@ -52,6 +42,11 @@ namespace dotNet5781_03B_7232_5482
             //    cbBusLines.ItemsSource = busLines;
             //    cbBusLines.DisplayMemberPath = "BusNumber";
             //    cbBusLines.SelectedIndex = 0;
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BusList.ItemsSource = BusesCollection;
         }
     }
 }

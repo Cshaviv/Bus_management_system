@@ -6,10 +6,42 @@
         xmlns:local="clr-namespace:dotNet5781_03B_7232_5482"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="MyDataTemplate"
+                  DataType="local:Bus">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                   Text="{Binding Path=LicenseNum}" />
+                <TextBlock Grid.Column="1"
+                   Text="{Binding Path=FirstName}" />
+                <TextBlock Grid.Column="2"
+                   Text="Last Name: " />
+                <TextBlock Grid.Column="3"
+                   Text="{Binding Path=LastName}" />
+                <CheckBox Grid.Column="4"
+                  Content="Is Lecturer?"
+                  IsEnabled="False"
+                  IsChecked="{Binding Path=IsLecturer}" />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <ListBox x:Name="BusList" HorizontalAlignment="Left" Height="257" Margin="172,71,0,0" VerticalAlignment="Top" Width="355" SelectionChanged="ListBox_SelectionChanged"/>
 
     </Grid>
 </Window>
