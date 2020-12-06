@@ -1,0 +1,28 @@
+﻿<Window x:Class="dotNet5781_03B_7232_5482.AddNewBus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_7232_5482"
+        mc:Ignorable="d"
+        Title="AddNewBus" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource busViewSource}">
+        <DatePicker x:Name="Date"  HorizontalAlignment="Left" Margin="38,188,0,0" VerticalAlignment="Top" Height="63" Width="200"/>
+        <Label Content="Enter the activity start date " HorizontalAlignment="Left" Margin="53,138,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="190" FontSize="14">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.373"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label Content="Enter the license bus number" HorizontalAlignment="Left" Margin="38,38,0,0" VerticalAlignment="Top" Width="218" FontSize="14"/>
+        <TextBox x:Name="liceNumText" HorizontalAlignment="Left" Height="23" Margin="60,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" TextChanged="TextBox_TextChanged"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="38,320,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" RenderTransformOrigin="-1.426,1.66"/>
+    </Grid>
+</Window>

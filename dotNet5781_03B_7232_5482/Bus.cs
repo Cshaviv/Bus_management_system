@@ -89,14 +89,30 @@ namespace dotNet5781_03B_7232_5482
         }
 
 
-        public Bus(int licNum, DateTime dt, DateTime My_DT, double My_Km = 0, double My_Kmaftertreat = 0, double My_Kmafterrefueling = 0)
+        //public Bus(int licNum, DateTime dt, DateTime My_DT, double My_Km = 0, double My_Kmaftertreat = 0, double My_Kmafterrefueling = 0)
+        //{
+        //    this.startDate = dt;
+        //    this.licenseNum = licNum;
+        //    this.lastTreat = My_DT;
+        //    this.Km = My_Km;
+        //    this.kmaftertreat = My_Kmaftertreat;
+        //    this.kmafterrefueling = My_Kmafterrefueling;
+        //}
+        public Bus(string licNum, DateTime dt, DateTime My_DT)
         {
+            this.licenseNum = Convert.ToInt32(licNum);
             this.startDate = dt;
-            this.licenseNum = licNum;
             this.lastTreat = My_DT;
-            this.Km = My_Km;
-            this.kmaftertreat = My_Kmaftertreat;
-            this.kmafterrefueling = My_Kmafterrefueling;
-        }  
-}
+            this.Km = 0;
+            this.kmaftertreat = 0;
+            this.kmafterrefueling = 0;
+        }
+
+        public override string ToString()
+        {
+            return String.Format("license Number : {0}", licenseNum);
+
+        }
+    }
+
 }

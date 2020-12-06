@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_03B_7232_5482
 {
-    public static class Buses//This class restart 10 buses
+    public static class Buses
     {
         public static void RestartBuses(ObservableCollection<Bus> BusesCollection)
         {
@@ -21,9 +21,7 @@ namespace dotNet5781_03B_7232_5482
             BusesCollection.Add(new Bus(1223344, new DateTime(2016, 03, 09), new DateTime(2017, 11, 01), 10000, 1000, 500));
             BusesCollection.Add(new Bus(1284666, new DateTime(2015, 06, 12), new DateTime(2016, 05, 01), 10000, 1000, 500));
             BusesCollection.Add(new Bus(1239997, new DateTime(2016, 03, 04), new DateTime(2017, 03, 04), 10000, 1000, 500));
-
-
         }
-
+            
     }
 }

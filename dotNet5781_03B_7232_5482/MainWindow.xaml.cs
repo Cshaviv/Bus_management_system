@@ -14,28 +14,21 @@ namespace dotNet5781_03B_7232_5482
     public partial class MainWindow : Window
     {
         public ObservableCollection<Bus> BusesCollection;
-        public MainWindow(ObservableCollection<Bus> S)
+        public MainWindow()
         { 
             
             InitializeComponent();
-            ObservableCollection<Bus> BusesCollection = new ObservableCollection<Bus>();
-            DataContext = BusesCollection;
+            BusesCollection = new ObservableCollection<Bus>();
+            Buses.RestartBuses(BusesCollection);
+            BusList.ItemsSource = BusesCollection;
 
 
-
-
-            //    List<BusStation> AllStations = new List<BusStation>();
-            //    List<BusLine> lines = new List<BusLine>();
-            //    busLines = new BusCollection();
-            //    Program.CreatStatAndBus(ref AllStations, busLines);//add random buses and random stations
-            //    cbBusLines.ItemsSource = busLines;
-            //    cbBusLines.DisplayMemberPath = "BusNumber";
-            //    cbBusLines.SelectedIndex = 0;
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //BusList.ItemsSource = BusesCollection;
+            AddNewBus add = new AddNewBus(BusesCollection);
+            add.ShowDialog();
         }
     }
 }
