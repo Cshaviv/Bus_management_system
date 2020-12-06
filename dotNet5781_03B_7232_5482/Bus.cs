@@ -98,15 +98,15 @@ namespace dotNet5781_03B_7232_5482
             this.kmaftertreat = My_Kmaftertreat;
             this.kmafterrefueling = My_Kmafterrefueling;
         }
-        public Bus(string licNum, DateTime dt, DateTime My_DT)
-        {
-            this.licenseNum = Convert.ToInt32(licNum);
-            this.startDate = dt;
-            this.lastTreat = My_DT;
-            this.Km = 0;
-            this.kmaftertreat = 0;
-            this.kmafterrefueling = 0;
-        }
+        //public Bus(string licNum, DateTime dt, DateTime My_DT)
+        //{
+        //    this.licenseNum = Convert.ToInt32(licNum);
+        //    this.startDate = dt;
+        //    this.lastTreat = My_DT;
+        //    this.Km = 0;
+        //    this.kmaftertreat = 0;
+        //    this.kmafterrefueling = 0;
+        //}
 
         public override string ToString()
         {
