@@ -30,12 +30,11 @@ namespace dotNet5781_03B_7232_5482
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            do
-            {
+            
+           
 
                 checkBus();
-            }
-            while (checkBus() == false);
+          
             
 
             BusesCollection.Add(new Bus(Int32.Parse(liceNumText.Text), Date.DisplayDate, Date.DisplayDate));
@@ -48,21 +47,16 @@ namespace dotNet5781_03B_7232_5482
             // Load data by setting the CollectionViewSource.Source property:
             // busViewSource.Source = [generic data source]
         }
-        private bool checkBus()
+        private void checkBus()
         {
             int licNum;
-            bool flag = true;
             bool succ = Int32.TryParse(liceNumText.Text, out licNum);
 
             if (!succ)
             {
                 MessageBox.Show("This licese num is incorrect");
-                flag = false;
-                return flag;
-                
-                
             }
-            return flag;
+     
 
         }
 
