@@ -41,7 +41,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="BusList" HorizontalAlignment="Left" Height="257" Margin="172,71,0,0" VerticalAlignment="Top" Width="355" SelectionChanged="ListBox_SelectionChanged"/>
+        <ListBox x:Name="BusList" HorizontalAlignment="Left" Height="257" Margin="12,57,0,0" VerticalAlignment="Top" Width="355" />
+        <Button Content="Add Bus" HorizontalAlignment="Left" Margin="33,333,0,0" VerticalAlignment="Top" Width="169" Height="54" Click="Button_Click"/>
 
     </Grid>
 </Window>
