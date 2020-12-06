@@ -97,8 +97,8 @@ namespace dotNet5781_03B_7232_5482
             this.Km = My_Km;
             this.kmaftertreat = My_Kmaftertreat;
             this.kmafterrefueling = My_Kmafterrefueling;
-            //}
-            public Bus(string licNum, DateTime dt, DateTime My_DT)
+        }
+        public Bus(string licNum, DateTime dt, DateTime My_DT)
         {
             this.licenseNum = Convert.ToInt32(licNum);
             this.startDate = dt;

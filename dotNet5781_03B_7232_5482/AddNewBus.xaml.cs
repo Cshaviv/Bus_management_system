@@ -30,7 +30,7 @@ namespace dotNet5781_03B_7232_5482
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            BusesCollection.Add(new Bus { LicenseNum = Parse.32(liceNumText.Text), StartDate = Date.DisplayDate, LastTreat = Date.DisplayDate });
+            BusesCollection.Add(new Bus { LicenseNum = Int32.Parse(liceNumText.Text), StartDate = Date.DisplayDate, LastTreat = Date.DisplayDate });
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
