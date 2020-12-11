@@ -27,7 +27,8 @@ namespace dotNet5781_03B_7232_5482
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AddNewBus add = new AddNewBus(BusesCollection);
+            AddNewBus add = new AddNewBus();
+            add.BusesCollection = BusesCollection;
             add.ShowDialog();
         }
     }

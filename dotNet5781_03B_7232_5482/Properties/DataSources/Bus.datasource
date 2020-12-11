@@ -7,15 +7,4 @@
 -->
 <GenericObjectDataSource DisplayName="Bus" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
    <TypeInfo>dotNet5781_03B_7232_5482.Bus, dotNet5781_03B_7232_5482, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-   <TypeUISetting>
-      <PropertyUISettings>
-         <PropertyUISetting Name="LastTreat">
-            <ControlSettings>
-               <ControlSetting ArtifactName="Microsoft:System.Windows:WPF">
-                  <BindableControlInfo Name="DatePicker" Type="System.Windows.Controls.DatePicker" AssemblyName="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-               </ControlSetting>
-            </ControlSettings>
-         </PropertyUISetting>
-      </PropertyUISettings>
-   </TypeUISetting>
 </GenericObjectDataSource>

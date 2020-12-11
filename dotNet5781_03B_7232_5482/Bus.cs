@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_03B_7232_5482
 {
-  public  class Bus
+  public class Bus
     {
         private int licenseNum;
         private DateTime startDate;
@@ -97,6 +97,10 @@ namespace dotNet5781_03B_7232_5482
             this.Km = My_Km;
             this.kmaftertreat = My_Kmaftertreat;
             this.kmafterrefueling = My_Kmafterrefueling;
+        }
+        public Bus()
+        {
+
         }
         //public Bus(string licNum, DateTime dt, DateTime My_DT)
         //{

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7232_5482"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="531.818" Width="700">
     <Window.Resources>
         <DataTemplate x:Key="MyDataTemplate"
                   DataType="local:Bus">
@@ -37,11 +37,11 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid>
+    <Grid Margin="0,0,293.333,0.667">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="BusList" HorizontalAlignment="Left" Height="257" Margin="12,57,0,0" VerticalAlignment="Top" Width="355" />
+        <ListBox x:Name="BusList" Height="257" Margin="12,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" />
         <Button Content="Add Bus" HorizontalAlignment="Left" Margin="33,333,0,0" VerticalAlignment="Top" Width="169" Height="54" Click="Button_Click"/>
 
     </Grid>
