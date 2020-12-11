@@ -96,8 +96,8 @@ namespace dotNet5781_03B_7232_5482
                 counter = 3;
             }
             km = kmafterrefuelingTextBox.Text;
-            Double checkKm1;
-            if (!Double.TryParse(liceNum, out checkKm1) || checkKm1 < 0 || km == null || checkKm1 > 1200 || checkKm1 > checkKm)
+            Double checkKm_1;
+            if (!Double.TryParse(liceNum, out checkKm_1) || checkKm_1 < 0 || km == null || checkKm_1 > 1200 || checkKm_1 > checkKm)
             {
                 ErrorKmRefText.Text = "ERROR! Please try enter again";
                 ErrorKmRefText.Visibility = Visibility.Visible;
@@ -107,11 +107,11 @@ namespace dotNet5781_03B_7232_5482
             {
                 ErrorKmRefText.Visibility = Visibility.Hidden;
                 kmafterrefuelingTextBox.BorderBrush = Brushes.Green;
-                newBus.Kmafterrefueling = checkKm1;
+                newBus.Kmafterrefueling = checkKm_1;
                 counter = 4;
             }
             km = kmaftertreatTextBox.Text;
-            if (!Double.TryParse(liceNum, out checkKm1) || checkKm1 < 0 || km == null || checkKm1 > 20000|| checkKm1>checkKm)
+            if (!Double.TryParse(liceNum, out checkKm_1) || checkKm_1 < 0 || km == null || checkKm_1 > 20000|| checkKm_1>checkKm)
             {
                 ErrorKmTreatText.Text = "ERROR! Please try enter again";
                 ErrorKmTreatText.Visibility = Visibility.Visible;
@@ -121,7 +121,7 @@ namespace dotNet5781_03B_7232_5482
             {
                 ErrorKmTreatText.Visibility = Visibility.Hidden;
                 kmaftertreatTextBox.BorderBrush = Brushes.Green;
-                newBus.Kmaftertreat = checkKm1;
+                newBus.Kmaftertreat = checkKm_1;
                 counter = 5;
 
             }
