@@ -15,8 +15,8 @@ namespace dotNet5781_03B_7232_5482
         public AddNewBus()
         {
             InitializeComponent();
-            busStatusTextBox.ItemsSource = Enum.GetValues(typeof(STATUS)).Cast<STATUS>();
-            busStatusTextBox.SelectedIndex = 0;
+            busStatusCombo.ItemsSource = Enum.GetValues(typeof(STATUS)).Cast<STATUS>();
+            busStatusCombo.SelectedIndex = 0;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -29,6 +29,7 @@ namespace dotNet5781_03B_7232_5482
 
         private void AAD_Click(object sender, RoutedEventArgs e)
         {
+            int counter = 0;
             Bus newBus = new Bus();
             bool exist = false;
             string liceNum = licenseNumTextBox.Text;         
@@ -53,6 +54,8 @@ namespace dotNet5781_03B_7232_5482
                 {
                     ErrorLiceNumText.Visibility = Visibility.Hidden;
                     licenseNumTextBox.BorderBrush = Brushes.Green;
+                    newBus.LicenseNum = Int32.Parse(liceNum);
+                    counter = 1;
                 }
                
             }
@@ -67,16 +70,19 @@ namespace dotNet5781_03B_7232_5482
             {
                 ErrorDateText.Visibility = Visibility.Hidden;
                 startDateDatePicker.BorderBrush = Brushes.Green;
+                newBus.StartDate = date;
+                counter = 2;
             }
-            if (!((date.Year >= 2018) && (liceNum.ToString().Length == 8) || (date.Year < 2018) && (liceNum.ToString().Length == 7)))
+            if (!((date.Year >= 2018) && (liceNum.ToString().Length == 8) || (date.Year < 2018) && (liceNum.ToString().Length == 7)||counter==2))
             {
                 ErrorText.Text = "ERROR! One or more of the data is incorrect";
                 licenseNumTextBox.BorderBrush = Brushes.Red;
                 startDateDatePicker.BorderBrush = Brushes.Red;
+                counter = counter - 2;
             }
             string km = kmTextBox.Text;
             Double checkKm; 
-             if (!Double.TryParse(liceNum, out checkKm)|| checkKm<=0|| km == null)
+             if (!Double.TryParse(liceNum, out checkKm)|| checkKm< 0|| km == null)
             {
                 ErrorKmText.Text =  "ERROR! Please try enter again";
                 ErrorDateText.Visibility = Visibility.Visible;
@@ -86,9 +92,12 @@ namespace dotNet5781_03B_7232_5482
             {
                 ErrorDateText.Visibility = Visibility.Hidden;
                 kmTextBox.BorderBrush = Brushes.Green;
+                newBus.Km = checkKm;
+                counter = 3;
             }
             km = kmafterrefuelingTextBox.Text;
-            if (!Double.TryParse(liceNum, out checkKm) || checkKm <= 0 || km == null|| checkKm > 1200)
+            Double checkKm1;
+            if (!Double.TryParse(liceNum, out checkKm1) || checkKm1 < 0 || km == null || checkKm1 > 1200 || checkKm1 > checkKm)
             {
                 ErrorKmRefText.Text = "ERROR! Please try enter again";
                 ErrorKmRefText.Visibility = Visibility.Visible;
@@ -98,9 +107,11 @@ namespace dotNet5781_03B_7232_5482
             {
                 ErrorKmRefText.Visibility = Visibility.Hidden;
                 kmafterrefuelingTextBox.BorderBrush = Brushes.Green;
+                newBus.Kmafterrefueling = checkKm1;
+                counter = 4;
             }
             km = kmaftertreatTextBox.Text;
-            if (!Double.TryParse(liceNum, out checkKm) || checkKm <= 0 || km == null || checkKm > 20000)
+            if (!Double.TryParse(liceNum, out checkKm1) || checkKm1 < 0 || km == null || checkKm1 > 20000|| checkKm1>checkKm)
             {
                 ErrorKmTreatText.Text = "ERROR! Please try enter again";
                 ErrorKmTreatText.Visibility = Visibility.Visible;
@@ -110,8 +121,11 @@ namespace dotNet5781_03B_7232_5482
             {
                 ErrorKmTreatText.Visibility = Visibility.Hidden;
                 kmaftertreatTextBox.BorderBrush = Brushes.Green;
+                newBus.Kmaftertreat = checkKm1;
+                counter = 5;
+
             }
-             date = lastTreatDatePicker.DisplayDate;
+            date = lastTreatDatePicker.DisplayDate;
             if (date > DateTime.Now||date>startDateDatePicker.DisplayDate)
             {
                 ErrorDateTreatText.Text = "ERROR! This date is incorrect";
@@ -122,7 +136,10 @@ namespace dotNet5781_03B_7232_5482
             {
                 ErrorDateTreatText.Visibility = Visibility.Hidden;
                 lastTreatDatePicker.BorderBrush = Brushes.Green;
+
+                counter = 6;
             }
+       
         }
     }
 }
