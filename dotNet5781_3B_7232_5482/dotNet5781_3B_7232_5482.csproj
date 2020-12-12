@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D47073F2-244A-4422-9E7F-C527F8BB3242}</ProjectGuid>
+    <ProjectGuid>{66B78CE2-B7BA-44A1-9CBF-3F19155B3906}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>dotNet5781_03B_7232_5482</RootNamespace>
-    <AssemblyName>dotNet5781_03B_7232_5482</AssemblyName>
+    <RootNamespace>dotNet5781_3B_7232_5482</RootNamespace>
+    <AssemblyName>dotNet5781_3B_7232_5482</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -60,8 +60,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Compile Include="AddNewBus.xaml.cs">
       <DependentUpon>AddNewBus.xaml</DependentUpon>
@@ -71,11 +71,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bus.cs" />
+    <Compile Include="Buses.cs" />
+    <Compile Include="enum.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Buses.cs" />
-    <Compile Include="Enum.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -95,7 +96,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\Bus.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,6 +104,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

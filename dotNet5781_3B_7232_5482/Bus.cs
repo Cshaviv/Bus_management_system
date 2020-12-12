@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dotNet5781_03B_7232_5482
+namespace dotNet5781_3B_7232_5482
 {
-  public class Bus
+    public class Bus
     {
         private int licenseNum;
         private DateTime startDate;
@@ -36,10 +36,12 @@ namespace dotNet5781_03B_7232_5482
         public double Km
         {
             get { return km; }
-            set {
+            set
+            {
                 if (value < km)
                 { throw new Exception(); }
-                km = value; }
+                km = value;
+            }
         }
 
         public DateTime LastTreat
@@ -60,8 +62,8 @@ namespace dotNet5781_03B_7232_5482
             set { licenseNum = value; }
         }
 
-        public void  get_LicesNum()//Prints the license number in the appropriate format
-        { 
+        public void get_LicesNum()//Prints the license number in the appropriate format
+        {
 
             string s_l = this.LicenseNum.ToString();
             string prefix, middle, suffix;
@@ -82,7 +84,7 @@ namespace dotNet5781_03B_7232_5482
 
         }
 
-        
+
         public bool needTreat(double RandKm1)
         {
             return ((this.kmaftertreat + RandKm1 >= 20000) || ((DateTime.Now - this.lastTreat).TotalDays >= 365));
@@ -102,6 +104,7 @@ namespace dotNet5781_03B_7232_5482
         {
 
         }
+
         public override string ToString()
         {
             return String.Format("license Number : {0}", licenseNum);
