@@ -37,11 +37,11 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid Margin="0,0,293.333,0.667">
+    <Grid Margin="0,0,103.333,0.667">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="BusList" Height="257" Margin="12,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" />
+        <ListBox x:Name="BusList" Height="257" Margin="12,57,82,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" />
         <Button Content="Add Bus" HorizontalAlignment="Left" Margin="33,333,0,0" VerticalAlignment="Top" Width="169" Height="54" Click="Button_Click"/>
 
     </Grid>

@@ -137,10 +137,14 @@ namespace dotNet5781_03B_7232_5482
             {
                 ErrorDateTreatText.Visibility = Visibility.Hidden;
                 lastTreatDatePicker.BorderBrush = Brushes.Green;
-
+                newBus.LastTreat = date;
                 counter = 6;
             }
-       
+       if(counter==6)
+            {
+                BusesCollection.Add(newBus);
+                this.Close();
+            }
         }
     }
 }
