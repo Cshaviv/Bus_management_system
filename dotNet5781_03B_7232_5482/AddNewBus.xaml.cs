@@ -126,7 +126,7 @@ namespace dotNet5781_03B_7232_5482
                 counter = counter + 1;
             }
             date = lastTreatDatePicker.DisplayDate;
-            if (date > DateTime.Now||date>startDateDatePicker.DisplayDate||date==null)
+            if (date > DateTime.Now||date<startDateDatePicker.DisplayDate||date==null)
             {
                 ErrorDateTreatText.Text = "ERROR! This date is incorrect";
                 ErrorDateTreatText.Visibility = Visibility.Visible;
@@ -144,8 +144,14 @@ namespace dotNet5781_03B_7232_5482
        if(counter==6)
             {
                 BusesCollection.Add(newBus);
+
                 this.Close();
             }
+        }
+
+        private void kmaftertreatTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
         }
     }
 }
