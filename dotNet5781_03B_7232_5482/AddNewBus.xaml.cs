@@ -55,9 +55,9 @@ namespace dotNet5781_03B_7232_5482
                     ErrorLiceNumText.Visibility = Visibility.Hidden;
                     licenseNumTextBox.BorderBrush = Brushes.Green;
                     newBus.LicenseNum = Int32.Parse(liceNum);
-                    counter = 1;
+                    counter = counter + 1;
                 }
-               
+
             }
             DateTime date = startDateDatePicker.DisplayDate;
             if(date > DateTime.Now)
@@ -71,7 +71,7 @@ namespace dotNet5781_03B_7232_5482
                 ErrorDateText.Visibility = Visibility.Hidden;
                 startDateDatePicker.BorderBrush = Brushes.Green;
                 newBus.StartDate = date;
-                counter = 2;
+                counter = counter + 1;
             }
             if (!((date.Year >= 2018) && (liceNum.ToString().Length == 8) || (date.Year < 2018) && (liceNum.ToString().Length == 7)||counter==2))
             {
@@ -93,7 +93,7 @@ namespace dotNet5781_03B_7232_5482
                 ErrorDateText.Visibility = Visibility.Hidden;
                 kmTextBox.BorderBrush = Brushes.Green;
                 newBus.Km = checkKm;
-                counter = 3;
+                counter = counter + 1;
             }
             km = kmafterrefuelingTextBox.Text;
             Double checkKm_1;
@@ -109,7 +109,7 @@ namespace dotNet5781_03B_7232_5482
                 ErrorKmRefText.Visibility = Visibility.Hidden;
                 kmafterrefuelingTextBox.BorderBrush = Brushes.Green;
                 newBus.Kmafterrefueling = checkKm_1;
-                counter = 4;
+                counter = counter + 1;
             }
             km = kmaftertreatTextBox.Text;
             if (!Double.TryParse(km, out checkKm_1) || checkKm_1 < 0 || km == null || checkKm_1 > 20000|| checkKm_1>checkKm)
@@ -123,11 +123,10 @@ namespace dotNet5781_03B_7232_5482
                 ErrorKmTreatText.Visibility = Visibility.Hidden;
                 kmaftertreatTextBox.BorderBrush = Brushes.Green;
                 newBus.Kmaftertreat = checkKm_1;
-                counter = 5;
-
+                counter = counter + 1;
             }
             date = lastTreatDatePicker.DisplayDate;
-            if (date > DateTime.Now||date>startDateDatePicker.DisplayDate)
+            if (date > DateTime.Now||date>startDateDatePicker.DisplayDate||date==null)
             {
                 ErrorDateTreatText.Text = "ERROR! This date is incorrect";
                 ErrorDateTreatText.Visibility = Visibility.Visible;
@@ -138,7 +137,9 @@ namespace dotNet5781_03B_7232_5482
                 ErrorDateTreatText.Visibility = Visibility.Hidden;
                 lastTreatDatePicker.BorderBrush = Brushes.Green;
                 newBus.LastTreat = date;
-                counter = 6;
+                counter = counter + 1;
+
+
             }
        if(counter==6)
             {
