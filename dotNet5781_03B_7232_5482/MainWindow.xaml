@@ -19,20 +19,22 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0"
-                   Text="{Binding Path=LicenseNum}" />
+                   Text="License Num:" />
                 <TextBlock Grid.Column="1"
-                   Text="{Binding Path=FirstName}" />
+                   Text="{Binding }" />
                 <TextBlock Grid.Column="2"
-                   Text="Last Name: " />
+                   Text=" Km: " />
                 <TextBlock Grid.Column="3"
-                   Text="{Binding Path=LastName}" />
-                <CheckBox Grid.Column="4"
-                  Content="Is Lecturer?"
-                  IsEnabled="False"
-                  IsChecked="{Binding Path=IsLecturer}" />
+                   Text="{Binding Path=Km}" />
+                <Button Grid.Column="4"
+                   Content="Start driving" Click="StartDriveButtonClick" Name="StartDriveButton" Background="White" />
+                <Button Grid.Column="5"
+                   Content="Refueling" Click="Refuel" Name="ButtonRefuel" Background="White"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -41,7 +43,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="BusList" Height="257" Margin="12,57,82,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419"  />
+        <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="257" Margin="12,57,82,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+                 ItemTemplate="{StaticResource MyDataTemplate}" />
         <Button Content="Add Bus" HorizontalAlignment="Left" Margin="33,333,0,0" VerticalAlignment="Top" Width="169" Height="54" Click="Button_Click"/>
 
     </Grid>

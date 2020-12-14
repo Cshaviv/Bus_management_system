@@ -15,12 +15,20 @@ namespace dotNet5781_03B_7232_5482
         private double km;
         private double kmafterrefueling;
         private double kmaftertreat;
-        private Enum STATUS;
-        public Enum BusStatus
+        private STATUS status;
+
+        public STATUS myStatus
         {
-            get { return STATUS; }
-            set { STATUS = value; }
+            get { return status; }
+            set { status = value; }
         }
+
+        //private  STATUS BusStatus;
+        //public STATUS BusStatus
+        //{
+        //    get { return BusStatus; }
+        //    set { BusStatus = value; }
+        //}
 
         public double Kmaftertreat
         {
@@ -60,27 +68,27 @@ namespace dotNet5781_03B_7232_5482
             set { licenseNum = value; }
         }
 
-        public void  get_LicesNum()//Prints the license number in the appropriate format
-        { 
+        //public void  get_LicesNum()//Prints the license number in the appropriate format
+        //{ 
 
-            string s_l = this.LicenseNum.ToString();
-            string prefix, middle, suffix;
-            if (startDate.Year < 2018)
-            {
-                prefix = s_l.Substring(0, 2);
-                middle = s_l.Substring(2, 3);
-                suffix = s_l.Substring(5, 2);
-            }
-            else
-            {
-                prefix = s_l.Substring(0, 3);
-                middle = s_l.Substring(3, 2);
-                suffix = s_l.Substring(5, 3);
-            }
-            string registrationString = String.Format("{0}-{1}-{2}", prefix, middle, suffix);
-            Console.WriteLine(registrationString);
+        //    string s_l = this.LicenseNum.ToString();
+        //    string prefix, middle, suffix;
+        //    if (startDate.Year < 2018)
+        //    {
+        //        prefix = s_l.Substring(0, 2);
+        //        middle = s_l.Substring(2, 3);
+        //        suffix = s_l.Substring(5, 2);
+        //    }
+        //    else
+        //    {
+        //        prefix = s_l.Substring(0, 3);
+        //        middle = s_l.Substring(3, 2);
+        //        suffix = s_l.Substring(5, 3);
+        //    }
+        //    string registrationString = String.Format("{0}-{1}-{2}", prefix, middle, suffix);
+        //    Console.WriteLine(registrationString);
 
-        }
+        //}
 
         
         public bool needTreat(double RandKm1)
@@ -102,10 +110,14 @@ namespace dotNet5781_03B_7232_5482
         {
 
         }
+        
         public override string ToString()
         {
-            return String.Format("license Number : {0}", licenseNum);
-
+            string licenNum = LicenseNum.ToString();
+            if (StartDate.Year < 2018)
+                return "" + licenNum[0] + licenNum[1] + "-" + licenNum[2] + licenNum[3] + licenNum[4] + "-" + licenNum[5] + licenNum[6];
+            else
+                return "" + licenNum[0] + licenNum[1] + licenNum[2] + "-" + licenNum[3] + licenNum[4] + "-" + licenNum[5] + licenNum[6] + licenNum[7];
         }
     }
 
