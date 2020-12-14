@@ -1,0 +1,15 @@
+﻿<Window x:Class="dotNet5781_03B_7232_5482.DepartureToRide"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_7232_5482"
+        mc:Ignorable="d"
+        Title="DepartureToRide" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="29,53,0,0" TextWrapping="Wrap" Text="Enter the ride distance in km:" VerticalAlignment="Top" Height="31" Width="258" FontSize="20" />
+        <TextBox x:Name="rideDisTextBox" HorizontalAlignment="Left" Height="29" Margin="325,55,0,0" TextWrapping="Wrap" Text="RideDistance" VerticalAlignment="Top" Width="164" FontSize="20" KeyDown="TakeForRide_KeyDown" BorderBrush="LightGray" TextChanged="TextBox_TextChanged"/>
+        <TextBlock Name="ErrorDistance"  HorizontalAlignment="Left" Height="25" Margin="68,167,0,0" TextWrapping="Wrap" Text="Try enter distance again" VerticalAlignment="Top" Width="508" FontSize="20" Foreground="Red" Visibility="Hidden"/>
+
+    </Grid>
+</Window>
