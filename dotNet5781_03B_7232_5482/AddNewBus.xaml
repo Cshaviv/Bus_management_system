@@ -39,7 +39,7 @@
             <Label Content="Start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5.333,0,7.333" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="65"/>
             <DatePicker x:Name="startDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="4,5.333,0,8.333" Grid.Row="1" SelectedDate="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Height="25"/>
         </Grid>
-        <Button x:Name="AAD" HorizontalAlignment="Left" Margin="218,352,0,0" VerticalAlignment="Top" Width="172" Height="38" Click="AAD_Click" Content="Add"/>
+        <Button x:Name="AAD" HorizontalAlignment="Left" Margin="218,352,0,0" VerticalAlignment="Top" Width="172" Height="38" Click="ADD_Click" Content="Add"/>
         <TextBlock x:Name="ErrorLiceNumText" HorizontalAlignment="Left" Margin="336,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" Height="18" Foreground="#FFFE3535"/>
         <TextBlock x:Name="ErrorDateText" HorizontalAlignment="Left" Margin="336,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" Height="18" Foreground="#FFFE3535"/>
         <TextBlock x:Name="ErrorKmText" HorizontalAlignment="Left" Margin="336,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" Height="18" Foreground="#FFFE3535"/>

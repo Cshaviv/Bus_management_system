@@ -27,7 +27,7 @@ namespace dotNet5781_03B_7232_5482
             // busViewSource.Source = [generic data source]
         }
 
-        private void AAD_Click(object sender, RoutedEventArgs e)
+        private void ADD_Click(object sender, RoutedEventArgs e)
         {
             int counter = 0;
             Bus newBus = new Bus();

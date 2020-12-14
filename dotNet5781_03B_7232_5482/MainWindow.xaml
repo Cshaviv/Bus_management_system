@@ -35,6 +35,7 @@
                    Content="Start driving" Click="StartDriveButtonClick" Name="StartDriveButton" Background="White" />
                 <Button Grid.Column="5"
                    Content="Refueling" Click="Refuel" Name="ButtonRefuel" Background="White"/>
+                
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -44,7 +45,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="257" Margin="12,57,82,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
-                 ItemTemplate="{StaticResource MyDataTemplate}" />
+                 ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickBusInfromation"/>
         <Button Content="Add Bus" HorizontalAlignment="Left" Margin="33,333,0,0" VerticalAlignment="Top" Width="169" Height="54" Click="Button_Click"/>
 
     </Grid>

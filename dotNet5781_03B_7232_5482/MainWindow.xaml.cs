@@ -84,6 +84,15 @@ namespace dotNet5781_03B_7232_5482
                 win.ShowDialog();
             }
         }
+        private void doubleClickBusInfromation(object sender, RoutedEventArgs e)
+        {
+            Bus b = (sender as ListBox).SelectedItem as Bus;
+            if (b != null)
+            {
+                BusData win = new BusData(b);
+                win.ShowDialog();
+            }
+        }
 
     }
 }
