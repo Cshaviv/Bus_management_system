@@ -19,20 +19,23 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0"
-                   Text="{Binding Path=LicenseNum}" />
+                <!--<TextBlock Grid.Column="0"
+                   Text="Bus License Num:" />
                 <TextBlock Grid.Column="1"
-                   Text="{Binding Path=FirstName}" />
+                   Text="{Binding Path=LicenseNum }" />
                 <TextBlock Grid.Column="2"
-                   Text="Last Name: " />
+                   Text="Start Date: " />
                 <TextBlock Grid.Column="3"
-                   Text="{Binding Path=LastName}" />
-                <CheckBox Grid.Column="4"
-                  Content="Is Lecturer?"
-                  IsEnabled="False"
-                  IsChecked="{Binding Path=IsLecturer}" />
+                   Text="{Binding Path=StartDate}" />
+                <TextBlock Grid.Column="4"
+                    Text="Km:"/>-->
+                
+
             </Grid>
         </DataTemplate>
     </Window.Resources>
