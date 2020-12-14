@@ -19,9 +19,22 @@ namespace dotNet5781_03B_7232_5482
     /// </summary>
     public partial class BusData : Window
     {
+        public Bus myBus { get; set; }
         public BusData(Bus b)
         {
             InitializeComponent();
+            Left = Application.Current.MainWindow.Left + (Application.Current.MainWindow.Width - Width) / 2;
+            licenseNumTextBlock.Text = b.ToString();
+            startDateTextBlock.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
+            dateTreatTextBlock.Text = b.LastTreat.Day + "/" + b.LastTreat.Month + "/" + b.LastTreat.Year;
+            totalKmTextBlock.Text = b.Km.ToString();
+            kmAfterTreatTextBlock.Text = b.Kmaftertreat.ToString();
+            kmAfterRefulingTextBlock.Text = b.Kmafterrefueling.ToString();
+            busStatusTextBlock.Text = b.myStatus.ToString();//לבדו'
+            myBus = b;
         }
     }
 }
+// השןרה של האפליקציה שורה מספר 26, 
+//bus data xaml line 10?
+//לבדוקקק
