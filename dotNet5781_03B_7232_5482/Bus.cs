@@ -67,7 +67,10 @@ namespace dotNet5781_03B_7232_5482
             get { return licenseNum; }
             set { licenseNum = value; }
         }
-
+        public void Refuel()
+        {
+            kmafterrefueling = 1200;
+        }
         //public void  get_LicesNum()//Prints the license number in the appropriate format
         //{ 
 
@@ -90,7 +93,7 @@ namespace dotNet5781_03B_7232_5482
 
         //}
 
-        
+
         public bool needTreat(double RandKm1)
         {
             return ((this.kmaftertreat + RandKm1 >= 20000) || ((DateTime.Now - this.lastTreat).TotalDays >= 365));

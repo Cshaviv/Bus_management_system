@@ -20,6 +20,7 @@ namespace dotNet5781_03B_7232_5482
     public partial class BusData : Window
     {
         public Bus myBus { get; set; }
+        public ProgressBar progres { get; set; }
         public BusData(Bus b)
         {
             InitializeComponent();

@@ -93,6 +93,61 @@ namespace dotNet5781_03B_7232_5482
                 win.ShowDialog();
             }
         }
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            DataTread data = (DataTread)e.Argument;
+            int length = data.Seconds;
+            for (int i = 1; i <= length; i++)
+            {
+                System.Threading.Thread.Sleep(1000);
+                (sender as BackgroundWorker).ReportProgress(i, data);
+            }
+            e.Result = data;
+        }
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            int progress = (int)e.ProgressPercentage;//i
+            DataTread data = (DataTread)e.UserState;
+            int result = data.Seconds - progress;
+            data.Label.Content = result;
+            data.ProgressBar.Value = (progress * 100) / data.Seconds;
+        }
+        private void Worker_RunWorkerCompleted_Refuel(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
+            DataThread data = ((DataThread)(e.Result));
+            data.ProgressBar.Visibility = Visibility.Hidden;
+            data.Label.Visibility = Visibility.Hidden;
+            data.Bus.myStatus = STATUS.ReadyToRide;
+            data.Bus.Refuel();
+        }
+        private void Worker_RunWorkerCompleted_Driving(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("The ride went successfully.", "Finished a driving  ", MessageBoxButton.OK, MessageBoxImage.Information);
+            DataThread data = ((DataThread)(e.Result));
+            data.ProgressBar.Visibility = Visibility.Hidden;
+            data.Label.Visibility = Visibility.Hidden;
+            data.Bus.myStatus = STATUS.ReadyToRide;
+            data.TBTotalKm.Text = (data.Bus.Km).ToString();
+        }
+        private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is childItem)
+                {
+                    return (childItem)child;
+                }
+                else
+                {
+                    childItem childOfChild = FindVisualChild<childItem>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }
 
     }
 }
