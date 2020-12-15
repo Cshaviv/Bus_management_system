@@ -40,5 +40,8 @@
             <Label  Content="bus Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
             <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="6"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
         </Grid>
+        <Button Content="Refuel" HorizontalAlignment="Left" Height="31" Margin="62,366,0,0" VerticalAlignment="Top" Width="167" Click="RefuelBus"/>
+        <Button Content="Treat" HorizontalAlignment="Left" Height="31" Margin="369,368,0,0" VerticalAlignment="Top" Width="171" Click="TreatBus"/>
+
     </Grid>
 </Window>

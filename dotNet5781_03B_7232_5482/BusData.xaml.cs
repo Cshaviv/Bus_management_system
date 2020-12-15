@@ -33,8 +33,42 @@ namespace dotNet5781_03B_7232_5482
             busStatusTextBlock.Text = b.myStatus.ToString();//לבדו'
             myBus = b;
         }
+        private void RefuelBus(object sender, RoutedEventArgs e)
+        {
+            if (myBus.myStatus == STATUS.OnRide)
+                MessageBox.Show("The bus in Ride, try refueling later.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            if (myBus.myStatus == STATUS.OnTreat)
+                MessageBox.Show("The bus on treatment try refueling later.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            if (myBus.myStatus == STATUS.OnRefueling)
+                MessageBox.Show("The bus already on refueling.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+           if(myBus.Kmafterrefueling==0)
+                MessageBox.Show("The fuel tank on this bus is full.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else
+            {
+                myBus.Kmafterrefueling = 0;
+                MessageBox.Show("Refueling successfully", "MESSAGE", MessageBoxButton.OK);
+            }
+        }
+        private void TreatBus(object sender, RoutedEventArgs e)
+        {         
+            if (myBus.myStatus == STATUS.OnRide)
+                MessageBox.Show("The bus in Ride, try to treat later.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            if (myBus.myStatus == STATUS.OnRefueling)
+                MessageBox.Show("The bus on refueling try to treat later.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            if (myBus.myStatus == STATUS.OnTreat)
+                MessageBox.Show("The bus already on Treatment.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            if(myBus.Kmaftertreat==0&& (DateTime.Now==myBus.LastTreat))
+                MessageBox.Show("The bus was already treatmented", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            else
+            {
+                myBus.Kmaftertreat = 0;
+                MessageBox.Show("Treatment successfully", "MESSAGE", MessageBoxButton.OK);
+            }
+        }
     }
 }
+
 // השןרה של האפליקציה שורה מספר 26, 
 //bus data xaml line 10?
 //לבדוקקק//
