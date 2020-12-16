@@ -82,6 +82,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="backgroundworker.cs" />
     <Compile Include="Bus.cs" />
     <Compile Include="BusData.xaml.cs">
       <DependentUpon>BusData.xaml</DependentUpon>

@@ -41,8 +41,6 @@ namespace dotNet5781_03B_7232_5482
             BusesCollection = new ObservableCollection<Bus>();
             Buses.RestartBuses(BusesCollection);
             BusList.ItemsSource = BusesCollection;
-
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,20 +57,20 @@ namespace dotNet5781_03B_7232_5482
             else
             {
                 b.Kmafterrefueling = 0;
-                MessageBox.Show("Refueling successfully", "MESSAGE", MessageBoxButton.OK);
+                //MessageBox.Show("Refueling successfully", "MESSAGE", MessageBoxButton.OK);
                 b.myStatus = STATUS.OnRefueling;
                 BackgroundWorker workerRefuel = new BackgroundWorker();
                 workerRefuel.DoWork += Worker_DoWork;
                 workerRefuel.ProgressChanged += Worker_ProgressChanged;
                 workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Refuel;
                 workerRefuel.WorkerReportsProgress = true;
-                DataThread thread = new DataThread();/*(BusList.GetControl<ProgressBar>(sender as Button, "pbThread"), BusList.GetControl<Label>(sender as Button, "seconds"), 12, b);*/
-                thread.ProgressBar.Visibility = Visibility.Visible;
-                thread.Label.Visibility = Visibility.Visible;
-                thread.ProgressBar.Foreground = Brushes.Yellow;
+                //DataThread thread = new DataThread();/*(BusList.GetControl<ProgressBar>(sender as Button, "pbThread"), BusList.GetControl<Label>(sender as Button, "seconds"), 12, b);*/
+                //thread.ProgressBar.Visibility = Visibility.Visible;
+                //thread.Label.Visibility = Visibility.Visible;
+                //thread.ProgressBar.Foreground = Brushes.Yellow;
                 workerRefuel.RunWorkerAsync(thread);
             }
-  
+
 
 
         }
@@ -85,31 +83,37 @@ namespace dotNet5781_03B_7232_5482
                 MessageBox.Show("The bus is in treatment.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             else if (b.myStatus == STATUS.OnRide)
                 MessageBox.Show("The bus is on ride.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            else if (((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat >= 20000) && b.Kmafterrefueling >= 1200)
-                MessageBox.Show("The bus needs to be sent for a treatment and refueling.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            else if ((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat >= 20000)
-                MessageBox.Show("The bus needs to be sent for a treatment.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            else if (b.Kmafterrefueling >= 1200)
-                MessageBox.Show("The bus needs to be sent for refueling.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            else
+            else if (b.myStatus == STATUS.ReadyToRide)
             {
-                DepartureToRide win = new DepartureToRide();
-                win.myBus = b;
-                win.ShowDialog();
-                if (win.myBus.myStatus == STATUS.ReadyToRide)//if it cannot drive the ride
-                    return;
-                BackgroundWorker workerRefuel = new BackgroundWorker();
-                workerRefuel.DoWork += Worker_DoWork;
-                workerRefuel.ProgressChanged += Worker_ProgressChanged;
-                workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Driving;
-                workerRefuel.WorkerReportsProgress = true;
-                int speedTravel = rand.Next(20, 50);//rand speed travel
-                int timeTravel = (int)((win.rideDisTextBox.ActualWidth / speedTravel) * 6);//time travel in 
-                DataThread thread = new DataThread();/*(BusList.GetControl<ProgressBar>(sender as Button, "pbTread"), BusList.GetControl<Label>(sender as Button, "seconds"), timeTravel, b, Finditem<TextBlock>((sender as Button).DataContext, "TBTotalKm"));*///thread of driving
-                thread.ProgressBar.Visibility = Visibility.Visible;
-                thread.Label.Visibility = Visibility.Visible;
-                thread.ProgressBar.Foreground = Brushes.Aqua;
-                workerRefuel.RunWorkerAsync(thread);
+                if (((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat >= 20000) && b.Kmafterrefueling >= 1200)
+                    MessageBox.Show("The bus needs to be sent for a treatment and refueling.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                else if ((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat >= 20000)
+                    MessageBox.Show("The bus needs to be sent for a treatment.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                else if (b.Kmafterrefueling >= 1200)
+                    MessageBox.Show("The bus needs to be sent for refueling.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                else
+                {
+                    DepartureToRide win = new DepartureToRide();
+                    win.myBus = b;
+                    win.ShowDialog();
+                    
+                    //BackgroundWorker workerRefuel = new BackgroundWorker();
+                    //workerRefuel.DoWork += Worker_DoWork;
+                    //workerRefuel.ProgressChanged += Worker_ProgressChanged;
+                    //workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Driving;
+                    //workerRefuel.WorkerReportsProgress = true;
+                    //int speedTravel = rand.Next(20, 50);//rand speed travel
+                    //int timeTravel = (int)((win.rideDisTextBox.ActualWidth / speedTravel) * 6);//time travel in 
+                    //DataThread thread = new DataThread();/*(BusList.GetControl<ProgressBar>(sender as Button, "pbTread"), BusList.GetControl<Label>(sender as Button, "seconds"), timeTravel, b, Finditem<TextBlock>((sender as Button).DataContext, "TBTotalKm"));*///thread of driving
+                    //thread.ProgressBar = 
+                    //thread.ProgressBar.Visibility = Visibility.Visible;
+                    //thread.Label.Visibility = Visibility.Visible;
+                    //thread.ProgressBar.Foreground = Brushes.Aqua;
+                    //workerRefuel.RunWorkerAsync(thread);
+                }
+            }
+            else { MessageBox.Show("bla bala ");
+                return;
             }
         }
         private void doubleClickBusInfromation(object sender, RoutedEventArgs e)

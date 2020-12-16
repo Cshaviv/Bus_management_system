@@ -139,9 +139,9 @@ namespace dotNet5781_03B_7232_5482
                 newBus.LastTreat = date;
                 counter = counter + 1;
 
-
             }
-       if(counter==6)
+            newBus.myStatus = (STATUS)Enum.Parse(typeof(STATUS), busStatusCombo.Text);
+            if (counter==6)
             {
                 BusesCollection.Add(newBus);
 

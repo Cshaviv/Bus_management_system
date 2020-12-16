@@ -11,7 +11,7 @@ namespace dotNet5781_03B_7232_5482
     {
         public static void RestartBuses(ObservableCollection<Bus> BusesCollection)
         {
-            BusesCollection.Add(new Bus(1234567, new DateTime(2016, 03, 04), new DateTime(2020, 03, 04), 20000, 1000, 500)); // bus 1
+            BusesCollection.Add(new Bus(1234567, new DateTime(2016, 03, 04), new DateTime(2020, 03, 04), 20000, 1000, 500,STATUS.ReadyToRide)); // bus 1
             BusesCollection.Add(new Bus(22222222, new DateTime(2019, 01, 04), new DateTime(2020, 01, 01), 30000, 500, 500));//need treat soon (עברה כמעט שנה)
             BusesCollection.Add(new Bus(3434343, new DateTime(2017, 12, 10), new DateTime(2020, 12, 04), 15000, 50, 1100));//need refueling soon (נסע כמעט 1200 ק"מ)
             BusesCollection.Add(new Bus(6668888, new DateTime(2016, 03, 04), new DateTime(2017, 03, 04), 10000, 1000, 500));
