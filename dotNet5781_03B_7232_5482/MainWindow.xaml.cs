@@ -59,7 +59,7 @@ namespace dotNet5781_03B_7232_5482
                 b.Kmafterrefueling = 0;
                 //MessageBox.Show("Refueling successfully", "MESSAGE", MessageBoxButton.OK);
                 b.myStatus = STATUS.OnRefueling;
-                BackgroundWorker workerRefuel = new BackgroundWorker();
+                BackgroundWorker workerRefuel = new BackgroundWorker(12,"fghj", ,);
                 workerRefuel.DoWork += Worker_DoWork;
                 workerRefuel.ProgressChanged += Worker_ProgressChanged;
                 workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Refuel;
@@ -68,7 +68,7 @@ namespace dotNet5781_03B_7232_5482
                 //thread.ProgressBar.Visibility = Visibility.Visible;
                 //thread.Label.Visibility = Visibility.Visible;
                 //thread.ProgressBar.Foreground = Brushes.Yellow;
-                workerRefuel.RunWorkerAsync(thread);
+                workerRefuel.RunWorkerAsync(/*thread*/);
             }
 
 
