@@ -15,14 +15,14 @@ namespace dotNet5781_03B_7232_5482
     {
         public ProgressBar ProgressBar { get; set; }
         public Label Label { get; set; }
-        public BackgroundWorker worker;
+        BackgroundWorker worker;
         public int Seconds { get; set; }
         public Bus Bus { get; set; }
         public string message { get; set; }
         public string title { get; set; }
-        //public TextBlock TBTotalKm { get; set; }
+        public Label action { get; set; }
 
-        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t)
+        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t,Label a)
         {
             ProgressBar = pb;
             Label = label;
@@ -30,8 +30,7 @@ namespace dotNet5781_03B_7232_5482
             Bus = b;
             message = m;
             title = t;
-
-            //TBTotalKm = TotalKm;
+            action = a;
         }
         public void Start(DataThread d)
         {
@@ -41,7 +40,11 @@ namespace dotNet5781_03B_7232_5482
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             worker.WorkerReportsProgress = true;
+            data.ProgressBar.Visibility = Visibility.Visible;
+            data.Label.Visibility = Visibility.Visible;
+            data.action.Visibility = Visibility.Visible;
             worker.RunWorkerAsync(data);
+
         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -65,20 +68,12 @@ namespace dotNet5781_03B_7232_5482
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            //MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
             DataThread data = ((DataThread)(e.Result));
-            //MessageBox.Show(data.m, t, MessageBoxButton.OK, MessageBoxImage.Exclamation);
             data.ProgressBar.Visibility = Visibility.Hidden;
             data.Label.Visibility = Visibility.Hidden;
+            data.action.Visibility = Visibility.Hidden;
             data.Bus.myStatus = STATUS.ReadyToRide;
         }
-        //private void Worker_RunWorkerCompleted_Driving(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    MessageBox.Show("The ride went successfully.", "Finished a driving  ", MessageBoxButton.OK, MessageBoxImage.Information);
-        //    DataThread data = ((DataThread)(e.Result));
-        //    data.ProgressBar.Visibility = Visibility.Hidden;
-        //    data.Label.Visibility = Visibility.Hidden;
-        //    data.Bus.myStatus = STATUS.ReadyToRide;
-        //}
+
     }
 }
