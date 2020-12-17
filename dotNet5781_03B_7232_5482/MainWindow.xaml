@@ -43,7 +43,8 @@
                    Content="Refueling" Click="Refuel" Name="ButtonRefuel" Background="White"/>
                 <!--<Button Grid.Column="6"
                    Content="Refueling" Click="ayala" Name="ButtonRef" Background="White"/>-->
-                <ProgressBar Grid.Column="12" Name="pbThread" />
+                <ProgressBar Grid.Column="12" Name="pbThread" Visibility="Hidden" />
+                <Label Grid.Column="12" x:Name="progressLabel" HorizontalContentAlignment="Center" Visibility="Hidden"  />
             </Grid>
         </DataTemplate>
     </Window.Resources>

@@ -6,23 +6,27 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel;
- 
+
 
 
 namespace dotNet5781_03B_7232_5482
 {
-    public class backgroundworker
+    public class DataThread
     {
-        public BackgroundWorker worker;
-        public int Length { get; set; }
-        public string Message { get; set; }
-        public DataThread thread { get; set; }
-        public int Counter { get; set; }
-        
-        public backgroundworker(int sec, string message,ProgressBar p, Label l, Bus b)
-        {
-            thread = new DataThread(p, l, sec, b) 
+        public ProgressBar ProgressBar { get; set; }
+        public Label Label { get; set; }
 
+        public int Seconds { get; set; }
+        public Bus Bus { get; set; }
+        //public TextBlock TBTotalKm { get; set; }
+
+        public DataThread(ProgressBar pb, Label label, int sec, Bus b/*, TextBlock TotalKm*/)
+        {
+            ProgressBar = pb;
+            Label = label;
+            Seconds = sec;
+            Bus = b;
+            //TBTotalKm = TotalKm;
         }
     }
 }
