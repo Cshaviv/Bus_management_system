@@ -47,6 +47,7 @@ namespace dotNet5781_03B_7232_5482
             data.ProgressBar.Visibility = Visibility.Visible;
             data.Label.Visibility = Visibility.Visible;
             data.action.Visibility = Visibility.Visible;
+            data.timer.Visibility = Visibility.Visible;
             worker.RunWorkerAsync(data);
 
         }
@@ -65,7 +66,7 @@ namespace dotNet5781_03B_7232_5482
         {
             int progress = (int)e.ProgressPercentage;//i
             DataThread data = (DataThread)e.UserState;
-            //data.timer.Content=
+            data.timer.Content = (data.Seconds-progress)+ "  seconds to finish" ;
             data.Label.Content = progress * 100 / data.Seconds + "%";
             data.ProgressBar.Value = (progress * 100) / data.Seconds;
         }
@@ -77,6 +78,7 @@ namespace dotNet5781_03B_7232_5482
             data.ProgressBar.Visibility = Visibility.Hidden;
             data.Label.Visibility = Visibility.Hidden;
             data.action.Visibility = Visibility.Hidden;
+            data.timer.Visibility = Visibility.Hidden;
             data.Bus.myStatus = STATUS.Available;
         }
 

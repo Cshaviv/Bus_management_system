@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7232_5482"
         mc:Ignorable="d"
-        Title="MainWindow" Height="531.818" Width="700">
+        Title="MainWindow" Height="531.818" Width="820">
     <Window.Resources>
         <DataTemplate x:Key="MyDataTemplate"
                   DataType="local:Bus">
@@ -16,29 +16,29 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="95" />
                     <ColumnDefinition Width="5" />
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="5" />
                     <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="60" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="80" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="1" />
                     <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="150" />
 
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="0" x:Name="statusRectangle" Visibility="Visible" Fill="LightGreen" Height="7" Width="7"    />
                 <TextBlock Grid.Column="2"
-                   Text="License Number:" FontFamily="Dubai Light" FontSize="14" FontWeight="Normal" />
+                   Text="License Number:" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
                 <TextBlock Grid.Column="4"
                    Text="{Binding }" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="6"
-                   Text=" Km: " FontFamily="Dubai Light"  FontSize="14" />
+                   Text=" Km: " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
                 <TextBlock Grid.Column="8"
                    Text="{Binding Path=Km}" FontFamily="Dubai Light"  FontSize="14" />
                 <Button Grid.Column="10"
@@ -46,20 +46,29 @@
                 <Button Grid.Column="12"
                    Content="Refueling" Click="Refuel" Name="ButtonRefuel" Background="White" FontFamily="Dubai Light"  FontSize="14"/>
                 <ProgressBar Grid.Column="14" Name="pbThread" Visibility="Hidden"/>
-                <Label Grid.Column="14" x:Name="action" HorizontalAlignment="Center" Visibility="Hidden "/>
-                <Label Grid.Column="15" x:Name="progressLabel" HorizontalContentAlignment="Left" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
-                <Label Grid.Column="16" x:Name="timer" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14"/>
+                <Label Grid.Column="14" x:Name="action" HorizontalAlignment="Left" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
+                <Label Grid.Column="14" x:Name="progressLabel" HorizontalContentAlignment="Right" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
+                <Label Grid.Column="15" x:Name="timer" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>
 
-    <Grid Margin="0,0,2,1">
+    <Grid Margin="0,0,-8,1" Background="LightGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="257" Margin="-2,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
-                 ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickBusInfromation"/>
-        <Button Content="Add Bus" HorizontalAlignment="Left" Margin="33,333,0,0" VerticalAlignment="Top" Width="169" Height="54" Click="Button_Click"/>
+        <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="257" Margin="-2,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+                 ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickBusInfromation" Background="#FFF0F0F0"/>
+        <Button Content="Add Bus" HorizontalAlignment="Left" Margin="258,302,0,0" VerticalAlignment="Top" Width="169" Height="54" Click="Button_Click" BorderBrush="#FF386157" Background="#FFBFB7B7"/>
+        <Rectangle Fill="DeepPink" HorizontalAlignment="Left" Height="20" Margin="747,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="737,440,0,0" TextWrapping="Wrap" Text="In Drive" VerticalAlignment="Top" Width="51"/>
+        <Rectangle Fill="Yellow" HorizontalAlignment="Left" Height="20" Margin="684,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <TextBlock HorizontalAlignment="Left" Height="16" Margin="660,440,0,0" TextWrapping="Wrap" Text="On Refueling" VerticalAlignment="Top" Width="72" RenderTransformOrigin="0.228,0.333"/>
+        <Rectangle Fill="DeepSkyBlue" HorizontalAlignment="Left" Height="20" Margin="609,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
+        <TextBlock HorizontalAlignment="Left" Height="16" Margin="583,440,0,0" TextWrapping="Wrap" Text="In treatment" VerticalAlignment="Top" Width="72"/>
+        <Rectangle Fill="LightGreen" HorizontalAlignment="Left" Height="20" Margin="545,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="3.75,0.75"/>
+        <TextBlock HorizontalAlignment="Left" Height="17" Margin="529,440,0,0" TextWrapping="Wrap" Text="Available" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.5,0.5"/>
+        <Image Grid.Column="0" HorizontalAlignment="Left" Height="135" Margin="14,355,0,0" Grid.Row="0" VerticalAlignment="Top" Width="266" Source="busPicture.png" RenderTransformOrigin="0.624,0.093"/>
 
 
     </Grid>

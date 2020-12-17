@@ -87,21 +87,7 @@ namespace dotNet5781_03B_7232_5482
                 MessageBox.Show("The bus can't start driving right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat >= 20000) && b.Kmafterrefueling >= 1200)
-            {
-                MessageBox.Show("The bus needs to be sent for a treatment and refueling.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            else if ((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat >= 20000)
-            {
-                MessageBox.Show("The bus needs to be sent for a treatment.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            else if (b.Kmafterrefueling >= 1200)
-            {
-                MessageBox.Show("The bus needs to be sent for refueling.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
+      
             if(b.myStatus==STATUS.Available)
             {
                 DepartureToRide win = new DepartureToRide();
@@ -113,8 +99,20 @@ namespace dotNet5781_03B_7232_5482
                 bool sec = double.TryParse(win.rideDisTextBox.Text,out dic);
                 if (!sec)
                     return;
+                if (((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat+dic >= 20000) && b.Kmafterrefueling + dic >= 1200)
+                {
+                    return;
+                }
+                else if ((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat + dic >= 20000)
+                {
+                    return;
+                }
+                else if (b.Kmafterrefueling + dic >= 1200)
+                {
+                    return;
+                }
                 b.Km += dic;
-                int speedTravel = rand.Next(50, 90);//rand speed travel
+                int speedTravel = rand.Next(20, 50);//rand speed travel
                 int timeTravel = (int)((dic / speedTravel) * 6);//time travel in
                 ListBoxItem myListBoxItem = (ListBoxItem)(BusList.ItemContainerGenerator.ContainerFromItem(b));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
@@ -130,7 +128,8 @@ namespace dotNet5781_03B_7232_5482
                 string massage = "The ride went successfully.";
                 string title = "Finished a driving  ";
                 action.Content = "on driving...";
-                DataThread data = new DataThread(prop, precent, 12, b, massage, title, action,statusRectangle,timer);
+                timer.Content = timeTravel.ToString();
+                DataThread data = new DataThread(prop, precent, timeTravel, b, massage, title, action,statusRectangle,timer);
                 data.Start(data);
             }
            

@@ -84,7 +84,7 @@ namespace dotNet5781_03B_7232_5482
                 string massage = "Treatment successfully";
                 string title = "Treat  ";
                 action.Content = "in traetment...";
-                DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action,statusRectangle,timer);
+                DataThread data = new DataThread(prop, label, 144, myBus, massage, title,action,statusRectangle,timer);
                 data.Start(data);
                 myBus.Kmaftertreat = 0;
             
