@@ -110,7 +110,9 @@ namespace dotNet5781_03B_7232_5482
                 if (win.rideDisTextBox.Text == "")
                     return;
                 double dic;
-                dic = double.Parse(win.rideDisTextBox.Text);
+                bool sec = double.TryParse(win.rideDisTextBox.Text,out dic);
+                if (!sec)
+                    return;
                 b.Km += dic;
                 int speedTravel = rand.Next(50, 90);//rand speed travel
                 int timeTravel = (int)((dic / speedTravel) * 6);//time travel in

@@ -25,23 +25,23 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label  Content="license Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBlock x:Name="licenseNumTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBlock x:Name="startDateTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="Date Treat:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBlock x:Name="dateTreatTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="2"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="total Km:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBlock x:Name="totalKmTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="3"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="km After Treat:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBlock x:Name="kmAfterTreatTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="4"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="km After Refuling:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBlock x:Name="kmAfterRefulingTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="5"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="bus Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="6"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="license Number:" Grid.Column="0"   FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontSize="14"/>
+            <TextBlock x:Name="licenseNumTextBlock" Grid.Column="1"  FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="0"  VerticalAlignment="Center"  FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="start Date:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="14"/>
+            <TextBlock x:Name="startDateTextBlock" Grid.Column="1"  FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="1"  VerticalAlignment="Center " FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="Date Treat:" Grid.Column="0" FontFamily="Dubai Light"  HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="14"/>
+            <TextBlock x:Name="dateTreatTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="2"  VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="total Km:" Grid.Column="0" FontFamily="Dubai Light"  HorizontalAlignment="Left" Margin="3" Grid.Row="3" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock x:Name="totalKmTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="km After Treat:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="4" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock x:Name="kmAfterTreatTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="4"  VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="km After Refuling:" Grid.Column="0" FontFamily="Dubai Light"  HorizontalAlignment="Left" Margin="3" Grid.Row="5" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock x:Name="kmAfterRefulingTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="bus Status:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="6" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="6" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
         </Grid>
-        <Button Content="Refuel" HorizontalAlignment="Left" Height="31" Margin="62,366,0,0" VerticalAlignment="Top" Width="167" Click="RefuelBus"/>
-        <Button Content="Treat" HorizontalAlignment="Left" Height="31" Margin="369,368,0,0" VerticalAlignment="Top" Width="171" Click="TreatBus"/>
+        <Button Content="Refuel" HorizontalAlignment="Left"  FontFamily="Dubai Light"  Height="31" Margin="62,366,0,0" VerticalAlignment="Top" Width="167" Click="RefuelBus" FontSize="14"/>
+        <Button Content="Treat" HorizontalAlignment="Left"  FontFamily="Dubai Light"  Height="31" Margin="369,368,0,0" VerticalAlignment="Top" Width="171" Click="TreatBus" FontSize="14"/>
 
     </Grid>
 </Window>

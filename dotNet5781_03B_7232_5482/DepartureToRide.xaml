@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7232_5482"
         mc:Ignorable="d"
-        Title="DepartureToRide" Height="268.09" Width="309.045">
+        Title="DepartureToRide" Height="236.09" Width="309.045">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="0,39,0,0" TextWrapping="Wrap" Text="Enter the ride distance in km:" VerticalAlignment="Top" FontFamily="Dubai Light" Height="31" Width="168" FontSize="14" />
-        <TextBox x:Name="rideDisTextBox" HorizontalAlignment="Left" Height="31" Margin="176,39,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="55" FontSize="20"  KeyDown="TakeForRide_KeyDown" BorderBrush="LightGray" TextChanged="TextBox_TextChanged"/>
-        <TextBlock Name="ErrorDistance"  HorizontalAlignment="Left" Height="25" Margin="68,167,0,0" TextWrapping="Wrap" Text="Try enter distance again" FontFamily="Dubai Light" VerticalAlignment="Top" Width="508" FontSize="20" Foreground="Red" Visibility="Hidden"/>
+        <TextBox x:Name="rideDisTextBox" HorizontalAlignment="Left" Height="21" Margin="177,39,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="58" FontSize="14"  KeyDown="TakeForRide_KeyDown" BorderBrush="LightGray" TextChanged="TextBox_TextChanged"/>
+        <TextBlock Name="ErrorDistance" Height="22" Margin="147,59,0,0" TextWrapping="Wrap" Text="Try enter distance again" FontFamily="Dubai Light" VerticalAlignment="Top" Width="121" Foreground="Red" Visibility="Hidden" HorizontalAlignment="Left" TextAlignment="Center"/>
 
     </Grid>
 </Window>

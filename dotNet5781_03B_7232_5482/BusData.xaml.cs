@@ -35,6 +35,7 @@ namespace dotNet5781_03B_7232_5482
             totalKmTextBlock.Text = b.Km.ToString();
             kmAfterTreatTextBlock.Text = b.Kmaftertreat.ToString();
             kmAfterRefulingTextBlock.Text = b.Kmafterrefueling.ToString();
+            busStatusTextBlock.Text = b.myStatus.ToString();         
             myBus = b;
             prop = p;
             label = l;
