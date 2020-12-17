@@ -21,7 +21,7 @@ namespace dotNet5781_03B_7232_5482
     {
         public Bus myBus { get; set; }
         public ProgressBar progres { get; set; }
-        public BusData(Bus b)
+        public BusData(Bus b, ProgressBar p,Label l)
         {
             InitializeComponent();
             Left = Application.Current.MainWindow.Left + (Application.Current.MainWindow.Width - Width) / 2;

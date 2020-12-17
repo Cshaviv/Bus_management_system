@@ -31,7 +31,7 @@ namespace dotNet5781_03B_7232_5482
         static Random rand = new Random();
         public ObservableCollection<Bus> BusesCollection;
         BackgroundWorker worker;
-       // public static object Application { get; internal set; }
+        // public static object Application { get; internal set; }
 
         //BackgroundWorker workerRefuel;
         public MainWindow()
@@ -57,27 +57,25 @@ namespace dotNet5781_03B_7232_5482
             else
             {
                 b.Kmafterrefueling = 0;
-                //MessageBox.Show("Refueling successfully", "MESSAGE", MessageBoxButton.OK);
                 b.myStatus = STATUS.OnRefueling;
                 ListBoxItem myListBoxItem = (ListBoxItem)(BusList.ItemContainerGenerator.ContainerFromItem(b));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
                 ProgressBar p = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
-                Label l=(Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
+                Label l = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
                 l.Visibility = Visibility.Visible;
                 p.Visibility = Visibility.Visible;
                 p.Foreground = Brushes.Red;
-                DataThread data = new DataThread(p,l,12,b);
-                worker = new BackgroundWorker();
-                worker.DoWork += Worker_DoWork;
-                worker.ProgressChanged += Worker_ProgressChanged;
-                worker.RunWorkerCompleted += Worker_RunWorkerCompleted_Refuel;
-                worker.WorkerReportsProgress = true;
-                //DataThread thread = new DataThread();/*(BusList.GetControl<ProgressBar>(sender as Button, "pbThread"), BusList.GetControl<Label>(sender as Button, "seconds"), 12, b);*/
-                //thread.ProgressBar.Visibility = Visibility.Visible;
-                //thread.Label.Visibility = Visibility.Visible;
-                //thread.ProgressBar.Foreground = Brushes.Yellow;
-                worker.RunWorkerAsync(data);
+                string massage = "The bus was refueled successfully.";
+                string title = "Refuel  ";
+                DataThread data = new DataThread(p, l, 12, b, massage, title);
+                data.Start(data);
+                //worker = new BackgroundWorker();
+                //worker.DoWork += Worker_DoWork;
+                //worker.ProgressChanged += Worker_ProgressChanged;
+                //worker.RunWorkerCompleted += Worker_RunWorkerCompleted_Refuel;
+                //worker.WorkerReportsProgress = true;
+                //worker.RunWorkerAsync(data);
             }
 
 
@@ -105,23 +103,39 @@ namespace dotNet5781_03B_7232_5482
                     DepartureToRide win = new DepartureToRide();
                     win.myBus = b;
                     win.ShowDialog();
-                    
-                    //BackgroundWorker workerRefuel = new BackgroundWorker();
-                    //workerRefuel.DoWork += Worker_DoWork;
-                    //workerRefuel.ProgressChanged += Worker_ProgressChanged;
-                    //workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Driving;
-                    //workerRefuel.WorkerReportsProgress = true;
-                    //int speedTravel = rand.Next(20, 50);//rand speed travel
-                    //int timeTravel = (int)((win.rideDisTextBox.ActualWidth / speedTravel) * 6);//time travel in 
-                    //DataThread thread = new DataThread();/*(BusList.GetControl<ProgressBar>(sender as Button, "pbTread"), BusList.GetControl<Label>(sender as Button, "seconds"), timeTravel, b, Finditem<TextBlock>((sender as Button).DataContext, "TBTotalKm"));*///thread of driving
-                    //thread.ProgressBar = 
-                    //thread.ProgressBar.Visibility = Visibility.Visible;
-                    //thread.Label.Visibility = Visibility.Visible;
-                    //thread.ProgressBar.Foreground = Brushes.Aqua;
-                    //workerRefuel.RunWorkerAsync(thread);
+                    double dic;
+                    dic = double.Parse(win.rideDisTextBox.Text);
+                    b.Km += dic;
+                    int speedTravel = rand.Next(50, 90);//rand speed travel
+                    int timeTravel = (int)((dic / speedTravel) * 6);//time travel in
+                    ListBoxItem myListBoxItem = (ListBoxItem)(BusList.ItemContainerGenerator.ContainerFromItem(b));
+                    ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+                    DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                    ProgressBar p = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
+                    Label l = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
+                    b.myStatus = STATUS.OnRide;
+                    l.Visibility = Visibility.Visible;
+                    p.Visibility = Visibility.Visible;
+                    p.Foreground = Brushes.BlueViolet;
+                    string massage = "The ride went successfully.";
+                    string title = "Finished a driving  ";
+                    DataThread data = new DataThread(p, l, 12, b, massage, title);
+                    data.Start(data);
+                    //DataThread data = new DataThread(p, l, timeTravel, b);
+                    //worker = new BackgroundWorker();
+                    //worker.DoWork += Worker_DoWork;
+                    //worker.ProgressChanged += Worker_ProgressChanged;
+                    //worker.RunWorkerCompleted += Worker_RunWorkerCompleted_Driving;
+                    //worker.WorkerReportsProgress = true;
+                    //worker.RunWorkerAsync(data);
+                    b.Kmafterrefueling += dic;
+                    b.Kmaftertreat += dic;
+                    b.myStatus = STATUS.ReadyToRide;  
                 }
             }
-            else { MessageBox.Show("bla bala ");
+            else
+            {
+                MessageBox.Show("bla bala ");
                 return;
             }
         }
@@ -130,47 +144,16 @@ namespace dotNet5781_03B_7232_5482
             Bus b = (sender as ListBox).SelectedItem as Bus;
             if (b != null)
             {
-                BusData win = new BusData(b);
+                ListBoxItem myListBoxItem = (ListBoxItem)(BusList.ItemContainerGenerator.ContainerFromItem(b));
+                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                ProgressBar p = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
+                Label l = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
+                BusData win = new BusData(b,p,l);
                 win.ShowDialog();
             }
         }
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            DataThread data = (DataThread)e.Argument;
-            int length = data.Seconds;
-            for (int i = 1; i <= length; i++)
-            {
-                System.Threading.Thread.Sleep(1000);
-                worker.ReportProgress(i, data);
-            }
-            e.Result = data;
-        }
-        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            int progress = (int)e.ProgressPercentage;//i
-            DataThread data = (DataThread)e.UserState;
-            //int result = data.Seconds - progress;
-            data.Label.Content = progress*100/data.Seconds+"%";
-            data.ProgressBar.Value = (progress * 100) / data.Seconds;
-        }
-        private void Worker_RunWorkerCompleted_Refuel(object sender, RunWorkerCompletedEventArgs e)
-        {
-            MessageBox.Show("The bus was refueled successfully.", "Refuel  ", MessageBoxButton.OK, MessageBoxImage.Information);
-            DataThread data = ((DataThread)(e.Result));
-            data.ProgressBar.Visibility = Visibility.Hidden;
-            data.Label.Visibility = Visibility.Hidden;
-            data.Bus.myStatus = STATUS.ReadyToRide;
-            data.Bus.Refuel();
-        }
-        //private void Worker_RunWorkerCompleted_Driving(object sender, RunWorkerCompletedEventArgs e)
-        //{
-        //    MessageBox.Show("The ride went successfully.", "Finished a driving  ", MessageBoxButton.OK, MessageBoxImage.Information);
-        //    DataThread data = ((DataThread)(e.Result));
-        //    data.ProgressBar.Visibility = Visibility.Hidden;
-        //    data.Label.Visibility = Visibility.Hidden;
-        //    data.Bus.myStatus = STATUS.ReadyToRide;
-        //    data.TBTotalKm.Text = (data.Bus.Km).ToString();
-        //}
+  
         private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
