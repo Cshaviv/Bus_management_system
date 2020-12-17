@@ -33,8 +33,7 @@
                     <ColumnDefinition Width="80" />
 
                 </Grid.ColumnDefinitions>
-                <Rectangle Grid.Column="0" Visibility="Visible" Fill="#FFD63535" Height="7" Width="7"   />
-
+                <Rectangle Grid.Column="0" x:Name="statusRectangle" Visibility="Visible" Fill="LightGreen" Height="7" Width="7"    />
                 <TextBlock Grid.Column="2"
                    Text="License Num:" />
                 <TextBlock Grid.Column="4"

@@ -31,9 +31,6 @@ namespace dotNet5781_03B_7232_5482
     {
         static Random rand = new Random();
         public ObservableCollection<Bus> BusesCollection;
-        // public static object Application { get; internal set; }
-
-        //BackgroundWorker workerRefuel;
         public MainWindow()
         {
 
@@ -42,7 +39,6 @@ namespace dotNet5781_03B_7232_5482
             Buses.RestartBuses(BusesCollection);
             BusList.ItemsSource = BusesCollection;
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -71,11 +67,13 @@ namespace dotNet5781_03B_7232_5482
             ProgressBar prop = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
             Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
             Label action =(Label)myDataTemplate.FindName("action", myContentPresenter);
+            Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
+            statusRectangle.Fill = Brushes.Yellow;
             prop.Foreground = Brushes.Yellow;
             action.Content = "on refueling...";
             string massage = "The bus was refueled successfully.";
             string title = "Refuel  ";
-            DataThread data = new DataThread(prop, precent, 12, b, massage, title,action);
+            DataThread data = new DataThread(prop, precent, 12, b, massage, title,action, statusRectangle);
             data.Start(data);
             b.Kmafterrefueling = 0;
 
@@ -83,7 +81,7 @@ namespace dotNet5781_03B_7232_5482
         private void StartDriveButtonClick(object sender, RoutedEventArgs e)
         {
             Bus b = (sender as Button).DataContext as Bus;
-            if (b.myStatus != STATUS.ReadyToRide)
+            if (b.myStatus != STATUS.Available)
             {
                 MessageBox.Show("The bus can't start driving right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -103,7 +101,7 @@ namespace dotNet5781_03B_7232_5482
                 MessageBox.Show("The bus needs to be sent for refueling.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if(b.myStatus==STATUS.ReadyToRide)
+            if(b.myStatus==STATUS.Available)
             {
                 DepartureToRide win = new DepartureToRide();
                 win.myBus = b;
@@ -120,17 +118,15 @@ namespace dotNet5781_03B_7232_5482
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
                 ProgressBar prop = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
                 Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
-                b.myStatus =
-                    
-                    STATUS.OnRide;
+                Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
                 Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
-                //l.Visibility = Visibility.Visible;
-                //p.Visibility = Visibility.Visible;
+                b.myStatus = STATUS.OnRide;
+                statusRectangle.Fill = Brushes.DeepPink;
                 prop.Foreground = Brushes.DeepPink;
                 string massage = "The ride went successfully.";
                 string title = "Finished a driving  ";
                 action.Content = "on driving...";
-                DataThread data = new DataThread(prop, precent, 12, b, massage, title, action);
+                DataThread data = new DataThread(prop, precent, 12, b, massage, title, action,statusRectangle);
                 data.Start(data);
             }
            
@@ -147,7 +143,8 @@ namespace dotNet5781_03B_7232_5482
                 ProgressBar prop = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
                 Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
                 Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
-                BusData win = new BusData(b,prop,precent,action);
+                Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
+                BusData win = new BusData(b,prop,precent,action,statusRectangle);
                 win.ShowDialog();
             }
         }

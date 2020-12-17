@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel;
-
+using System.Windows.Shapes;
+using System.Windows.Media;
 
 
 namespace dotNet5781_03B_7232_5482
@@ -21,8 +22,8 @@ namespace dotNet5781_03B_7232_5482
         public string message { get; set; }
         public string title { get; set; }
         public Label action { get; set; }
-
-        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t,Label a)
+        public Rectangle statusRectangle { get; set; }
+        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t,Label a, Rectangle s)
         {
             ProgressBar = pb;
             Label = label;
@@ -31,6 +32,7 @@ namespace dotNet5781_03B_7232_5482
             message = m;
             title = t;
             action = a;
+            statusRectangle = s;
         }
         public void Start(DataThread d)
         {
@@ -61,18 +63,18 @@ namespace dotNet5781_03B_7232_5482
         {
             int progress = (int)e.ProgressPercentage;//i
             DataThread data = (DataThread)e.UserState;
-            //int result = data.Seconds - progress;
             data.Label.Content = progress * 100 / data.Seconds + "%";
             data.ProgressBar.Value = (progress * 100) / data.Seconds;
         }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
             DataThread data = ((DataThread)(e.Result));
+            data.statusRectangle.Fill= Brushes.LightGreen;
             data.ProgressBar.Visibility = Visibility.Hidden;
             data.Label.Visibility = Visibility.Hidden;
             data.action.Visibility = Visibility.Hidden;
-            data.Bus.myStatus = STATUS.ReadyToRide;
+            data.Bus.myStatus = STATUS.Available;
         }
 
     }

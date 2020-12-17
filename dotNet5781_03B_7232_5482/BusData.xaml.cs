@@ -23,7 +23,8 @@ namespace dotNet5781_03B_7232_5482
         public ProgressBar prop { get; set; }
         public Label label { get; set; }
         public Label action { get; set; }
-        public BusData(Bus b, ProgressBar p,Label l,Label a)
+        public Rectangle statusRectangle { get; set; }
+        public BusData(Bus b, ProgressBar p,Label l,Label a, Rectangle s)
         {
             InitializeComponent();
             Left = Application.Current.MainWindow.Left + (Application.Current.MainWindow.Width - Width) / 2;
@@ -33,11 +34,11 @@ namespace dotNet5781_03B_7232_5482
             totalKmTextBlock.Text = b.Km.ToString();
             kmAfterTreatTextBlock.Text = b.Kmaftertreat.ToString();
             kmAfterRefulingTextBlock.Text = b.Kmafterrefueling.ToString();
-            busStatusTextBlock.Text = b.myStatus.ToString();//לבדו'
             myBus = b;
             prop = p;
             label = l;
             action = a;
+            statusRectangle = s;
         }
         private void RefuelBus(object sender, RoutedEventArgs e)
         {
@@ -52,25 +53,17 @@ namespace dotNet5781_03B_7232_5482
                 return;
             }
             myBus.myStatus = STATUS.OnRefueling;
-            //label.Visibility = Visibility.Visible;
-            //prop.Visibility = Visibility.Visible;
             prop.Foreground = Brushes.Yellow;
+            statusRectangle.Fill = Brushes.Yellow;
             string massage = "The bus was refueled successfully.";
             string title = "Refuel  ";
             action.Content = "on refueling...";
-            DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action);
+            DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action,statusRectangle);
             data.Start(data);
             myBus.Kmafterrefueling = 0;
         }
         private void TreatBus(object sender, RoutedEventArgs e)
         {
-            //if (myBus.myStatus == STATUS.OnRide)
-            //    MessageBox.Show("The bus in Ride, try to treat later.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            //if (myBus.myStatus == STATUS.OnRefueling)
-            //    MessageBox.Show("The bus on refueling try to treat later.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            //if (myBus.myStatus == STATUS.OnTreat)
-            //    MessageBox.Show("The bus already on Treatment.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-
             if (myBus.myStatus == STATUS.OnRide || myBus.myStatus == STATUS.OnTreat || myBus.myStatus == STATUS.OnRefueling)
             {
                 MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -81,20 +74,14 @@ namespace dotNet5781_03B_7232_5482
                 MessageBox.Show("The bus was already treatmented", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            //if (myBus.Kmafterrefueling == 0)
-            //{
-            //    MessageBox.Show("The fuel tank if full", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            //    return;
-            //}
          
                 myBus.myStatus = STATUS.OnTreat;
-                //label.Visibility = Visibility.Visible;
-                //prop.Visibility = Visibility.Visible;
+            statusRectangle.Fill = Brushes.DeepSkyBlue;
                 prop.Foreground = Brushes.DeepSkyBlue;
                 string massage = "Treatment successfully";
                 string title = "Treat  ";
                 action.Content = "in traetment...";
-                DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action);
+                DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action,statusRectangle);
                 data.Start(data);
                 myBus.Kmaftertreat = 0;
             

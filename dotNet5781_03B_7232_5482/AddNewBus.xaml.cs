@@ -15,8 +15,8 @@ namespace dotNet5781_03B_7232_5482
         public AddNewBus()
         {
             InitializeComponent();
-            busStatusCombo.ItemsSource = Enum.GetValues(typeof(STATUS)).Cast<STATUS>();
-            busStatusCombo.SelectedIndex = 0;
+            //busStatusCombo.ItemsSource = Enum.GetValues(typeof(STATUS)).Cast<STATUS>();
+            //busStatusCombo.SelectedIndex = 0;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -140,7 +140,7 @@ namespace dotNet5781_03B_7232_5482
                 counter = counter + 1;
 
             }
-            newBus.myStatus = (STATUS)Enum.Parse(typeof(STATUS), busStatusCombo.Text);
+            newBus.myStatus = STATUS.Available;
             if (counter==6)
             {
                 BusesCollection.Add(newBus);

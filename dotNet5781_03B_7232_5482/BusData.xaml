@@ -23,6 +23,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label  Content="license Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBlock x:Name="licenseNumTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
@@ -36,6 +37,8 @@
             <TextBlock x:Name="kmAfterTreatTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="4"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
             <Label  Content="km After Refuling:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
             <TextBlock x:Name="kmAfterRefulingTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="5"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="bus Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" Margin="0,10,-188,6" Grid.Row="6"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
         </Grid>
         <Button Content="Refuel" HorizontalAlignment="Left" Height="31" Margin="62,366,0,0" VerticalAlignment="Top" Width="167" Click="RefuelBus"/>
         <Button Content="Treat" HorizontalAlignment="Left" Height="31" Margin="369,368,0,0" VerticalAlignment="Top" Width="171" Click="TreatBus"/>

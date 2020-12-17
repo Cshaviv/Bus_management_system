@@ -9,6 +9,6 @@ namespace dotNet5781_03B_7232_5482
     public enum STATUS
 
     {
-       ReadyToRide=1 ,OnRide, OnRefueling, OnTreat
+       Available=1 ,OnRide, OnRefueling, OnTreat
     }
 }

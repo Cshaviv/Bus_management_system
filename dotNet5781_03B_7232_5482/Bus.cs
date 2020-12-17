@@ -100,7 +100,7 @@ namespace dotNet5781_03B_7232_5482
         }
 
 
-        public Bus(int licNum, DateTime dt, DateTime My_DT, double My_Km = 0, double My_Kmaftertreat = 0, double My_Kmafterrefueling = 0, STATUS e= STATUS.ReadyToRide)
+        public Bus(int licNum, DateTime dt, DateTime My_DT, double My_Km = 0, double My_Kmaftertreat = 0, double My_Kmafterrefueling = 0, STATUS e= STATUS.Available)
         {
             this.startDate = dt;
             this.licenseNum = licNum;
