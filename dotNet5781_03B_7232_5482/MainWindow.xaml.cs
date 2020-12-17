@@ -68,12 +68,13 @@ namespace dotNet5781_03B_7232_5482
             Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
             Label action =(Label)myDataTemplate.FindName("action", myContentPresenter);
             Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
+            Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
             statusRectangle.Fill = Brushes.Yellow;
             prop.Foreground = Brushes.Yellow;
             action.Content = "on refueling...";
             string massage = "The bus was refueled successfully.";
             string title = "Refuel  ";
-            DataThread data = new DataThread(prop, precent, 12, b, massage, title,action, statusRectangle);
+            DataThread data = new DataThread(prop, precent, 12, b, massage, title,action, statusRectangle, timer);
             data.Start(data);
             b.Kmafterrefueling = 0;
 
@@ -120,13 +121,14 @@ namespace dotNet5781_03B_7232_5482
                 Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
                 Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
                 Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
+                Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
                 b.myStatus = STATUS.OnRide;
                 statusRectangle.Fill = Brushes.DeepPink;
                 prop.Foreground = Brushes.DeepPink;
                 string massage = "The ride went successfully.";
                 string title = "Finished a driving  ";
                 action.Content = "on driving...";
-                DataThread data = new DataThread(prop, precent, 12, b, massage, title, action,statusRectangle);
+                DataThread data = new DataThread(prop, precent, 12, b, massage, title, action,statusRectangle,timer);
                 data.Start(data);
             }
            
@@ -144,7 +146,8 @@ namespace dotNet5781_03B_7232_5482
                 Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
                 Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
                 Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
-                BusData win = new BusData(b,prop,precent,action,statusRectangle);
+                Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
+                BusData win = new BusData(b,prop,precent,action,statusRectangle,timer);
                 win.ShowDialog();
             }
         }

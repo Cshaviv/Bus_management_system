@@ -23,7 +23,8 @@ namespace dotNet5781_03B_7232_5482
         public string title { get; set; }
         public Label action { get; set; }
         public Rectangle statusRectangle { get; set; }
-        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t,Label a, Rectangle s)
+        public Label timer { get; set; }
+        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t,Label a, Rectangle s, Label time)
         {
             ProgressBar = pb;
             Label = label;
@@ -33,6 +34,7 @@ namespace dotNet5781_03B_7232_5482
             title = t;
             action = a;
             statusRectangle = s;
+            timer = time;
         }
         public void Start(DataThread d)
         {
@@ -63,6 +65,7 @@ namespace dotNet5781_03B_7232_5482
         {
             int progress = (int)e.ProgressPercentage;//i
             DataThread data = (DataThread)e.UserState;
+            //data.timer.Content=
             data.Label.Content = progress * 100 / data.Seconds + "%";
             data.ProgressBar.Value = (progress * 100) / data.Seconds;
         }

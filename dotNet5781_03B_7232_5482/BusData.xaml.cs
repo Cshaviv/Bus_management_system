@@ -24,7 +24,8 @@ namespace dotNet5781_03B_7232_5482
         public Label label { get; set; }
         public Label action { get; set; }
         public Rectangle statusRectangle { get; set; }
-        public BusData(Bus b, ProgressBar p,Label l,Label a, Rectangle s)
+        public Label timer { get; set; }
+        public BusData(Bus b, ProgressBar p,Label l,Label a, Rectangle s,Label t)
         {
             InitializeComponent();
             Left = Application.Current.MainWindow.Left + (Application.Current.MainWindow.Width - Width) / 2;
@@ -39,6 +40,7 @@ namespace dotNet5781_03B_7232_5482
             label = l;
             action = a;
             statusRectangle = s;
+            timer = t;
         }
         private void RefuelBus(object sender, RoutedEventArgs e)
         {
@@ -58,7 +60,7 @@ namespace dotNet5781_03B_7232_5482
             string massage = "The bus was refueled successfully.";
             string title = "Refuel  ";
             action.Content = "on refueling...";
-            DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action,statusRectangle);
+            DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action,statusRectangle,timer);
             data.Start(data);
             myBus.Kmafterrefueling = 0;
         }
@@ -81,7 +83,7 @@ namespace dotNet5781_03B_7232_5482
                 string massage = "Treatment successfully";
                 string title = "Treat  ";
                 action.Content = "in traetment...";
-                DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action,statusRectangle);
+                DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action,statusRectangle,timer);
                 data.Start(data);
                 myBus.Kmaftertreat = 0;
             
