@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+//using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -59,16 +59,16 @@ namespace dotNet5781_03B_7232_5482
                 b.Kmafterrefueling = 0;
                 //MessageBox.Show("Refueling successfully", "MESSAGE", MessageBoxButton.OK);
                 b.myStatus = STATUS.OnRefueling;
-                BackgroundWorker workerRefuel = new BackgroundWorker(12,"fghj", ,);
+                BackgroundWorker workerRefuel = new BackgroundWorker();
                 workerRefuel.DoWork += Worker_DoWork;
                 workerRefuel.ProgressChanged += Worker_ProgressChanged;
                 workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Refuel;
                 workerRefuel.WorkerReportsProgress = true;
-                //DataThread thread = new DataThread();/*(BusList.GetControl<ProgressBar>(sender as Button, "pbThread"), BusList.GetControl<Label>(sender as Button, "seconds"), 12, b);*/
-                //thread.ProgressBar.Visibility = Visibility.Visible;
-                //thread.Label.Visibility = Visibility.Visible;
-                //thread.ProgressBar.Foreground = Brushes.Yellow;
-                workerRefuel.RunWorkerAsync(/*thread*/);
+                DataThread thread = new DataThread(Finditem<ProgressBar>(sender as Button, "pbThread"), Finditem<Label>(sender as Button, "seconds"), 12, b);
+                thread.ProgressBar.Visibility = Visibility.Visible;
+                thread.Label.Visibility = Visibility.Visible;
+                thread.ProgressBar.Foreground = Brushes.Yellow;
+                workerRefuel.RunWorkerAsync(thread);
             }
 
 
@@ -96,20 +96,24 @@ namespace dotNet5781_03B_7232_5482
                     DepartureToRide win = new DepartureToRide();
                     win.myBus = b;
                     win.ShowDialog();
-                    
-                    //BackgroundWorker workerRefuel = new BackgroundWorker();
-                    //workerRefuel.DoWork += Worker_DoWork;
-                    //workerRefuel.ProgressChanged += Worker_ProgressChanged;
-                    //workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Driving;
-                    //workerRefuel.WorkerReportsProgress = true;
-                    //int speedTravel = rand.Next(20, 50);//rand speed travel
-                    //int timeTravel = (int)((win.rideDisTextBox.ActualWidth / speedTravel) * 6);//time travel in 
-                    //DataThread thread = new DataThread();/*(BusList.GetControl<ProgressBar>(sender as Button, "pbTread"), BusList.GetControl<Label>(sender as Button, "seconds"), timeTravel, b, Finditem<TextBlock>((sender as Button).DataContext, "TBTotalKm"));*///thread of driving
-                    //thread.ProgressBar = 
-                    //thread.ProgressBar.Visibility = Visibility.Visible;
-                    //thread.Label.Visibility = Visibility.Visible;
-                    //thread.ProgressBar.Foreground = Brushes.Aqua;
-                    //workerRefuel.RunWorkerAsync(thread);
+                    double distance;
+                    Double.TryParse(win.rideDisTextBox.Text, out distance);
+                    //win.rideDisTextBox. = distance;
+
+                    BackgroundWorker workerRefuel = new BackgroundWorker();
+                    workerRefuel.DoWork += Worker_DoWork;
+                    workerRefuel.ProgressChanged += Worker_ProgressChanged;
+                    workerRefuel.RunWorkerCompleted += Worker_RunWorkerCompleted_Driving;
+                    workerRefuel.WorkerReportsProgress = true;
+                    int speedTravel = rand.Next(20, 50);//rand speed travel
+                    int timeTravel = ((int)(distance / speedTravel) * 6);//time travel in 
+                    DataThread thread = new DataThread(Finditem<ProgressBar>((sender as Button).DataContext,  "PbThread"), Finditem<Label>((sender as Button).DataContext, "seconds"),timeTravel, b, Finditem<TextBlock>((sender as Button).DataContext, "totalKm"));/*(BusList.GetControl<ProgressBar>(sender as Button, "pbTread"), BusList.GetControl<Label>(sender as Button, "seconds"), timeTravel, b, Finditem<TextBlock>((sender as Button).DataContext, "TBTotalKm"));*///thread of driving
+//שורה מעל משהו עם find item
+                    thread.ProgressBar.Visibility = Visibility.Visible;
+                    thread.Label.Visibility = Visibility.Visible;
+                    thread.ProgressBar.Foreground = Brushes.Aqua;
+                    workerRefuel.RunWorkerAsync(thread);
+
                 }
             }
             else { MessageBox.Show("bla bala ");
@@ -181,5 +185,18 @@ namespace dotNet5781_03B_7232_5482
             return null;
         }
 
+        public A Finditem<A>(object item, string str)
+        {
+
+            ListBoxItem myListBoxItem = (ListBoxItem)(BusList.ItemContainerGenerator.ContainerFromItem(item));
+
+            // Getting the ContentPresenter of myListBoxItem
+            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+
+            // Finding textBlock from the DataTemplate that is set on that ContentPresenter
+            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+            A myLabel = (A)myDataTemplate.FindName(str, myContentPresenter);
+            return myLabel;
+        }
     }
 }

@@ -44,9 +44,9 @@ namespace dotNet5781_03B_7232_5482
             Bus = b;
             TBTotalKm = TotalKm;
         }
-        public DataThread()
-        {
+        //public DataThread()
+        //{
 
-        }
+        //}
     }
 }

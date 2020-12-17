@@ -34,7 +34,7 @@
                 <TextBlock Grid.Column="2"
                    Text="{Binding }" />
                 <TextBlock Grid.Column="4"
-                   Text=" Km: " />
+                   Text=" Km: " Name="TotalKm"  />
                 <TextBlock Grid.Column="6"
                    Text="{Binding Path=Km}" />
                 <Button Grid.Column="8"
@@ -43,7 +43,9 @@
                    Content="Refueling" Click="Refuel" Name="ButtonRefuel" Background="White"/>
                 <!--<Button Grid.Column="6"
                    Content="Refueling" Click="ayala" Name="ButtonRef" Background="White"/>-->
-                <ProgressBar Grid.Column="12" Name="pbThread" />
+                <ProgressBar Grid.Column="12" Name="pbThread" Visibility="Hidden"  />
+                <Label Grid.Column="14"
+                   Name="seconds" Visibility="Hidden" />
             </Grid>
         </DataTemplate>
     </Window.Resources>
