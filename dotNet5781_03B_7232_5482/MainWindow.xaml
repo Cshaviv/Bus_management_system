@@ -14,14 +14,16 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="8" />
                     <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="30" />
                     <ColumnDefinition Width="5" />
                     <ColumnDefinition Width="20" />
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="20" />
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="80" />
@@ -31,31 +33,32 @@
                     <ColumnDefinition Width="80" />
 
                 </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Visibility="Visible" Fill="#FFD63535" Height="7" Width="7"   />
 
-                <TextBlock Grid.Column="0"
-                   Text="License Num:" />
                 <TextBlock Grid.Column="2"
-                   Text="{Binding }" />
+                   Text="License Num:" />
                 <TextBlock Grid.Column="4"
-                   Text=" Km: " />
+                   Text="{Binding }" />
                 <TextBlock Grid.Column="6"
+                   Text=" Km: " />
+                <TextBlock Grid.Column="8"
                    Text="{Binding Path=Km}" />
-                <Button Grid.Column="8"
-                   Content="Start driving" Click="StartDriveButtonClick" Name="StartDriveButton" Background="White" />
                 <Button Grid.Column="10"
+                   Content="Start driving" Click="StartDriveButtonClick" Name="StartDriveButton" Background="White" />
+                <Button Grid.Column="12"
                    Content="Refueling" Click="Refuel" Name="ButtonRefuel" Background="White"/>
-                <ProgressBar Grid.Column="12" Name="pbThread" Visibility="Hidden" />
-                <Label Grid.Column="13" x:Name="progressLabel" HorizontalContentAlignment="Left" Visibility="Hidden"  />
-                <Label Grid.Column="12" x:Name="action" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <ProgressBar Grid.Column="14" Name="pbThread" Visibility="Hidden" />
+                <Label Grid.Column="14" x:Name="action" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <Label Grid.Column="15" x:Name="progressLabel" HorizontalContentAlignment="Left" Visibility="Hidden"  />
             </Grid>
         </DataTemplate>
     </Window.Resources>
 
-    <Grid Margin="0,0,85.333,0.667">
+    <Grid Margin="0,0,2,1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="257" Margin="-2,54,5,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+        <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="257" Margin="-2,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickBusInfromation"/>
         <Button Content="Add Bus" HorizontalAlignment="Left" Margin="33,333,0,0" VerticalAlignment="Top" Width="169" Height="54" Click="Button_Click"/>
 

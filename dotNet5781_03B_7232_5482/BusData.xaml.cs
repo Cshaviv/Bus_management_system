@@ -61,21 +61,32 @@ namespace dotNet5781_03B_7232_5482
             DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action);
             data.Start(data);
             myBus.Kmafterrefueling = 0;
-            myBus.myStatus = STATUS.ReadyToRide;
         }
         private void TreatBus(object sender, RoutedEventArgs e)
-        {         
-            if (myBus.myStatus == STATUS.OnRide)
-                MessageBox.Show("The bus in Ride, try to treat later.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            if (myBus.myStatus == STATUS.OnRefueling)
-                MessageBox.Show("The bus on refueling try to treat later.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            if (myBus.myStatus == STATUS.OnTreat)
-                MessageBox.Show("The bus already on Treatment.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            if(myBus.Kmaftertreat==0&& (DateTime.Now==myBus.LastTreat))
-                MessageBox.Show("The bus was already treatmented", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        {
+            //if (myBus.myStatus == STATUS.OnRide)
+            //    MessageBox.Show("The bus in Ride, try to treat later.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            //if (myBus.myStatus == STATUS.OnRefueling)
+            //    MessageBox.Show("The bus on refueling try to treat later.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            //if (myBus.myStatus == STATUS.OnTreat)
+            //    MessageBox.Show("The bus already on Treatment.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
-            else
+            if (myBus.myStatus == STATUS.OnRide || myBus.myStatus == STATUS.OnTreat || myBus.myStatus == STATUS.OnRefueling)
             {
+                MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (myBus.Kmaftertreat == 0 && (DateTime.Now == myBus.LastTreat))
+            {
+                MessageBox.Show("The bus was already treatmented", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            //if (myBus.Kmafterrefueling == 0)
+            //{
+            //    MessageBox.Show("The fuel tank if full", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            //    return;
+            //}
+         
                 myBus.myStatus = STATUS.OnTreat;
                 //label.Visibility = Visibility.Visible;
                 //prop.Visibility = Visibility.Visible;
@@ -86,8 +97,7 @@ namespace dotNet5781_03B_7232_5482
                 DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action);
                 data.Start(data);
                 myBus.Kmaftertreat = 0;
-                myBus.myStatus = STATUS.ReadyToRide;
-            }
+            
         }
     }
 }

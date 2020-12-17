@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+//using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -120,7 +120,9 @@ namespace dotNet5781_03B_7232_5482
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
                 ProgressBar prop = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
                 Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
-                b.myStatus = STATUS.OnRide;
+                b.myStatus =
+                    
+                    STATUS.OnRide;
                 Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
                 //l.Visibility = Visibility.Visible;
                 //p.Visibility = Visibility.Visible;
