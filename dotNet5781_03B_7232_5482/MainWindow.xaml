@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7232_5482"
         mc:Ignorable="d"
-        Title="MainWindow" Height="531.818" Width="820">
+        Title="System bus line" Height="531.818" Width="820" Icon="busLogo.jpg" >
     <Window.Resources>
         <DataTemplate x:Key="MyDataTemplate"
                   DataType="local:Bus">
@@ -59,7 +59,7 @@
         </Grid.ColumnDefinitions>
         <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="257" Margin="-2,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickBusInfromation" Background="#FFF0F0F0"/>
-        <Button Content="Add Bus" HorizontalAlignment="Left" Margin="258,302,0,0" VerticalAlignment="Top" Width="169" Height="54" Click="Button_Click" BorderBrush="#FF386157" Background="#FFBFB7B7"/>
+        <Button Content="Add Bus" HorizontalAlignment="Left" Margin="38,301,0,0" VerticalAlignment="Top" Width="168" Height="54" Click="Button_Click" BorderBrush="#FF386157" Background="#FFBFB7B7"/>
         <Rectangle Fill="DeepPink" HorizontalAlignment="Left" Height="20" Margin="747,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.5"/>
         <TextBlock HorizontalAlignment="Left" Margin="737,440,0,0" TextWrapping="Wrap" Text="In Drive" VerticalAlignment="Top" Width="51"/>
         <Rectangle Fill="Yellow" HorizontalAlignment="Left" Height="20" Margin="684,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
@@ -68,7 +68,7 @@
         <TextBlock HorizontalAlignment="Left" Height="16" Margin="583,440,0,0" TextWrapping="Wrap" Text="In treatment" VerticalAlignment="Top" Width="72"/>
         <Rectangle Fill="LightGreen" HorizontalAlignment="Left" Height="20" Margin="545,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="3.75,0.75"/>
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="529,440,0,0" TextWrapping="Wrap" Text="Available" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.5,0.5"/>
-        <Image Grid.Column="0" HorizontalAlignment="Left" Height="135" Margin="14,355,0,0" Grid.Row="0" VerticalAlignment="Top" Width="266" Source="busPicture.png" RenderTransformOrigin="0.624,0.093"/>
+        <Image Grid.Column="0" HorizontalAlignment="Left" Height="118" Margin="10,382,0,0" Grid.Row="0" VerticalAlignment="Top" Width="266" Source="busPicture.png" RenderTransformOrigin="0.624,0.093"/>
 
 
     </Grid>

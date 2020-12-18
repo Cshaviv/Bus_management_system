@@ -144,6 +144,7 @@ namespace dotNet5781_03B_7232_5482
             if (counter==6)
             {
                 BusesCollection.Add(newBus);
+                MessageBox.Show("The bus secssesfully added", "new bus", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 this.Close();
             }

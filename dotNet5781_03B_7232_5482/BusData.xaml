@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7232_5482"
         mc:Ignorable="d"
-        Title="BusData" Height="417" Width="633">
+        Title="Bus Data" Height="417" Width="633" Background="#FFF0F0F0" Icon="busLogo.jpg" >
     <Window.Resources>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Bus}, CreateList=True}"/>
     </Window.Resources>
-    <Grid Margin="0,0,42,28">
+    <Grid Margin="0,0,42,28" >
 
-        <Grid x:Name="mainGrid" HorizontalAlignment="Left" Height="268" Margin="84,25,0,0" VerticalAlignment="Top" Width="508">
+        <Grid x:Name="mainGrid" HorizontalAlignment="Left" Height="268" Margin="84,25,0,0" VerticalAlignment="Top" Width="499">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -40,8 +40,8 @@
             <Label  Content="bus Status:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="6" FontSize="14" VerticalAlignment="Center"/>
             <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="6" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
         </Grid>
-        <Button Content="Refuel" HorizontalAlignment="Left"  FontFamily="Dubai Light"  Height="31" Margin="62,317,0,0" VerticalAlignment="Top" Width="167" Click="RefuelBus" FontSize="14"/>
-        <Button Content="Treat" HorizontalAlignment="Left"  FontFamily="Dubai Light"  Height="31" Margin="369,317,0,0" VerticalAlignment="Top" Width="171" Click="TreatBus" FontSize="14"/>
+        <Button Content="Refuel" HorizontalAlignment="Left"  FontFamily="Dubai Light"  Height="31" Margin="86,317,0,0" VerticalAlignment="Top" Width="167" Click="RefuelBus" FontSize="14" Background="#FFBFB7B7"/>
+        <Button Content="Treat" HorizontalAlignment="Left"  FontFamily="Dubai Light"  Height="31" Margin="329,317,0,0" VerticalAlignment="Top" Width="171" Click="TreatBus" FontSize="14" Background="#FFBFB7B7"/>
 
     </Grid>
 </Window>
