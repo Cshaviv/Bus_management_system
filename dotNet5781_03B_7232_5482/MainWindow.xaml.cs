@@ -140,15 +140,7 @@ namespace dotNet5781_03B_7232_5482
                 TextBlock km = (TextBlock)myDataTemplate.FindName("kmTextBlock", myContentPresenter);
                 DepartureToRide win = new DepartureToRide(b, prop, precent, action, statusRectangle, timer, km);
                 win.ShowDialog();
-                //b.Km += dic;
-                //statusRectangle.Fill = Brushes.DeepPink;
-                //prop.Foreground = Brushes.DeepPink;
-                //string massage = "The ride went successfully.";
-                //string title = "Finished a driving  ";
-                //action.Content = "on driving...";
-                //timer.Content = timeTravel.ToString();
-                //DataThread data = new DataThread(prop, precent, timeTravel, b, massage, title, action,statusRectangle,timer, km,dic);
-                //data.Start(data);
+               
             }
            
 

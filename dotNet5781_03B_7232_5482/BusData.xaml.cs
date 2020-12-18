@@ -94,8 +94,12 @@ namespace dotNet5781_03B_7232_5482
             data.Start(data);
             myBus.Kmaftertreat = 0;
             myBus.LastTreat = DateTime.Now;
+            if (myBus.Kmafterrefueling == 1200)
+            {
+                myBus.Kmafterrefueling = 0;
+            }
             closeButton_Click(sender, e);
-
+          
 
 
 
