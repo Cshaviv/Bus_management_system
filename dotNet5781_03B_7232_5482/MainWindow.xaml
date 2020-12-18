@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7232_5482"
         mc:Ignorable="d"
-        Title="System bus line" Height="531.818" Width="820" Icon="busLogo.jpg" >
+        Title="System bus line" Height="531.818" Width="832" Icon="busLogo.jpg" >
     <Window.Resources>
         <DataTemplate x:Key="MyDataTemplate"
                   DataType="local:Bus">
@@ -33,14 +33,10 @@
 
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="0" x:Name="statusRectangle" Visibility="Visible" Fill="LightGreen" Height="7" Width="7"    />
-                <TextBlock Grid.Column="2"
-                   Text="License Number:" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="4"
-                   Text="{Binding }" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="6"
-                   Text=" Km: " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="8"
-                   Text="{Binding Path=Km}" FontFamily="Dubai Light"  FontSize="14" />
+                <TextBlock Grid.Column="2" Text="License Number:" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="4" Text="{Binding }" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="6" Text=" Km: " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="8" x:Name="kmTextBlock" Text="{Binding Path=Km}" FontFamily="Dubai Light"  FontSize="14" />
                 <Button Grid.Column="10"
                    Content="Start driving" Click="StartDriveButtonClick" Name="StartDriveButton" Background="White" FontFamily="Dubai Light" FontSize="14"/>
                 <Button Grid.Column="12"
@@ -53,15 +49,16 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid Margin="0,0,-8,1" Background="LightGray">
+    <Grid Margin="0,0,1,0.667" Background="LightGray">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="771*"/>
+            <ColumnDefinition Width="43*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="257" Margin="-2,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
-                 ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickBusInfromation" Background="#FFF0F0F0"/>
+        <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="257" Margin="-2,24,-1,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+                 ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickBusInfromation" Background="#FFF0F0F0" Grid.ColumnSpan="2"/>
         <Button Content="Add Bus" HorizontalAlignment="Left" Margin="38,301,0,0" VerticalAlignment="Top" Width="168" Height="54" Click="Button_Click" BorderBrush="#FF386157" Background="#FFBFB7B7"/>
         <Rectangle Fill="DeepPink" HorizontalAlignment="Left" Height="20" Margin="747,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.5"/>
-        <TextBlock HorizontalAlignment="Left" Margin="737,440,0,0" TextWrapping="Wrap" Text="In Drive" VerticalAlignment="Top" Width="51"/>
+        <TextBlock HorizontalAlignment="Left" Margin="737,440,0,0" TextWrapping="Wrap" Text="In Drive" VerticalAlignment="Top" Width="51" Grid.ColumnSpan="2"/>
         <Rectangle Fill="Yellow" HorizontalAlignment="Left" Height="20" Margin="684,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>
         <TextBlock HorizontalAlignment="Left" Height="16" Margin="660,440,0,0" TextWrapping="Wrap" Text="On Refueling" VerticalAlignment="Top" Width="72" RenderTransformOrigin="0.228,0.333"/>
         <Rectangle Fill="DeepSkyBlue" HorizontalAlignment="Left" Height="20" Margin="609,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20"/>

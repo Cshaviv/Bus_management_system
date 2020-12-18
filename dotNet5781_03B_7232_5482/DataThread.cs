@@ -24,7 +24,9 @@ namespace dotNet5781_03B_7232_5482
         public Label action { get; set; }
         public Rectangle statusRectangle { get; set; }
         public Label timer { get; set; }
-        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t,Label a, Rectangle s, Label time)
+        public TextBlock km { get; set; }
+        public double distance { get; set; }
+        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t, Label a, Rectangle s, Label time, TextBlock k, double d=0)
         {
             ProgressBar = pb;
             Label = label;
@@ -35,6 +37,8 @@ namespace dotNet5781_03B_7232_5482
             action = a;
             statusRectangle = s;
             timer = time;
+            km = k;
+            distance = d;
         }
         public void Start(DataThread d)
         {
@@ -66,7 +70,7 @@ namespace dotNet5781_03B_7232_5482
         {
             int progress = (int)e.ProgressPercentage;//i
             DataThread data = (DataThread)e.UserState;
-            data.timer.Content = (data.Seconds-progress)+ "  seconds to finish" ;
+            data.timer.Content = (data.Seconds - progress) + "  seconds to finish";
             data.Label.Content = progress * 100 / data.Seconds + "%";
             data.ProgressBar.Value = (progress * 100) / data.Seconds;
         }
@@ -74,12 +78,13 @@ namespace dotNet5781_03B_7232_5482
         {
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
             DataThread data = ((DataThread)(e.Result));
-            data.statusRectangle.Fill= Brushes.LightGreen;
+            data.statusRectangle.Fill = Brushes.LightGreen;
             data.ProgressBar.Visibility = Visibility.Hidden;
             data.Label.Visibility = Visibility.Hidden;
             data.action.Visibility = Visibility.Hidden;
             data.timer.Visibility = Visibility.Hidden;
             data.Bus.myStatus = STATUS.Available;
+            data.km.Text =(double.Parse(data.km.Text)+( data.distance)).ToString();
         }
 
     }

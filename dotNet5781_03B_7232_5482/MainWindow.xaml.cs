@@ -69,12 +69,13 @@ namespace dotNet5781_03B_7232_5482
             Label action =(Label)myDataTemplate.FindName("action", myContentPresenter);
             Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
             Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
+            TextBlock km = (TextBlock)myDataTemplate.FindName("kmTextBlock", myContentPresenter);
             statusRectangle.Fill = Brushes.Yellow;
             prop.Foreground = Brushes.Yellow;
             action.Content = "on refueling...";
             string massage = "The bus was refueled successfully.";
             string title = "Refuel  ";
-            DataThread data = new DataThread(prop, precent, 12, b, massage, title,action, statusRectangle, timer);
+            DataThread data = new DataThread(prop, precent, 12, b, massage, title,action, statusRectangle, timer,km);
             data.Start(data);
             b.Kmafterrefueling = 0;
 
@@ -90,47 +91,59 @@ namespace dotNet5781_03B_7232_5482
       
             if(b.myStatus==STATUS.Available)
             {
-                DepartureToRide win = new DepartureToRide();
-                win.myBus = b;
-                win.ShowDialog();
-                if (win.rideDisTextBox.Text == "")
-                    return;
-                double dic;
-                bool sec = double.TryParse(win.rideDisTextBox.Text,out dic);
-                if (!sec)
-                    return;
-                if (((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat+dic >= 20000) && b.Kmafterrefueling + dic >= 1200)
-                {
-                    return;
-                }
-                else if ((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat + dic >= 20000)
-                {
-                    return;
-                }
-                else if (b.Kmafterrefueling + dic >= 1200)
-                {
-                    return;
-                }
-                b.Km += dic;
-                int speedTravel = rand.Next(20, 50);//rand speed travel
-                int timeTravel = (int)((dic / speedTravel) * 6);//time travel in
+              
+                //if (win.rideDisTextBox.Text == "")
+                //    return;
+                //double dic;
+                //bool sec = double.TryParse(win.rideDisTextBox.Text,out dic);
+                //if (!sec)
+                //    return;
+                //if (((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat+dic >= 20000) && b.Kmafterrefueling + dic >= 1200)
+                //{
+                //    MessageBox.Show("1.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                //    return;
+                //}
+                //else if ((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat + dic >= 20000)
+                //{
+                //    MessageBox.Show("2.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                //    return;
+                //}
+                //else if (b.Kmafterrefueling + dic >= 1200)
+                //{
+                //    MessageBox.Show("3.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                //    return;
+                //}
+                //int speedTravel = rand.Next(20, 50);//rand speed travel
+                //int timeTravel = (int)((dic / speedTravel) * 6);//time travel in
+                //ListBoxItem myListBoxItem = (ListBoxItem)(BusList.ItemContainerGenerator.ContainerFromItem(b));
+                //ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+                //DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                //ProgressBar prop = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
+                //Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
+                //Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
+                //Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
+                //Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
+                //TextBlock km = (TextBlock)myDataTemplate.FindName("kmTextBlock", myContentPresenter);
                 ListBoxItem myListBoxItem = (ListBoxItem)(BusList.ItemContainerGenerator.ContainerFromItem(b));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
                 ProgressBar prop = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
                 Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
-                Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
                 Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
+                Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
                 Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
-                b.myStatus = STATUS.OnRide;
-                statusRectangle.Fill = Brushes.DeepPink;
-                prop.Foreground = Brushes.DeepPink;
-                string massage = "The ride went successfully.";
-                string title = "Finished a driving  ";
-                action.Content = "on driving...";
-                timer.Content = timeTravel.ToString();
-                DataThread data = new DataThread(prop, precent, timeTravel, b, massage, title, action,statusRectangle,timer);
-                data.Start(data);
+                TextBlock km = (TextBlock)myDataTemplate.FindName("kmTextBlock", myContentPresenter);
+                DepartureToRide win = new DepartureToRide(b, prop, precent, action, statusRectangle, timer, km);
+                win.ShowDialog();
+                //b.Km += dic;
+                //statusRectangle.Fill = Brushes.DeepPink;
+                //prop.Foreground = Brushes.DeepPink;
+                //string massage = "The ride went successfully.";
+                //string title = "Finished a driving  ";
+                //action.Content = "on driving...";
+                //timer.Content = timeTravel.ToString();
+                //DataThread data = new DataThread(prop, precent, timeTravel, b, massage, title, action,statusRectangle,timer, km,dic);
+                //data.Start(data);
             }
            
 
@@ -148,7 +161,8 @@ namespace dotNet5781_03B_7232_5482
                 Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
                 Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
                 Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
-                BusData win = new BusData(b,prop,precent,action,statusRectangle,timer);
+                TextBlock km = (TextBlock)myDataTemplate.FindName("kmTextBlock", myContentPresenter);
+                BusData win = new BusData(b,prop,precent,action,statusRectangle,timer,km);
                 win.ShowDialog();
             }
         }
