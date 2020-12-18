@@ -26,7 +26,7 @@ namespace dotNet5781_03B_7232_5482
         public Rectangle statusRectangle { get; set; }
         public Label timer { get; set; }
         public TextBlock km { get; set; }
-        public BusData(Bus b, ProgressBar p,Label l,Label a, Rectangle s,Label t, TextBlock k)
+        public BusData(Bus b, ProgressBar p, Label l, Label a, Rectangle s, Label t, TextBlock k)
         {
             InitializeComponent();
             Left = Application.Current.MainWindow.Left + (Application.Current.MainWindow.Width - Width) / 2;
@@ -36,7 +36,7 @@ namespace dotNet5781_03B_7232_5482
             totalKmTextBlock.Text = b.Km.ToString();
             kmAfterTreatTextBlock.Text = b.Kmaftertreat.ToString();
             kmAfterRefulingTextBlock.Text = b.Kmafterrefueling.ToString();
-            busStatusTextBlock.Text = b.myStatus.ToString();         
+            busStatusTextBlock.Text = b.myStatus.ToString();
             myBus = b;
             prop = p;
             label = l;
@@ -63,9 +63,13 @@ namespace dotNet5781_03B_7232_5482
             string massage = "The bus was refueled successfully.";
             string title = "Refuel  ";
             action.Content = "on refueling...";
-            DataThread data = new DataThread(prop, label, 12, myBus, massage, title,action,statusRectangle,timer,km);
+            
+            DataThread data = new DataThread(prop, label, 12, myBus, massage, title, action, statusRectangle, timer, km);
             data.Start(data);
+            
             myBus.Kmafterrefueling = 0;
+            closeButton_Click(sender, e);
+
         }
         private void TreatBus(object sender, RoutedEventArgs e)
         {
@@ -79,17 +83,27 @@ namespace dotNet5781_03B_7232_5482
                 MessageBox.Show("The bus was already treatmented", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-         
-                myBus.myStatus = STATUS.OnTreat;
-                statusRectangle.Fill = Brushes.DeepSkyBlue;
-                prop.Foreground = Brushes.DeepSkyBlue;
-                string massage = "Treatment successfully";
-                string title = "Treat  ";
-                action.Content = "in traetment...";
-                DataThread data = new DataThread(prop, label, 144, myBus, massage, title,action,statusRectangle,timer,km);
-                data.Start(data);
-                myBus.Kmaftertreat = 0;
-            
+
+            myBus.myStatus = STATUS.OnTreat;
+            statusRectangle.Fill = Brushes.DeepSkyBlue;
+            prop.Foreground = Brushes.DeepSkyBlue;
+            string massage = "Treatment successfully";
+            string title = "Treat  ";
+            action.Content = "in traetment...";
+            DataThread data = new DataThread(prop, label, 144, myBus, massage, title, action, statusRectangle, timer, km);
+            data.Start(data);
+            myBus.Kmaftertreat = 0;
+            myBus.LastTreat = DateTime.Now;
+            closeButton_Click(sender, e);
+
+
+
+
+
+        }
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
