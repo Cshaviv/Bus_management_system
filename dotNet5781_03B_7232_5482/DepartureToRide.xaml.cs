@@ -55,7 +55,7 @@ namespace dotNet5781_03B_7232_5482
 
                 else if ((myBus.Kmafterrefueling + num) > 1200)
                     MessageBox.Show("There is no enough fuel for this ride.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                else if ((myBus.Kmaftertreat + num) > 20000)
+                else if ((myBus.Kmaftertreat + num) > 20000|| (DateTime.Now - myBus.LastTreat).TotalDays > 365)
                     MessageBox.Show("You need to take the bus for a treatment before this ride.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 else
                 {

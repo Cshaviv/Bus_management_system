@@ -70,12 +70,17 @@ namespace dotNet5781_03B_7232_5482
             Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
             Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
             TextBlock km = (TextBlock)myDataTemplate.FindName("kmTextBlock", myContentPresenter);
+            TextBlock kmAfterTreat = (TextBlock)myDataTemplate.FindName("kmAfterTreatTextBlock", myContentPresenter);
+            TextBlock kmAfterRefueling = (TextBlock)myDataTemplate.FindName("kmAfterRefulingTextBlock", myContentPresenter);
+
             statusRectangle.Fill = Brushes.Yellow;
             prop.Foreground = Brushes.Yellow;
             action.Content = "on refueling...";
             string massage = "The bus was refueled successfully.";
             string title = "Refuel  ";
-            DataThread data = new DataThread(prop, precent, 12, b, massage, title,action, statusRectangle, timer,km);
+            //bool sign = false;
+            //double dis = 0;
+            DataThread data = new DataThread(prop, precent, 12, b, massage, title,action, statusRectangle, timer,km/*, kmAfterTreat, kmAfterRefueling*/ /* ,sign*/);
             data.Start(data);
             b.Kmafterrefueling = 0;
 
@@ -165,6 +170,7 @@ namespace dotNet5781_03B_7232_5482
                 BusData win = new BusData(b,prop,precent,action,statusRectangle,timer,km);
                 win.ShowDialog();
             }
+            
         }
         private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
         {

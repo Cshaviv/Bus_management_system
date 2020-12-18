@@ -26,7 +26,10 @@ namespace dotNet5781_03B_7232_5482
         public Label timer { get; set; }
         public TextBlock km { get; set; }
         public double distance { get; set; }
-        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t, Label a, Rectangle s, Label time, TextBlock k, double d=0)
+        //public TextBlock kmAfterTreat { get; set; }
+        //public TextBlock kmAfterRefueling { get; set; }
+        //public bool sign { get; set; }
+        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t, Label a, Rectangle s, Label time, TextBlock k, /*TextBlock kTreat, TextBlock kRefueling,*/ double d = 0 /*,bool f = true*/)
         {
             ProgressBar = pb;
             Label = label;
@@ -39,7 +42,11 @@ namespace dotNet5781_03B_7232_5482
             timer = time;
             km = k;
             distance = d;
+            //kmAfterTreat = kTreat;
+            //kmAfterRefueling = kRefueling;
+            //sign = f;
         }
+        
         public void Start(DataThread d)
         {
             DataThread data = d;
@@ -85,7 +92,12 @@ namespace dotNet5781_03B_7232_5482
             data.timer.Visibility = Visibility.Hidden;
             data.Bus.myStatus = STATUS.Available;
             data.km.Text =(double.Parse(data.km.Text)+( data.distance)).ToString();
+            //if (sign)
+            //    data.kmAfterTreat.Text = "0";
+            //else
+            //    data.kmAfterRefueling.Text = "0";
         }
+
 
     }
 }
