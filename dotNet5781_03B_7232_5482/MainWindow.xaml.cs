@@ -1,4 +1,4 @@
-﻿//llll
+﻿//Chagit shaviv 322805482 and Ayala Israeli 
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -39,7 +39,7 @@ namespace dotNet5781_03B_7232_5482
             Buses.RestartBuses(BusesCollection);
             BusList.ItemsSource = BusesCollection;
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)//Add new bus button
         {
 
             AddNewBus add = new AddNewBus();
@@ -47,20 +47,20 @@ namespace dotNet5781_03B_7232_5482
 
             add.ShowDialog();
         }
-        private void Refuel(object sender, RoutedEventArgs e)
+        private void Refuel(object sender, RoutedEventArgs e)//Bus refueling button, When you press the button of Refuel
         {
             Bus b = (sender as Button).DataContext as Bus;//the bus
-            if (b.myStatus == STATUS.OnRide || b.myStatus == STATUS.OnTreat || b.myStatus == STATUS.OnRefueling)
+            if (b.myStatus == STATUS.OnRide || b.myStatus == STATUS.OnTreat || b.myStatus == STATUS.OnRefueling)// Check if the bus can be sent for refueling
             {
                 MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if (b.Kmafterrefueling == 0)
+            if (b.Kmafterrefueling == 0)//When the fuel tank is full to the end can not be sent for refueling.
             {
                 MessageBox.Show("The fuel tank if full", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            b.myStatus = STATUS.OnRefueling;
+            b.myStatus = STATUS.OnRefueling;//update status
             ListBoxItem myListBoxItem = (ListBoxItem)(BusList.ItemContainerGenerator.ContainerFromItem(b));
             ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
@@ -73,62 +73,27 @@ namespace dotNet5781_03B_7232_5482
             TextBlock kmAfterTreat = (TextBlock)myDataTemplate.FindName("kmAfterTreatTextBlock", myContentPresenter);
             TextBlock kmAfterRefueling = (TextBlock)myDataTemplate.FindName("kmAfterRefulingTextBlock", myContentPresenter);
 
-            statusRectangle.Fill = Brushes.Yellow;
-            prop.Foreground = Brushes.Yellow;
+            statusRectangle.Fill = Brushes.Yellow;//The square that indicates the status of the bus will be painted yellow
+            prop.Foreground = Brushes.Yellow;//the prop will be painted yellow
             action.Content = "on refueling...";
             string massage = "The bus was refueled successfully.";
             string title = "Refuel  ";
-            //bool sign = false;
-            //double dis = 0;
-            DataThread data = new DataThread(prop, precent, 12, b, massage, title,action, statusRectangle, timer,km/*, kmAfterTreat, kmAfterRefueling*/ /* ,sign*/);
-            data.Start(data);
-            b.Kmafterrefueling = 0;
+            DataThread data = new DataThread(prop, precent, 12, b, massage, title,action, statusRectangle, timer,km);//Sending the necessary data for the process
+            data.Start(data);//Start of the procession
+            b.Kmafterrefueling = 0;//update fields
 
         }
-        private void StartDriveButtonClick(object sender, RoutedEventArgs e)
+        private void StartDriveButtonClick(object sender, RoutedEventArgs e)//Bus Start drive button, When you press the button of start drive.
         {
             Bus b = (sender as Button).DataContext as Bus;
-            if (b.myStatus != STATUS.Available)
+            if (b.myStatus != STATUS.Available)//Check if the bus can be sent for travel
             {
                 MessageBox.Show("The bus can't start driving right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
       
-            if(b.myStatus==STATUS.Available)
+            if(b.myStatus==STATUS.Available)// if status of bus is "Available", 
             {
-              
-                //if (win.rideDisTextBox.Text == "")
-                //    return;
-                //double dic;
-                //bool sec = double.TryParse(win.rideDisTextBox.Text,out dic);
-                //if (!sec)
-                //    return;
-                //if (((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat+dic >= 20000) && b.Kmafterrefueling + dic >= 1200)
-                //{
-                //    MessageBox.Show("1.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                //    return;
-                //}
-                //else if ((DateTime.Now - b.LastTreat).TotalDays > 365 || b.Kmaftertreat + dic >= 20000)
-                //{
-                //    MessageBox.Show("2.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                //    return;
-                //}
-                //else if (b.Kmafterrefueling + dic >= 1200)
-                //{
-                //    MessageBox.Show("3.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                //    return;
-                //}
-                //int speedTravel = rand.Next(20, 50);//rand speed travel
-                //int timeTravel = (int)((dic / speedTravel) * 6);//time travel in
-                //ListBoxItem myListBoxItem = (ListBoxItem)(BusList.ItemContainerGenerator.ContainerFromItem(b));
-                //ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
-                //DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                //ProgressBar prop = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
-                //Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
-                //Rectangle statusRectangle = (Rectangle)myDataTemplate.FindName("statusRectangle", myContentPresenter);
-                //Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
-                //Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
-                //TextBlock km = (TextBlock)myDataTemplate.FindName("kmTextBlock", myContentPresenter);
                 ListBoxItem myListBoxItem = (ListBoxItem)(BusList.ItemContainerGenerator.ContainerFromItem(b));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
@@ -139,13 +104,13 @@ namespace dotNet5781_03B_7232_5482
                 Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
                 TextBlock km = (TextBlock)myDataTemplate.FindName("kmTextBlock", myContentPresenter);
                 DepartureToRide win = new DepartureToRide(b, prop, precent, action, statusRectangle, timer, km);
-                win.ShowDialog();
-               
+                win.ShowDialog();//In the window that opens there will be additional health checks regarding departure for the trip
+
             }
            
 
         }
-        private void doubleClickBusInfromation(object sender, RoutedEventArgs e)
+        private void doubleClickBusInfromation(object sender, RoutedEventArgs e)//Clicking "double click" on a bus in the list will open a window showing the bus data
         {
             Bus b = (sender as ListBox).SelectedItem as Bus;
             if (b != null)

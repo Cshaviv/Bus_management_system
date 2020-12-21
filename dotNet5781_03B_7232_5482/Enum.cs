@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_03B_7232_5482
 {
-    public enum STATUS
+    public enum STATUS//status of bus
 
     {
        Available=1 ,OnRide, OnRefueling, OnTreat

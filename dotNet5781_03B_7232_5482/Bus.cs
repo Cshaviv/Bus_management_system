@@ -23,13 +23,6 @@ namespace dotNet5781_03B_7232_5482
             set { status = value; }
         }
 
-        //private  STATUS BusStatus;
-        //public STATUS BusStatus
-        //{
-        //    get { return BusStatus; }
-        //    set { BusStatus = value; }
-        //}
-
         public double Kmaftertreat
         {
             get { return kmaftertreat; }
@@ -115,7 +108,7 @@ namespace dotNet5781_03B_7232_5482
 
         }
         
-        public override string ToString()
+        public override string ToString()// print licene number 
         {
             string licenNum = LicenseNum.ToString();
             if (StartDate.Year < 2018)
