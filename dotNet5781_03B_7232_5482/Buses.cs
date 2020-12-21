@@ -20,7 +20,7 @@ namespace dotNet5781_03B_7232_5482
             BusesCollection.Add(new Bus(1234967, new DateTime(2016, 10, 15), new DateTime(2020, 03, 04), 10000, 19950, 480));//need treat soon, almost road 20000 km from last treat
             BusesCollection.Add(new Bus(11223344, new DateTime(2020, 03, 09), new DateTime(2020, 11, 01), 10000, 1000, 500));//ready
             BusesCollection.Add(new Bus(11284666, new DateTime(2018, 06, 12), new DateTime(2020, 05, 01), 10000, 1000, 500));//ready
-            BusesCollection.Add(new Bus(1239997, new DateTime(2016, 03, 04), new DateTime(2017, 03, 04), 10000, 1000, 1199));// need treat and refueling
+            BusesCollection.Add(new Bus(1239997, new DateTime(2016, 03, 04), new DateTime(2017, 03, 04), 10000, 1000, 1200));// need treat and refueling
         }
             
     }

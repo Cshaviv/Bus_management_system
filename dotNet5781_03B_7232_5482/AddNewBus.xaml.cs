@@ -59,7 +59,7 @@ namespace dotNet5781_03B_7232_5482
                 }
 
             }
-            DateTime date = startDateDatePicker.DisplayDate;
+            DateTime date = startDateDatePicker.SelectedDate.Value ;
             if(date > DateTime.Now)// Checking the correctness of the date
             {
                 ErrorDateText.Text = "ERROR! This date is incorrect"; //write Error massege
@@ -73,7 +73,7 @@ namespace dotNet5781_03B_7232_5482
                 newBus.StartDate = date;
                 counter = counter + 1;
             }
-            if (!((date.Year >= 2018) && (liceNum.ToString().Length == 8) || (date.Year < 2018) && (liceNum.ToString().Length == 7)||counter==2))//Checking the correctness of the license number by date
+            if (!(((date.Year >= 2018) && (liceNum.Length == 8)) || ((date.Year < 2018) && (liceNum.Length == 7))))//Checking the correctness of the license number by date
             {
                 ErrorText.Text = "ERROR! One or more of the data is incorrect";//write Error massege
                 licenseNumTextBox.BorderBrush = Brushes.Red;//if its incorrect, Paint the frame in red
@@ -125,8 +125,8 @@ namespace dotNet5781_03B_7232_5482
                 newBus.Kmaftertreat = checkKm_1;
                 counter = counter + 1;
             }
-            date = lastTreatDatePicker.DisplayDate;
-            if (date > DateTime.Now||date<startDateDatePicker.DisplayDate||date==null)// Checking the correctness of the date of last treat
+            date = lastTreatDatePicker.SelectedDate.Value ;
+            if (date > DateTime.Now||date<startDateDatePicker.SelectedDate.Value||date==null)// Checking the correctness of the date of last treat
             {
                 ErrorDateTreatText.Text = "ERROR! This date is incorrect";//write Error massege
                 ErrorDateTreatText.Visibility = Visibility.Visible;

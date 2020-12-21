@@ -64,29 +64,6 @@ namespace dotNet5781_03B_7232_5482
         {
             kmafterrefueling = 1200;
         }
-        //public void  get_LicesNum()//Prints the license number in the appropriate format
-        //{ 
-
-        //    string s_l = this.LicenseNum.ToString();
-        //    string prefix, middle, suffix;
-        //    if (startDate.Year < 2018)
-        //    {
-        //        prefix = s_l.Substring(0, 2);
-        //        middle = s_l.Substring(2, 3);
-        //        suffix = s_l.Substring(5, 2);
-        //    }
-        //    else
-        //    {
-        //        prefix = s_l.Substring(0, 3);
-        //        middle = s_l.Substring(3, 2);
-        //        suffix = s_l.Substring(5, 3);
-        //    }
-        //    string registrationString = String.Format("{0}-{1}-{2}", prefix, middle, suffix);
-        //    Console.WriteLine(registrationString);
-
-        //}
-
-
         public bool needTreat(double RandKm1)
         {
             return ((this.kmaftertreat + RandKm1 >= 20000) || ((DateTime.Now - this.lastTreat).TotalDays >= 365));
@@ -110,8 +87,9 @@ namespace dotNet5781_03B_7232_5482
         
         public override string ToString()// print licene number 
         {
+            int year = StartDate.Year;
             string licenNum = LicenseNum.ToString();
-            if (StartDate.Year < 2018)
+            if (year < 2018)
                 return "" + licenNum[0] + licenNum[1] + "-" + licenNum[2] + licenNum[3] + licenNum[4] + "-" + licenNum[5] + licenNum[6];
             else
                 return "" + licenNum[0] + licenNum[1] + licenNum[2] + "-" + licenNum[3] + licenNum[4] + "-" + licenNum[5] + licenNum[6] + licenNum[7];
