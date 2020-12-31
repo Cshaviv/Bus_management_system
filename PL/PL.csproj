@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PO\Bus.cs" />
+    <Compile Include="PO\Enums.cs" />
+    <Compile Include="ViewModel\DeepCopyUtilities.cs" />
+    <Compile Include="ViewModel\MainWindow.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

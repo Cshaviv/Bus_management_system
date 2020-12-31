@@ -20,9 +20,11 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        PL.ViewModel.MainWindow data = new PL.ViewModel.MainWindow();
         public MainWindow()
         {
             InitializeComponent();
+            //BusList.ItemsSource = data.blGetBusList();
         }
     }
 }

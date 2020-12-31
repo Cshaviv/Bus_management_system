@@ -13,7 +13,7 @@ namespace DLAPI
         // Request - ask for an instance or for a collection
         // Update - update properties of an instance
         // Delete - delete an instance
-        public interface IDL
+        public interface IDL//הצהרה  על פונקציות של הDL
         {
             #region Bus
             IEnumerable<Bus> GetAllBuses();

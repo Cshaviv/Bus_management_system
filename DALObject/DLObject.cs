@@ -8,7 +8,7 @@ using DS;
 
 namespace DALObject
 {
-    class DLObject: IDL
+   public class DLObject: IDL//מימוש הפונקציות ב IDL
     {
          
         #region singelton
@@ -21,11 +21,11 @@ namespace DALObject
         #region Bus
         public IEnumerable<DO.Bus> GetAllBuses()
         {
-
+            return DataSource.ListBuses;
         }
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
         {
-
+           return DataSource.ListBuses.FindAll(predicate);
         }
         public DO.Bus GetBus(int licenseNum)
         {
@@ -38,7 +38,7 @@ namespace DALObject
         }
         public void AddBus(DO.Bus bus)
         {
-            if (DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)
+            if (DataSource.ListBuses.Any(b => b.LicenseNum == bus.LicenseNum))
                 throw new Exception();
             DataSource.ListBuses.Add(bus.Clone());
         }
