@@ -108,6 +108,7 @@ namespace DALObject
 
         }
         #endregion
+        #region Line
         public IEnumerable<DO.Line> GetAllLines()
         {
             return from line in DataSource.ListLines
@@ -146,41 +147,93 @@ namespace DALObject
         {
             throw new NotImplementedException();
         }
-        public void DeleteLiine(int code)//?
+        public void DeleteLine(int code)//?
         {
 
         }
 
-        public IEnumerable<Station> GetAllStationsBy(Predicate<Bus> predicate)
+        #endregion
+        #region Trip
+        public IEnumerable<DO.Trip> GetAllTrips()
         {
-            throw new NotImplementedException();
+            return from trip in DataSource.ListTrips
+                   select trip.Clone();
         }
-
-        public void UpdateStation(int code, Action<Bus> update)
-        {
-            throw new NotImplementedException();
-        }
-
-        Bus IDL.GetLine(int lineId)
+        public IEnumerable<Trip> GetAllTripsBy(Predicate<Trip> predicate)
         {
             throw new NotImplementedException();
         }
+        public DO.Trip GetTrip(int tripId)
+        {
+            DO.Trip trip = DataSource.ListTrips.Find(b => b.TripId == tripId);
 
-        public void UpdateLine(Line line)
+            if (trip != null)
+                return trip.Clone();
+            else
+                throw new Exception();
+        }
+        public void UpdateTrip(DO.Trip trip)
+        {
+            DO.Trip tripFind = DataSource.ListTrips.Find(b => b.TripId == trip.TripId);
+            if (tripFind == null)
+                throw new Exception();
+            DO.Trip newTrip = trip.Clone();//copy of the bus that the function got
+            tripFind = newTrip;//update
+        }
+        public void UpdateTrip(int tripId, Action<Trip> update)
         {
             throw new NotImplementedException();
         }
+        public void DeleteTrip(int tripId)//?
+        {
 
-        public void UpdateLine(int code, Action<Bus> update)
+        }
+        #endregion
+        #region LineTrip
+        public IEnumerable<DO.LineTrip> GetAllLineTrips()
+        {
+            return from line in DataSource.ListLineTrips
+                   select line.Clone();
+
+
+        }
+        public IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate)//?
         {
             throw new NotImplementedException();
         }
+        public DO.LineTrip GetLineTrip(int lineTripId)
+        {
+            DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(b => b.LineTripId == lineTripId);
 
-        public void DeleteLine(int code)
+            if (lineTrip != null)
+                return lineTrip.Clone();
+            else
+                throw new Exception();
+        }
+        public void AddLineTrip(DO.LineTrip lineTrip)
+        {
+            if (DataSource.ListLineTrips.FirstOrDefault(b => b.LineTripId == lineTrip.LineTripId) != null)
+                throw new Exception();
+            DataSource.ListLineTrips.Add(lineTrip.Clone());
+        }
+        public void UpdateLineTrips(DO.LineTrip lineTrip)
+        {
+            DO.LineTrip lineTripFind = DataSource.ListLineTrips.Find(b => b.LineTripId == lineTrip.LineTripId);
+            if (lineTripFind == null)
+                throw new Exception();
+            DO.LineTrip newLineTrip = lineTrip.Clone();//copy of the line that the function got
+            lineTripFind = newLineTrip;//update
+        }
+        public void UpdateLineTrip(int lineTripId, Action<DO.LineTrip> update)//?
         {
             throw new NotImplementedException();
         }
-#endregion
+        public void DeleteLineTrip(int code)//?
+        {
+
+        }
+
+        #endregion
     }
 }
 
