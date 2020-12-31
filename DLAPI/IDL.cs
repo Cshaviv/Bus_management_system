@@ -23,8 +23,26 @@ namespace DLAPI
             void UpdateBus(Bus bus);
             void UpdateBus(int licenseNum, Action<Bus> update); //method that knows to updt specific fields in Bus
             void DeleteBus(int licenseNum);
-            #endregion
-        }
+        #endregion
+         #region Station
+        IEnumerable<Station> GetAllStations();
+        IEnumerable<Station> GetAllStationsBy(Predicate<Bus> predicate);
+        Station GetStation(int code);
+        void AddStation(Station station);//?
+        void UpdateStation(Station station);
+        void UpdateStation(int code, Action<Bus> update); //method that knows to updt specific fields in Bus
+        void DeleteStation(int code);
+        #endregion
+        #region Line
+        IEnumerable<Line> GetAllLines();
+        IEnumerable<Line> GetAllLinesBy(Predicate<Line> predicate);
+        Bus GetLine(int lineId);
+        void AddLine(Line line);//?
+        void UpdateLine(Line line);
+        void UpdateLine(int code, Action<Bus> update); //method that knows to updt specific fields in Bus
+        void DeleteLine(int code);
+        #endregion
     }
+}
 
 
