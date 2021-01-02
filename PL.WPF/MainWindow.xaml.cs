@@ -12,19 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BLAPI;
 
-namespace PL
+
+namespace PL.WPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+   
     public partial class MainWindow : Window
     {
-        //PL.ViewModel.MainWindow data = new PL.ViewModel.MainWindow();
+
+        IBL bl = BLFactory.GetBL("1");
         public MainWindow()
         {
             InitializeComponent();
-            //BusList.ItemsSource = data.blGetBusList();
         }
     }
 }

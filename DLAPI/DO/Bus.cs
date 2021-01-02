@@ -15,16 +15,17 @@ namespace DO
         public BusStatus Status { get; set; }//status
         public DateTime DateLastTreat { get; set; }
         public double KmLastTreat { get; set; }
+        public bool IsDeleted { get; set; }
 
-        public Bus(int licNum, DateTime dt, DateTime My_DT, double total_Trip = 0, double My_Kmaftertreat = 0, double My_Kmafterrefueling = 0, STATUS e = STATUS.Available)
+        public Bus(int licNum, DateTime FromDate, DateTime DateLastTreat, BusStatus status, double total_Trip = 0, double KmLastTreat = 0)
         {
-            this.FromDate = dt;
+            this.FromDate = FromDate;
+            this.DateLastTreat = DateLastTreat;
             this.LicenseNum = licNum;
             this.TotalTrip = total_Trip ;
-            this.Km = My_Km;
-            this.KmLastTreat = My_Kmaftertreat;
-            this.kmafterrefueling = My_Kmafterrefueling;
-            this.Status = e;
+           // this.Km = My_Km;
+            this.KmLastTreat = KmLastTreat;
+            this.Status = status;
         }
         public Bus()
         {
