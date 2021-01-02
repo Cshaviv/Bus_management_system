@@ -29,12 +29,13 @@ namespace DALObject
         }
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)//?
         {
-            throw new NotImplementedException();
-            //return DataSource.ListBuses.FindAll(predicate);
+            return from bus in DataSource.ListBuses
+                   where predicate(bus)
+                   select bus.Clone();
         }
         public DO.Bus GetBus(int licenseNum)
         {
-            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum);
+            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum );
 
             if (bus != null)
                 return bus.Clone();
@@ -43,13 +44,13 @@ namespace DALObject
         }
         public void AddBus(DO.Bus bus)
         {
-            if (DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)
+            if (DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum && b.IsDeleted == false) != null)
                 throw new Exception();
             DataSource.ListBuses.Add(bus.Clone());
         }
         public void UpdateBus(DO.Bus bus)
         {
-            DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == bus.LicenseNum);
+            DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == bus.LicenseNum && b.IsDeleted == false);
             if (busFind == null)
                 throw new Exception();
             DO.Bus newBus = bus.Clone();//copy of the bus that the function got
@@ -231,6 +232,26 @@ namespace DALObject
         public void DeleteLineTrip(int code)//?
         {
 
+        }
+
+        public void UpdateLine(Line line)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateLine(int code, Action<Bus> update)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddTrip(Trip trip)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateLineTrip(LineTrip lineTrip)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

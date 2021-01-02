@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BL;
 
-namespace BL
+namespace BLAPI
 {
    public interface IBL
     {

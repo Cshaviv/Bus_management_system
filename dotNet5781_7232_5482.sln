@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLAPI", "DLAPI\DLAPI.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS", "DS\DS.csproj", "{F92410C3-17A1-4B99-AF51-01403763BC55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL.WPF", "PL.WPF\PL.WPF.csproj", "{4B455544-FBA0-4EB3-99D1-F36BBB32FFF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{F92410C3-17A1-4B99-AF51-01403763BC55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F92410C3-17A1-4B99-AF51-01403763BC55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F92410C3-17A1-4B99-AF51-01403763BC55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B455544-FBA0-4EB3-99D1-F36BBB32FFF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B455544-FBA0-4EB3-99D1-F36BBB32FFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B455544-FBA0-4EB3-99D1-F36BBB32FFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B455544-FBA0-4EB3-99D1-F36BBB32FFF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

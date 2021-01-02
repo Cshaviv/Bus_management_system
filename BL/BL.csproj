@@ -41,11 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLAPI\BLFactory.cs" />
+    <Compile Include="BLImp.cs" />
     <Compile Include="BO\Bus.cs" />
     <Compile Include="BO\Enums.cs" />
     <Compile Include="BL.cs" />
     <Compile Include="DeepCopyUtilities.cs" />
-    <Compile Include="IBL.cs" />
+    <Compile Include="BLAPI\IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
