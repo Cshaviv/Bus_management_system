@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DALObject;
+using DLObject;
 
 namespace BL
 {
@@ -31,7 +31,7 @@ namespace BL
 
         public IEnumerable<BO.Bus> GetAllBuses()
         {
-            return from item in DLObject.Instance.GetAllBuses()
+            return from item in DLObject.DLObject.Instance.GetAllBuses()
                    select BusDoBoAdapter(item);
         }
 
