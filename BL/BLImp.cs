@@ -52,7 +52,7 @@ namespace BL
             return busDoBoAdapter(busDO);
         }
 
-        public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
+        public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)//?
         {
             throw new NotImplementedException();
         }
