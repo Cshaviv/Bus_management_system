@@ -15,16 +15,25 @@ namespace DLAPI
     // Delete - delete an instance
     public interface IDL//הצהרה  על פונקציות של הDL
     {
-            #region Bus
-            IEnumerable<DO.Bus> GetAllBuses();
-            IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate);
-             DO.Bus GetBus(int licenseNum);
-            void AddBus(DO.Bus bus);
-            void UpdateBus(DO.Bus bus);
-            void UpdateBus(int licenseNum, Action<DO.Bus> update); //method that knows to updt specific fields in Bus
-            void DeleteBus(int licenseNum);
+        #region Bus
+        IEnumerable<DO.Bus> GetAllBuses();
+        IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate);
+        DO.Bus GetBus(int licenseNum);
+        void AddBus(DO.Bus bus);
+        void UpdateBus(DO.Bus bus);
+        void UpdateBus(int licenseNum, Action<DO.Bus> update); //method that knows to updt specific fields in Bus
+        void DeleteBus(int licenseNum);
         #endregion
-         #region Station
+        #region AdjacentStations
+        IEnumerable<DO.AdjacentStations> GetAllAdjacentStations();
+        IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<DO.AdjacentStations> predicate);
+        DO.AdjacentStations GetAdjacentStations(int stationCode1, int stationCode2);
+        void AddAdjacentStations(DO.AdjacentStations adjStations);
+        void UpdateAdjacentStations(DO.AdjacentStations adjStations);
+        void UpdateAdjacentStations(int stationCode1, int stationCode2, Action<DO.AdjacentStations> update);
+        void DeleteAdjacentStations(int stationCode1, int stationCode2);
+        #endregion
+        #region Station
         IEnumerable<DO.Station> GetAllStations();
         IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate);
         DO.Station GetStation(int code);
@@ -32,7 +41,7 @@ namespace DLAPI
         void UpdateStation(DO.Station station);
         void UpdateStation(int code, Action<DO.Station> update); //method that knows to updt specific fields in Station
         void DeleteStation(int code);
-        #endregion
+        #endregion 
         #region Line
         IEnumerable<DO.Line> GetAllLines();
         IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate);
@@ -42,15 +51,24 @@ namespace DLAPI
         void UpdateLine(int code, Action<DO.Line> update); //method that knows to updt specific fields in Bus
         void DeleteLine(int code);
         #endregion
+        #region LineStation
+        IEnumerable<DO.LineStation> GetAllLineStations();
+        IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate);
+        DO.LineStation GetLineStation(int lineId, int stationCode);
+        void AddLineStation(DO.LineStation lineStation);
+        void UpdateLineStation(DO.LineStation lineStation);
+        void UpdateLineStation(int lineId, int stationCode, Action<DO.LineStation> update);
+        void DeleteLineStation(int lineId, int stationCode);
+        #endregion
         #region Trip
         IEnumerable<DO.Trip> GetAllTrips();
-        IEnumerable<DO.Trip> GetAllTripsBy(Predicate<DO.Trip> predicate);
-        DO.Trip GetTrip(int tripId);
-        void AddTrip(DO.Trip trip);//?
-        void UpdateTrip(DO.Trip trip);
-        void UpdateTrip(int tripIdode, Action<DO.Trip> update); //method that knows to updt specific fields in Trip
-        void DeleteTrip(int tripId);
-        #endregion
+       IEnumerable<DO.Trip> GetAllTripsBy(Predicate<DO.Trip> predicate);
+       DO.Trip GetTrip(int tripId);
+       void AddTrip(DO.Trip trip);//?
+       void UpdateTrip(DO.Trip trip);
+       void UpdateTrip(int tripIdode, Action<DO.Trip> update); //method that knows to updt specific fields in Trip
+       void DeleteTrip(int tripId);
+       #endregion
         #region LineTrip
         IEnumerable<DO.LineTrip> GetAllLineTrips();
         IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate);
@@ -59,6 +77,15 @@ namespace DLAPI
         void UpdateLineTrip(DO.LineTrip lineTrip);
         void UpdateLineTrip(int lineTripId, Action<DO.LineTrip> update); //method that knows to updt specific fields in Bus
         void DeleteLineTrip(int lineTripId);
+        #endregion
+        #region User
+        IEnumerable<DO.User> GetAllUsers();
+        IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate);
+        DO.User GetUser(string userName);
+        void AddUser(DO.User user);
+        void UpdateUser(DO.User user);
+        void UpdateUser(string userName, Action<DO.User> update);
+        void DeleteUser(string userName);
         #endregion
     }
 }

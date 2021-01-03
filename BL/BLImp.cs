@@ -11,60 +11,158 @@ namespace BL
 {
     class BLImp : IBL
     {
-        //  BO.Student studentDoBoAdapter(DO.Student studentDO)
-        //{
-        //    BO.Student studentBO = new BO.Student();
-        //    DO.Person personDO;
-        //    int id = studentDO.ID;
-        //    try
-        //    {
-        //        personDO = dl.GetPerson(id);
-        //    }
-        //    catch (DO.BadPersonIdException ex)
-        //    {
-        //        throw new BO.BadStudentIdException("Student ID is illegal", ex);
-        //    }
-        //    personDO.CopyPropertiesTo(studentBO);
-        public void AddBus(Bus bus)
+        IDL dl = DLFactory.GetDL();
+
+        #region Bus
+        BO.Bus busDoBoAdapter(DO.Bus busDO)
         {
-            throw new NotImplementedException();
+            BO.Bus busBO = new BO.Bus();
+            busDO.CopyPropertiesTo(busBO);
+            return busBO;
         }
-
-
-
         public void DeleteBus(int licenseNum)
         {
-            throw new NotImplementedException();
+            try
+            {
+                dl.DeleteBus(licenseNum);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
+            }
         }
 
         public IEnumerable<BO.Bus> GetAllBuses()
         {
-            return null;
-            throw new NotImplementedException();
+            return from item in dl.GetAllBuses()
+                   select busDoBoAdapter(item);
         }
-
-        public IEnumerable<BO.Bus> GetAllBusesBy(Predicate<BO.Bus> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
 
         public Bus GetBus(int licenseNum)
+        {
+            DO.Bus busDO;
+            try
+            {
+                busDO = dl.GetBus(licenseNum);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
+            }
+            return busDoBoAdapter(busDO);
+        }
+
+        public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)
         {
             throw new NotImplementedException();
         }
 
         public void UpdateBus(Bus bus)
         {
-            throw new NotImplementedException();
+            DO.Bus busDO = new DO.Bus();
+            bus.CopyPropertiesTo(busDO);
+            try
+            {
+                dl.UpdateBus(busDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
+            }
+            catch (DO.BadInputException ex)
+            {
+                throw new BO.BadInputException(ex.Message);
+            }
+        }
+        public void AddBus(BO.Bus bus)
+        {
+            DO.Bus busDO = new DO.Bus();
+            bus.CopyPropertiesTo(busDO);
+            try
+            {
+                dl.AddBus(busDO);
+            }
+            catch (DO.BadLicenseNumException ex)
+            {
+                throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
+            }
+            catch (DO.BadInputException ex)
+            {
+                throw new BO.BadInputException(ex.Message);
+            }
+        }
+        #endregion
+
+        #region Line
+        BO.Line lineDoBoAdapter(DO.Line lineDO)
+        {
+            BO.Line lineBO = new BO.Line();
+            int lineId = lineDO.LineId;
+            lineDO.CopyPropertiesTo(lineBO);
+            lineBO.stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)
+                              let station = dl.GetStation(stat.StationCode)
+                              //select station.CopyToStudentCourse(stat);
+                              select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
+            return lineBO;
+        }
+        public Line GetLine(int lineId)
+        {
+            DO.Line lineDO;
+            try
+            {
+                lineDO = dl.GetLine(lineId);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
+            }
+            return lineDoBoAdapter(lineDO);
         }
 
-        public void UpdateBus(int licenseNum, Action<Bus> update)
+        public IEnumerable<BO.Line> GetAllLines()
+        {
+            return from item in dl.GetAllLines()
+                   select lineDoBoAdapter(item);
+        }
+
+        public IEnumerable<BO.Line> GetAllLinesBy(Predicate<BO.Line> predicate)
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateLine(BO.Line line)
+        {
+            DO.Line lineDO = new DO.Line();
+            line.CopyPropertiesTo(lineDO);
+            try
+            {
+                dl.UpdateLine(lineDO);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
+            }
+        }
+
+        public void DeleteLine(int lineId)
+        {
+            try
+            {
+                dl.DeleteLine(lineId);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
+            }
+
+        }
+        #endregion
+
+
     }
+    
 }
+
       
 
  

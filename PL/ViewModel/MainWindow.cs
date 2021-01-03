@@ -6,22 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using BLAPI;
 namespace PL.ViewModel
 {
    public class MainWindow : DependencyObject
     {
-        BL.BL bl = new BL.BL();
+        IBL bl = BLFactory.GetBL("1");
+       // BO.BL bl = new BO.BL();
         public ObservableCollection<PO.Bus> BusList;// { get => (ObservableCollection<PO.Bus>)GetValue(StudentIDsProperty); set => SetValue(StudentIDsProperty, value); }
-        BackgroundWorker getBusListWorker;
+       // BackgroundWorker getBusListWorker;
         public void blGetBusList()
         {
-            foreach (var item in bl.GetAllBuses())
-            {
-                PO.Bus bus = new PO.Bus();
-                item.DeepCopyTo(bus);
-                BusList.Add(bus);
-            }
+            //foreach (var item in bl.GetAllBuses())
+            //{
+            //    PO.Bus bus = new PO.Bus();
+            //    item.DeepCopyTo(bus);
+            //    BusList.Add(bus);
+            //}
             //getBusListWorker = new BackgroundWorker();
             //getBusListWorker.WorkerSupportsCancellation = true;
             //getBusListWorker.WorkerReportsProgress = true;

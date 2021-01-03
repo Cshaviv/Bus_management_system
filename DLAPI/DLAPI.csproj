@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DLConfig.cs" />
+    <Compile Include="DLFactory.cs" />
+    <Compile Include="DO\Exceptions.cs" />
     <Compile Include="DO\Trip.cs" />
     <Compile Include="IDL.cs" />
     <Compile Include="DO\AdjacentStations.cs" />
@@ -54,8 +57,6 @@
     <Compile Include="DO\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DO\Exceptions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

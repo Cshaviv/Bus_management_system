@@ -15,9 +15,18 @@ namespace BLAPI
         BO.Bus GetBus(int licenseNum);
         void AddBus(BO.Bus bus);
         void UpdateBus(BO.Bus bus);
-        void UpdateBus(int licenseNum, Action<BO.Bus> update); //method that knows to updt specific fields in Bus
+       // void UpdateBus(int licenseNum, Action<BO.Bus> update); //method that knows to updt specific fields in Bus
         void DeleteBus(int licenseNum);
 
+        #endregion
+        #region Line
+        IEnumerable<BO.Line> GetAllLines();
+        IEnumerable<BO.Line> GetAllLinesBy(Predicate<BO.Line> predicate);
+        BO.Line GetLine(int lineId);
+        //void AddLine(BO.Line line);//?
+        void UpdateLine(BO.Line line);
+       // void UpdateLine(int code, Action<BO.Line> update); //method that knows to updt specific fields in Bus
+        void DeleteLine(int code);
         #endregion
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace DLObject
+namespace DL
 {
     static class Cloning
     {

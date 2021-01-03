@@ -28,6 +28,21 @@ namespace PL.WPF
         public MainWindow()
         {
             InitializeComponent();
+
+            // busesListBox.ItemsSource
+            //try
+            //{
+            int l = 12345678;
+            BO.Bus bus = bl.GetBus(l);
+            //}
+            //catch(Exception)
+            //{ }
+            //bl.GetAllBuses()
+        }
+
+        private void btnGO_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

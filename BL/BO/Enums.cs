@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public enum BusStatus
+    public enum BusStatus//enum for the bus status
     {
         Available, InTravel, Refueling, Treatment
     }
+    public enum Area //enum for the lines areas
+    {
+        General = 1, North, South, Center, Jerusalem
+    }
 }
+
