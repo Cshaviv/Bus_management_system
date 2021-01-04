@@ -203,6 +203,11 @@ namespace BL
         {
 
         }
+
+        IEnumerable<Station> IBL.GetAllStationsBy(Predicate<Station> predicate)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
     }
