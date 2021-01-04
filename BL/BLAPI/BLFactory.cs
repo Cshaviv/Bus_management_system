@@ -20,8 +20,8 @@ namespace BLAPI
             }
         }
     }
-    public  class a
-    {
-        IBL d = new BLAPI.BLFactory.GetBL("BLImp");
-    }
+    //public  class a
+    //{
+    //    IBL d = new BLAPI.BLFactory.GetBL("BLImp");
+    //}
 }
