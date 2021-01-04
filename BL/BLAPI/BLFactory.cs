@@ -1,5 +1,4 @@
-﻿//dfghb
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +13,7 @@ namespace BLAPI
         {
             switch (type)
             {
-                case "BLImp":
+                case "1":
                     return new BLImp();
                 default:
                     return new BLImp();

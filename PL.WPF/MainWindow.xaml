@@ -20,7 +20,7 @@
             </StackPanel>
         </GroupBox>
         <Button x:Name="btnGO" Content="GO" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
-        <ListBox x:Name="busesListBox"  HorizontalAlignment="Left" Height="130" Margin="498,192,0,0" VerticalAlignment="Top" Width="157"/>
+        <ListBox x:Name="busesListBox"  HorizontalAlignment="Left" Height="130" Margin="498,192,0,0" VerticalAlignment="Top" Width="157" SelectionChanged="busesListBox_SelectionChanged"/>
 
     </Grid>
 </Window>

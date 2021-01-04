@@ -28,5 +28,14 @@ namespace BLAPI
        // void UpdateLine(int code, Action<BO.Line> update); //method that knows to updt specific fields in Bus
         void DeleteLine(int code);
         #endregion
+        #region Station
+        IEnumerable<BO.Station> GetAllStations();
+        IEnumerable<BO.Station> GetAllStationsBy(Predicate<BO.Station> predicate);
+        BO.Station GetStation(int code);
+        void AddStation(BO.Station station);//
+        void UpdateStation(BO.Station station);
+        //void UpdateStation(int code, Action<BO.Station> update); //method that knows to updt specific fields in Station
+        void DeleteStation(int code);
+        #endregion
     }
 }

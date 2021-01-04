@@ -157,10 +157,56 @@ namespace BL
 
         }
         #endregion
+        #region Station
+        BO.Station StationDoBoAdapter(DO.Station stationDO)
+        {
+            BO.Station stationBO = new BO.Station();
+            int code = stationDO.Code;
+            stationDO.CopyPropertiesTo(stationBO);
+            stationBO.Lines = from line in dl.GetAllLineStationsBy(line => line.LineId == code)
+                              let station = dl.GetStation(line.StationCode)
+                              //select station.CopyToStudentCourse(stat);
+                              select (BO.LineInStation)line.CopyPropertiesToNew(typeof(BO.LineInStation));
+            return stationBO;
+        }
+        public IEnumerable<BO.Station> GetAllStations()
+        {
+            return from item in dl.GetAllStations()
+                   select StationDoBoAdapter(item);
+        }
+        IEnumerable<BO.Station> GetAllStationsBy(Predicate<BO.Station> predicate)
+        {
+            throw new NotImplementedException();
+        }
+        public BO.Station GetStation(int code)
+        {
+            DO.Station stationDO;
+            try
+            {
+                stationDO = dl.GetStation(code);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.code, ex.Message);
+            }
+            return StationDoBoAdapter(stationDO);
+        }
+        public void AddStation(BO.Station station)
+        {
 
+        }
+        public void UpdateStation(BO.Station station)
+        {
+
+        }
+        public void DeleteStation(int code)
+        {
+
+        }
+        #endregion
 
     }
-    
+
 }
 
       

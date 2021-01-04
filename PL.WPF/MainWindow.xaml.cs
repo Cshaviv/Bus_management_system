@@ -28,12 +28,12 @@ namespace PL.WPF
         public MainWindow()
         {
             InitializeComponent();
-
+           List<> = bl.GetAllBuses().ToList();
             // busesListBox.ItemsSource
             //try
             //{
-            int l = 12345678;
-            BO.Bus bus = bl.GetBus(l);
+            //int l = 12345678;
+            //BO.Bus bus = bl.GetBus(l);
             //}
             //catch(Exception)
             //{ }
@@ -41,6 +41,11 @@ namespace PL.WPF
         }
 
         private void btnGO_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void busesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
