@@ -13,13 +13,15 @@ namespace BLAPI
         {
             switch (type)
             {
-                case "1":
+                case "BLImp":
                     return new BLImp();
-                case "2":
-                //return new BLImp2();
                 default:
                     return new BLImp();
             }
         }
+    }
+    public  class a
+    {
+        IBL d = new BLAPI.BLFactory.GetBL("BLImp");
     }
 }
