@@ -9,23 +9,22 @@ namespace DO
     public class Bus
     {
         public int LicenseNum { get; set; }//license number
-        public DateTime FromDate { get; set; }//start date
-        public double TotalTrip { get; set; }//total km
-        public double FuelRemain { get; set; }//fuel tank
-        public BusStatus Status { get; set; }//status
-        public DateTime DateLastTreat { get; set; }
-        public double KmLastTreat { get; set; }
-        public bool IsDeleted { get; set; }
+        public DateTime StartDate { get; set; }//start date
+        public double TotalKm { get; set; }//total km
+        public double FuelTank { get; set; }//fuel tank
+        public BusStatus StatusBus { get; set; }//status
+        public DateTime DateLastTreat { get; set; }//Date of Last Treat
+        public double KmLastTreat { get; set; }//Km of Last Treat
+        public bool IsDeleted { get; set; }//if it possible
 
         public Bus(int licNum, DateTime FromDate, DateTime DateLastTreat, BusStatus status, double total_Trip = 0, double KmLastTreat = 0)
         {
-            this.FromDate = FromDate;
+            this.StartDate = FromDate;
             this.DateLastTreat = DateLastTreat;
             this.LicenseNum = licNum;
-            this.TotalTrip = total_Trip ;
-           // this.Km = My_Km;
+            this.TotalKm = total_Trip ;
             this.KmLastTreat = KmLastTreat;
-            this.Status = status;
+            this.StatusBus = status;
         }
         public Bus()
         {

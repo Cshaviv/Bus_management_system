@@ -538,10 +538,10 @@ namespace DS
                 new Bus//1
                 {
                     LicenseNum= 12345678,
-                    FromDate= new DateTime(2018, 12, 1),
-                    TotalTrip=10000,
-                    FuelRemain=1200,
-                    Status=BusStatus.Available,
+                    StartDate= new DateTime(2018, 12, 1),
+                    TotalKm=10000,
+                    FuelTank=1200,
+                    StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020, 12,1 ),
                     KmLastTreat=8001,
                     IsDeleted=false
@@ -549,10 +549,10 @@ namespace DS
                 new Bus//2
                 {
                     LicenseNum= 1524897,
-                    FromDate= new DateTime(2017, 12, 1),
-                    TotalTrip=10000,
-                    FuelRemain=900,
-                    Status=BusStatus.Available,
+                    StartDate= new DateTime(2017, 12, 1),
+                    TotalKm=10000,
+                    FuelTank=900,
+                    StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020, 12,1 ),
                     KmLastTreat=9500,
                     IsDeleted=false
@@ -560,10 +560,10 @@ namespace DS
                 new Bus//3
                 {
                     LicenseNum= 45698725,
-                    FromDate= new DateTime(2019, 12, 11),
-                    TotalTrip=10000,
-                    FuelRemain=1000,
-                    Status=BusStatus.Available,
+                    StartDate= new DateTime(2019, 12, 11),
+                    TotalKm=10000,
+                    FuelTank=1000,
+                    StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020, 12,1 ),
                     KmLastTreat=9700,
                     IsDeleted=false
@@ -571,10 +571,10 @@ namespace DS
                  new Bus//4
                 {
                     LicenseNum= 47589646,
-                    FromDate= new DateTime(2019, 11, 11),
-                    TotalTrip=10000,
-                    FuelRemain=800,
-                    Status=BusStatus.Available,
+                    StartDate= new DateTime(2019, 11, 11),
+                    TotalKm=10000,
+                    FuelTank=800,
+                    StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020, 9,2),
                     KmLastTreat=9600,
                     IsDeleted=false
@@ -582,10 +582,10 @@ namespace DS
                  new Bus//5
                 {
                     LicenseNum= 1456982,
-                    FromDate= new DateTime(2016, 11, 2),
-                    TotalTrip=10000,
-                    FuelRemain=800,
-                    Status=BusStatus.Available,
+                    StartDate= new DateTime(2016, 11, 2),
+                    TotalKm=10000,
+                    FuelTank=800,
+                    StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020, 12,2),
                     KmLastTreat=9600,
                     IsDeleted=false
@@ -593,10 +593,10 @@ namespace DS
                   new Bus//6
                 {
                     LicenseNum= 1458795,
-                    FromDate= new DateTime(2015, 11,3),
-                    TotalTrip=20000,
-                    FuelRemain=1200,
-                    Status=BusStatus.Available,
+                    StartDate= new DateTime(2015, 11,3),
+                    TotalKm=20000,
+                    FuelTank=1200,
+                    StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020, 8,21),
                     KmLastTreat=19600,
                     IsDeleted=false
@@ -604,10 +604,10 @@ namespace DS
                     new Bus//7
                 {
                     LicenseNum= 65984758,
-                    FromDate= new DateTime(2019, 8,2),
-                    TotalTrip=30000,
-                    FuelRemain=800,
-                    Status=BusStatus.Available,
+                    StartDate= new DateTime(2019, 8,2),
+                    TotalKm=30000,
+                    FuelTank=800,
+                    StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020, 5,15),
                     KmLastTreat=20000,
                     IsDeleted=false
@@ -615,10 +615,10 @@ namespace DS
                   new Bus//8
                 {
                     LicenseNum= 4569821,
-                    FromDate= new DateTime(2014, 11,20),
-                    TotalTrip=10000,
-                    FuelRemain=800,
-                    Status=BusStatus.Available,
+                    StartDate= new DateTime(2014, 11,20),
+                    TotalKm=10000,
+                    FuelTank=800,
+                    StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020,6,10),
                     KmLastTreat=9600,
                     IsDeleted=false
@@ -626,10 +626,10 @@ namespace DS
                    new Bus//9
                 {
                     LicenseNum= 2564875,
-                    FromDate= new DateTime(2013, 11,2),
-                    TotalTrip=50000,
-                    FuelRemain=800,
-                    Status=BusStatus.Available,
+                    StartDate= new DateTime(2013, 11,2),
+                    TotalKm=50000,
+                    FuelTank=800,
+                    StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020,10,1),
                     KmLastTreat=49700,
                     IsDeleted=false
@@ -637,10 +637,10 @@ namespace DS
                    new Bus//10
                 {
                     LicenseNum= 42650314,
-                    FromDate= new DateTime(2019, 1,20),
-                    TotalTrip=10000,
-                    FuelRemain=1200,
-                    Status=BusStatus.Available,
+                    StartDate= new DateTime(2019, 1,20),
+                    TotalKm=10000,
+                    FuelTank=1200,
+                    StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020,7,1),
                     KmLastTreat=9900,
                     IsDeleted=false

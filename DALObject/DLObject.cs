@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DLAPI;
 using DS;
 using DO;
+using DALObject;
 //using DO;
 
 namespace DL
@@ -18,6 +19,7 @@ namespace DL
         DLObject() { } // default => private
         public static DLObject Instance { get => instance; }// The public Instance property to use
         #endregion
+
         #region Bus
         public IEnumerable<DO.Bus> GetAllBuses()
         {
@@ -44,18 +46,18 @@ namespace DL
         {
             if (DataSource.ListBuses.FirstOrDefault(bus_ => bus_.LicenseNum == bus.LicenseNum && bus_.IsDeleted == false) != null)
                 throw new BadInputException("The bus is already exists");
-            if (bus.FromDate > DateTime.Now)
+            if (bus.StartDate > DateTime.Now)
                 throw new BadInputException("The date of start operation is not valid");
-            if (bus.TotalTrip < 0)
+            if (bus.TotalKm < 0)
                 throw new BadInputException("The total trip is not valid");
-            if (bus.FuelRemain < 0 || bus.FuelRemain > 1200)
+            if (bus.FuelTank < 0 || bus.FuelTank > 1200)
                 throw new BadInputException("The fuel remain is not valid");
             int lengthLicNum = LengthOfLicenseNumber(bus.LicenseNum);
-            if (!((lengthLicNum == 7 && bus.FromDate.Year < 2018) || (lengthLicNum == 8 && bus.FromDate.Year >= 2018)))
+            if (!((lengthLicNum == 7 && bus.StartDate.Year < 2018) || (lengthLicNum == 8 && bus.StartDate.Year >= 2018)))
                 throw new BadInputException("The license number and the date of start operation do not match");
-            if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.FromDate)
+            if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.StartDate)
                 throw new BadInputException("The date of last treatment is not valid");
-            if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalTrip)
+            if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalKm)
                 throw new BadInputException("The kilometrage of last treatment is not valid");
             DataSource.ListBuses.Add(bus.Clone());
         }
@@ -94,6 +96,7 @@ namespace DL
 
         }
         #endregion
+
         #region AdjacentStations
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
@@ -145,6 +148,7 @@ namespace DL
         }
 
         #endregion
+
         #region Station
         public IEnumerable<DO.Station> GetAllStations()
         {
@@ -164,19 +168,19 @@ namespace DL
             if (stationFind != null)
                 return stationFind.Clone();
             else
-                throw new Exception();
+                throw new BadStationCodeException(code, "The station does not exist");
         }
         public void AddStation(DO.Station station)
         {
             if (DataSource.ListStations.FirstOrDefault(stat => stat.Code == station.Code && stat.IsDeleted == false) != null)
-                throw new Exception();
+                throw new BadStationCodeException(station.Code, "The station is already exist");
             DataSource.ListStations.Add(station.Clone());
         }
         public void UpdateStation(DO.Station station)
         {
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == station.Code && stat.IsDeleted == false);
             if (stationFind == null)
-                throw new Exception();
+                throw new BadStationCodeException(stationFind.Code, "The station does not exist");
             DO.Station newStation = station.Clone();//copy of the bus that the function got
             stationFind = newStation;//update
         }
@@ -184,15 +188,29 @@ namespace DL
         {
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == code && stat.IsDeleted == false);
             if (stationFind == null)
-                throw new Exception();
+                throw new BadStationCodeException(code, "The station does not exist");
             update(stationFind);
         }
         public void DeleteStation(int code)
         {
-
+            DO.Station stationFind = DataSource.ListStations.Find(s => s.Code == code && s.IsDeleted == false);
+            if (stationFind == null)
+                throw new BadStationCodeException(code, "The station does not exist");
+            stationFind.IsDeleted = true;
+            foreach (DO.LineStation s in DataSource.ListLineStations)//delete fron the line station list
+            {
+                if (s.StationCode == code && s.IsDeleted == false)
+                    s.IsDeleted = true;
+            }
+            foreach (DO.AdjacentStations s in DataSource.ListAdjacentStations)//delete from adjacent Station list
+            {
+                if ((s.StationCode1 == code || s.StationCode2 == code) && s.IsDeleted == false)
+                    s.IsDeleted = true;
+            }
         }
 
         #endregion
+        
         #region Line
         public IEnumerable<DO.Line> GetAllLines()
         {
@@ -214,19 +232,19 @@ namespace DL
             if (line != null)
                 return line.Clone();
             else
-                throw new Exception();
+                throw new BadLineIdException(lineId, "The Line ID does not exist");
         }
         public void AddLine(DO.Line line)
         {
             if (DataSource.ListLines.FirstOrDefault(l => l.LineId == line.LineId && l.IsDeleted == false) != null)
-                throw new Exception();
+                throw new BadLineIdException(line.LineId, "The Line ID is already exist exist");
             DataSource.ListLines.Add(line.Clone());
         }
         public void UpdateLine(DO.Line line)
         {
             DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == line.LineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new Exception();
+                throw new BadLineIdException(line.LineId, "The Line ID does not exist");
             DO.Line newLine = line.Clone();//copy of the bus that the function got
             //lineFind.IsDeleted = true;
             //DataSource.ListLines.Add(newLine);
@@ -236,21 +254,21 @@ namespace DL
         {
             DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new Exception();
+                throw new BadLineIdException(lineId, "The Line ID does not exist");
             update(lineFind);
         }
         public void DeleteLine(int lineId)
         {
             DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
             if (lineFind == null)
-                throw new Exception();
+                throw new BadLineIdException(lineId, "The Line ID does not exist");
             lineFind.IsDeleted = true;
-            foreach (DO.LineStation s in DataSource.ListLineStations)
+            foreach (DO.LineStation s in DataSource.ListLineStations)//delete fron the line station list
             {
                 if (s.LineId == lineId && s.IsDeleted == false)
                     s.IsDeleted = true;
             }
-            foreach (DO.LineTrip l in DataSource.ListLineTrips)
+            foreach (DO.LineTrip l in DataSource.ListLineTrips)//delete fron line trip list
             {
                 if (l.LineId == lineId && l.IsDeleted == false)
                     l.IsDeleted = true;
@@ -258,6 +276,7 @@ namespace DL
         }
 
         #endregion
+        
         #region LineStation
         public IEnumerable<DO.LineStation> GetAllLineStations()
         {
@@ -327,10 +346,8 @@ namespace DL
                 NextFind = DataSource.ListLineStations.Find(nextLineStat => (nextLineStat.LineId == lineId && nextLineStat.LineStationIndex == index + 1 && nextLineStat.IsDeleted == false));
             }
         }
-
-
-
         #endregion
+        
         #region Trip   
         public IEnumerable<DO.Trip> GetAllTrips()
         {
@@ -382,6 +399,7 @@ namespace DL
         }
 
         #endregion
+        
         #region LineTrip
         public IEnumerable<DO.LineTrip> GetAllLineTrips()
         {
@@ -434,6 +452,7 @@ namespace DL
         }
 
         #endregion
+        
         #region User
         public IEnumerable<DO.User> GetAllUsers()
         {
