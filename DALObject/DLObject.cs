@@ -22,6 +22,7 @@ namespace DL
         public IEnumerable<DO.Bus> GetAllBuses()
         {
             return from bus in DataSource.ListBuses
+                   where bus.IsDeleted == false
                    select bus.Clone();
         }
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
@@ -41,30 +42,54 @@ namespace DL
         }
         public void AddBus(DO.Bus bus)
         {
-            if (DataSource.ListBuses.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum && b.IsDeleted == false) != null)
-                throw new Exception();
+            if (DataSource.ListBuses.FirstOrDefault(bus_ => bus_.LicenseNum == bus.LicenseNum && bus_.IsDeleted == false) != null)
+                throw new BadInputException("The bus is already exists");
+            if (bus.FromDate > DateTime.Now)
+                throw new BadInputException("The date of start operation is not valid");
+            if (bus.TotalTrip < 0)
+                throw new BadInputException("The total trip is not valid");
+            if (bus.FuelRemain < 0 || bus.FuelRemain > 1200)
+                throw new BadInputException("The fuel remain is not valid");
+            int lengthLicNum = LengthOfLicenseNumber(bus.LicenseNum);
+            if (!((lengthLicNum == 7 && bus.FromDate.Year < 2018) || (lengthLicNum == 8 && bus.FromDate.Year >= 2018)))
+                throw new BadInputException("The license number and the date of start operation do not match");
+            if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.FromDate)
+                throw new BadInputException("The date of last treatment is not valid");
+            if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalTrip)
+                throw new BadInputException("The kilometrage of last treatment is not valid");
             DataSource.ListBuses.Add(bus.Clone());
+        }
+        private int LengthOfLicenseNumber(int licNum)// This function returns the number of digits in the license number
+        {
+            int counter = 0;
+            while (licNum != 0)
+            {
+                licNum = licNum / 10;
+                counter++;
+            }
+            return counter;
         }
         public void UpdateBus(DO.Bus bus)
         {
-            DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == bus.LicenseNum && b.IsDeleted == false);
+            DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == bus.LicenseNum && bus_.IsDeleted == false);
             if (busFind == null)
-                throw new Exception();
-            DO.Bus newBus = bus.Clone();//copy of the bus that the function got
-            busFind = newBus;//update
+                throw new BadLicenseNumException(bus.LicenseNum, "The bus does not exist");
+            DO.Bus newBus = bus.Clone();
+            busFind.IsDeleted = true;
+            DataSource.ListBuses.Add(newBus);
         }
         public void UpdateBus(int licenseNum, Action<DO.Bus> update)
         {
-            DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum && b.IsDeleted == false);
+            DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == licenseNum && bus_.IsDeleted == false);
             if (busFind == null)
-                throw new Exception();
+                throw new BadLicenseNumException(licenseNum, "The bus does not exist");
             update(busFind);
         }
         public void DeleteBus(int licenseNum)
         {
-            DO.Bus busFind = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNum && b.IsDeleted == false);
+            DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == licenseNum && bus_.IsDeleted == false);
             if (busFind == null)
-                throw new Exception();
+                throw new BadLicenseNumException(licenseNum, "The bus does not exist");
             busFind.IsDeleted = true;//delete
 
         }
