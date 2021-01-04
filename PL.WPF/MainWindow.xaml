@@ -24,8 +24,8 @@
         <Label Content="Welcome to our Perfect University! " HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
         <GroupBox Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="115,136,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
             <StackPanel Margin="21,20,29,0" Height="66" VerticalAlignment="Top">
-                <RadioButton x:Name ="rbStudents" Content="user" Height="24" IsChecked="True"/>
-                <RadioButton x:Name ="rbLecturers" Content="management" Height="23" Margin="0,0,-11,0"/>
+                <RadioButton x:Name ="rbManagement" Content="management" Height="24" IsChecked="True"/>
+                <RadioButton x:Name ="rbUser" Content=" user" Height="23" Margin="0,0,-11,0"/>
                
             </StackPanel>
         </GroupBox>
