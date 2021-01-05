@@ -41,9 +41,38 @@ namespace PL.WPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                int licenseNum = int.Parse(licenseNumTextBox.Text);
+                double fuel = double.Parse(fuelTankTextBox.Text);
+                DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
+                DateTime lastDate = DateTime.Parse(dateLastTreatDatePicker.Text);
+                double kmLastTreat = double.Parse(kmLastTreatTextBox.Text);
+                BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
+                double totalKm = double.Parse(totalKmTextBox.Text);
+                BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, StatusBus = status, TotalKm = totalKm, KmLastTreat = kmLastTreat };
+                bl.AddBus(b);
+                Close();
+            }
+            catch (BO.BadLicenseNumException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             if (curBus != null)
                 bl.AddBus(curBus);
-            
         }
+
+
+        
+
+
     }
 }
