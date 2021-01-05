@@ -1,4 +1,5 @@
 ﻿using BLAPI;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,28 +17,17 @@ using System.Windows.Shapes;
 namespace PL.WPF
 {
     /// <summary>
-    /// Interaction logic for managementWindow.xaml
+    /// Interaction logic for LinesShowWindow.xaml
     /// </summary>
-    public partial class managementWindow : Window
+    public partial class LinesShowWindow : Window
     {
         IBL bl;
-        //BO.Student curStu;
-        public managementWindow(IBL _bl)
+        public LinesShowWindow(IBL _bl)
         {
             InitializeComponent();
             bl = _bl;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            busesShowWindow win = new busesShowWindow(bl);
-            win.Show();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            LinesShowWindow win = new LinesShowWindow(bl);
-            win.Show();
+            var allLines = bl.GetAllLines().ToList();
+            linesListBox.ItemsSource = allLines;
         }
     }
 }

@@ -9,7 +9,7 @@
     <Grid>
         <Button Content="אוטובוסים" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Height="97" Margin="308,34,0,0" Click="Button_Click"/>
         <Grid Height="375" Margin="127,34,110,0" VerticalAlignment="Top">
-            <Button Content="קווים" HorizontalAlignment="Left" Height="104" Margin="181,125,0,0" VerticalAlignment="Top" Width="130"/>
+            <Button Content="קווים" HorizontalAlignment="Left" Height="104" Margin="181,125,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_1"/>
             <Button Content="תחנות" HorizontalAlignment="Left" Height="103" Margin="181,262,0,0" VerticalAlignment="Top" Width="130"/>
             <!--<ListBox x:Name="busesListBox" HorizontalAlignment="Left" Height="355" Margin="27,10,0,0" VerticalAlignment="Top"  Visibility="Visible" Width="308"/>
             <ListBox x:Name="vcc" HorizontalAlignment="Left" Height="355" Margin="27,10,0,0" VerticalAlignment="Top"  Visibility="Visible" Width="308"/>-->

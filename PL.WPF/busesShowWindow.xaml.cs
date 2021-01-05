@@ -27,6 +27,7 @@ namespace PL.WPF
             bl = _bL;
             var allBuses = bl.GetAllBuses().ToList();
             busesListBox.ItemsSource = allBuses;
+            
 
         }
 
