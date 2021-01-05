@@ -50,14 +50,13 @@ namespace PL.WPF
                 double kmLastTreat = double.Parse(kmLastTreatTextBox.Text);
                 BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
                 double totalKm = double.Parse(totalKmTextBox.Text);
-                BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, StatusBus = status, TotalKm = totalKm, KmLastTreat = kmLastTreat };
+                BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, kmAfterRefuling = fuel, StartDate = startDate, DateLastTreat = lastDate, StatusBus = status, TotalKm = totalKm, KmLastTreat = kmLastTreat };
                 bl.AddBus(b);
                 Close();
             }
             catch (BO.BadLicenseNumException ex)
             {
-                licenseNumTextBox.BorderBrush = Brushes.Red;
-                //MessageBox.Show(ex.Message + ": " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);           
+                MessageBox.Show(ex.Message + ": " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (BO.BadInputException ex)
             {
@@ -66,7 +65,6 @@ namespace PL.WPF
             catch (Exception ex)
             {
                 licenseNumTextBox.BorderBrush = Brushes.Red;
-
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (curBus != null)

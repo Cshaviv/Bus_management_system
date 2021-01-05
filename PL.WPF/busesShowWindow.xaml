@@ -44,7 +44,7 @@
     <Grid Margin="10,0,28,-1">
         <!--<ListBox x:Name="busesListBox" HorizontalAlignment="Left" Height="259" Margin="16,35,0,0" VerticalAlignment="Top" Width="391" SelectionChanged="BusesListBox_SelectionChanged"/>-->
         <ListBox x:Name="busesListBox" ItemsSource="{Binding}" Height="227" Margin="-2,54,-1,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
-                 ItemTemplate="{StaticResource MyDataTemplate}"/>
+                 ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickBusInfromation"/>
         <Button Content="הוספת אוטובוס" HorizontalAlignment="Left" Margin="98,317,0,0" VerticalAlignment="Top" Width="257" Height="69" Click="Button_Click"/>
     </Grid>
 </Window>

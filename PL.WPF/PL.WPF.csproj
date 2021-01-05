@@ -61,16 +61,26 @@
     <Compile Include="AddBusWindow.xaml.cs">
       <DependentUpon>AddBusWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BusData.xaml.cs">
+      <DependentUpon>BusData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="busesShowWindow.xaml.cs">
       <DependentUpon>busesShowWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LinesShowWindow.xaml.cs">
       <DependentUpon>LinesShowWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="updateWindow.xaml.cs">
+      <DependentUpon>updateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="userWindow.xaml.cs">
       <DependentUpon>userWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AddBusWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BusData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -95,6 +105,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="managementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="updateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

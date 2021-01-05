@@ -1,0 +1,44 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.WPF"
+        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.WPF.BusData"
+        mc:Ignorable="d"
+        Title="BusData" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource busViewSource}">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Height="268" Margin="84,25,0,0" VerticalAlignment="Top" Width="499">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label  Content="license Number:" Grid.Column="0"   FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontSize="14"/>
+            <TextBlock x:Name="licenseNumTextBlock" Grid.Column="1"  FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="0"  VerticalAlignment="Center"  FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="start Date:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="14"/>
+            <TextBlock x:Name="startDateTextBlock" Grid.Column="1"  FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="1"  VerticalAlignment="Center " FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="Date Treat:" Grid.Column="0" FontFamily="Dubai Light"  HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="14"/>
+            <TextBlock x:Name="dateTreatTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="2"  VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="total Km:" Grid.Column="0" FontFamily="Dubai Light"  HorizontalAlignment="Left" Margin="3" Grid.Row="3" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock x:Name="totalKmTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="km After Treat:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="4" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock x:Name="kmAfterTreatTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="4"  VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="km After Refuling:" Grid.Column="0" FontFamily="Dubai Light"  HorizontalAlignment="Left" Margin="3" Grid.Row="5" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock x:Name="kmAfterRefulingTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label  Content="bus Status:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="6" FontSize="14" VerticalAlignment="Center"/>
+            <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="6" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
+        </Grid>
+    </Grid>
+</Window>

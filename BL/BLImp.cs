@@ -90,7 +90,7 @@ namespace BL
                 throw new BadInputException("The date of start operation is not valid");
             if (bus.TotalKm < 0)
                 throw new BadInputException("The total trip is not valid");
-            if (bus.FuelTank < 0 || bus.FuelTank > 1200)
+            if (bus.kmAfterRefuling < 0 || bus.kmAfterRefuling > 1200)
                 throw new BadInputException("The fuel remain is not valid");
             int lengthLicNum = LengthOfLicenseNumber(bus.LicenseNum);
             if (!((lengthLicNum == 7 && bus.StartDate.Year < 2018) || (lengthLicNum == 8 && bus.StartDate.Year >= 2018)))
@@ -103,6 +103,7 @@ namespace BL
         }
         public void AddBus(BO.Bus bus)
         {
+            CheckLicNum(bus);
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
             //CheckLicNum(busDo)
