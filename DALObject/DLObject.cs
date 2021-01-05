@@ -76,8 +76,9 @@ namespace DL
             if (busFind == null)
                 throw new BadLicenseNumException(bus.LicenseNum, "The bus does not exist");
             DO.Bus newBus = bus.Clone();
-            busFind.IsDeleted = true;
-            DataSource.ListBuses.Add(newBus);
+            busFind = newBus;//update
+            //busFind.IsDeleted = true;
+            //DataSource.ListBuses.Add(newBus);
         }
         public void UpdateBus(int licenseNum, Action<DO.Bus> update)
         {

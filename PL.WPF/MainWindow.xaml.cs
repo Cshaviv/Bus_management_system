@@ -20,7 +20,7 @@ namespace PL.WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-   
+
     public partial class MainWindow : Window
     {
 
@@ -29,9 +29,10 @@ namespace PL.WPF
         {
             InitializeComponent();
             btnGO.Content = "any text";
-            var allBuses = bl.GetAllBuses().Select(b => b.LicenseNum + "_" + b.StartDate.ToString()).ToList();
+            var allBuses = bl.GetAllBuses().ToList();
+            //Select(b => b.LicenseNum + "_" + b.StartDate.ToString()).ToList();
             busesListBox.ItemsSource = allBuses;
-            InitBuses();
+            //InitBuses();
             //try
             //{
             int l = 12345678;
@@ -42,16 +43,30 @@ namespace PL.WPF
             //bl.GetAllBuses()
         }
 
-        private void InitBuses()
-        {
-            //Label action = (Label)bus.FindName("action", myContentPresenter);
-        }
+        //private void InitBuses()
+        //{
+        //    //Label action = (Label)bus.FindName("action", myContentPresenter);
+        //}
 
 
 
         private void btnGO_Click(object sender, RoutedEventArgs e)
         {
+            if (rbManagement.IsChecked == true)
+            {
+                managementWindow win = new managementWindow(bl);
+                win.Show();
+            }
+            else if (rbUser.IsChecked == true)
+            {
+                userWindow win = new userWindow(bl);
+                win.Show();
+            }
 
+            //private void busesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            //{
+
+            //}
         }
 
         private void busesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,4 +74,5 @@ namespace PL.WPF
 
         }
     }
-}
+} 
+

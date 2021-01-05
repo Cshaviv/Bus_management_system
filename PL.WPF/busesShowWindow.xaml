@@ -1,0 +1,17 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.WPF"
+        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.WPF.busesShowWindow"
+        mc:Ignorable="d"
+        Title="busesShowWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid Margin="10,0,28,-1">
+        <ListBox x:Name="busesListBox" HorizontalAlignment="Left" Height="259" Margin="16,35,0,0" VerticalAlignment="Top" Width="391" SelectionChanged="BusesListBox_SelectionChanged"/>
+        <Button Content="הוספת אוטובוס" HorizontalAlignment="Left" Margin="98,317,0,0" VerticalAlignment="Top" Width="257" Height="69" Click="Button_Click"/>
+    </Grid>
+</Window>

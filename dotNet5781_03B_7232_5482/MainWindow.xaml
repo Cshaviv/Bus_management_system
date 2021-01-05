@@ -54,7 +54,7 @@
             <ColumnDefinition Width="771*"/>
             <ColumnDefinition Width="43*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="257" Margin="-2,24,-1,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+        <ListBox x:Name="BusList" ItemsSource="{Binding}" Height="227" Margin="-2,54,-1,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickBusInfromation" Background="#FFF0F0F0" Grid.ColumnSpan="2"/>
         <Button Content="Add Bus" HorizontalAlignment="Left" Margin="38,301,0,0" VerticalAlignment="Top" Width="168" Height="54" Click="Button_Click" BorderBrush="#FF386157" Background="#FFBFB7B7"/>
         <Rectangle Fill="DeepPink" HorizontalAlignment="Left" Height="20" Margin="747,420,0,0" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.5,0.5"/>
