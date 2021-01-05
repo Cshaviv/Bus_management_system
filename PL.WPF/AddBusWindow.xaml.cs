@@ -56,7 +56,8 @@ namespace PL.WPF
             }
             catch (BO.BadLicenseNumException ex)
             {
-                MessageBox.Show(ex.Message + ": " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                licenseNumTextBox.BorderBrush = Brushes.Red;
+                //MessageBox.Show(ex.Message + ": " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);           
             }
             catch (BO.BadInputException ex)
             {
@@ -64,6 +65,8 @@ namespace PL.WPF
             }
             catch (Exception ex)
             {
+                licenseNumTextBox.BorderBrush = Brushes.Red;
+
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (curBus != null)
