@@ -35,13 +35,13 @@ namespace PL.WPF
 
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+        //private void Window_Loaded(object sender, RoutedEventArgs e)
+        //{
 
-            System.Windows.Data.CollectionViewSource busViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("busViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // busViewSource.Source = [generic data source]
-        }
+        //    System.Windows.Data.CollectionViewSource busViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("busViewSource")));
+        //    // Load data by setting the CollectionViewSource.Source property:
+        //    // busViewSource.Source = [generic data source]
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

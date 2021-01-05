@@ -6,12 +6,45 @@
         xmlns:local="clr-namespace:PL.WPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.WPF.busesShowWindow"
         mc:Ignorable="d"
-        Title="busesShowWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="busesShowWindow" Height="450" Width="800" >
     <Window.Resources>
-        <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
+        <DataTemplate x:Key="MyDataTemplate"
+                  DataType="local: BO.Bus">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="95" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="10" />
+
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="2" Visibility="Visible" Text="License Number:" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="4" Text="{Binding Path=LicenseNum }" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="6" Text=" Km: " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="8" x:Name="kmTextBlock" Text="{Binding Path=TotalKm}" FontFamily="Dubai Light"  FontSize="14" />
+                <Button  Content="updata" Grid.Column="10"  Width="70"/>
+                <Button Content="delite" Grid.Column="12" Width="70"/>
+            </Grid>
+        </DataTemplate>
+        <!--<CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>-->
     </Window.Resources>
     <Grid Margin="10,0,28,-1">
-        <ListBox x:Name="busesListBox" HorizontalAlignment="Left" Height="259" Margin="16,35,0,0" VerticalAlignment="Top" Width="391" SelectionChanged="BusesListBox_SelectionChanged"/>
+        <!--<ListBox x:Name="busesListBox" HorizontalAlignment="Left" Height="259" Margin="16,35,0,0" VerticalAlignment="Top" Width="391" SelectionChanged="BusesListBox_SelectionChanged"/>-->
+        <ListBox x:Name="busesListBox" ItemsSource="{Binding}" Height="227" Margin="-2,54,-1,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+                 ItemTemplate="{StaticResource MyDataTemplate}" Visibility="Visible" />
         <Button Content="הוספת אוטובוס" HorizontalAlignment="Left" Margin="98,317,0,0" VerticalAlignment="Top" Width="257" Height="69" Click="Button_Click"/>
     </Grid>
 </Window>
