@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLImp.cs" />
     <Compile Include="Cloning.cs" />
     <Compile Include="DLObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
