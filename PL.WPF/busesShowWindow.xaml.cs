@@ -27,8 +27,6 @@ namespace PL.WPF
             bl = _bL;
             var allBuses = bl.GetAllBuses().ToList();
             busesListBox.ItemsSource = allBuses;
-
-
         }
 
         private void BusesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -94,6 +92,51 @@ namespace PL.WPF
         private void deleteButtonClick (object sender, RoutedEventArgs e)
         {
             Bus b = (sender as Button).DataContext as Bus;
+        }
+        private void RefuelClick(object sender, RoutedEventArgs e)
+        {
+            Bus b = (sender as Button).DataContext as Bus;
+            if (b.StatusBus == BusStatus.InTravel || b.StatusBus == BusStatus.OnTreatment || b.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
+            {
+                MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (b.kmAfterRefuling == 0)//When the fuel tank is full to the end can not be sent for refueling.
+            {
+                MessageBox.Show("The fuel tank if full", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            b.StatusBus = BusStatus.OnRefueling;//update status
+            b.kmAfterRefuling = 0;//update fields
+        }
+        private void TreatClick(object sender, RoutedEventArgs e)
+        {
+            Bus b = (sender as Button).DataContext as Bus;
+            if (b.StatusBus == BusStatus.InTravel || b.StatusBus == BusStatus.OnTreatment || b.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
+            {
+                MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (b.kmAfterRefuling == 0 && (DateTime.Now == b.DateLastTreat))//If he did the treatment today and has not traveled since
+            {
+                MessageBox.Show("The bus was already treatmented", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+            b.StatusBus = BusStatus.OnTreatment;//update status
+            b.kmAfterRefuling = 0;//update fields
+            b.DateLastTreat = DateTime.Now;
+            if (b.kmAfterRefuling == 1200)
+            {
+                b.kmAfterRefuling = 0;
+            }
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource busViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("busViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // busViewSource.Source = [generic data source]
         }
     }
 }

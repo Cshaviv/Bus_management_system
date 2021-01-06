@@ -8,7 +8,7 @@ namespace BO
 {
     public enum BusStatus//enum for the bus status
     {
-        Available, InTravel, Refueling, Treatment
+        Available, InTravel, OnRefueling, OnTreatment
     }
     public enum Area //enum for the lines areas
     {

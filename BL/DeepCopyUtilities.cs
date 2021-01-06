@@ -28,11 +28,7 @@ namespace BL
             from.CopyPropertiesTo(to);
             return to;
         }
-        //public static BO.Bus CopyToBus(this DO.Bus bus)
-        //{
-        //    BO.Bus result = (BO.Bus)bus.CopyPropertiesToNew(typeof(BO.Bus));
-        //    return result;
-        //}
+    
     }
     }
 
