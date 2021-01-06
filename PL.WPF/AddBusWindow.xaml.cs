@@ -70,10 +70,5 @@ namespace PL.WPF
             if (curBus != null)
                 bl.AddBus(curBus);
         }
-
-
-        
-
-
     }
 }

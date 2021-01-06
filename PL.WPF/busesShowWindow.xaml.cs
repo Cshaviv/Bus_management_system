@@ -80,7 +80,7 @@ namespace PL.WPF
             }
             return null;
         }
-        private void update(object sender, RoutedEventArgs e)
+        private void updateButtonClick(object sender, RoutedEventArgs e)
         {
             Bus b = (sender as Button).DataContext as Bus;
             if(b==null)
@@ -90,6 +90,10 @@ namespace PL.WPF
             }
             updateWindow win = new updateWindow(b, bl);
             win.ShowDialog();
+        }
+        private void deleteButtonClick (object sender, RoutedEventArgs e)
+        {
+            Bus b = (sender as Button).DataContext as Bus;
         }
     }
 }
