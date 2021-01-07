@@ -26,8 +26,35 @@ namespace PL.WPF
         {
             InitializeComponent();
             bl = _bl;
-            var allLines = bl.GetAllLines().ToList();
-            linesListBox.ItemsSource = allLines;
+            RefreshAllLinesList();
+            //var allLines = bl.GetAllLines().ToList();
+            //linesListBox.ItemsSource = allLines;
         }
+        public void RefreshAllLinesList()
+        {
+            List<BO.Line> lines = bl.GetAllLines().ToList();
+            linesListBox.DataContext = lines;
+        }
+        private void doubleClickLineInfromation(object sender, MouseButtonEventArgs e)
+        {
+            BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
+            if (line == null)
+                return;
+            LineDeta win = new LineDeta(bl, line);
+            win.Closing += winUpdate_Closing;
+            win.ShowDialog();
+        }
+        private void winUpdate_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            RefreshAllLinesList();
+        }
+        private void Button_Click_AddNewLine(object sender, RoutedEventArgs e)
+        {
+            AddNewLine win = new AddNewLine(bl);
+            win.Closing += winUpdate_Closing;
+            win.ShowDialog();
+
+        }
+
     }
 }

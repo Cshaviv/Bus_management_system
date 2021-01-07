@@ -61,11 +61,17 @@
     <Compile Include="AddBusWindow.xaml.cs">
       <DependentUpon>AddBusWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddNewLine.xaml.cs">
+      <DependentUpon>AddNewLine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BusData.xaml.cs">
       <DependentUpon>BusData.xaml</DependentUpon>
     </Compile>
     <Compile Include="busesShowWindow.xaml.cs">
       <DependentUpon>busesShowWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LineDeta.xaml.cs">
+      <DependentUpon>LineDeta.xaml</DependentUpon>
     </Compile>
     <Compile Include="LinesShowWindow.xaml.cs">
       <DependentUpon>LinesShowWindow.xaml</DependentUpon>
@@ -80,11 +86,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddNewLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BusData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="busesShowWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LineDeta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
