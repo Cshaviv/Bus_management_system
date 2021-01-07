@@ -10,14 +10,11 @@ namespace BLAPI
    public interface IBL
     {
         #region Bus
-        IEnumerable<BO.Bus> GetAllBuses();
-        IEnumerable<BO.Bus> GetAllBusesBy(Predicate<BO.Bus> predicate);
         BO.Bus GetBus(int licenseNum);
-        void AddBus(BO.Bus bus);
-        void UpdateBus(BO.Bus bus);
-       // void UpdateBus(int licenseNum, Action<BO.Bus> update); //method that knows to updt specific fields in Bus
+        IEnumerable<BO.Bus> GetAllBuses();
+        IEnumerable<BO.Bus> GetBusesBy(Predicate<BO.Bus> predicate);
+        void UpdateBusDetails(BO.Bus bus);
         void DeleteBus(int licenseNum);
-
         #endregion
         #region Line
         void AddNewLine(BO.Line lineBo);
@@ -27,10 +24,23 @@ namespace BLAPI
         IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate);
         void UpdateLineDetails(BO.Line line);
         void DeleteLine(int LineId);
+        void AddBus(BO.Bus bus);
+        #endregion
+        #region LineStation
+        void AddLineStation(BO.LineStation s);
+        void DeleteLineStation(int lineId, int stationCode);
+        #endregion
+        #region AdjacentStations
+        bool IsExistAdjacentStations(int stationCode1, int stationCode2);
+        //void AddAdjacentStations(BO.AdjacentStation adjBO);
         #endregion
         #region Station
-    
+        BO.Station stationDoBoAdapter(DO.Station stationDO);
+        IEnumerable<BO.Station> GetAllStations();
 
+        #endregion
+        #region StationInLine
+        void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second);
         #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿using BLAPI;
+﻿ using BLAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,19 +47,27 @@ namespace PL.WPF
             //win.ShowDialog();
 
         }
-        //private void deleteStation(object sender, RoutedEventArgs e)
-        //{
-        //    BO.StationInLine station = (sender as Button).DataContext as BO.StationInLine;
-        //    try
-        //    {
-        //        bl.DeleteLineStation(line.LineId, station.StationCode);
-        //        line = bl.GetLine(line.LineId);
-        //        linesListBox.DataContext = line.Stations;//refresh
-        //    }
-        //    catch (Exception)
-        //    {
+        private void deleteStationClick(object sender, RoutedEventArgs e)
+        {
+            BO.StationInLine station = (sender as Button).DataContext as BO.StationInLine;
+            try
+            {
+                if (MessageBox.Show("Do you want to delete this station?", "delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    bl.DeleteLineStation(line.LineId, station.StationCode);
+                    line = bl.GetLine(line.LineId);
+                    linesListBox.DataContext = line.Stations;//refresh                
+                }
+                else
+                {
+                    return;
 
-        //    }
-        //}
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
     }
 }

@@ -32,7 +32,7 @@
                 <TextBlock Grid.Column="4" Text=" Area: " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
                 <TextBlock Grid.Column="6" x:Name="kmTextBlock" Text="{Binding Path=Area}" FontFamily="Dubai Light"  FontSize="14" />
                 <Button x:Name="updateStation" Content="עריכת זמן/מרחק" Grid.Column="8"  Width="70"/>
-                <Button x:Name="deleteStation" Content="מחיקה" Grid.Column="10" Width="70"/>
+                <Button x:Name="deleteStation" Click="deleteStationClick" Content="מחיקה" Grid.Column="10" Width="70"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>

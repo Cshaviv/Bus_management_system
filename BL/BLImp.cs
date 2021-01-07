@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BLAPI;
 using DLAPI;
 using BO;
-
+using System.Threading;
 
 namespace BL
 {
@@ -32,6 +32,7 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
         }
+
         public IEnumerable<BO.Bus> GetAllBuses()
         {
             return from item in dl.GetAllBuses()
@@ -52,12 +53,12 @@ namespace BL
             return busDoBoAdapter(busDO);
         }
 
-        public IEnumerable<Bus> GetAllBusesBy(Predicate<Bus> predicate)//?
+        public IEnumerable<Bus> GetBusesBy(Predicate<Bus> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateBus(Bus bus)
+        public void UpdateBusDetails(BO.Bus bus)
         {
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
@@ -74,39 +75,10 @@ namespace BL
                 throw new BO.BadInputException(ex.Message);
             }
         }
-        //private int LengthOfLicenseNumber(int licNum)// This function returns the number of digits in the license number
-        //{
-        //    int counter = 0;
-        //    while (licNum != 0)
-        //    {
-        //        licNum = licNum / 10;
-        //        counter++;
-        //    }
-        //    return counter;
-        //}
-        //public void CheckLicNum(BO.Bus bus)
-        //{ 
-        //    if (bus.StartDate > DateTime.Now)
-        //        throw new BadInputException("The date of start operation is not valid");
-        //    if (bus.TotalKm < 0)
-        //        throw new BadInputException("The total trip is not valid");
-        //    if (bus.kmAfterRefuling < 0 || bus.kmAfterRefuling > 1200)
-        //        throw new BadInputException("The fuel remain is not valid");
-        //    int lengthLicNum = LengthOfLicenseNumber(bus.LicenseNum);
-        //    if (!((lengthLicNum == 7 && bus.StartDate.Year < 2018) || (lengthLicNum == 8 && bus.StartDate.Year >= 2018)))
-        //        throw new BadInputException("The license number and the date of start operation do not match");
-        //    if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.StartDate)
-        //        throw new BadInputException("The date of last treatment is not valid");
-        //    if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalKm)
-        //        throw new BadInputException("The kilometrage of last treatment is not valid");
-
-        //}
         public void AddBus(BO.Bus bus)
         {
-            //CheckLicNum(bus);
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
-
             try
             {
                 dl.AddBus(busDO);
@@ -223,12 +195,111 @@ namespace BL
             }
 
         }
+        #endregion
 
-      
+        #region LineStation
+        public void AddLineStation(BO.LineStation s)
+        {
+            DO.LineStation sDO = (DO.LineStation)s.CopyPropertiesToNew(typeof(DO.LineStation));
+            //sDO.IsDeleted = false;
+            try
+            {
+                dl.AddLineStation(sDO);
+                List<DO.LineStation> lst = ((dl.GetAllLineStationsBy(stat => stat.LineId == sDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
+                //lst.Order
+
+                //DO.LineStation prev = lst[s.LineStationIndex - 2];
+                //DO.LineStation next = lst[s.LineStationIndex + 1];
+                if (s.LineStationIndex != 1)//if its the first station- it doesnt have prev
+                {
+                    DO.LineStation prev = lst[s.LineStationIndex - 2];
+                    if (!IsExistAdjacentStations(prev.StationCode, s.StationCode))
+                    {
+                        DO.AdjacentStations adjPrev = new DO.AdjacentStations() { StationCode1 = prev.StationCode, StationCode2 = s.StationCode };
+                        dl.AddAdjacentStations(adjPrev);
+                    }
+                }
+                if (s.LineStationIndex != lst[lst.Count - 1].LineStationIndex)//if its the last station- it doesnt have next
+                {
+                    DO.LineStation next = lst[s.LineStationIndex];
+                    if (!IsExistAdjacentStations(s.StationCode, next.StationCode))
+                    {
+                        DO.AdjacentStations adjNext = new DO.AdjacentStations() { StationCode1 = s.StationCode, StationCode2 = next.StationCode };
+                        dl.AddAdjacentStations(adjNext);
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+        public void DeleteLineStation(int lineId, int stationCode)
+        {
+            try
+            {
+                dl.DeleteLineStation(lineId, stationCode);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        #endregion
+
+        #region AdjacentStations
+        public bool IsExistAdjacentStations(int stationCode1, int stationCode2)
+        {
+            if (dl.ExistAdjacentStations(stationCode1, stationCode2))
+                return true;
+            return false;
+        }
+
+        #endregion
+
+        #region Station
+        public BO.Station stationDoBoAdapter(DO.Station stationDO)
+        {
+            BO.Station stationBO = new BO.Station();
+            int stationCode = stationDO.Code;
+            stationDO.CopyPropertiesTo(stationBO);
+            //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
+            //                                         let station = dl.GetStation(stat.StationCode)//station
+            //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
+            stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode)//Linestation
+                               let line = dl.GetLine(stat.LineId)//station
+                               select line.CopyToLineInStation(stat)).ToList();
+            //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
+            //stationBO. = stations.OrderBy(s => s.LineStationIndex);
+            return stationBO;
+        }
+        public IEnumerable<BO.Station> GetAllStations()
+        {
+            return from item in dl.GetAllStations()
+                   select stationDoBoAdapter(item);
+        }
+        #endregion
+
+        #region StationInLine
+        public void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second)
+        {
+            try
+            {
+                DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = first.Distance, Time = first.Time, IsDeleted = false };
+                dl.UpdateAdjacentStations(adj);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error, it cannot be update");
+            }
+        }
+        #endregion
+
+
     }
-    #endregion
-    #region Station
-    #endregion
+
+
 
 
 }
