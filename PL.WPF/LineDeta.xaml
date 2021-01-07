@@ -13,8 +13,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="5" />
+
                     <ColumnDefinition Width="95" />
                     <ColumnDefinition Width="5" />
                     <ColumnDefinition Width="80" />
@@ -26,22 +25,22 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="10" />
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="2"  Text="{Binding Path= StationCode }" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="4" Text="{Binding Path= Name }" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="6" Text=" Area: " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="8" x:Name="kmTextBlock" Text="{Binding Path=Area}" FontFamily="Dubai Light"  FontSize="14" />
-                <Button x:Name="update" Content="עריכת זמן/מרחק" Grid.Column="10"  Width="70"/>
-                <Button x:Name="delete" Content="מחיקה" Grid.Column="12" Width="70"/>
+                <TextBlock Grid.Column="0"  Text="{Binding Path= StationCode }" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="2" Text="{Binding Path= Name }" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="4" Text=" Area: " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="6" x:Name="kmTextBlock" Text="{Binding Path=Area}" FontFamily="Dubai Light"  FontSize="14" />
+                <Button x:Name="updateStation" Content="עריכת זמן/מרחק" Grid.Column="8"  Width="70"/>
+                <Button x:Name="deleteStation" Content="מחיקה" Grid.Column="10" Width="70"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <ListBox x:Name="linesListBox" ItemsSource="{Binding}" Height="227" Margin="-2,54,-1,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
-                 ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickLineInfromation" />
-        <Button x:Name="deleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="234,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="AddLine_Click"/>
-        <Button x:Name="Addstation" Content="הוספת תחנה" HorizontalAlignment="Left" Margin="234,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="AddLine_Click"/>
+        <ListBox x:Name="linesListBox" ItemsSource="{Binding}" Height="277" Margin="122,29,8.333,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+                 ItemTemplate="{StaticResource MyDataTemplate}" />
+        <Button x:Name="deleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="234,327,0,0" VerticalAlignment="Top" Width="180" Height="49" />
+        <Button x:Name="Addstation" Content="הוספת תחנה" HorizontalAlignment="Left" Margin="234,327,0,0" VerticalAlignment="Top" Width="180" Height="49" />
+        <TextBlock x:Name="LineNum"  HorizontalAlignment="Left" Margin="20,110,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="80" Width="87"/>
     </Grid>
 </Window>

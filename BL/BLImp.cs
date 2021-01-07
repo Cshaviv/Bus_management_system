@@ -170,7 +170,7 @@ namespace BL
             lineDo.LastStation = sc2;
             try
             {
-                if (!dl.IsExistAdjacentStations(sc1, sc2))
+                if (!dl.ExistAdjacentStations(sc1, sc2))
                 {
                     DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = sc1, StationCode2 = sc2, Distance = lineBo.Stations[0].Distance, Time = lineBo.Stations[0].Time };
                     dl.AddAdjacentStations(adj);
@@ -228,62 +228,8 @@ namespace BL
     }
     #endregion
     #region Station
-
-    //public BO.Station stationDoBoAdapter(DO.Station stationDO)
-    //{
-    //    BO.Station stationBO = new BO.Station();
-    //    int stationCode = stationDO.Code;
-    //    stationDO.CopyPropertiesTo(stationBO);
-    //    lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
-    //                      let station = dl.GetStation(stat.StationCode)//station
-    //                      select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
-    //    stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode)//Linestation
-    //                       let line = dl.GetLine(stat.LineId)//station
-    //                       select line.CopyToLineInStation(stat)).ToList();
-
-    //    return stationBO;
-    //}
-    //public IEnumerable<BO.Station> GetAllStations()
-    //{
-    //    return from item in dl.GetAllStations()
-    //           select stationDoBoAdapter(item);
-    //}
     #endregion
 
-    //IEnumerable<BO.Station> GetAllStationsBy(Predicate<BO.Station> predicate)
-    //{
-    //    throw new NotImplementedException();
-    //}
-    //public BO.Station GetStation(int code)
-    //{
-    //    DO.Station stationDO;
-    //    try
-    //    {
-    //        stationDO = dl.GetStation(code);
-    //    }
-    //    catch (DO.BadLineIdException ex)
-    //    {
-    //        throw new BO.BadLineIdException(ex.code, ex.Message);
-    //    }
-    //    return StationDoBoAdapter(stationDO);
-    //}
-    //public void AddStation(BO.Station station)
-    //{
-
-    //}
-    //public void UpdateStation(BO.Station station)
-    //{
-
-    //}
-    //public void DeleteStation(int code)
-    //{
-
-    //}
-
-    //IEnumerable<Station> IBL.GetAllStationsBy(Predicate<Station> predicate)
-    //{
-    //    throw new NotImplementedException();
-    //}
 
 }
 

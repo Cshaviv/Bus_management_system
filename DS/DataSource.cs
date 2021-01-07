@@ -732,6 +732,15 @@ namespace DS
             #region ListLines
             ListLines = new List<Line>
             {
+                   new Line //0
+                {
+                    LineId=0,
+                    LineNum=33,
+                    Area= Area.Jerusalem,
+                    FirstStation=91, //גולדה/הרטום
+                    LastStation=1492, //קרית הילד/סורוצקין
+                    IsDeleted=false
+                },
                 new Line //1
                 {
                     LineId=1,
