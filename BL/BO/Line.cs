@@ -11,7 +11,12 @@ namespace BO
         public int LineId { get; set; } //id of the line
         public int LineNum { get; set; } //number of the line
         public Area Area { get; set; } //area of the line
-        public IEnumerable<StationInLine> stations { get; set; }
+        public List<StationInLine> Stations { get; set; }
+        public override string ToString()
+        {
+            return "Line ID: " + LineId + " Line number: " + LineNum;
+        }
+        
     }
 }
 

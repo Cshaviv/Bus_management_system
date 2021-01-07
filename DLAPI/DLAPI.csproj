@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DLConfig.cs" />
     <Compile Include="DLFactory.cs" />
+    <Compile Include="DO\Config.cs" />
     <Compile Include="DO\Exceptions.cs" />
     <Compile Include="DO\Trip.cs" />
     <Compile Include="IDL.cs" />

@@ -9,7 +9,6 @@ namespace BL
 {
     public static class DeepCopyUtilities
     {
-
         public static void CopyPropertiesTo<T, S>(this S from, T to)
         {
             foreach (PropertyInfo propTo in to.GetType().GetProperties())
@@ -28,8 +27,26 @@ namespace BL
             from.CopyPropertiesTo(to);
             return to;
         }
-    
+
+        public static BO.StationInLine CopyToStationInLine(this DO.Station st, DO.LineStation s)
+        {
+            BO.StationInLine stationInLine = new BO.StationInLine();
+            st.CopyPropertiesTo(stationInLine);
+            stationInLine.LineStationIndex = s.LineStationIndex;
+            stationInLine.StationCode = s.StationCode;
+            return stationInLine;
+        }
+        public static BO.LineInStation CopyToLineInStation(this DO.Line l, DO.LineStation s)
+        {
+            BO.LineInStation lineInStation = new BO.LineInStation();
+            l.CopyPropertiesTo(lineInStation);
+            lineInStation.LineStationIndex = s.LineStationIndex;
+            return lineInStation;
+        }
     }
-    }
+}
+
+
+
 
 
