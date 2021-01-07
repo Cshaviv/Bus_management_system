@@ -21,7 +21,7 @@ namespace PL.WPF
     public partial class LineDeta : Window
     {
         IBL bl;      
-        public LineDeta(IBL _bl)
+        public LineDeta(IBL _bl, BO.Line line)
         {
             InitializeComponent();
             bl = _bl;
