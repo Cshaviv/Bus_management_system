@@ -18,11 +18,11 @@ namespace DLAPI
         #region Bus
         IEnumerable<DO.Bus> GetAllBuses();
         IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate);
-        DO.Bus GetBus(int licenseNum);
+        DO.Bus GetBus(int licenseNumber);
         void AddBus(DO.Bus bus);
         void UpdateBus(DO.Bus bus);
-        void UpdateBus(int licenseNum, Action<DO.Bus> update); //method that knows to updt specific fields in Bus
-        void DeleteBus(int licenseNum);
+        void UpdateBus(int licenseNumber, Action<DO.Bus> update); //method that knows to updt specific fields in Bus
+        void DeleteBus(int licenseNumber);
         #endregion
         #region AdjacentStations
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStations();
@@ -49,8 +49,8 @@ namespace DLAPI
         DO.Line GetLine(int lineId);
         void AddLine(DO.Line line);//?
         void UpdateLine(DO.Line line);
-        void UpdateLine(int code, Action<DO.Line> update); //method that knows to updt specific fields in Bus
-        void DeleteLine(int code);
+        void UpdateLine(int lineId, Action<DO.Line> update); //method that knows to updt specific fields in Bus
+        void DeleteLine(int lineId);
         #endregion
         #region LineStation
         IEnumerable<DO.LineStation> GetAllLineStations();
@@ -67,7 +67,7 @@ namespace DLAPI
        DO.Trip GetTrip(int tripId);
        void AddTrip(DO.Trip trip);//?
        void UpdateTrip(DO.Trip trip);
-       void UpdateTrip(int tripIdode, Action<DO.Trip> update); //method that knows to updt specific fields in Trip
+       void UpdateTrip(int tripId, Action<DO.Trip> update); //method that knows to updt specific fields in Trip
        void DeleteTrip(int tripId);
        #endregion
         #region LineTrip

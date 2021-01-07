@@ -47,16 +47,15 @@ namespace DLAPI
                 string dlNameSpace = dlPackage.NameSpace;
                 string dlClass = dlPackage.ClassName;
 
-                try // Load into CLR the dal implementation assembly according to dll file name (taken above)
-                {
-                    Assembly.Load(dlPackageName);
-                }
-                catch (Exception ex)
-                {
-                throw new BadLicenseNumException( 1);
-                  
-        //throw new DLConfigException($"Failed loading {dlPackageName}.dll", ex);
-    }
+            try // Load into CLR the dal implementation assembly according to dll file name (taken above)
+            {
+                Assembly.Load(dlPackageName);
+            }
+            catch (Exception ex)
+            {
+                throw new DLConfigException($"Failed loading {dlPackageName}.dll", ex);
+
+            }
 
                 // Get concrete Dal implementation's class metadata object
                 // 1st element in the list inside the string is full class name:

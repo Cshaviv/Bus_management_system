@@ -10,11 +10,11 @@ namespace DO
     public class BadLicenseNumException : Exception
     {
         public int licenseNum;
-        public BadLicenseNumException(int ln) : base() => licenseNum = ln;
-        public BadLicenseNumException(int ln, string message) :
-            base(message) => licenseNum = ln;
-        public BadLicenseNumException(int ln, string message, Exception innerException) :
-            base(message, innerException) => licenseNum = ln;
+        public BadLicenseNumException(int licNum) : base() => licenseNum = licNum;
+        public BadLicenseNumException(int licNum, string message) :
+            base(message) => licenseNum = licNum;
+        public BadLicenseNumException(int licNum, string message, Exception innerException) :
+            base(message, innerException) => licenseNum = licNum;
 
         public override string ToString() => base.ToString() + $", bad license number: {licenseNum}";
     }
