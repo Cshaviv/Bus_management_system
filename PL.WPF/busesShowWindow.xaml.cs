@@ -103,10 +103,10 @@ namespace PL.WPF
                 return;
             try
             {
-                if (myBus != null)
+                if (b != null)
                 {
-                    bl.DeleteBus(myBus.LicenseNum);
-                    BO.Bus stuToDel = myBus;
+                    bl.DeleteBus(b.LicenseNum);
+                    BO.Bus stuToDel = b;
 
                     //RefreshAllRegisteredCoursesGrid();
                     //RefreshAllNotRegisteredCoursesGrid();
