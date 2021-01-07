@@ -21,6 +21,7 @@ namespace PL.WPF
     public partial class busesShowWindow : Window
     {
         IBL bl;
+        BO.Bus myBus;
         public busesShowWindow(IBL _bL)
         {
             InitializeComponent();
@@ -45,17 +46,22 @@ namespace PL.WPF
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AddBusWindow win = new AddBusWindow(bl);
-            win.Show();
+            win.ShowDialog();
+            RefreshAllBuses();
+        }
+        void RefreshAllBuses()
+        {
+            busesListBox.ItemsSource = bl.GetAllBuses().ToList();
         }
         private void doubleClickBusInfromation(object sender, RoutedEventArgs e)//Clicking "double click" on a bus in the list will open a window showing the bus data
         {
-            Bus b = (sender as ListBox).SelectedItem as Bus;
-            if (b != null)
+            //Bus myBus = (sender as ListBox).SelectedItem as Bus;
+            if (myBus != null)
             {
-                ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(b));
+                ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                BusData win = new BusData(b, bl);
+                BusData win = new BusData(myBus, bl);
                 win.ShowDialog();
             }
 
@@ -80,55 +86,78 @@ namespace PL.WPF
         }
         private void updateButtonClick(object sender, RoutedEventArgs e)
         {
-            Bus b = (sender as Button).DataContext as Bus;
-            if(b==null)
+            //Bus myBus = (sender as Button).DataContext as Bus;
+            if(myBus==null)
             {
                 MessageBox.Show("The bus can't start driving right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            updateWindow win = new updateWindow(b, bl);
+            updateWindow win = new updateWindow(myBus, bl);
             win.ShowDialog();
         }
         private void deleteButtonClick (object sender, RoutedEventArgs e)
         {
-            Bus b = (sender as Button).DataContext as Bus;
+            //Bus b = (sender as Button).DataContext as Bus;
+            MessageBoxResult res = MessageBox.Show("Delete selected student?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.No)
+                return;
+            try
+            {
+                if (myBus != null)
+                {
+                    bl.DeleteBus(myBus.LicenseNum);
+                    BO.Bus stuToDel = myBus;
+
+                    //RefreshAllRegisteredCoursesGrid();
+                    //RefreshAllNotRegisteredCoursesGrid();
+                    //RefreshAllStudentComboBox();
+                }
+            }
+            catch (BO.BadLicenseNumException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void RefuelClick(object sender, RoutedEventArgs e)
         {
-            Bus b = (sender as Button).DataContext as Bus;
-            if (b.StatusBus == BusStatus.InTravel || b.StatusBus == BusStatus.OnTreatment || b.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
+            //Bus myBus = (sender as Button).DataContext as Bus;
+            if (myBus.StatusBus == BusStatus.InTravel || myBus.StatusBus == BusStatus.OnTreatment || myBus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
             {
                 MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if (b.kmAfterRefuling == 0)//When the fuel tank is full to the end can not be sent for refueling.
+            if (myBus.kmAfterRefuling == 0)//When the fuel tank is full to the end can not be sent for refueling.
             {
                 MessageBox.Show("The fuel tank if full", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            b.StatusBus = BusStatus.OnRefueling;//update status
-            b.kmAfterRefuling = 0;//update fields
+            myBus.StatusBus = BusStatus.OnRefueling;//update status
+            myBus.kmAfterRefuling = 0;//update fields
         }
         private void TreatClick(object sender, RoutedEventArgs e)
         {
-            Bus b = (sender as Button).DataContext as Bus;
-            if (b.StatusBus == BusStatus.InTravel || b.StatusBus == BusStatus.OnTreatment || b.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
+            //Bus myBus = (sender as Button).DataContext as Bus;
+            if (myBus.StatusBus == BusStatus.InTravel || myBus.StatusBus == BusStatus.OnTreatment || myBus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
             {
                 MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if (b.kmAfterRefuling == 0 && (DateTime.Now == b.DateLastTreat))//If he did the treatment today and has not traveled since
+            if (myBus.kmAfterRefuling == 0 && (DateTime.Now == myBus.DateLastTreat))//If he did the treatment today and has not traveled since
             {
                 MessageBox.Show("The bus was already treatmented", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
 
-            b.StatusBus = BusStatus.OnTreatment;//update status
-            b.kmAfterRefuling = 0;//update fields
-            b.DateLastTreat = DateTime.Now;
-            if (b.kmAfterRefuling == 1200)
+            myBus.StatusBus = BusStatus.OnTreatment;//update status
+            myBus.kmAfterRefuling = 0;//update fields
+            myBus.DateLastTreat = DateTime.Now;
+            if (myBus.kmAfterRefuling == 1200)
             {
-                b.kmAfterRefuling = 0;
+                myBus.kmAfterRefuling = 0;
             }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)

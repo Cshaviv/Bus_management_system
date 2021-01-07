@@ -68,7 +68,11 @@ namespace PL.WPF
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (curBus != null)
+            {
                 bl.AddBus(curBus);
+                Close();
+            }
+
         }
     }
 }

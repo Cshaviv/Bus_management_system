@@ -345,6 +345,7 @@ namespace DL
                 NextFind.LineStationIndex--;
                 NextFind = DataSource.ListLineStations.Find(nextLineStat => (nextLineStat.LineId == lineId && nextLineStat.LineStationIndex == index + 1 && nextLineStat.IsDeleted == false));
             }
+
         }
         #endregion
         
