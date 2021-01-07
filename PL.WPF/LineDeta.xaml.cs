@@ -20,11 +20,13 @@ namespace PL.WPF
     /// </summary>
     public partial class LineDeta : Window
     {
-        IBL bl;      
-        public LineDeta(IBL _bl, BO.Line line)
+        IBL bl;
+        BO.Line line;
+        public LineDeta(IBL _bl, BO.Line _line )
         {
             InitializeComponent();
             bl = _bl;
+            line = _line;
 
         }
     }
