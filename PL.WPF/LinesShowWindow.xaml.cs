@@ -22,6 +22,7 @@ namespace PL.WPF
     public partial class LinesShowWindow : Window
     {
         IBL bl;
+        BO.Line line;
         public LinesShowWindow(IBL _bl)
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace PL.WPF
         }
         private void doubleClickLineInfromation(object sender, MouseButtonEventArgs e)
         {
-            BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
+            line = (sender as ListBox).SelectedItem as BO.Line;
             if (line == null)
                 return;
             LineDeta win = new LineDeta(bl, line);
@@ -48,13 +49,12 @@ namespace PL.WPF
         {
             RefreshAllLinesList();
         }
-        private void Button_Click_AddNewLine(object sender, RoutedEventArgs e)
+
+        private void AddLine_Click(object sender, RoutedEventArgs e)
         {
             AddNewLine win = new AddNewLine(bl);
             win.Closing += winUpdate_Closing;
             win.ShowDialog();
-
         }
-
     }
 }

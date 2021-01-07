@@ -127,7 +127,7 @@ namespace BL
         {
             BO.Line lineBO = new BO.Line();
             int lineId = lineDO.LineId;
-            lineDO.CopyPropertiesTo(lineBO);//לנסות להבין
+            lineDO.CopyPropertiesTo(lineBO);
             List<BO.StationInLine> stations = (from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId && stat.IsDeleted == false)//Linestation
                                                let station = dl.GetStation(stat.StationCode)//station
                                                select station.CopyToStationInLine(stat)).ToList();
@@ -159,56 +159,18 @@ namespace BL
             }
             return lineDoBoAdapter(lineDO);
         }
-
-        public IEnumerable<BO.Line> GetAllLines()
-        {
-            return from item in dl.GetAllLines()
-                   select lineDoBoAdapter(item);
-        }
-
-        public IEnumerable<BO.Line> GetAllLinesBy(Predicate<BO.Line> predicate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateLine(BO.Line line)
-        {
-            DO.Line lineDO = new DO.Line();
-            line.CopyPropertiesTo(lineDO);
-            try
-            {
-                dl.UpdateLine(lineDO);
-            }
-            catch (DO.BadLineIdException ex)
-            {
-                throw new BO.BadLineIdException(ex.ID, ex.Message);
-            }
-        }
-
-        public void DeleteLine(int lineId)
-        {
-            try
-            {
-                dl.DeleteLine(lineId);
-            }
-            catch (DO.BadLineIdException ex)
-            {
-                throw new BO.BadLineIdException(ex.ID, ex.Message);
-            }
-
-        }
-        public void AddLine(BO.Line lineBo)
+        public void AddNewLine(BO.Line lineBo)
         {
             DO.Line lineDo = new DO.Line();
             lineBo.CopyPropertiesTo(lineDo);
             lineDo.LineId = DO.Config.LineId++;
-            int sc1 = lineBo.Stations[0].StationCode;//stationCode of the first stat
-            int sc2 = lineBo.Stations[1].StationCode;//station Code of the last stat
+            int sc1 = lineBo.Stations[0].StationCode;//stationCode of the first station
+            int sc2 = lineBo.Stations[1].StationCode;//station Code of the last station
             lineDo.FirstStation = sc1;
             lineDo.LastStation = sc2;
             try
             {
-                if (!dl.AdjacentStationsExist(sc1, sc2))
+                if (!dl.IsExistAdjacentStations(sc1, sc2))
                 {
                     DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = sc1, StationCode2 = sc2, Distance = lineBo.Stations[0].Distance, Time = lineBo.Stations[0].Time };
                     dl.AddAdjacentStations(adj);
@@ -227,6 +189,42 @@ namespace BL
             }
 
         }
+        public IEnumerable<BO.Line> GetAllLines()
+        {
+            return from item in dl.GetAllLines()
+                   select lineDoBoAdapter(item);
+        }
+        public IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate)
+        {
+            throw new NotImplementedException();
+        }
+        public void UpdateLineDetails(BO.Line line)
+        {
+            DO.Line lineDO = new DO.Line();
+            line.CopyPropertiesTo(lineDO);
+            try
+            {
+                dl.UpdateLine(lineDO);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
+            }
+        }
+        public void DeleteLine(int lineId)
+        {
+            try
+            {
+                dl.DeleteLine(lineId);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
+            }
+
+        }
+
+      
     }
     #endregion
     #region Station

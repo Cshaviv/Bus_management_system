@@ -21,7 +21,7 @@ namespace PL.WPF
     public partial class busesShowWindow : Window
     {
         IBL bl;
-        BO.Bus myBus;
+        //BO.Bus myBus;
         public busesShowWindow(IBL _bL)
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace PL.WPF
         }
         private void doubleClickBusInfromation(object sender, RoutedEventArgs e)//Clicking "double click" on a bus in the list will open a window showing the bus data
         {
-            //Bus myBus = (sender as ListBox).SelectedItem as Bus;
+            Bus myBus = (sender as ListBox).SelectedItem as Bus;
             if (myBus != null)
             {
                 ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
@@ -86,7 +86,7 @@ namespace PL.WPF
         }
         private void updateButtonClick(object sender, RoutedEventArgs e)
         {
-            //Bus myBus = (sender as Button).DataContext as Bus;
+            Bus myBus = (sender as Button).DataContext as Bus;
             if(myBus==null)
             {
                 MessageBox.Show("The bus can't start driving right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -97,7 +97,7 @@ namespace PL.WPF
         }
         private void deleteButtonClick (object sender, RoutedEventArgs e)
         {
-            //Bus b = (sender as Button).DataContext as Bus;
+            Bus b = (sender as Button).DataContext as Bus;
             MessageBoxResult res = MessageBox.Show("Delete selected student?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)
                 return;
@@ -124,7 +124,7 @@ namespace PL.WPF
         }
         private void RefuelClick(object sender, RoutedEventArgs e)
         {
-            //Bus myBus = (sender as Button).DataContext as Bus;
+            Bus myBus = (sender as Button).DataContext as Bus;
             if (myBus.StatusBus == BusStatus.InTravel || myBus.StatusBus == BusStatus.OnTreatment || myBus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
             {
                 MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -140,7 +140,7 @@ namespace PL.WPF
         }
         private void TreatClick(object sender, RoutedEventArgs e)
         {
-            //Bus myBus = (sender as Button).DataContext as Bus;
+            Bus myBus = (sender as Button).DataContext as Bus;
             if (myBus.StatusBus == BusStatus.InTravel || myBus.StatusBus == BusStatus.OnTreatment || myBus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
             {
                 MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
