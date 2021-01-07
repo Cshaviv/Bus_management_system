@@ -7,6 +7,7 @@ using BLAPI;
 using DLAPI;
 using BO;
 
+
 namespace BL
 {
     class BLImp : IBL
@@ -31,7 +32,6 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
         }
-
         public IEnumerable<BO.Bus> GetAllBuses()
         {
             return from item in dl.GetAllBuses()
@@ -74,52 +74,38 @@ namespace BL
                 throw new BO.BadInputException(ex.Message);
             }
         }
-        private int LengthOfLicenseNumber(int licNum)// This function returns the number of digits in the license number
-        {
-            int counter = 0;
-            while (licNum != 0)
-            {
-                licNum = licNum / 10;
-                counter++;
-            }
-            return counter;
-        }
-        public void CheckLicNum(BO.Bus bus)
-        { 
-            if (bus.StartDate > DateTime.Now)
-                throw new BadInputException("The date of start operation is not valid");
-            if (bus.TotalKm < 0)
-                throw new BadInputException("The total trip is not valid");
-            if (bus.kmAfterRefuling < 0 || bus.kmAfterRefuling > 1200)
-                throw new BadInputException("The fuel remain is not valid");
-            int lengthLicNum = LengthOfLicenseNumber(bus.LicenseNum);
-            if (!((lengthLicNum == 7 && bus.StartDate.Year < 2018) || (lengthLicNum == 8 && bus.StartDate.Year >= 2018)))
-                throw new BadInputException("The license number and the date of start operation do not match");
-            if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.StartDate)
-                throw new BadInputException("The date of last treatment is not valid");
-            if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalKm)
-                throw new BadInputException("The kilometrage of last treatment is not valid");
-           
-        }
+        //private int LengthOfLicenseNumber(int licNum)// This function returns the number of digits in the license number
+        //{
+        //    int counter = 0;
+        //    while (licNum != 0)
+        //    {
+        //        licNum = licNum / 10;
+        //        counter++;
+        //    }
+        //    return counter;
+        //}
+        //public void CheckLicNum(BO.Bus bus)
+        //{ 
+        //    if (bus.StartDate > DateTime.Now)
+        //        throw new BadInputException("The date of start operation is not valid");
+        //    if (bus.TotalKm < 0)
+        //        throw new BadInputException("The total trip is not valid");
+        //    if (bus.kmAfterRefuling < 0 || bus.kmAfterRefuling > 1200)
+        //        throw new BadInputException("The fuel remain is not valid");
+        //    int lengthLicNum = LengthOfLicenseNumber(bus.LicenseNum);
+        //    if (!((lengthLicNum == 7 && bus.StartDate.Year < 2018) || (lengthLicNum == 8 && bus.StartDate.Year >= 2018)))
+        //        throw new BadInputException("The license number and the date of start operation do not match");
+        //    if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.StartDate)
+        //        throw new BadInputException("The date of last treatment is not valid");
+        //    if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalKm)
+        //        throw new BadInputException("The kilometrage of last treatment is not valid");
+
+        //}
         public void AddBus(BO.Bus bus)
         {
-            CheckLicNum(bus);
+            //CheckLicNum(bus);
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
-            //CheckLicNum(busDo)
-            //if (bus.StartDate > DateTime.Now)
-            //    throw new BadInputException("The date of start operation is not valid");
-            //if (bus.TotalKm < 0)
-            //    throw new BadInputException("The total trip is not valid");
-            //if (bus.FuelTank < 0 || bus.FuelTank > 1200)
-            //    throw new BadInputException("The fuel remain is not valid");
-            //int lengthLicNum = LengthOfLicenseNumber(bus.LicenseNum);
-            //if (!((lengthLicNum == 7 && bus.StartDate.Year < 2018) || (lengthLicNum == 8 && bus.StartDate.Year >= 2018)))
-            //    throw new BadInputException("The license number and the date of start operation do not match");
-            //if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.StartDate)
-            //    throw new BadInputException("The date of last treatment is not valid");
-            //if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalKm)
-            //    throw new BadInputException("The kilometrage of last treatment is not valid");
 
             try
             {
@@ -141,11 +127,23 @@ namespace BL
         {
             BO.Line lineBO = new BO.Line();
             int lineId = lineDO.LineId;
-            lineDO.CopyPropertiesTo(lineBO);
-            lineBO.stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)
-                              let station = dl.GetStation(stat.StationCode)
-                              //select station.CopyToStudentCourse(stat);
-                              select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
+            lineDO.CopyPropertiesTo(lineBO);//לנסות להבין
+            List<BO.StationInLine> stations = (from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId && stat.IsDeleted == false)//Linestation
+                                               let station = dl.GetStation(stat.StationCode)//station
+                                               select station.CopyToStationInLine(stat)).ToList();
+            stations = (stations.OrderBy(s => s.LineStationIndex)).ToList();
+            foreach (StationInLine s in stations)
+            {
+                if (s.LineStationIndex != stations[stations.Count - 1].LineStationIndex)
+                {
+                    int sc1 = s.StationCode;//station code 1
+                    int sc2 = stations[s.LineStationIndex].StationCode;//station code 2
+                    DO.AdjacentStations adjStat = dl.GetAdjacentStations(sc1, sc2);
+                    s.Distance = adjStat.Distance;
+                    s.Time = adjStat.Time;
+                }
+            }
+            lineBO.Stations = stations;
             return lineBO;
         }
         public Line GetLine(int lineId)
@@ -199,64 +197,100 @@ namespace BL
             }
 
         }
-        #endregion
-        #region Station
-        BO.Station StationDoBoAdapter(DO.Station stationDO)
+        public void AddLine(BO.Line lineBo)
         {
-            BO.Station stationBO = new BO.Station();
-            int code = stationDO.Code;
-            stationDO.CopyPropertiesTo(stationBO);
-            stationBO.Lines = from line in dl.GetAllLineStationsBy(line => line.LineId == code)
-                              let station = dl.GetStation(line.StationCode)
-                              //select station.CopyToStudentCourse(stat);
-                              select (BO.LineInStation)line.CopyPropertiesToNew(typeof(BO.LineInStation));
-            return stationBO;
-        }
-        public IEnumerable<BO.Station> GetAllStations()
-        {
-            return from item in dl.GetAllStations()
-                   select StationDoBoAdapter(item);
-        }
-        IEnumerable<BO.Station> GetAllStationsBy(Predicate<BO.Station> predicate)
-        {
-            throw new NotImplementedException();
-        }
-        public BO.Station GetStation(int code)
-        {
-            DO.Station stationDO;
+            DO.Line lineDo = new DO.Line();
+            lineBo.CopyPropertiesTo(lineDo);
+            lineDo.LineId = DO.Config.LineId++;
+            int sc1 = lineBo.Stations[0].StationCode;//stationCode of the first stat
+            int sc2 = lineBo.Stations[1].StationCode;//station Code of the last stat
+            lineDo.FirstStation = sc1;
+            lineDo.LastStation = sc2;
             try
             {
-                stationDO = dl.GetStation(code);
+                if (!dl.AdjacentStationsExist(sc1, sc2))
+                {
+                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = sc1, StationCode2 = sc2, Distance = lineBo.Stations[0].Distance, Time = lineBo.Stations[0].Time };
+                    dl.AddAdjacentStations(adj);
+                }
+
+                dl.AddLine(lineDo);
+                DO.LineStation first = new DO.LineStation() { LineId = lineDo.LineId, StationCode = sc1, LineStationIndex = lineBo.Stations[0].LineStationIndex, IsDeleted = false };
+                DO.LineStation last = new DO.LineStation() { LineId = lineDo.LineId, StationCode = sc2, LineStationIndex = lineBo.Stations[1].LineStationIndex, IsDeleted = false };
+                dl.AddLineStation(first);
+                dl.AddLineStation(last);
+
             }
-            catch (DO.BadLineIdException ex)
+            catch (BO.BadLineIdException ex)
             {
-                throw new BO.BadLineIdException(ex.code, ex.Message);
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
-            return StationDoBoAdapter(stationDO);
-        }
-        public void AddStation(BO.Station station)
-        {
 
         }
-        public void UpdateStation(BO.Station station)
-        {
-
-        }
-        public void DeleteStation(int code)
-        {
-
-        }
-
-        IEnumerable<Station> IBL.GetAllStationsBy(Predicate<Station> predicate)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
     }
+    #endregion
+    #region Station
+
+    //public BO.Station stationDoBoAdapter(DO.Station stationDO)
+    //{
+    //    BO.Station stationBO = new BO.Station();
+    //    int stationCode = stationDO.Code;
+    //    stationDO.CopyPropertiesTo(stationBO);
+    //    lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
+    //                      let station = dl.GetStation(stat.StationCode)//station
+    //                      select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
+    //    stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode)//Linestation
+    //                       let line = dl.GetLine(stat.LineId)//station
+    //                       select line.CopyToLineInStation(stat)).ToList();
+
+    //    return stationBO;
+    //}
+    //public IEnumerable<BO.Station> GetAllStations()
+    //{
+    //    return from item in dl.GetAllStations()
+    //           select stationDoBoAdapter(item);
+    //}
+    #endregion
+
+    //IEnumerable<BO.Station> GetAllStationsBy(Predicate<BO.Station> predicate)
+    //{
+    //    throw new NotImplementedException();
+    //}
+    //public BO.Station GetStation(int code)
+    //{
+    //    DO.Station stationDO;
+    //    try
+    //    {
+    //        stationDO = dl.GetStation(code);
+    //    }
+    //    catch (DO.BadLineIdException ex)
+    //    {
+    //        throw new BO.BadLineIdException(ex.code, ex.Message);
+    //    }
+    //    return StationDoBoAdapter(stationDO);
+    //}
+    //public void AddStation(BO.Station station)
+    //{
+
+    //}
+    //public void UpdateStation(BO.Station station)
+    //{
+
+    //}
+    //public void DeleteStation(int code)
+    //{
+
+    //}
+
+    //IEnumerable<Station> IBL.GetAllStationsBy(Predicate<Station> predicate)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
 }
 
-      
 
- 
+
+
+
+

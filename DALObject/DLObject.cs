@@ -146,14 +146,20 @@ namespace DL
                 throw new Exception();
             adjStationsFind.IsDeleted = true;
         }
-
-        #endregion
-
-        #region Station
-        public IEnumerable<DO.Station> GetAllStations()
+        public bool AdjacentStationsExist(int stationCode1, int stationCode2)
         {
-            return from station in DataSource.ListStations
-                   select station.Clone();
+            DO.AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(adjacentStat => (adjacentStat.StationCode1 == stationCode1 && adjacentStat.StationCode2 == stationCode2 && adjacentStat.IsDeleted == false));
+            if (adjacentStations != null)
+                return true;
+            return false;
+        }
+            #endregion
+
+            #region Station
+          public IEnumerable<DO.Station> GetAllStations()
+        {
+            return from stat in DataSource.ListStations
+                   select stat.Clone();
         }
         public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate)
         {
@@ -215,8 +221,8 @@ namespace DL
         public IEnumerable<DO.Line> GetAllLines()
         {
             return from line in DataSource.ListLines
+                   where line.IsDeleted == false
                    select line.Clone();
-
         }
         public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate)
         {
@@ -285,9 +291,11 @@ namespace DL
         }
         public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate)
         {
-            return from lineStat in DataSource.ListLineStations
-                   where predicate(lineStat)
-                   select lineStat.Clone();
+           
+                return from lineStat in DataSource.ListLineStations
+                       where predicate(lineStat)
+                       select lineStat.Clone();
+           
         }
         public DO.LineStation GetLineStation(int lineId, int stationCode)
         {
