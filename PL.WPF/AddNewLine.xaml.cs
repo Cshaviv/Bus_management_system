@@ -25,6 +25,7 @@ namespace PL.WPF
         {
             InitializeComponent();
             bl = _bl;
+
         }
     }
 }

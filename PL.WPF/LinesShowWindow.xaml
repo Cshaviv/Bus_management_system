@@ -43,6 +43,6 @@
     <Grid>
         <ListBox x:Name="linesListBox" ItemsSource="{Binding}" Height="227" Margin="-2,54,-1,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" MouseDoubleClick="doubleClickLineInfromation" />
-        <Button Content="Add Bus" HorizontalAlignment="Left" Margin="178,325,0,0" VerticalAlignment="Top" Click="Button_Click_AddNewLine" Width="308" Height="60"/>
+        <Button x:Name="AddLine" Content="Add Line" HorizontalAlignment="Left" Margin="234,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="AddLine_Click"/>
     </Grid>
 </Window>

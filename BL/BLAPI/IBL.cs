@@ -20,13 +20,13 @@ namespace BLAPI
 
         #endregion
         #region Line
-        IEnumerable<BO.Line> GetAllLines();
-        IEnumerable<BO.Line> GetAllLinesBy(Predicate<BO.Line> predicate);
+        void AddNewLine(BO.Line lineBo);
         BO.Line GetLine(int lineId);
-        //void AddLine(BO.Line line);//?
-        void UpdateLine(BO.Line line);
-       // void UpdateLine(int code, Action<BO.Line> update); //method that knows to updt specific fields in Bus
-        void DeleteLine(int code);
+        IEnumerable<BO.Line> GetAllLines();
+        //IEnumerable<BO.ListedPerson> GetStudentIDNameList();
+        IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate);
+        void UpdateLineDetails(BO.Line line);
+        void DeleteLine(int LineId);
         #endregion
         #region Station
         //IEnumerable<BO.Station> GetAllStations();

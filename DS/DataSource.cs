@@ -24,26 +24,24 @@ namespace DS
         }
         static void InitAllLists()
         {
-          
-
             #region ListStations 
             ListStations = new List<Station>
             {
                 new Station
                 {
-                    Code = 54,
-                    Name = "הרצל/צומת בילו",
-                    Address = " רחוב:הרצל  עיר: קרית עקרון ",
+                    Code = 73,
+                    Name = "שדרות גולדה מאיר/המשורר אצ''ג",
+                    Address = "רחוב:שדרות גולדה מאיר  עיר: ירושלים ",
                     Latitude = 31.825302,
                     Longitude = 35.188624,
-                    DisabledAccess = true,
+                    DisabledAccess = false,
                     IsDeleted = false
                 },
                 new Station
                 {
-                    Code = 65,
-                    Name = "הנחשול/הדייגים",
-                    Address = " רחוב:הנחשול 30 עיר: ראשון לציון ", 
+                    Code = 76,
+                    Name = "בית ספר צור באהר בנות/אלמדינה אלמונוורה",
+                    Address = "רחוב:אל מדינה אל מונאוורה  עיר: ירושלים",
                     Latitude = 31.738425,
                     Longitude = 35.228765,
                     DisabledAccess = true,
@@ -647,6 +645,90 @@ namespace DS
                 },
             };
             #endregion
+            #region ListUsers
+            ListUsers = new List<User>
+            {
+                new User //1
+                {
+                    UserName= "shira123",
+                    Password="sh123",
+                    AdminAccess=true,
+                    IsDeleted= false
+                },
+
+                new User //2
+                {
+                    UserName= "ayala6521",
+                    Password= "abc33",
+                    AdminAccess=true,
+                    IsDeleted= false
+                },
+
+                new User //3
+                {
+                    UserName= "tahel87",
+                    Password= "df456",
+                    AdminAccess=true,
+                    IsDeleted= false
+                },
+
+                new User //4
+                {
+                    UserName= "dav983",
+                    Password= "pro865",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+
+                new User //5
+                {
+                    UserName= "duc4569",
+                    Password= "xzxz",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+
+                new User //6
+                {
+                    UserName= "cut765",
+                    Password= "fuyfuy",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+
+                new User //7
+                {
+                    UserName= "dog555",
+                    Password= "digdig",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+
+                new User //8
+                {
+                    UserName= "fug897",
+                    Password= "strstr",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+
+                new User //9
+                {
+                    UserName= "noa8642",
+                    Password= "ttt456",
+                    AdminAccess=true,
+                    IsDeleted= false
+                },
+
+                new User //10
+                {
+                    UserName= "classb",
+                    Password= "shalom4",
+                    AdminAccess=false,
+                    IsDeleted= false
+                },
+            };
+            #endregion
             #region ListLines
             ListLines = new List<Line>
             {
@@ -742,90 +824,83 @@ namespace DS
                 },
             };
             #endregion
-            #region ListUsers
-            //ListUsers = new List<User>
-            //{
-            //    new User //1
-            //    {
-            //        UserName= "shira123",
-            //        Password="sh123",
-            //        AdminAccess=,
-            //        IsDeleted= false
-            //    },
+            #region ListLineStation
+            ListLineStations = new List<LineStation>
+            {
+                //line Id=0
+                
+                 new LineStation
+                {
+                    LineId=0,
+                    StationCode=73,
+                    LineStationIndex=2,
+                    PrevStationCode=91,
+                    NextStationCode=76,
+                    IsDeleted=false,
 
-            //    new User //2
-            //    {
-            //        UserName= "ayala6521",
-            //        Password= "abc33",
-            //        AdminAccess=,
-            //        IsDeleted= false
-            //    },
+                },
+                 new LineStation
+                {
+                    LineId=0,
+                    StationCode=91,
+                    LineStationIndex=1,
+                    PrevStationCode=0,
+                    NextStationCode=73,
+                    IsDeleted=false,
 
-            //    new User //3
-            //    {
-            //        UserName= "tahel87",
-            //        Password= "df456",
-            //        AdminAccess=,
-            //        IsDeleted= false
-            //    },
-
-            //    new User //4
-            //    {
-            //        UserName= "dav983",
-            //        Password= "pro865",
-            //        AdminAccess=,
-            //        IsDeleted= false
-            //    },
-
-            //    new User //5
-            //    {
-            //        UserName= "duc4569",
-            //        Password= "xzxz",
-            //        AdminAccess=,
-            //        IsDeleted= false
-            //    },
-
-            //    new User //6
-            //    {
-            //        UserName= "cut765",
-            //        Password= "fuyfuy",
-            //        AdminAccess=,
-            //        IsDeleted= false
-            //    },
-
-            //    new User //7
-            //    {
-            //        UserName= "dog555",
-            //        Password= "digdig",
-            //        AdminAccess=,
-            //        IsDeleted= false
-            //    },
-
-            //    new User //8
-            //    {
-            //        UserName= "fug897",
-            //        Password= "strstr",
-            //        AdminAccess=,
-            //        IsDeleted= false
-            //    },
-
-            //    new User //9
-            //    {
-            //        UserName= "noa8642",
-            //        Password= "ttt456",
-            //        AdminAccess=,
-            //        IsDeleted= false
-            //    },
-
-            //    new User //10
-            //    {
-            //        UserName= "classb",
-            //        Password= "shalom4",
-            //        AdminAccess=,
-            //        IsDeleted= false
-            //    },
-            //};
+                },
+                new LineStation
+                {
+                    LineId=0,
+                    StationCode=76,
+                    LineStationIndex=3,
+                    PrevStationCode=73,
+                    NextStationCode=119,
+                    IsDeleted=false,
+                },
+                new LineStation
+                {
+                    LineId=0,
+                    StationCode=119,
+                    LineStationIndex=4,
+                    PrevStationCode=76,
+                    NextStationCode=0,
+                    IsDeleted=false,
+                },
+            };
             #endregion
+            #region ListAdjacentStations
+            ListAdjacentStations = new List<AdjacentStations>()
+            {
+                new AdjacentStations
+                {
+                    StationCode1=91,
+                    StationCode2 = 73,
+                    Distance=4.5,
+                    Time=new TimeSpan(0,5,0),
+                    IsDeleted=false,
+                },
+                new AdjacentStations
+                {
+                    StationCode1=73,
+                    StationCode2 = 76,
+                    Distance=3.5,
+                    Time=new TimeSpan(0,3,0),
+                    IsDeleted=false,
+                },
+                new AdjacentStations
+                {
+                    StationCode1=76,
+                    StationCode2 =119,
+                    Distance=6.5,
+                    Time=new TimeSpan(0,2,0),
+                    IsDeleted=false,
+                },
+            };
+            #endregion
+
+
+
         }
     }
 }
