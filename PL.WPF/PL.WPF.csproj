@@ -70,23 +70,11 @@
     <Compile Include="BusData.xaml.cs">
       <DependentUpon>BusData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="busesShowWindow.xaml.cs">
-      <DependentUpon>busesShowWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LineDeta.xaml.cs">
       <DependentUpon>LineDeta.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LinesShowWindow.xaml.cs">
-      <DependentUpon>LinesShowWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UpdateDistanceAndTime.xaml.cs">
       <DependentUpon>UpdateDistanceAndTime.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="updateWindow.xaml.cs">
-      <DependentUpon>updateWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="userWindow.xaml.cs">
-      <DependentUpon>userWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AddBusWindow.xaml">
       <SubType>Designer</SubType>
@@ -104,15 +92,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="busesShowWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="LineDeta.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LinesShowWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,14 +113,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateDistanceAndTime.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="updateWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="userWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
