@@ -22,6 +22,7 @@ namespace PL.WPF
     public partial class BusData : Window
     {
         IBL bl;
+        BO.Bus bus;
         public BusData(Bus b,IBL _bl)
         {
             InitializeComponent();
@@ -41,6 +42,25 @@ namespace PL.WPF
             System.Windows.Data.CollectionViewSource busViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("busViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // busViewSource.Source = [generic data source]
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult res = MessageBox.Show("Are you sure deleting selected bus?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.No)
+                return;
+            try
+            {
+                if (bus != null)
+                {
+                    bl.DeleteBus(bus.LicenseNum);
+                    Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

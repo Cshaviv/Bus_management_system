@@ -67,7 +67,6 @@
                 <TextBlock Grid.Column="4" Text="{Binding Path=LicenseNum }" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="6" Text=" Km: " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
                 <TextBlock Grid.Column="8" x:Name="kmTextBlock" Text="{Binding Path=TotalKm}" FontFamily="Dubai Light"  FontSize="14" />
-                <Button Content="delete" Click="deleteButtonClick" Name="deleteButton" Grid.Column="16" Width="70"/>
                 <Button  Content="update" Click="updateButtonClick" Name="updateButton" Grid.Column="10" Width="70" />
                 <Button  Content="Refueling" Click="RefuelClick" Name="ButtonRefuel"  Grid.Column="12" Width="70" />
                 <Button  Content="Treat" Click="TreatClick" Name="TreatButton" Grid.Column="14" Width="70" />

@@ -39,8 +39,9 @@
     <Grid>
         <ListBox x:Name="linesListBox" ItemsSource="{Binding}" Height="277" Margin="122,29,8.333,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" />
-        <Button x:Name="deleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="234,327,0,0" VerticalAlignment="Top" Width="180" Height="49" />
-        <Button x:Name="Addstation" Content="הוספת תחנה" HorizontalAlignment="Left" Margin="234,327,0,0" VerticalAlignment="Top" Width="180" Height="49" />
+        <Button x:Name="deleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="324,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="deleteLine_Click" />
+        <Button x:Name="update" Content="עידכון נתונים" HorizontalAlignment="Left" Margin="118,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="update_Click" />
+        <Button x:Name="Addstation" Content="הוספת תחנה" HorizontalAlignment="Left" Margin="532,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="Addstation_Click" />
         <TextBlock x:Name="LineNum"  HorizontalAlignment="Left" Margin="20,110,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="80" Width="87"/>
     </Grid>
 </Window>

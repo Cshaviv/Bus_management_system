@@ -64,6 +64,9 @@
     <Compile Include="AddNewLine.xaml.cs">
       <DependentUpon>AddNewLine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddStationToLine.xaml.cs">
+      <DependentUpon>AddStationToLine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BusData.xaml.cs">
       <DependentUpon>BusData.xaml</DependentUpon>
     </Compile>
@@ -76,6 +79,9 @@
     <Compile Include="LinesShowWindow.xaml.cs">
       <DependentUpon>LinesShowWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateDistanceAndTime.xaml.cs">
+      <DependentUpon>UpdateDistanceAndTime.xaml</DependentUpon>
+    </Compile>
     <Compile Include="updateWindow.xaml.cs">
       <DependentUpon>updateWindow.xaml</DependentUpon>
     </Compile>
@@ -87,6 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNewLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddStationToLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,6 +129,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="managementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateDistanceAndTime.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

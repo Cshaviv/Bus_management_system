@@ -40,5 +40,6 @@
             <Label  Content="bus Status:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="6" FontSize="14" VerticalAlignment="Center"/>
             <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="6" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
         </Grid>
+        <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="68,330,0,0" VerticalAlignment="Top" Width="135" Height="39"/>
     </Grid>
 </Window>

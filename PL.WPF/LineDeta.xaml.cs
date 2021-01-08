@@ -32,6 +32,18 @@ namespace PL.WPF
             //areaComboBox.Text = line.Area.ToString();
             LineNum.Text = "  קו מספר  " + line.LineNum.ToString();
         }
+        public void RefreshAllLine()
+        {
+            line = bl.GetLine(line.LineId);
+            LineNum.DataContext = line;
+            linesListBox.DataContext = line.Stations;
+            //List<BO.Bus> buses = bl.GetAllBuses().ToList();
+            //LBBuses.DataContext = buses;
+        }
+        private void winUpdate_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            RefreshAllLine();
+        }
         private void updateStation(object sender, RoutedEventArgs e)//continue
         {
 
@@ -42,9 +54,9 @@ namespace PL.WPF
                 return;
             }
             BO.StationInLine next = line.Stations[st.LineStationIndex];
-            //UpdateTimeAndDistance win = new UpdateTimeAndDistance(bl, st, next);
-            //win.Closing += winUpdate_Closing;
-            //win.ShowDialog();
+            UpdateDistanceAndTime win = new UpdateDistanceAndTime(bl, st, next);
+            win.Closing += winUpdate_Closing;
+            win.ShowDialog();
 
         }
         private void deleteStationClick(object sender, RoutedEventArgs e)
@@ -63,11 +75,32 @@ namespace PL.WPF
                     return;
 
                 }
-            }
+            } 
             catch (Exception)
             {
 
             }
+        }
+        private void Addstation_Click(object sender, RoutedEventArgs e)
+        {
+            AddStationToLine win = new AddStationToLine(bl, line);
+            win.Closing += winUpdate_Closing;
+            win.ShowDialog();
+        }
+        private void deleteLine_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult res = MessageBox.Show("Are you sure deleting selected line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.No)
+                return;
+            try
+            {
+                bl.DeleteLine(line.LineId);
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            Close();
         }
     }
 }
