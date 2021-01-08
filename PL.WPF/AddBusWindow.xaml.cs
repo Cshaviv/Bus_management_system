@@ -22,7 +22,7 @@ namespace PL.WPF
     public partial class AddBusWindow : Window
     {
         IBL bl;
-        BO.Bus curBus;
+        BO.Bus bus;
         public AddBusWindow(IBL _bl)
         {
             InitializeComponent();
@@ -67,9 +67,9 @@ namespace PL.WPF
                 licenseNumTextBox.BorderBrush = Brushes.Red;
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            if (curBus != null)
+            if (bus != null)
             {
-                bl.AddBus(curBus);
+                bl.AddBus(bus);
                 Close();
             }
 
