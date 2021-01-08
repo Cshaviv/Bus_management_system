@@ -10,10 +10,13 @@
     <Window.Resources>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
     </Window.Resources>
-    <Grid DataContext="{StaticResource busViewSource}">
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Height="268" Margin="84,25,0,0" VerticalAlignment="Top" Width="499">
+    <Grid DataContext="{StaticResource busViewSource}" Margin="0,0,0,-3">
+        <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="68,330,0,0" VerticalAlignment="Top" Width="135" Height="39"/>
+        <Button  Content="עדכון נתונים" Click="updateButtonClick" Name="updateButton" Margin="245,330,420,57" />
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="120,46,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="101.897"/>
+                <ColumnDefinition Width="26.103"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -25,21 +28,20 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label  Content="license Number:" Grid.Column="0"   FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontSize="14"/>
-            <TextBlock x:Name="licenseNumTextBlock" Grid.Column="1"  FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="0"  VerticalAlignment="Center"  FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="start Date:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontSize="14"/>
-            <TextBlock x:Name="startDateTextBlock" Grid.Column="1"  FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="1"  VerticalAlignment="Center " FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="Date Treat:" Grid.Column="0" FontFamily="Dubai Light"  HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontSize="14"/>
-            <TextBlock x:Name="dateTreatTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="2"  VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="total Km:" Grid.Column="0" FontFamily="Dubai Light"  HorizontalAlignment="Left" Margin="3" Grid.Row="3" FontSize="14" VerticalAlignment="Center"/>
-            <TextBlock x:Name="totalKmTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="km After Treat:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="4" FontSize="14" VerticalAlignment="Center"/>
-            <TextBlock x:Name="kmAfterTreatTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="4"  VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="km After Refuling:" Grid.Column="0" FontFamily="Dubai Light"  HorizontalAlignment="Left" Margin="3" Grid.Row="5" FontSize="14" VerticalAlignment="Center"/>
-            <TextBlock x:Name="kmAfterRefulingTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
-            <Label  Content="bus Status:" Grid.Column="0"  FontFamily="Dubai Light" HorizontalAlignment="Left" Margin="3" Grid.Row="6" FontSize="14" VerticalAlignment="Center"/>
-            <TextBlock x:Name="busStatusTextBlock" Grid.Column="1" FontFamily="Dubai Light"  Margin="0,10,-188,6" Grid.Row="6" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right" Width="163" Height="22"/>
+            <Label Content="Km:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,5" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="30"/>
+            <TextBox x:Name="kmTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="22" Margin="4,6,0,7" Grid.Row="3" Text="{Binding Path=TotalKm}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Km after refueling:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="125" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="kmafterrefuelingTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,6,0,6" Grid.Row="4" Text="{Binding Path= kmAfterRefuling}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Km after treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4" Grid.Row="5" VerticalAlignment="Center" Height="26" Width="125" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="kmafterTreatTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,6,0,6" Grid.Row="5" Text="{Binding Path= KmLastTreat}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Last Treat:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,5" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="63"/>
+            <DatePicker x:Name="lastTreatDatePicker" Grid.Column="2" HorizontalAlignment="Left" Margin="4,3,0,5" Grid.Row="2" SelectedDate="{Binding Path=TotalKm}" Width="120"/>
+            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,6" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="115" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="licenseNumTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,5,0,7" Grid.Row="0" Text="{Binding Path= LicenseNum}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,8" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="65"/>
+            <DatePicker x:Name="startDateDatePicker" Grid.Column="2" HorizontalAlignment="Left" Margin="4,5,0,8" Grid.Row="1" SelectedDate="{Binding Path=StartDate}" VerticalAlignment="Center" Width="120" Height="26"/>
         </Grid>
-        <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="68,330,0,0" VerticalAlignment="Top" Width="135" Height="39"/>
+
+
     </Grid>
 </Window>

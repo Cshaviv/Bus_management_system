@@ -23,17 +23,20 @@ namespace PL.WPF
     {
         IBL bl;
         BO.Bus bus;
-        public BusData(Bus b,IBL _bl)
+        Rectangle IsDeletedRectangle;
+        public BusData(Bus b,IBL _bl, Rectangle _IsDeletedRectangle)
         {
             InitializeComponent();
             bl = _bl;
-            licenseNumTextBlock.Text = b.LicenseNum.ToString();
-            startDateTextBlock.Text= b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
-            dateTreatTextBlock.Text= b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
-            totalKmTextBlock.Text = b.TotalKm.ToString();
-            kmAfterTreatTextBlock.Text = b.KmLastTreat.ToString();
-            kmAfterRefulingTextBlock.Text = b.kmAfterRefuling.ToString();
-            busStatusTextBlock.Text = b.StatusBus.ToString();
+            bus = b;
+            IsDeletedRectangle = _IsDeletedRectangle;
+            licenseNumTextBox.Text = b.LicenseNum.ToString();
+            startDateDatePicker.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
+            lastTreatDatePicker.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
+            kmTextBox.Text = b.TotalKm.ToString();
+            kmafterrefuelingTextBox.Text = b.KmLastTreat.ToString();
+            kmafterTreatTextBox.Text = b.kmAfterRefuling.ToString();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -54,6 +57,7 @@ namespace PL.WPF
                 if (bus != null)
                 {
                     bl.DeleteBus(bus.LicenseNum);
+                    IsDeletedRectangle.Fill = Brushes.Red;
                     Close();
                 }
             }
@@ -61,6 +65,26 @@ namespace PL.WPF
             {
                 MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        
+
+
+        private void updateButtonClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int licenseNum = int.Parse(licenseNumTextBox.Text);
+                double fuel = double.Parse(kmafterrefuelingTextBox.Text);
+                DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
+                DateTime lastDate = DateTime.Parse(lastTreatDatePicker.Text);
+                double kmLastTreat = double.Parse(kmafterTreatTextBox.Text);
+                double totalKm = double.Parse(kmTextBox.Text);
+                BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, kmAfterRefuling = fuel, StartDate = startDate, DateLastTreat = lastDate, TotalKm = totalKm, KmLastTreat = kmLastTreat };
+                bl.UpdateBus(b);
+            }
+            catch (Exception ex) { MessageBox.Show("Error", "", MessageBoxButton.OK, MessageBoxImage.Error); }
+            Close();
+
         }
     }
 }

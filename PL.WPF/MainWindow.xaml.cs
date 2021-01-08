@@ -59,8 +59,9 @@ namespace PL.WPF
             }
             else if (rbUser.IsChecked == true)
             {
-                userWindow win = new userWindow(bl);
-                win.Show();
+            //    userWindow win = new userWindow(bl);
+            //    win.Show();
+            
             }
 
             //private void busesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -49,8 +49,11 @@ namespace PL.WPF
                 ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                BusData win = new BusData(myBus, bl);
+                Rectangle IsDeletedRectangle = (Rectangle)myDataTemplate.FindName("IsDeletedRectangle", myContentPresenter);
+                BusData win = new BusData(myBus, bl, IsDeletedRectangle);
                 win.ShowDialog();
+                RefreshAllBuses();
+              
             }
 
         }
@@ -72,44 +75,8 @@ namespace PL.WPF
             }
             return null;
         }
-        private void updateButtonClick(object sender, RoutedEventArgs e)
-        {
-            Bus myBus = (sender as Button).DataContext as Bus;
-            if (myBus == null)
-            {
-                MessageBox.Show("The bus can't start driving right now, it isn't availble", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            updateWindow win = new updateWindow(myBus, bl);
-            win.ShowDialog();
-        }
-        private void deleteButtonClick(object sender, RoutedEventArgs e)
-        {
-            Bus b = (sender as Button).DataContext as Bus;
-            MessageBoxResult res = MessageBox.Show("Delete selected student?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (res == MessageBoxResult.No)
-                return;
-            try
-            {
-                if (b != null)
-                {
-                    bl.DeleteBus(b.LicenseNum);
-                    BO.Bus stuToDel = b;
-
-                    //RefreshAllRegisteredCoursesGrid();
-                    //RefreshAllNotRegisteredCoursesGrid();
-                    //RefreshAllStudentComboBox();
-                }
-            }
-            catch (BO.BadLicenseNumException ex)
-            {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (BO.BadLineIdException ex)
-            {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+       
+    
         private void RefuelClick(object sender, RoutedEventArgs e)
         {
             Bus myBus = (sender as Button).DataContext as Bus;

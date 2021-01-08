@@ -102,5 +102,10 @@ namespace PL.WPF
             }
             Close();
         }
+
+        private void update_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

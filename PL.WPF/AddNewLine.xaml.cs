@@ -27,5 +27,13 @@ namespace PL.WPF
             bl = _bl;
 
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource lineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // lineViewSource.Source = [generic data source]
+        }
     }
 }

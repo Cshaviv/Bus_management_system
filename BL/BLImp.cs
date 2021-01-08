@@ -58,7 +58,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public void UpdateBusDetails(BO.Bus bus)
+        public void UpdateBus(BO.Bus bus)
         {
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
