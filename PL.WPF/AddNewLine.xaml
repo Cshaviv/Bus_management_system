@@ -10,31 +10,52 @@
     <Window.Resources>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
     </Window.Resources>
-    <Grid>
-
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="235,75,0,0" HorizontalAlignment="Left" DataContext="{StaticResource lineViewSource}" Height="239" Width="220">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+    <Grid DataContext="{StaticResource lineViewSource}">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="251,125,0,0" VerticalAlignment="Top" Width="224" Height="142">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Area:"/>
-            <ComboBox x:Name="areaComboBox" Width="120" VerticalAlignment="Center" Grid.Row="0" Margin="3" ItemsSource="{Binding}" Height="Auto" HorizontalAlignment="Left" DisplayMemberPath="Area" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <ComboBox x:Name="AreaComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Line Id:"/>
-            <TextBox x:Name="lineIdTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LineId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Line Num:"/>
-            <TextBox x:Name="lineNumTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <ComboBox x:Name="firstStationComboBox" Grid.Column="1" DisplayMemberPath="FirstStation" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <ComboBox x:Name="lastStationComboBox" Grid.Column="1" DisplayMemberPath="LastStation" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="120">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Label Content="Line Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="lineNumTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Name="timeLabel" Content="זמן בין תחנות" Grid.Column="0" Visibility="Hidden" HorizontalAlignment="Left" Margin="3,8,0,-26" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="TimeTextBox" Grid.Column="1" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="3,11,0,-26" Grid.Row="6" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label  Name="distanceLabel" Content="מרחק בין תחנות" Grid.Column="0" Visibility="Hidden" HorizontalAlignment="Left" Margin="3,35,0,-52" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="distanceTextBox" Grid.Column="1" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="3,39,0,-54" Grid.Row="6" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-
+        <Button x:Name="AddLine" Content="הוספה" Click="AddLineClick" HorizontalAlignment="Left" Margin="571,243,0,0" VerticalAlignment="Top" Width="105" Height="35"/>
     </Grid>
 </Window>

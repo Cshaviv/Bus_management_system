@@ -13,7 +13,7 @@ namespace dotNet5781_01_7232_5482
         private DateTime startDate;
         private DateTime lastTreat;
         private double km;
-        private double kmafterrefueling;
+        private double kmafterRefueling;
         private double kmaftertreat;
 
         public double Kmaftertreat
@@ -24,8 +24,8 @@ namespace dotNet5781_01_7232_5482
 
         public double Kmafterrefueling
         {
-            get { return kmafterrefueling; }
-            set { kmafterrefueling = value; }
+            get { return kmafterRefueling; }
+            set { kmafterRefueling = value; }
         }
         public double Km
         {
@@ -90,7 +90,7 @@ namespace dotNet5781_01_7232_5482
             this.lastTreat = My_DT;
             this.Km = My_Km;
             this.kmaftertreat = My_Kmaftertreat;
-            this.kmafterrefueling = My_Kmafterrefueling;
+            this.kmafterRefueling = My_Kmafterrefueling;
         }  
 }
 }

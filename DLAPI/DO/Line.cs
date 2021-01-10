@@ -8,11 +8,11 @@ namespace DO
 {
    public class Line
     {
-        public int LineId { get; set; }
-        public int LineNum { get; set; }
-        public Area Area { get; set; }
-        public int FirstStation { get; set; }
-        public int LastStation { get; set; }
-        public bool IsDeleted { get; set; }
+        public int LineId { get; set; }//מספר מזהה של הקו
+        public int LineNum { get; set; }//מספר קו
+        public Area Area { get; set; }//אזור
+        public int FirstStation { get; set; }//תחנה ראשונה
+        public int LastStation { get; set; }//תחנה אחרונה
+        public bool IsDeleted { get; set; }//מחוק
     }
 }

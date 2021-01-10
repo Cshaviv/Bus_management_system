@@ -11,6 +11,8 @@ namespace BO
         public int LineId { get; set; } //id of the line
         public int LineNum { get; set; } //number of the line
         public Area Area { get; set; } //area of the line
+        public int FirstStation { get; set; }//תחנה ראשונה
+        public int LastStation { get; set; }//תחנה אחרונה
         public List<StationInLine> Stations { get; set; }
         public override string ToString()
         {

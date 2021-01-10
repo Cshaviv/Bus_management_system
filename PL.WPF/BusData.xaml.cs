@@ -32,10 +32,10 @@ namespace PL.WPF
             IsDeletedRectangle = _IsDeletedRectangle;
             licenseNumTextBox.Text = b.LicenseNum.ToString();
             startDateDatePicker.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
-            lastTreatDatePicker.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
+            lastTreatDatePicker.Text = b.DateLastTreat.Day + "/" + b.DateLastTreat.Month + "/" + b.DateLastTreat.Year;
             kmTextBox.Text = b.TotalKm.ToString();
-            kmafterrefuelingTextBox.Text = b.KmLastTreat.ToString();
-            kmafterTreatTextBox.Text = b.kmAfterRefuling.ToString();
+            kmafterrefuelingTextBox.Text = b.FuelTank.ToString();
+            kmafterTreatTextBox.Text = b.KmLastTreat.ToString();
 
         }
 
@@ -73,31 +73,32 @@ namespace PL.WPF
         {
             try
             {
-                //    int licenseNum = int.Parse(licenseNumTextBox.Text);
-                //    double fuel = double.Parse(kmafterrefuelingTextBox.Text);
-                //    DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
-                //    DateTime lastDate = DateTime.Parse(lastTreatDatePicker.Text);
-                //    double kmLastTreat = double.Parse(kmafterTreatTextBox.Text);
-                //    double totalKm = double.Parse(kmTextBox.Text);
-                //    BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, kmAfterRefuling = fuel, StartDate = startDate, DateLastTreat = lastDate, TotalKm = totalKm, KmLastTreat = kmLastTreat };
-                //    bl.UpdateBus(b);
+                
                 int licenseNum = int.Parse(licenseNumTextBox.Text);
                 double fuel = double.Parse(kmafterrefuelingTextBox.Text);
-                DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
+                 DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
                 DateTime lastDate = DateTime.Parse(lastTreatDatePicker.Text);
                 double kmLastTreat = double.Parse(kmafterTreatTextBox.Text);
                 //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
                 double totalKm = double.Parse(kmTextBox.Text);
-                BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, kmAfterRefuling = fuel, StartDate = startDate, DateLastTreat = lastDate, /*StatusBus = status,*/ TotalKm = totalKm, KmLastTreat = kmLastTreat };
+                BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, /*StatusBus = status,*/ TotalKm = totalKm, KmLastTreat = kmLastTreat };
                 bl.UpdateBusDetails(b);
                 Close();
             }
+           
+            catch (BO.BadLicenseNumException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Error", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                //licenseNumTextBox.BorderBrush = Brushes.Red;
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            //Close();
-
         }
     }
 }
