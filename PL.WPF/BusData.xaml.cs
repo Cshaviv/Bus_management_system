@@ -24,11 +24,13 @@ namespace PL.WPF
         IBL bl;
         BO.Bus bus;
         Rectangle IsDeletedRectangle;
-        public BusData(Bus b,IBL _bl, Rectangle _IsDeletedRectangle)
+        ListBox busesListBox;
+        public BusData(Bus b,IBL _bl, Rectangle _IsDeletedRectangle, ListBox _busesListBox)
         {
             InitializeComponent();
             bl = _bl;
             bus = b;
+            busesListBox = _busesListBox;
             IsDeletedRectangle = _IsDeletedRectangle;
             licenseNumTextBox.Text = b.LicenseNum.ToString();
             startDateDatePicker.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
@@ -36,7 +38,12 @@ namespace PL.WPF
             kmTextBox.Text = b.TotalKm.ToString();
             kmafterrefuelingTextBox.Text = b.FuelTank.ToString();
             kmafterTreatTextBox.Text = b.KmLastTreat.ToString();
+         
 
+        }
+        void RefreshAllBuses()
+        {
+            busesListBox.ItemsSource = bl.GetAllBuses().ToList();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -57,7 +64,8 @@ namespace PL.WPF
                 if (bus != null)
                 {
                     bl.DeleteBus(bus.LicenseNum);
-                    IsDeletedRectangle.Fill = Brushes.Red;
+                    //IsDeletedRectangle.Fill = Brushes.Red;
+                    //RefreshAllBuses();
                     Close();
                 }
             }

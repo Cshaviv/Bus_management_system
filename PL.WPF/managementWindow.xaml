@@ -15,6 +15,8 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="0" />
                     <ColumnDefinition Width="95" />
                     <ColumnDefinition Width="5" />
@@ -29,13 +31,14 @@
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="12"  Text=":מספר רישוי" FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="10" Text="{Binding Path=LineNum }" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="8" Text=":אזור " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="6" x:Name="kmTextBlock" Text="{Binding Path=Area}" FontFamily="Dubai Light"  FontSize="14" />
-                <Button  Content="update" Grid.Column="4"  Width="70"/>
-                <Button Content="delete" Grid.Column="2" Width="70"/>
-                <TextBlock Grid.Column="13" Text="{Binding Path=LineId }" FontFamily="Dubai Light"  FontSize="14"/>
+                <Rectangle Grid.Column="2"  Name="IsDeletedRectangleLine" Fill="LightGreen" Width="10" Height="10"/>
+                <TextBlock Grid.Column="14"  Text=":מספר רישוי" FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="12" Text="{Binding Path=LineNum }" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="10" Text=":אזור " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="8" x:Name="kmTextBlock" Text="{Binding Path=Area}" FontFamily="Dubai Light"  FontSize="14" />
+                <Button  Content="update" Grid.Column="6"  Width="70"/>
+                <Button Content="delete" Grid.Column="4" Width="70"/>
+                <TextBlock Grid.Column="15" Text="{Binding Path=LineId }" FontFamily="Dubai Light"  FontSize="14"/>
 
             </Grid>
         </DataTemplate>
@@ -64,7 +67,7 @@
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
-                <Rectangle Grid.Column="0"  Name="IsDeletedRectangle" Fill="LightGreen" Width="Auto" Height="20"/>
+                <Rectangle Grid.Column="0"  Name="IsDeletedRectangle" Fill="LightGreen" Width="10" Height="10"/>
                 <TextBlock Grid.Column="2" Visibility="Visible" Text="License Number:" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
                 <TextBlock Grid.Column="4" Text="{Binding Path=LicenseNum }" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="6" Text=" Km: " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />

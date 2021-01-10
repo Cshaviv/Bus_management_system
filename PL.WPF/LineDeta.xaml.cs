@@ -23,11 +23,13 @@ namespace PL.WPF
     {
         IBL bl;
         BO.Line line;
-        public LineDeta(IBL _bl, BO.Line _line)
+        Rectangle IsDeletedRectangleLine;
+        public LineDeta(IBL _bl, BO.Line _line, Rectangle _IsDeletedRectangleLine)
         {
             InitializeComponent();
             bl = _bl;
             line = _line;
+            IsDeletedRectangleLine = _IsDeletedRectangleLine;
             linesListBox.DataContext = line.Stations;
             linesListBox.Visibility = Visibility.Visible;
             LineNumTextBlock.Text = line.LineNum.ToString();
@@ -95,8 +97,13 @@ namespace PL.WPF
             if (res == MessageBoxResult.No)
                 return;
             try
-            {
-                bl.DeleteLine(line.LineId);
+            { 
+                if (line != null)
+                {
+                    bl.DeleteLine(line.LineId);
+                    //IsDeletedRectangleLine.Fill = Brushes.Red;
+                   // Close();
+                }
             }
             catch (BO.BadLineIdException ex)
             {
@@ -128,8 +135,23 @@ namespace PL.WPF
         }
         public void RefreshData()
         {
-            LineNumTextBlock.Text = line.LineNum.ToString();
-            AreaTextBlock.Text = line.Area.ToString();            
+            
+                int lineNumber = int.Parse(LineNumTextBox.Text);
+                BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString());
+                BO.Line lineUpdate = new BO.Line() { LineId = line.LineId, LineNum = lineNumber, Area = area, Stations = line.Stations };
+                try
+                {
+                    bl.UpdateLineDetails(lineUpdate);
+                    Close();
+                }
+                catch (BO.BadLineIdException ex)
+                {
+                    MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
         }
         private void CancelClick(object sender, RoutedEventArgs e)
         {

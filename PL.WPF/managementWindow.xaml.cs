@@ -51,7 +51,7 @@ namespace PL.WPF
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
                 Rectangle IsDeletedRectangle = (Rectangle)myDataTemplate.FindName("IsDeletedRectangle", myContentPresenter);
-                BusData win = new BusData(myBus, bl, IsDeletedRectangle);
+                BusData win = new BusData(myBus, bl, IsDeletedRectangle, busesListBox);
                 win.ShowDialog();
                 RefreshAllBuses();
               
@@ -147,7 +147,11 @@ namespace PL.WPF
            BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
             if (line == null)
                 return;
-            LineDeta win = new LineDeta(bl, line);
+            ListBoxItem myListBoxItem = (ListBoxItem)(LineesListBox.ItemContainerGenerator.ContainerFromItem(line));
+            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+            Rectangle IsDeletedRectangleLine = (Rectangle)myDataTemplate.FindName("IsDeletedRectangleLine", myContentPresenter);
+            LineDeta win = new LineDeta(bl, line, IsDeletedRectangleLine);
             win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }
