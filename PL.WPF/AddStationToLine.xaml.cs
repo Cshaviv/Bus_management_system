@@ -43,7 +43,7 @@ namespace PL.WPF
             if (YesCheckBox.IsChecked == true)
             {
                 MessageBox.Show("לא ניתן ללחוץ על שתי הכפתורים בו זמנית, בטל אחד מהם", "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+               
             }
             else
             {
@@ -56,12 +56,52 @@ namespace PL.WPF
        
 private void IfCheckedYes(object sender, RoutedEventArgs e)
         {
-            if (NoCheckBox.IsChecked == true)
+           
+            if(YesCheckBox.IsChecked == true)
             {
-                MessageBox.Show("לא ניתן ללחוץ על שתי הכפתורים בו זמנית, בטל אחד מהם", "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
            
+           
+        }
+
+        private void AddNo_Click(object sender, RoutedEventArgs e)
+        {
+            if (YesCheckBox.IsChecked == true)
+            {
+                //Station in line
+                BO.Station stat = (stationComboBox.SelectedItem) as BO.Station;
+                BO.LineStation newStation = new BO.LineStation() { LineId = line.LineId, LineStationIndex = 1, StationCode = stat.Code };
+                try
+                {
+
+                    bl.AddLineStation(newStation);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            else
+            {
+                BO.StationInLine PrevStation = (PrevstationComboBox.SelectedItem) as BO.StationInLine;
+                if (PrevStation == null)
+                {
+                    MessageBox.Show("Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);//להוסיף הערה
+                    return;
+                }
+                 BO.Station newStat = (stationComboBox.SelectedItem) as BO.Station;
+                 BO.LineStation newStation = new BO.LineStation() { LineId = line.LineId, LineStationIndex = PrevStation.LineStationIndex + 1, StationCode = newStat.Code };
+                try
+                {
+                    bl.AddLineStation(newStation);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            Close();
         }
     }
 }
