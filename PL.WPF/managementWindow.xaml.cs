@@ -86,13 +86,13 @@ namespace PL.WPF
                 MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if (myBus.kmAfterRefuling == 0)//When the fuel tank is full to the end can not be sent for refueling.
+            if (myBus.FuelTank == 0)//When the fuel tank is full to the end can not be sent for refueling.
             {
                 MessageBox.Show("The fuel tank if full", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
             myBus.StatusBus = BusStatus.OnRefueling;//update status
-            myBus.kmAfterRefuling = 0;//update fields
+            myBus.FuelTank = 0;//update fields
         }
         private void TreatClick(object sender, RoutedEventArgs e)
         {
@@ -102,18 +102,18 @@ namespace PL.WPF
                 MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if (myBus.kmAfterRefuling == 0 && (DateTime.Now == myBus.DateLastTreat))//If he did the treatment today and has not traveled since
+            if (myBus.FuelTank == 0 && (DateTime.Now == myBus.DateLastTreat))//If he did the treatment today and has not traveled since
             {
                 MessageBox.Show("The bus was already treatmented", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
 
             myBus.StatusBus = BusStatus.OnTreatment;//update status
-            myBus.kmAfterRefuling = 0;//update fields
+            myBus.FuelTank = 0;//update fields
             myBus.DateLastTreat = DateTime.Now;
-            if (myBus.kmAfterRefuling == 1200)
+            if (myBus.FuelTank == 1200)
             {
-                myBus.kmAfterRefuling = 0;
+                myBus.FuelTank = 0;
             }
         }
         private void AddBus_Click(object sender, RoutedEventArgs e)

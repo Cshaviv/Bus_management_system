@@ -138,7 +138,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\BO.BadInputException.datasource" />
+    <None Include="Properties\DataSources\BO.BadLicenseNumException.datasource" />
+    <None Include="Properties\DataSources\BO.BadLineIdException.datasource" />
+    <None Include="Properties\DataSources\BO.BadStationCodeException.datasource" />
     <None Include="Properties\DataSources\BO.Bus.datasource" />
+    <None Include="Properties\DataSources\BO.Line1.datasource" />
+    <None Include="Properties\DataSources\BO.LineInStation.datasource" />
+    <None Include="Properties\DataSources\BO.LineStation.datasource" />
+    <None Include="Properties\DataSources\BO.Station.datasource" />
+    <None Include="Properties\DataSources\BO.StationInLine.datasource" />
+    <None Include="Properties\DataSources\BO.Tools.datasource" />
+    <None Include="Properties\DataSources\BO.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

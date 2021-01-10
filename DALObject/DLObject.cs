@@ -49,6 +49,10 @@ namespace DL
                 throw new BadInputException("The date of start operation is not valid");
             if (bus.TotalKm < 0)
                 throw new BadInputException("The total km is not valid");
+            if(bus.TotalKm<bus.KmLastTreat)
+                throw new BadInputException("The total km or km last treat are not correct");
+            if (bus.TotalKm < bus.FuelTank)
+                throw new BadInputException("The total km or fuel Tank treat are not correct");
             if (bus.FuelTank < 0 || bus.FuelTank > 1200)
                 throw new BadInputException("The fuel tank is not valid");
             int lengthLicNumber = LengthOfLicNum(bus.LicenseNum);
@@ -77,7 +81,8 @@ namespace DL
                 throw new BadLicenseNumException(bus.LicenseNum, "The bus does not exist");
             DO.Bus newBus = bus.Clone();
             DataSource.ListBuses.Remove(busFind);
-            DataSource.ListBuses.Add(newBus);
+            AddBus(newBus);
+            //DataSource.ListBuses.Add(newBus);
         }
         public void UpdateBus(int licenseNumber, Action<DO.Bus> update)
         {
