@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-   public class StationInLine
+    public class StationInLine
     {
         public int StationCode { get; set; } //code of the station
         public string Name { get; set; } // name of the station
@@ -14,5 +14,10 @@ namespace BO
         public int LineStationIndex { get; set; } //the index of the station in the line
         public double Distance { get; set; }
         public TimeSpan Time { get; set; }
+
+        public override string ToString()
+        {
+            return "station code: " + StationCode + " station name: " + Name;
+        }
     }
 }

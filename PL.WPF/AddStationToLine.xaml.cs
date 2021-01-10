@@ -25,6 +25,14 @@ namespace PL.WPF
         public AddStationToLine(IBL _bl, BO.Line _line)
         {
             InitializeComponent();
+            bl = _bl;
+            line = _line;
+            List<BO.Station> station = bl.GetAllStations().ToList();
+            List<BO.StationInLine> StationInLine = line.Stations.ToList();
+            stationComboBox.ItemsSource = station;
+            stationComboBox.SelectedItem = "Code";
+            PrevstationComboBox.ItemsSource = StationInLine;
+            PrevstationComboBox.SelectedItem = "Code";
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿ using BLAPI;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,16 +30,17 @@ namespace PL.WPF
             line = _line;
             linesListBox.DataContext = line.Stations;
             linesListBox.Visibility = Visibility.Visible;
-            //areaComboBox.Text = line.Area.ToString();
-            LineNum.Text = "  קו מספר  " + line.LineNum.ToString();
+            LineNumTextBlock.Text = line.LineNum.ToString();
+            LineNumTextBox.Text = line.LineNum.ToString();
+            AreaTextBlock.Text = line.Area.ToString();
+            AreaComboBox.ItemsSource= Enum.GetValues(typeof(Area));
+            AreaComboBox.Text = line.Area.ToString();
+         
         }
         public void RefreshAllLine()
         {
             line = bl.GetLine(line.LineId);
-            LineNum.DataContext = line;
-            linesListBox.DataContext = line.Stations;
-            //List<BO.Bus> buses = bl.GetAllBuses().ToList();
-            //LBBuses.DataContext = buses;
+            linesListBox.DataContext = line.Stations;         
         }
         private void winUpdate_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -102,10 +104,41 @@ namespace PL.WPF
             }
             Close();
         }
-
         private void update_Click(object sender, RoutedEventArgs e)
         {
-
+            LineNumTextBlock.Visibility = Visibility.Hidden;
+            AreaTextBlock.Visibility = Visibility.Hidden;
+            AreaComboBox.Visibility = Visibility.Visible;
+            LineNumTextBox.Visibility = Visibility.Visible;
+            Save.Visibility = Visibility.Visible;
+            Cancel.Visibility = Visibility.Visible;
+            
+        }
+        private void SaveClick(object sender, RoutedEventArgs e)
+        {
+            line.LineNum = int.Parse(LineNumTextBox.Text);
+            line.Area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString()); ;
+            RefreshData();
+            LineNumTextBlock.Visibility = Visibility.Visible;
+            AreaTextBlock.Visibility = Visibility.Visible;
+            AreaComboBox.Visibility = Visibility.Hidden;
+            LineNumTextBox.Visibility = Visibility.Hidden;
+            Save.Visibility = Visibility.Hidden;
+            Cancel.Visibility = Visibility.Hidden;
+        }
+        public void RefreshData()
+        {
+            LineNumTextBlock.Text = line.LineNum.ToString();
+            AreaTextBlock.Text = line.Area.ToString();            
+        }
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
+            LineNumTextBlock.Visibility = Visibility.Visible;
+            AreaTextBlock.Visibility = Visibility.Visible;
+            AreaComboBox.Visibility = Visibility.Hidden;
+            LineNumTextBox.Visibility = Visibility.Hidden;
+            Save.Visibility = Visibility.Hidden;
+            Cancel.Visibility = Visibility.Hidden;
         }
     }
 }

@@ -27,6 +27,7 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="12"  Text=":מספר רישוי" FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
                 <TextBlock Grid.Column="10" Text="{Binding Path=LineNum }" FontFamily="Dubai Light"  FontSize="14"/>
@@ -34,6 +35,8 @@
                 <TextBlock Grid.Column="6" x:Name="kmTextBlock" Text="{Binding Path=Area}" FontFamily="Dubai Light"  FontSize="14" />
                 <Button  Content="update" Grid.Column="4"  Width="70"/>
                 <Button Content="delete" Grid.Column="2" Width="70"/>
+                <TextBlock Grid.Column="13" Text="{Binding Path=LineId }" FontFamily="Dubai Light"  FontSize="14"/>
+
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="BusTemplate"

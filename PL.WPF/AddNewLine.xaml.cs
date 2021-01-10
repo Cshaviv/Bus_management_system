@@ -27,15 +27,14 @@ namespace PL.WPF
             bl = _bl;
             List<BO.Station> station = bl.GetAllStations().ToList();
             firstStationComboBox.ItemsSource = station;
-            firstStationComboBox.DisplayMemberPath = "Name";
+            firstStationComboBox.SelectedItem = "Code";
+            //firstStationComboBox.DisplayMemberPath = "Code";       
             firstStationComboBox.SelectedIndex = 0;
             lastStationComboBox.ItemsSource = station;
-            lastStationComboBox.DisplayMemberPath = "Name";
+            lastStationComboBox.SelectedItem = "Code";
+            //lastStationComboBox.DisplayMemberPath = "Code";
             lastStationComboBox.SelectedIndex = 1;
             AreaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
-
-
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -53,8 +52,9 @@ namespace PL.WPF
                 BO.Station firstStation = (firstStationComboBox.SelectedItem) as BO.Station;
                 BO.Station lastStation = (lastStationComboBox.SelectedItem) as BO.Station;
                 int lineNum = int.Parse(lineNumTextBox.Text);
+                //static int LineId=11;
                 BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString());
-                BO.Line newline = new BO.Line() { LineId = -1, LineNum = lineNum, Area = area };
+                BO.Line newline = new BO.Line() { LineNum = lineNum, Area = area };
                 newline.Stations = new List<BO.StationInLine>();
                 if (bl.IsExistAdjacentStations(firstStation.Code, lastStation.Code))
                 {

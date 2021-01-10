@@ -17,6 +17,7 @@ namespace BO
         public override string ToString()
         {
             return "Line ID: " + LineId + " Line number: " + LineNum;
+            //return "Area" + Area.ToString();
         }
         
     }

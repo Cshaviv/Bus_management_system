@@ -735,10 +735,10 @@ namespace DS
                    new Line //0
                 {
                     LineId=0,
-                    LineNum=33,
+                    LineNum=32,
                     Area= Area.Jerusalem,
                     FirstStation=91, //גולדה/הרטום
-                    LastStation=1492, //קרית הילד/סורוצקין
+                    LastStation=119, //קרית הילד/סורוצקין
                     IsDeleted=false
                 },
                 new Line //1
@@ -837,7 +837,16 @@ namespace DS
             ListLineStations = new List<LineStation>
             {
                 //line Id=0
-                
+                new LineStation
+                {
+                    LineId=0,
+                    StationCode=91,
+                    LineStationIndex=1,
+                    PrevStationCode=0,
+                    NextStationCode=73,
+                    IsDeleted=false,
+
+                },
                  new LineStation
                 {
                     LineId=0,
@@ -845,16 +854,6 @@ namespace DS
                     LineStationIndex=2,
                     PrevStationCode=91,
                     NextStationCode=76,
-                    IsDeleted=false,
-
-                },
-                 new LineStation
-                {
-                    LineId=0,
-                    StationCode=91,
-                    LineStationIndex=1,
-                    PrevStationCode=0,
-                    NextStationCode=73,
                     IsDeleted=false,
 
                 },

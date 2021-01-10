@@ -136,21 +136,21 @@ namespace BL
             DO.Line lineDo = new DO.Line();
             lineBo.CopyPropertiesTo(lineDo);
             lineDo.LineId = DO.Config.LineId++;
-            int sc1 = lineBo.Stations[0].StationCode;//stationCode of the first station
-            int sc2 = lineBo.Stations[1].StationCode;//station Code of the last station
-            lineDo.FirstStation = sc1;
-            lineDo.LastStation = sc2;
+            int stationCode1 = lineBo.Stations[0].StationCode;//stationCode of the first station
+            int stationCode2 = lineBo.Stations[1].StationCode;//station Code of the last station
+            lineDo.FirstStation = stationCode1;
+            lineDo.LastStation = stationCode2;
             try
             {
-                if (!dl.ExistAdjacentStations(sc1, sc2))
+                if (!dl.ExistAdjacentStations(stationCode1, stationCode2))
                 {
-                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = sc1, StationCode2 = sc2, Distance = lineBo.Stations[0].Distance, Time = lineBo.Stations[0].Time };
+                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode1, StationCode2 = stationCode2, Distance = lineBo.Stations[0].Distance, Time = lineBo.Stations[0].Time };
                     dl.AddAdjacentStations(adj);
                 }
 
                 dl.AddLine(lineDo);
-                DO.LineStation first = new DO.LineStation() { LineId = lineDo.LineId, StationCode = sc1, LineStationIndex = lineBo.Stations[0].LineStationIndex, IsDeleted = false };
-                DO.LineStation last = new DO.LineStation() { LineId = lineDo.LineId, StationCode = sc2, LineStationIndex = lineBo.Stations[1].LineStationIndex, IsDeleted = false };
+                DO.LineStation first = new DO.LineStation() { LineId = lineDo.LineId, StationCode = stationCode1, LineStationIndex = lineBo.Stations[0].LineStationIndex, IsDeleted = false };
+                DO.LineStation last = new DO.LineStation() { LineId = lineDo.LineId, StationCode = stationCode2, LineStationIndex = lineBo.Stations[1].LineStationIndex, IsDeleted = false };
                 dl.AddLineStation(first);
                 dl.AddLineStation(last);
 
