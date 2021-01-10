@@ -30,9 +30,38 @@ namespace PL.WPF
             List<BO.Station> station = bl.GetAllStations().ToList();
             List<BO.StationInLine> StationInLine = line.Stations.ToList();
             stationComboBox.ItemsSource = station;
+            stationComboBox.SelectedIndex = 0;
             stationComboBox.SelectedItem = "Code";
             PrevstationComboBox.ItemsSource = StationInLine;
             PrevstationComboBox.SelectedItem = "Code";
+            PrevstationComboBox.SelectedIndex = 0;
+
+        }
+
+        private void IfCheckedNo(object sender, RoutedEventArgs e)
+        {
+            if (YesCheckBox.IsChecked == true)
+            {
+                MessageBox.Show("לא ניתן ללחוץ על שתי הכפתורים בו זמנית, בטל אחד מהם", "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else
+            {
+                PrevStatTextBlock.Visibility = Visibility.Visible;
+                PrevstationComboBox.Visibility = Visibility.Visible;
+            }
+        }
+        
+
+       
+private void IfCheckedYes(object sender, RoutedEventArgs e)
+        {
+            if (NoCheckBox.IsChecked == true)
+            {
+                MessageBox.Show("לא ניתן ללחוץ על שתי הכפתורים בו זמנית, בטל אחד מהם", "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+           
         }
     }
 }

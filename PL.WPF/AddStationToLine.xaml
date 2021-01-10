@@ -8,9 +8,14 @@
         Title="AddStationToLine" Height="450" Width="800">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="272,66,0,0" TextWrapping="Wrap" Text="בחר את התחנה שאתה רוצה להוסיף" VerticalAlignment="Top" Height="28" Width="232"/>
-        <ComboBox x:Name="stationComboBox" HorizontalAlignment="Left" Margin="255,100,0,0" VerticalAlignment="Top" Width="221" Height="39"/>
-        <TextBlock HorizontalAlignment="Left" Margin="215,151,0,0" TextWrapping="Wrap" Text="בחר את התחנה שנמצאת לפני התחנה שאתה רוצה להוסיף " VerticalAlignment="Top" Height="28" Width="306"/>
-        <ComboBox x:Name="PrevstationComboBox" HorizontalAlignment="Left" Margin="255,204,0,0" VerticalAlignment="Top" Width="221" Height="39"/>
+        <ComboBox x:Name="stationComboBox" HorizontalAlignment="Left" Margin="193,100,0,0" VerticalAlignment="Top" Width="472" Height="39"/>
+        <TextBlock x:Name="PrevStatTextBlock" HorizontalAlignment="Left" Visibility="Hidden" Margin="235,216,0,0" TextWrapping="Wrap" Text="בחר את התחנה שנמצאת לפני התחנה שאתה רוצה להוסיף " VerticalAlignment="Top" Height="28" Width="306"/>
+        <ComboBox x:Name="PrevstationComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="185,244,0,0" VerticalAlignment="Top" Width="485" Height="39"/>
+        <TextBlock HorizontalAlignment="Left" Margin="247,150,0,0" TextWrapping="Wrap" Text="האם אתה רוצה להוסיף את התחנה לתחילת הרשימה " VerticalAlignment="Top" Height="28" Width="306"/>
+        <CheckBox Name="YesCheckBox" Content="כן" HorizontalAlignment="Left" Margin="420,187,0,0" VerticalAlignment="Top" Height="17" Width="41" Checked="IfCheckedYes" />
+        <CheckBox Name="NoCheckBox" Content="לא" HorizontalAlignment="Left" Margin="333,187,0,0" VerticalAlignment="Top" Checked="IfCheckedNo"/>
+        <Button x:Name="AddYes" Content="הוספה"  HorizontalAlignment="Left" Margin="282,344,0,0" VerticalAlignment="Top" Width="204" Height="37"/>
+        <Button x:Name="AddNo" Content="הוספה" HorizontalAlignment="Left" Margin="282,344,0,0" VerticalAlignment="Top" Width="204" Height="37"/>
 
     </Grid>
 </Window>
