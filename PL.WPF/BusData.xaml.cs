@@ -92,8 +92,11 @@ namespace PL.WPF
                 bl.UpdateBusDetails(b);
                 Close();
             }
-            catch (Exception ex) { MessageBox.Show("Error", "", MessageBoxButton.OK, MessageBoxImage.Error); }
-            Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            //Close();
 
         }
     }
