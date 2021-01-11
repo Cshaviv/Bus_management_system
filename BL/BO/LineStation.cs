@@ -8,8 +8,8 @@ namespace BO
 {
    public class LineStation
     {   
-            public int LineId { get; set; }
-            public int StationCode { get; set; }
-            public int LineStationIndex { get; set; }     
+            public int LineId { get; set; }//line
+            public int StationCode { get; set; }//code
+            public int LineStationIndex { get; set; }//station index(in the line)  
     }
 }
