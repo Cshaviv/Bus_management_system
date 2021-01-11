@@ -52,13 +52,13 @@ namespace PL.WPF
         {
             
             BO.StationInLine stat = (sender as Button).DataContext as BO.StationInLine;
-            if (stat.StationCode == line.Stations[line.Stations.Count-1].StationCode)
+            if (stat.StationCode == line.Stations[line.Stations.Count].StationCode)
             {
                 MessageBox.Show("travel distance/time from Last station cant be updated.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            //BO.StationInLine next = line.Stations[stat.LineStationIndex];
-            UpdateDistanceAndTime win = new UpdateDistanceAndTime(bl, stat);
+            BO.StationInLine next = line.Stations[stat.LineStationIndex];
+            UpdateDistanceAndTime win = new UpdateDistanceAndTime(bl, stat, next);
             win.Closing += winUpdate_Closing;
             win.ShowDialog();
 
@@ -165,8 +165,10 @@ namespace PL.WPF
 
         private void updateStationClick(object sender, RoutedEventArgs e)
         {
-            StationInLine s = (sender as Button).DataContext as StationInLine;//the bus
-            UpdateDistanceAndTime win = new UpdateDistanceAndTime(bl,s);
+            StationInLine stat = (sender as Button).DataContext as StationInLine;//the bus
+            int index = stat.LineStationIndex + 1;
+            StationInLine nextStat = line.Stations[index];
+            UpdateDistanceAndTime win = new UpdateDistanceAndTime(bl,stat, nextStat);
             win.Show();
         }
     }

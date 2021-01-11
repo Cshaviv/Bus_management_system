@@ -15,7 +15,7 @@ namespace DS
         public static List<AdjacentStations> ListAdjacentStations;
         public static List<Trip> ListTrips;
         public static List<Line> ListLines;
-        public static List<LineStation> ListLineStations;//אתחלנו את האינדקסים מ0
+        public static List<LineStation> ListLineStations;//אתחלנו את האינדקסים מ1
         public static List<LineTrip> ListLineTrips;
 
         static DataSource()
@@ -841,7 +841,7 @@ namespace DS
                 {
                     LineId=1,
                     StationCode=91,
-                    LineStationIndex=0,
+                    LineStationIndex=1,
                     PrevStationCode=0,
                     NextStationCode=73,
                     IsDeleted=false,
@@ -851,7 +851,7 @@ namespace DS
                 {
                     LineId=1,
                     StationCode=73,
-                    LineStationIndex=1,
+                    LineStationIndex=2,
                     PrevStationCode=91,
                     NextStationCode=76,
                     IsDeleted=false,
@@ -861,7 +861,7 @@ namespace DS
                 {
                     LineId=1,
                     StationCode=76,
-                    LineStationIndex=2,
+                    LineStationIndex=3,
                     PrevStationCode=73,
                     NextStationCode=119,
                     IsDeleted=false,
@@ -870,7 +870,7 @@ namespace DS
                 {
                     LineId=1,
                     StationCode=119,
-                    LineStationIndex=3,
+                    LineStationIndex=4,
                     PrevStationCode=76,
                     NextStationCode=0,
                     IsDeleted=false,

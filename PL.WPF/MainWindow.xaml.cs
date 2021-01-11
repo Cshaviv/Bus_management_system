@@ -57,10 +57,6 @@ namespace PL.WPF
             
             }
 
-            //private void busesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-            //{
-
-            //}
         }
 
         private void busesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

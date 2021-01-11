@@ -221,11 +221,68 @@ namespace DL
                 if (lineStat.LineId == lineId && lineStat.IsDeleted == false)
                     lineStat.IsDeleted = true;
             }
-            //foreach (DO.LineTrip lineTrip in DataSource.ListLineTrips)//delete fron line trip list
-            //{
-            //    if (lineTrip.LineId == lineId && lineTrip.IsDeleted == false)
-            //        lineTrip.IsDeleted = true;
-            //}
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
         #endregion

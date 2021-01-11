@@ -67,7 +67,6 @@ namespace PL.WPF
                 BO.LineStation newStation = new BO.LineStation() { LineId = line.LineId, LineStationIndex = 1, StationCode = stat.Code };
                 try
                 {
-
                     bl.AddLineStation(newStation);
                 }
                 catch (Exception)
