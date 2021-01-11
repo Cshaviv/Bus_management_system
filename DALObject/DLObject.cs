@@ -166,10 +166,16 @@ namespace DL
         public IEnumerable<DO.Line> GetAllLines()
         {
             return from line in DataSource.ListLines
-                   where line.IsDeleted == false
+                   //where line.IsDeleted == false
                    select line.Clone();
-
         }
+        //public IEnumerable<DO.Line> GetAllLinesDelete()
+        //{
+        //    return from line in DataSource.ListLines
+        //           where line.IsDeleted == true
+        //           select line.Clone();
+
+        //}
         public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate)
         {
             return from line in DataSource.ListLines
@@ -211,20 +217,15 @@ namespace DL
         }
         public void DeleteLine(int lineId)
         {
-            DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
+            DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
             if (lineFind == null)
                 throw new BadLineIdException(lineId, "The Line ID does not exist");
             lineFind.IsDeleted = true;
-            foreach (DO.LineStation lineStat in DataSource.ListLineStations)//delete fron the line station list
+            foreach (DO.LineStation s in DataSource.ListLineStations)//delete fron the line station list
             {
-                if (lineStat.LineId == lineId && lineStat.IsDeleted == false)
-                    lineStat.IsDeleted = true;
+                if (s.LineId == lineId && s.IsDeleted == false)
+                    s.IsDeleted = true;
             }
-            //foreach (DO.LineTrip lineTrip in DataSource.ListLineTrips)//delete fron line trip list
-            //{
-            //    if (lineTrip.LineId == lineId && lineTrip.IsDeleted == false)
-            //        lineTrip.IsDeleted = true;
-            //}
         }
 
         #endregion

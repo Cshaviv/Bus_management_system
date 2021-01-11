@@ -45,6 +45,7 @@ namespace DLAPI
         #endregion 
         #region Line
         IEnumerable<DO.Line> GetAllLines();
+       // IEnumerable<DO.Line> GetAllLinesDelete();
         IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate);
         DO.Line GetLine(int lineId);
         void AddLine(DO.Line line);//?

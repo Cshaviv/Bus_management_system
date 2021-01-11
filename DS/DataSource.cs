@@ -542,7 +542,7 @@ namespace DS
                     StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020, 12,1 ),
                     KmLastTreat=8001,
-                    IsDeleted=false
+                    IsDeleted=true
                 },
                 new Bus//2
                 {

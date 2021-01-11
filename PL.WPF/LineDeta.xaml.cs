@@ -101,8 +101,8 @@ namespace PL.WPF
                 if (line != null)
                 {
                     bl.DeleteLine(line.LineId);
-                    //IsDeletedRectangleLine.Fill = Brushes.Red;
-                   // Close();
+                    IsDeletedRectangleLine.Fill = Brushes.Red;
+                    Close();
                 }
             }
             catch (BO.BadLineIdException ex)

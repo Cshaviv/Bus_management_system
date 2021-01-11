@@ -75,9 +75,7 @@ namespace PL.WPF
                 }
             }
             return null;
-        }
-       
-    
+        }  
         private void RefuelClick(object sender, RoutedEventArgs e)
         {
             Bus myBus = (sender as Button).DataContext as Bus;
@@ -127,14 +125,13 @@ namespace PL.WPF
             busesListBox.ItemsSource = bl.GetAllBuses().ToList();
         }
         #endregion
-
         #region Lines 
         public void RefreshAllLinesList()
         {
-            List<BO.Line> lines = bl.GetAllLines().ToList();
-            LineesListBox.DataContext = lines;
-        }
-        private void Line_Click(object sender, RoutedEventArgs e)
+      
+         LineesListBox.ItemsSource = bl.GetAllLines().ToList();
+    }
+    private void Line_Click(object sender, RoutedEventArgs e)
         {
             busesListBox.Visibility = Visibility.Hidden;
             AddBus.Visibility = Visibility.Hidden;
@@ -152,7 +149,7 @@ namespace PL.WPF
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
             Rectangle IsDeletedRectangleLine = (Rectangle)myDataTemplate.FindName("IsDeletedRectangleLine", myContentPresenter);
             LineDeta win = new LineDeta(bl, line, IsDeletedRectangleLine);
-            win.Closing += winUpdate_Closing;
+           // win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }
         private void winUpdate_Closing(object sender, System.ComponentModel.CancelEventArgs e)
