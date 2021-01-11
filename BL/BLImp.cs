@@ -268,7 +268,7 @@ namespace BL
             //                                         let station = dl.GetStation(stat.StationCode)//station
             //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
             stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode)//Linestation
-                               let line = dl.GeLine(stat.LineId)//station
+                               let line = dl.GetLine(stat.LineId)//station
                                select line.CopyToLineInStation(stat)).ToList();
             //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
             //stationBO. = stations.OrderBy(s => s.LineStationIndex);
