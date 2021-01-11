@@ -38,31 +38,24 @@ namespace PL.WPF
 
         }
 
-        private void IfCheckedNo(object sender, RoutedEventArgs e)
-        {
-            if (YesCheckBox.IsChecked == true)
-            {
-                MessageBox.Show("לא ניתן ללחוץ על שתי הכפתורים בו זמנית, בטל אחד מהם", "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
-               
-            }
-            else
-            {
-                PrevStatTextBlock.Visibility = Visibility.Visible;
-                PrevstationComboBox.Visibility = Visibility.Visible;
-            }
-        }
-        
+        //private void IfCheckedNo(object sender, RoutedEventArgs e)
+        //{
+        //    if (YesCheckBox.IsChecked == true)
+        //    {
+        //        MessageBox.Show("לא ניתן ללחוץ על שתי הכפתורים בו זמנית, בטל אחד מהם", "WARNING", MessageBoxButton.OK, MessageBoxImage.Error);
 
-       
-private void IfCheckedYes(object sender, RoutedEventArgs e)
-        {
-           
-            if(YesCheckBox.IsChecked == true)
-            {
+        //    }
+        //    else
+        //    {
+        //        PrevStatTextBlock.Visibility = Visibility.Visible;
+        //        PrevstationComboBox.Visibility = Visibility.Visible;
+        //    }
+        //}
 
-            }
-           
-           
+
+
+        private void IfCheckedYes(object sender, RoutedEventArgs e)
+        {
         }
 
         private void AddNo_Click(object sender, RoutedEventArgs e)
