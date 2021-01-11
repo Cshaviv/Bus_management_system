@@ -76,6 +76,9 @@
     <Compile Include="UpdateDistanceAndTime.xaml.cs">
       <DependentUpon>UpdateDistanceAndTime.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateStationInLine.xaml.cs">
+      <DependentUpon>UpdateStationInLine.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddBusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateDistanceAndTime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateStationInLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

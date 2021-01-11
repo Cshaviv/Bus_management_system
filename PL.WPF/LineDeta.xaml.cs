@@ -50,15 +50,15 @@ namespace PL.WPF
         }
         private void updateStation(object sender, RoutedEventArgs e)//continue
         {
-
-            BO.StationInLine st = (sender as Button).DataContext as BO.StationInLine;
-            if (st.StationCode == line.Stations[line.Stations.Count - 1].StationCode)
+            
+            BO.StationInLine stat = (sender as Button).DataContext as BO.StationInLine;
+            if (stat.StationCode == line.Stations[line.Stations.Count-1].StationCode)
             {
                 MessageBox.Show("travel distance/time from Last station cant be updated.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            BO.StationInLine next = line.Stations[st.LineStationIndex];
-            UpdateDistanceAndTime win = new UpdateDistanceAndTime(bl, st, next);
+            //BO.StationInLine next = line.Stations[stat.LineStationIndex];
+            UpdateDistanceAndTime win = new UpdateDistanceAndTime(bl, stat);
             win.Closing += winUpdate_Closing;
             win.ShowDialog();
 
@@ -102,7 +102,7 @@ namespace PL.WPF
                 {
                     bl.DeleteLine(line.LineId);
                     IsDeletedRectangleLine.Fill = Brushes.Red;
-                    Close();
+                    //Close();
                 }
             }
             catch (BO.BadLineIdException ex)
@@ -161,6 +161,13 @@ namespace PL.WPF
             LineNumTextBox.Visibility = Visibility.Hidden;
             Save.Visibility = Visibility.Hidden;
             Cancel.Visibility = Visibility.Hidden;
+        }
+
+        private void updateStationClick(object sender, RoutedEventArgs e)
+        {
+            StationInLine s = (sender as Button).DataContext as StationInLine;//the bus
+            UpdateDistanceAndTime win = new UpdateDistanceAndTime(bl,s);
+            win.Show();
         }
     }
 }

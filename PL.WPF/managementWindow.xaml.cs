@@ -28,8 +28,8 @@ namespace PL.WPF
         {
             InitializeComponent();
             bl = _bl;
-            RefreshAllBuses();
-            RefreshAllLinesList();
+           RefreshAllBuses();
+           RefreshAllLinesList();
         }
 
 

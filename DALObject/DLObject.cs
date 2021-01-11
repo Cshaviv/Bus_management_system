@@ -14,16 +14,16 @@ namespace DL
     {
         #region singelton
         static readonly DLObject instance = new DLObject();
-        static DLObject() { }// static ctor to ensure instance init is done just before first usage
+        static DLObject() { }// static ctor to ensure instance init is done just before first usage
         DLObject() { } // default => private
-        public static DLObject Instance { get => instance; }// The public Instance property to use
+        public static DLObject Instance { get => instance; }// The public Instance property to use
         #endregion
 
         #region Bus
         public IEnumerable<DO.Bus> GetAllBuses()
         {
             return from bus in DataSource.ListBuses
-                   where bus.IsDeleted == false 
+                   where bus.IsDeleted == false
                    select bus.Clone();
         }
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
@@ -34,7 +34,7 @@ namespace DL
         }
         public DO.Bus GetBus(int licenseNumber)
         {
-            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNumber && b.IsDeleted==false );
+            DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNumber && b.IsDeleted == false);
 
             if (bus != null)
                 return bus.Clone();
@@ -49,7 +49,7 @@ namespace DL
                 throw new BadInputException("The date of start operation is not valid");
             if (bus.TotalKm < 0)
                 throw new BadInputException("The total km is not valid");
-            if(bus.TotalKm<bus.KmLastTreat)
+            if (bus.TotalKm < bus.KmLastTreat)
                 throw new BadInputException("The total km or km last treat are not correct");
             if (bus.TotalKm < bus.FuelTank)
                 throw new BadInputException("The total km or fuel Tank treat are not correct");
@@ -102,7 +102,7 @@ namespace DL
         #endregion
 
         #region AdjacentStations
-       
+
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
             return from adjStations in DataSource.ListAdjacentStations
@@ -166,16 +166,10 @@ namespace DL
         public IEnumerable<DO.Line> GetAllLines()
         {
             return from line in DataSource.ListLines
-                   //where line.IsDeleted == false
+                   where line.IsDeleted == false
                    select line.Clone();
-        }
-        //public IEnumerable<DO.Line> GetAllLinesDelete()
-        //{
-        //    return from line in DataSource.ListLines
-        //           where line.IsDeleted == true
-        //           select line.Clone();
 
-        //}
+        }
         public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate)
         {
             return from line in DataSource.ListLines
@@ -192,11 +186,12 @@ namespace DL
             else
                 throw new BadLineIdException(lineId, "The Line ID does not exist");
         }
+    
         public void AddLine(DO.Line line)
         {
             //line.LineId = Config.LineId++;
             if (DataSource.ListLines.FirstOrDefault(_line => _line.LineId == line.LineId && _line.IsDeleted == false) != null)
-                throw new BadLineIdException(line.LineId, "The Line ID is already exist exist");
+                throw new BadLineIdException(line.LineId, "The Line ID is already  exist");
             DataSource.ListLines.Add(line.Clone());
         }
         public void UpdateLine(DO.Line line)
@@ -217,15 +212,20 @@ namespace DL
         }
         public void DeleteLine(int lineId)
         {
-            DO.Line lineFind = DataSource.ListLines.Find(l => l.LineId == lineId && l.IsDeleted == false);
+            DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
             if (lineFind == null)
                 throw new BadLineIdException(lineId, "The Line ID does not exist");
             lineFind.IsDeleted = true;
-            foreach (DO.LineStation s in DataSource.ListLineStations)//delete fron the line station list
+            foreach (DO.LineStation lineStat in DataSource.ListLineStations)//delete fron the line station list
             {
-                if (s.LineId == lineId && s.IsDeleted == false)
-                    s.IsDeleted = true;
+                if (lineStat.LineId == lineId && lineStat.IsDeleted == false)
+                    lineStat.IsDeleted = true;
             }
+            //foreach (DO.LineTrip lineTrip in DataSource.ListLineTrips)//delete fron line trip list
+            //{
+            //    if (lineTrip.LineId == lineId && lineTrip.IsDeleted == false)
+            //        lineTrip.IsDeleted = true;
+            //}
         }
 
         #endregion
@@ -560,6 +560,3 @@ namespace DL
 
     }
 }
-
-
-

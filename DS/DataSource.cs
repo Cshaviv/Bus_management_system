@@ -15,7 +15,7 @@ namespace DS
         public static List<AdjacentStations> ListAdjacentStations;
         public static List<Trip> ListTrips;
         public static List<Line> ListLines;
-        public static List<LineStation> ListLineStations;
+        public static List<LineStation> ListLineStations;//אתחלנו את האינדקסים מ0
         public static List<LineTrip> ListLineTrips;
 
         static DataSource()
@@ -542,7 +542,7 @@ namespace DS
                     StatusBus=BusStatus.Available,
                     DateLastTreat=new DateTime(2020, 12,1 ),
                     KmLastTreat=8001,
-                    IsDeleted=true
+                    IsDeleted=false
                 },
                 new Bus//2
                 {
@@ -839,9 +839,9 @@ namespace DS
                 //line Id=0
                 new LineStation
                 {
-                    LineId=0,
+                    LineId=1,
                     StationCode=91,
-                    LineStationIndex=1,
+                    LineStationIndex=0,
                     PrevStationCode=0,
                     NextStationCode=73,
                     IsDeleted=false,
@@ -849,9 +849,9 @@ namespace DS
                 },
                  new LineStation
                 {
-                    LineId=0,
+                    LineId=1,
                     StationCode=73,
-                    LineStationIndex=2,
+                    LineStationIndex=1,
                     PrevStationCode=91,
                     NextStationCode=76,
                     IsDeleted=false,
@@ -859,18 +859,18 @@ namespace DS
                 },
                 new LineStation
                 {
-                    LineId=0,
+                    LineId=1,
                     StationCode=76,
-                    LineStationIndex=3,
+                    LineStationIndex=2,
                     PrevStationCode=73,
                     NextStationCode=119,
                     IsDeleted=false,
                 },
                 new LineStation
                 {
-                    LineId=0,
+                    LineId=1,
                     StationCode=119,
-                    LineStationIndex=4,
+                    LineStationIndex=3,
                     PrevStationCode=76,
                     NextStationCode=0,
                     IsDeleted=false,

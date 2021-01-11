@@ -30,17 +30,10 @@ namespace PL.WPF
             InitializeComponent();
             btnGO.Content = "any text";
             var allBuses = bl.GetAllBuses().ToList();
-            //Select(b => b.LicenseNum + "_" + b.StartDate.ToString()).ToList();
+            ////Select(b => b.LicenseNum + "_" + b.StartDate.ToString()).ToList();
             busesListBox.ItemsSource = allBuses;
-            //InitBuses();
-            //try
-            //{
-            int l = 12345678;
-            BO.Bus bus = bl.GetBus(l);
-            //}
-            //catch(Exception)
-            //{ }
-            //bl.GetAllBuses()
+
+
         }
 
         //private void InitBuses()

@@ -27,7 +27,7 @@ namespace PL.WPF
         {
             InitializeComponent();
             bl = _bl;
-            //busStatusCombo.ItemsSource = Enum.GetValues(typeof(BusStatus)).Cast<BusStatus>();
+            busStatusCombo.ItemsSource = Enum.GetValues(typeof(BusStatus)).Cast<BusStatus>();
             busStatusCombo.SelectedIndex = 0;
         }
 

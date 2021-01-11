@@ -1,4 +1,5 @@
 ﻿using BLAPI;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,27 +17,17 @@ using System.Windows.Shapes;
 namespace PL.WPF
 {
     /// <summary>
-    /// Interaction logic for UpdateDistanceAndTime.xaml
+    /// Interaction logic for UpdateStationInLine.xaml
     /// </summary>
-    public partial class UpdateDistanceAndTime : Window
+    public partial class UpdateStationInLine : Window
     {
         IBL bl;
-        BO.StationInLine station;
-        //BO.StationInLine nextStat;
-        public UpdateDistanceAndTime(IBL _bl, BO.StationInLine _station/*, BO.StationInLine Nstation*/)
+        BO.StationInLine stationInLine;
+        public UpdateStationInLine(IBL _bl, StationInLine s)
         {
             InitializeComponent();
             bl = _bl;
-            station = _station;
-            
-
-        }
-
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-
+            stationInLine = s;
         }
     }
-    }
-
-
+}

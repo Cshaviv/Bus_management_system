@@ -267,7 +267,7 @@ namespace BL
             //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
             //                                         let station = dl.GetStation(stat.StationCode)//station
             //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
-            stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode)//Linestation
+            stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode&&stat.IsDeleted==false)//Linestation
                                let line = dl.GetLine(stat.LineId)//station
                                select line.CopyToLineInStation(stat)).ToList();
             //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
@@ -303,9 +303,3 @@ namespace BL
 
 
 }
-
-
-
-
-
-
