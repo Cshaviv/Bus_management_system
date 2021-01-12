@@ -221,7 +221,7 @@ namespace BL
         #endregion
 
         #region LineStation
- 
+
         public void AddLineStation(BO.LineStation s)
         {
             DO.LineStation sDO = (DO.LineStation)s.CopyPropertiesToNew(typeof(DO.LineStation));
@@ -269,7 +269,7 @@ namespace BL
 
             }
         }
-    
+
         #endregion
 
         #region AdjacentStations
@@ -290,7 +290,7 @@ namespace BL
             //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
             //                                         let station = dl.GetStation(stat.StationCode)//station
             //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
-            stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode&&stat.IsDeleted==false)//Linestation
+            stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
                                let line = dl.GetLine(stat.LineId)//station
                                select line.CopyToLineInStation(stat)).ToList();
             //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
