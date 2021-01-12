@@ -614,5 +614,13 @@ namespace DL
                     s.LineStationIndex++;
             DataSource.ListLineStations.Add(lineStation);
         }
+        public IEnumerable<DO.LineStation> GetStationInLineList(Predicate<DO.LineStation> predicate)
+        {
+            return from sil in DataSource.ListLineStations
+                   where predicate(sil)
+                   orderby sil.LineStationIndex
+                   select sil;
+
+        }
     }
 }

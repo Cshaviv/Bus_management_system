@@ -37,6 +37,7 @@ namespace BLAPI
         #region Station
         BO.Station stationDoBoAdapter(DO.Station stationDO);
         IEnumerable<BO.Station> GetAllStations();
+        BO.Station GetStation(int code);
 
         #endregion
         #region StationInLine
