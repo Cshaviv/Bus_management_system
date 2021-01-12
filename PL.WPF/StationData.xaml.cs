@@ -27,14 +27,32 @@ namespace PL.WPF
         public StationData( IBL _bl, BO.Station _station) //, ListBox _stationsListBox)
         {
             InitializeComponent();
-            //stationsListBox.DataContext = stationsListBox;
+            bl = _bl;
             station = _station;
-            //linesListBox.DataContext = line.Stations;
-            //statCodeTextBox.
-            //LineNumTextBox.Text = line.LineNum.ToString();
-            //AreaTextBlock.Text = line.Area.ToString();
-            //AreaComboBox.ItemsSource = Enum.GetValues(typeof(Area));
-            //AreaComboBox.Text = line.Area.ToString();
+            LineListBox.ItemsSource = station.Lines.ToList();
+            LineListBox.Visibility = Visibility.Visible;
+            stationNameTextBlock.Text = station.Name.ToString();
+            AddressTextBlock.Text = station.Address.ToString();
+            stationCodeTextBlock.Text = station.Code.ToString();
+        }
+
+        private void updateStation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deleteStation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AddStation_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

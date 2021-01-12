@@ -6,7 +6,43 @@
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
         Title="StationData" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="MyDataTemplate" DataType="local: BO.StationInLine">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="95" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="100" />
+
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </DataTemplate>
+
+    </Window.Resources>
     <Grid>
-        
+        <TextBlock  Text=":שם תחנה" FontFamily="Dubai Light"  FontSize="20" FontWeight="Bold" Margin="657,50,33,336" />
+        <TextBlock  Name="stationNameTextBlock"  Text="{Binding Path= Name }" Margin="411,50,155,336" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
+        <TextBlock  FontFamily="Dubai Light"  FontSize="20" FontWeight="Bold"  Text=":כתובת" Margin="673,89,48,289" />
+        <TextBlock Grid.Column="0" Name="AddressTextBlock"   Text="{Binding Path= Address }" Margin="411,89,139,294"  FontFamily="Dubai Light"  FontSize="14"/>
+
+        <ListBox x:Name="LineListBox" ItemsSource="{Binding}" Height="174" Margin="34,92,627,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+                 ItemTemplate="{StaticResource MyDataTemplate}" SelectionChanged="LineListBox_SelectionChanged" />
+        <Button x:Name="deleteStation" Content="מחיקת תחנה" HorizontalAlignment="Left" Margin="324,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="deleteStation_Click" />
+        <Button x:Name="updateStation" Content="עידכון תחנה" HorizontalAlignment="Left" Margin="118,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="updateStation_Click" />
+        <Button x:Name="Addstation" Content="הוספת תחנה" HorizontalAlignment="Left" Margin="532,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="AddStation_Click" />
+        <TextBlock  HorizontalAlignment="Left" Margin="138,55,0,0" TextWrapping="Wrap" Text="קוד" VerticalAlignment="Top" Height="28" Width="27"/>
+        <TextBlock   Name="stationCodeTextBlock"  HorizontalAlignment="Left"  Height="23" Margin="97,54,0,0" TextWrapping="Wrap" Text="{Binding Path= Code }" VerticalAlignment="Top" Width="36"/>
     </Grid>
 </Window>

@@ -188,15 +188,18 @@ namespace PL.WPF
         }
         private void AddStation_Click(object sender, RoutedEventArgs e)
         {
-
+            AddNewStation win = new AddNewStation(bl);
+            win.ShowDialog();
+            RefreshAllLinesList();
         }
+    
 
         private void doubleClickStationInfromation(object sender, MouseButtonEventArgs e)
         {
             BO.Station station = (sender as ListBox).SelectedItem as BO.Station;
             if (station == null)
                 return;
-            ListBoxItem myListBoxItem = (ListBoxItem)(LineesListBox.ItemContainerGenerator.ContainerFromItem(station));
+            ListBoxItem myListBoxItem = (ListBoxItem)(stationsListBox.ItemContainerGenerator.ContainerFromItem(station));
             ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
             StationData win = new StationData(bl, station);
