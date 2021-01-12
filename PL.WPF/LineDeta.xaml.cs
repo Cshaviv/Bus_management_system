@@ -87,7 +87,7 @@ namespace PL.WPF
         }
         private void Addstation_Click(object sender, RoutedEventArgs e)
         {
-            AddStationToLine win = new AddStationToLine(bl, line);
+            AddStationInLineWin win = new AddStationInLineWin(bl, line);
             win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }

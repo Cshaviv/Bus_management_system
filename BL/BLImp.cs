@@ -198,10 +198,10 @@ namespace BL
         #endregion
 
         #region LineStation
+ 
         public void AddLineStation(BO.LineStation s)
         {
             DO.LineStation sDO = (DO.LineStation)s.CopyPropertiesToNew(typeof(DO.LineStation));
-            //sDO.IsDeleted = false;
             try
             {
                 dl.AddLineStation(sDO);
@@ -246,6 +246,7 @@ namespace BL
 
             }
         }
+    
         #endregion
 
         #region AdjacentStations
@@ -255,7 +256,6 @@ namespace BL
                 return true;
             return false;
         }
-
         #endregion
 
         #region Station
