@@ -76,6 +76,9 @@
     <Compile Include="LineDeta.xaml.cs">
       <DependentUpon>LineDeta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StationData.xaml.cs">
+      <DependentUpon>StationData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateDistanceAndTime.xaml.cs">
       <DependentUpon>UpdateDistanceAndTime.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="managementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -30,16 +30,19 @@ namespace PL.WPF
             bl = _bl;
            RefreshAllBuses();
            RefreshAllLinesList();
+            RefreshAllStations();
         }
 
 
         #region Buses 
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
+            stationsListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Visible;
             AddBus.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Hidden;
+            AddStation.Visibility = Visibility.Hidden;
             RefreshAllBuses();
         }
         private void doubleClickBusInfromation(object sender, RoutedEventArgs e)//Clicking "double click" on a bus in the list will open a window showing the bus data
@@ -133,10 +136,12 @@ namespace PL.WPF
          }
     private void Line_Click(object sender, RoutedEventArgs e)
         {
+            stationsListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Hidden;
             AddBus.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Visible;
+            AddStation.Visibility = Visibility.Hidden;
             RefreshAllLinesList();
         }
         private void doubleClickLineInfromation(object sender, MouseButtonEventArgs e)
@@ -163,32 +168,41 @@ namespace PL.WPF
             RefreshAllLinesList();
         }
 
+        private void Station_Click(object sender, RoutedEventArgs e)
+        {
+            LineesListBox.Visibility = Visibility.Hidden;
+            busesListBox.Visibility = Visibility.Hidden;
+            stationsListBox.Visibility = Visibility.Visible;
+            AddBus.Visibility = Visibility.Hidden;
+            AddLine.Visibility = Visibility.Hidden;
+            AddStation.Visibility = Visibility.Visible;
+            RefreshAllStations();
+        }
+
         #endregion
+
         #region Station
-        //void RefreshAllStations()
-        //{
-        //    stationsListBox.ItemsSource = bl.GetAllStations().ToList();
-        //}
-        //private void station_Click(object sender, RoutedEventArgs e)
-        //{
-        //    LineesListBox.Visibility = Visibility.Hidden;
-        //    busesListBox.Visibility = Visibility.Hidden;
-        //    stationsListBox.Visibility = Visibility.Visible;
-        //    AddBus.Visibility = Visibility.Hidden;
-        //    AddLine.Visibility = Visibility.Hidden;
-        //    AddStation.Visibility = Visibility.Visible;
-        //    RefreshAllStations();
-        //}
+        void RefreshAllStations()
+        {
+            stationsListBox.ItemsSource = bl.GetAllStations().ToList();
+        }
+        private void AddStation_Click(object sender, RoutedEventArgs e)
+        {
 
-        //#endregion
+        }
 
-        //private void AddStation_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
-
-
-
+        private void doubleClickStationInfromation(object sender, MouseButtonEventArgs e)
+        {
+            BO.Station station = (sender as ListBox).SelectedItem as BO.Station;
+            if (station == null)
+                return;
+            ListBoxItem myListBoxItem = (ListBoxItem)(LineesListBox.ItemContainerGenerator.ContainerFromItem(station));
+            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+            StationData win = new StationData(bl, station);
+            // win.Closing += winUpdate_Closing;
+            win.ShowDialog();
+        }
     }
 }
 #endregion
