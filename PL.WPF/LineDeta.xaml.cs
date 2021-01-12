@@ -1,17 +1,9 @@
 ﻿ using BLAPI;
 using BO;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace PL.WPF
@@ -23,13 +15,13 @@ namespace PL.WPF
     {
         IBL bl;
         BO.Line line;
-        Rectangle IsDeletedRectangleLine;
+        //Rectangle IsDeletedRectangleLine;
         public LineDeta(IBL _bl, BO.Line _line, Rectangle _IsDeletedRectangleLine)
         {
             InitializeComponent();
             bl = _bl;
             line = _line;
-            IsDeletedRectangleLine = _IsDeletedRectangleLine;
+            //IsDeletedRectangleLine = _IsDeletedRectangleLine;
             linesListBox.DataContext = line.Stations;
             linesListBox.Visibility = Visibility.Visible;
             LineNumTextBlock.Text = line.LineNum.ToString();
@@ -101,7 +93,7 @@ namespace PL.WPF
                 if (line != null)
                 {
                     bl.DeleteLine(line.LineId);
-                    IsDeletedRectangleLine.Fill = Brushes.Red;
+                    //IsDeletedRectangleLine.Fill = Brushes.Red;
                     //Close();
                 }
             }
@@ -162,7 +154,6 @@ namespace PL.WPF
             Save.Visibility = Visibility.Hidden;
             Cancel.Visibility = Visibility.Hidden;
         }
-
         private void updateStationClick(object sender, RoutedEventArgs e)
         {
             StationInLine stat = (sender as Button).DataContext as StationInLine;//the bus

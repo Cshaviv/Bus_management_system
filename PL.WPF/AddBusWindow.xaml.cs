@@ -22,7 +22,6 @@ namespace PL.WPF
     public partial class AddBusWindow : Window
     {
         IBL bl;
-        BO.Bus bus;
         public AddBusWindow(IBL _bl)
         {
             InitializeComponent();
@@ -33,23 +32,21 @@ namespace PL.WPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             System.Windows.Data.CollectionViewSource busViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("busViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // busViewSource.Source = [generic data source]
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 int licenseNum = int.Parse(licenseNumTextBox.Text);
-                double fuel = double.Parse(fuelTankTextBox.Text);
                 DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
                 DateTime lastDate = DateTime.Parse(dateLastTreatDatePicker.Text);
                 double kmLastTreat = double.Parse(kmLastTreatTextBox.Text);
-                BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
+                double fuel = double.Parse(fuelTankTextBox.Text);
                 double totalKm = double.Parse(totalKmTextBox.Text);
+                BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
                 BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, StatusBus = status, TotalKm = totalKm, KmLastTreat = kmLastTreat };
                 if(b!=null)
                 { 
@@ -70,11 +67,7 @@ namespace PL.WPF
                 //licenseNumTextBox.BorderBrush = Brushes.Red;
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            //if (bus != null)
-            //{
-            //    bl.AddBus(bus);
-            //    Close();
-            //}
+       
 
         }
     }

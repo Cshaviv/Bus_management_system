@@ -44,44 +44,20 @@ namespace DL
         public void AddBus(DO.Bus bus)
         {
             if (DataSource.ListBuses.FirstOrDefault(bus_ => bus_.LicenseNum == bus.LicenseNum && bus_.IsDeleted == false) != null)
-                throw new BadInputException("The bus is already exist");
-            if (bus.StartDate > DateTime.Now)
-                throw new BadInputException("The date of start operation is not valid");
-            if (bus.TotalKm < 0)
-                throw new BadInputException("The total km is not valid");
-            if (bus.TotalKm < bus.KmLastTreat)
-                throw new BadInputException("The total km or km last treat are not correct");
-            if (bus.TotalKm < bus.FuelTank)
-                throw new BadInputException("The total km or fuel Tank treat are not correct");
-            if (bus.FuelTank < 0 || bus.FuelTank > 1200)
-                throw new BadInputException("The fuel tank is not valid");
-            int lengthLicNumber = LengthOfLicNum(bus.LicenseNum);
-            if (!((lengthLicNumber == 7 && bus.StartDate.Year < 2018) || (lengthLicNumber == 8 && bus.StartDate.Year >= 2018)))
-                throw new BadInputException("The license number and the date of start operation do not match");
-            if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.StartDate)
-                throw new BadInputException("The date of last treatment is not valid");
-            if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalKm)
-                throw new BadInputException("The kilometrage of last treatment is not valid");
+                throw new BadInputException("The bus is already exist");           
             DataSource.ListBuses.Add(bus.Clone());
         }
-        private int LengthOfLicNum(int licNum)// This function returns the number of digits in the license number
-        {
-            int counter = 0;
-            while (licNum != 0)
-            {
-                licNum = licNum / 10;
-                counter++;
-            }
-            return counter;
-        }
+  
         public void UpdateBus(DO.Bus bus)
         {
             DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == bus.LicenseNum && bus_.IsDeleted == false);
             if (busFind == null)
                 throw new BadLicenseNumException(bus.LicenseNum, "The bus does not exist");
-            DO.Bus newBus = bus.Clone();
             DataSource.ListBuses.Remove(busFind);
-            AddBus(newBus);
+            DataSource.ListBuses.Add(bus.Clone());
+            //DO.Bus newBus = bus.Clone();
+            //DataSource.ListBuses.Remove(busFind);
+            //AddBus(newBus);
             //DataSource.ListBuses.Add(newBus);
         }
         public void UpdateBus(int licenseNumber, Action<DO.Bus> update)
@@ -294,10 +270,14 @@ namespace DL
         }
         public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate)
         {
-            return from lineStation in DataSource.ListLineStations
-                   where predicate(lineStation)
-                   select lineStation.Clone();
-        }
+            //return from lineStation in DataSource.ListLineStations
+            //       where predicate(lineStation)
+            //       select lineStation.Clone();
+            return from sil in DataSource.ListLineStations
+                   where predicate(sil)
+                   orderby sil.LineStationIndex
+                   select sil;
+        }//new
         public DO.LineStation GetLineStation(int lineId, int stationCode)
         {
             DO.LineStation lineStationFind = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineId && lineStat.StationCode == stationCode));
@@ -614,5 +594,16 @@ namespace DL
 
         #endregion
 
+
+        public void AddStationInLine(int stationID, int busID, int index)//new
+        {
+            if (DataSource.ListLineStations.FirstOrDefault(sil => (sil.StationCode == stationID && sil.LineId == busID)) != null)
+                throw new DO.BadStationCodeException(stationID, "station ID is already registered to line ID");
+            DO.LineStation lineStation = new DO.LineStation() { StationCode = stationID, LineId = busID, LineStationIndex = index };
+            foreach (DO.LineStation s in GetAllLineStationsBy(s => s.LineId == busID))
+                if (s.LineStationIndex >= index)
+                    s.LineStationIndex++;
+            DataSource.ListLineStations.Add(lineStation);
+        }
     }
 }

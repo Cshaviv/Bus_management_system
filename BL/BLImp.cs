@@ -32,13 +32,11 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
         }
-
         public IEnumerable<BO.Bus> GetAllBuses()
         {
             return from item in dl.GetAllBuses()
                    select busDoBoAdapter(item);
         }
-
         public Bus GetBus(int licenseNum)
         {
             DO.Bus busDO;
@@ -52,12 +50,10 @@ namespace BL
             }
             return busDoBoAdapter(busDO);
         }
-
         public IEnumerable<Bus> GetBusesBy(Predicate<Bus> predicate)
         {
             throw new NotImplementedException();
         }
-
         public void UpdateBusDetails(BO.Bus bus)
         {
             DO.Bus busDO = new DO.Bus();
@@ -81,6 +77,23 @@ namespace BL
             bus.CopyPropertiesTo(busDO);
             try
             {
+                if (bus.StartDate > DateTime.Now)
+                    throw new BadInputException("The date of start operation is not valid");
+                if (bus.TotalKm < 0)
+                    throw new BadInputException("The total km is not valid");
+                if (bus.TotalKm < bus.KmLastTreat)
+                    throw new BadInputException("The total km or km last treat are not correct");
+                if (bus.TotalKm < bus.FuelTank)
+                    throw new BadInputException("The total km or fuel Tank treat are not correct");
+                if (bus.FuelTank < 0 || bus.FuelTank > 1200)
+                    throw new BadInputException("The fuel tank is not valid");
+                int lengthLicNumber = LengthOfLicNum(bus.LicenseNum);
+                if (!((lengthLicNumber == 7 && bus.StartDate.Year < 2018) || (lengthLicNumber == 8 && bus.StartDate.Year >= 2018)))
+                    throw new BadInputException("The license number and the date of start operation do not match");
+                if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.StartDate)
+                    throw new BadInputException("The date of last treatment is not valid");
+                if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalKm)
+                    throw new BadInputException("The kilometrage of last treatment is not valid");
                 dl.AddBus(busDO);
             }
             catch (DO.BadLicenseNumException ex)
@@ -91,6 +104,16 @@ namespace BL
             {
                 throw new BO.BadInputException(ex.Message);
             }
+        }
+        private int LengthOfLicNum(int licNum)// This function returns the number of digits in the license number
+        {
+            int counter = 0;
+            while (licNum != 0)
+            {
+                licNum = licNum / 10;
+                counter++;
+            }
+            return counter;
         }
         #endregion
 
@@ -282,6 +305,20 @@ namespace BL
         #endregion
 
         #region StationInLine
+        public void AddStationInLine(int stationID, int busID, int index)
+        {
+            try
+            {
+                dl.AddAdjacentStations(new DO.AdjacentStations { StationCode1 = GetLine(busID).Stations[index - 1].StationCode, StationCode2 = stationID, Distance = 0, Time = new TimeSpan(0, 0, 0) });
+                if (!(index >= GetLine(busID).Stations.Count))
+                    dl.AddAdjacentStations(new DO.AdjacentStations { StationCode1 = stationID, StationCode2 = GetLine(busID).Stations[index].StationCode, Distance = 0, Time = new TimeSpan(0, 0, 0) });
+                dl.AddStationInLine(stationID, busID, index);
+            }
+            catch (DO.BadInputException ex)
+            {
+                throw new BO.BadInputException("Station code and line ID is Not exist");
+            }
+        }
         public void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second)
         {
             try
