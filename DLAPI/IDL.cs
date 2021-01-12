@@ -90,8 +90,9 @@ namespace DLAPI
         void UpdateUser(DO.User user);
         void UpdateUser(string userName, Action<DO.User> update);
         void DeleteUser(string userName);
-       // void AddStationInLine(LineStation first);
+        // void AddStationInLine(LineStation first);
         #endregion
+        IEnumerable<DO.LineStation> GetStationInLineList(Predicate<DO.LineStation> predicate);
     }
 }
 
