@@ -19,9 +19,11 @@ namespace PL.WPF
     /// </summary>
     public partial class AddNewStation : Window
     {
-        public AddNewStation()
+        Ibl bl;
+        public AddNewStation(Ibl _bl)
         {
             InitializeComponent();
+            bl = _bl;
         }
     }
 }
