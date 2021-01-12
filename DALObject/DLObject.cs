@@ -185,8 +185,7 @@ namespace DL
                 return lineFind.Clone();
             else
                 throw new BadLineIdException(lineId, "The Line ID does not exist");
-        }
-    
+        } 
         public void AddLine(DO.Line line)
         {
             //line.LineId = Config.LineId++;
