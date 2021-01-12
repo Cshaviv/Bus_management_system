@@ -167,15 +167,15 @@ namespace BL
             {
                 if (!dl.ExistAdjacentStations(stationCode1, stationCode2))
                 {
-                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode1, StationCode2 = stationCode2, Distance = lineBo.Stations[0].Distance, Time = lineBo.Stations[0].Time };
+                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode1, StationCode2 = stationCode2, Distance = lineBo.Stations[1].Distance, Time = lineBo.Stations[1].Time };
                     dl.AddAdjacentStations(adj);
                 }
 
                 dl.AddLine(lineDo);
                 DO.LineStation first = new DO.LineStation() { LineId = lineDo.LineId, StationCode = stationCode1, LineStationIndex = lineBo.Stations[0].LineStationIndex, IsDeleted = false };
                 DO.LineStation last = new DO.LineStation() { LineId = lineDo.LineId, StationCode = stationCode2, LineStationIndex = lineBo.Stations[1].LineStationIndex, IsDeleted = false };
-                dl.AddLineStation(first);
-                dl.AddLineStation(last);
+                dl.AddStationInLine(first.StationCode,first.LineId,first.LineStationIndex);
+                dl.AddStationInLine(last.StationCode, last.LineId, last.LineStationIndex);
 
             }
             catch (BO.BadLineIdException ex)
@@ -220,7 +220,7 @@ namespace BL
         }
         #endregion
 
-        #region LineStation
+        #region LineStation לא ברור
 
         public void AddLineStation(BO.LineStation s)
         {
