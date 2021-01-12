@@ -130,14 +130,14 @@ namespace PL.WPF
         {
       
          LineesListBox.ItemsSource = bl.GetAllLines().ToList();
-    }
+         }
     private void Line_Click(object sender, RoutedEventArgs e)
         {
             busesListBox.Visibility = Visibility.Hidden;
             AddBus.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Visible;
-            RefreshAllBuses();
+            RefreshAllLinesList();
         }
         private void doubleClickLineInfromation(object sender, MouseButtonEventArgs e)
         {
@@ -162,8 +162,33 @@ namespace PL.WPF
             win.ShowDialog();
             RefreshAllLinesList();
         }
+
         #endregion
+        #region Station
+        //void RefreshAllStations()
+        //{
+        //    stationsListBox.ItemsSource = bl.GetAllStations().ToList();
+        //}
+        //private void station_Click(object sender, RoutedEventArgs e)
+        //{
+        //    LineesListBox.Visibility = Visibility.Hidden;
+        //    busesListBox.Visibility = Visibility.Hidden;
+        //    stationsListBox.Visibility = Visibility.Visible;
+        //    AddBus.Visibility = Visibility.Hidden;
+        //    AddLine.Visibility = Visibility.Hidden;
+        //    AddStation.Visibility = Visibility.Visible;
+        //    RefreshAllStations();
+        //}
+
+        //#endregion
+
+        //private void AddStation_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
+
 
 
     }
 }
+#endregion

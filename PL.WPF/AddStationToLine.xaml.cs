@@ -31,7 +31,7 @@ namespace PL.WPF
              stationComboBox.ItemsSource = station;
             stationComboBox.SelectedIndex = 0;
             stationComboBox.SelectedItem = "Code";
-            PrevstationComboBox.ItemsSource = StationInLine;
+            //PrevstationComboBox.ItemsSource = StationInLine;
             PrevstationComboBox.SelectedItem = "Code";
             PrevstationComboBox.SelectedIndex = 0;
 
