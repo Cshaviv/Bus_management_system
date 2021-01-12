@@ -88,6 +88,7 @@ namespace DLAPI
         void UpdateUser(DO.User user);
         void UpdateUser(string userName, Action<DO.User> update);
         void DeleteUser(string userName);
+        void AddStationInLine(int stationID, int busID, int index);
         #endregion
     }
 }

@@ -27,13 +27,14 @@ namespace PL.WPF
             InitializeComponent();
             bl = _bl;
             line = _line;
-            List<BO.Station> station = bl.GetAllStations().ToList();
-             stationComboBox.ItemsSource = station;
-            stationComboBox.SelectedIndex = 0;
-            stationComboBox.SelectedItem = "Code";
-            PrevstationComboBox.ItemsSource = StationInLine;
-            PrevstationComboBox.SelectedItem = "Code";
-            PrevstationComboBox.SelectedIndex = 0;
+            //List<BO.Station> station = bl.GetAllStations().ToList();
+            //List<BO.StationInLine> StationInLine = bl.GetAllStations().ToList();
+            //stationComboBox.ItemsSource = station;
+            //stationComboBox.SelectedIndex = 0;
+            //stationComboBox.SelectedItem = "Code";
+            //PrevstationComboBox.ItemsSource = StationInLine;
+            //PrevstationComboBox.SelectedItem = "Code";
+            //PrevstationComboBox.SelectedIndex = 0;
 
         }
 

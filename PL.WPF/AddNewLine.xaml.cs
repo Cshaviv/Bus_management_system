@@ -52,15 +52,14 @@ namespace PL.WPF
                 BO.Station firstStation = (firstStationComboBox.SelectedItem) as BO.Station;
                 BO.Station lastStation = (lastStationComboBox.SelectedItem) as BO.Station;
                 int lineNum = int.Parse(lineNumTextBox.Text);
-                //static int LineId=11;
                 BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString());
                 BO.Line newline = new BO.Line() { LineNum = lineNum, Area = area };
                 newline.Stations = new List<BO.StationInLine>();
                 if (bl.IsExistAdjacentStations(firstStation.Code, lastStation.Code))
                 {
-                    BO.StationInLine temp1 = new BO.StationInLine() { DisabledAccess = firstStation.DisabledAccess, Name = firstStation.Name, LineStationIndex = 1, StationCode = firstStation.Code };
+                    BO.StationInLine temp1 = new BO.StationInLine() { /*DisabledAccess = firstStation.DisabledAccess,*/ Name = firstStation.Name, LineStationIndex = 0, StationCode = firstStation.Code , Distance =0, };
                     newline.Stations.Add(temp1);
-                    BO.StationInLine temp2 = new BO.StationInLine() { DisabledAccess = lastStation.DisabledAccess, Name = lastStation.Name, LineStationIndex = 2, StationCode = lastStation.Code };
+                    BO.StationInLine temp2 = new BO.StationInLine() { DisabledAccess = lastStation.DisabledAccess, Name = lastStation.Name, LineStationIndex = 1, StationCode = lastStation.Code };
                     newline.Stations.Add(temp2);
                     bl.AddNewLine(newline);
                     MessageBox.Show("The line was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);

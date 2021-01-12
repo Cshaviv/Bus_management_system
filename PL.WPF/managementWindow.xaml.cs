@@ -50,8 +50,8 @@ namespace PL.WPF
                 ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                Rectangle IsDeletedRectangle = (Rectangle)myDataTemplate.FindName("IsDeletedRectangle", myContentPresenter);
-                BusData win = new BusData(myBus, bl, IsDeletedRectangle, busesListBox);
+                //Rectangle IsDeletedRectangle = (Rectangle)myDataTemplate.FindName("IsDeletedRectangle", myContentPresenter);
+                BusData win = new BusData(myBus, bl, busesListBox);
                 win.ShowDialog();
                 RefreshAllBuses();
               
