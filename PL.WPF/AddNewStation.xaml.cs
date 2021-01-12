@@ -1,5 +1,4 @@
-﻿using BLAPI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,21 +19,11 @@ namespace PL.WPF
     /// </summary>
     public partial class AddNewStation : Window
     {
-        IBL bl;
-
-        public AddNewStation(IBL _bl)
+        Ibl bl;
+        public AddNewStation(Ibl _bl)
         {
             InitializeComponent();
             bl = _bl;
-
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // stationViewSource.Source = [generic data source]
         }
     }
 }

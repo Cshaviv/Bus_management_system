@@ -76,6 +76,7 @@
     <Compile Include="BusData.xaml.cs">
       <DependentUpon>BusData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ibl.cs" />
     <Compile Include="LineDeta.xaml.cs">
       <DependentUpon>LineDeta.xaml</DependentUpon>
     </Compile>

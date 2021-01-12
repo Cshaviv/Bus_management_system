@@ -90,14 +90,23 @@ namespace DL
                    where predicate(adjStations)
                    select adjStations.Clone();
         }
-        public DO.AdjacentStations GetAdjacentStations(int stationCode1, int stationCode2)
+        //public DO.AdjacentStations GetAdjacentStations(int stationCode1, int stationCode2)
+        //{
+        //    DO.AdjacentStations adjStationsFind = DataSource.ListAdjacentStations.Find(adjStations => (adjStations.StationCode1 == stationCode1 && adjStations.StationCode2 == stationCode2 && adjStations.IsDeleted == false));
+
+        //    if (adjStationsFind == null)
+        //        throw new Exception();
+        //    return adjStationsFind.Clone();
+
+        //}
+        public DO.AdjacentStations GetAdjacentStations(int code1, int code2)
         {
-            DO.AdjacentStations adjStationsFind = DataSource.ListAdjacentStations.Find(adjStations => (adjStations.StationCode1 == stationCode1 && adjStations.StationCode2 == stationCode2 && adjStations.IsDeleted == false));
+            DO.AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(s => s.StationCode1 == code1 && s.StationCode2 == code2);
 
-            if (adjStationsFind == null)
-                throw new Exception();
-            return adjStationsFind.Clone();
-
+            if (adjacentStations != null)
+                return adjacentStations.Clone();
+            else
+                throw new DO.BadLicenseNumException(code1, $"bad stations number: {code1}");
         }
         public void AddAdjacentStations(DO.AdjacentStations adjacentStations)
         {

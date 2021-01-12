@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DO;
+using System;
 using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
@@ -58,6 +59,7 @@ namespace DLAPI
         IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate);
         DO.LineStation GetLineStation(int lineId, int stationCode);
         void AddLineStation(DO.LineStation lineStation);
+        void AddStationInLine(int stationID, int busID, int index);
         void UpdateLineStation(DO.LineStation lineStation);
         void UpdateLineStation(int lineId, int stationCode, Action<DO.LineStation> update);
         void DeleteLineStation(int lineId, int stationCode);
@@ -88,7 +90,7 @@ namespace DLAPI
         void UpdateUser(DO.User user);
         void UpdateUser(string userName, Action<DO.User> update);
         void DeleteUser(string userName);
-        void AddStationInLine(int stationID, int busID, int index);
+       // void AddStationInLine(LineStation first);
         #endregion
     }
 }

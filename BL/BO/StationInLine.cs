@@ -8,6 +8,7 @@ namespace BO
 {
     public class StationInLine
     {
+        public int lineNum { get; set; }
         public int StationCode { get; set; } //code of the station
         public string Name { get; set; } // name of the station
         public bool DisabledAccess { get; set; } //access to disabled
