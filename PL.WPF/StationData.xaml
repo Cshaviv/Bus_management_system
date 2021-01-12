@@ -39,9 +39,8 @@
 
         <ListBox x:Name="LineListBox" ItemsSource="{Binding}" Height="174" Margin="34,92,627,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" SelectionChanged="LineListBox_SelectionChanged" />
-        <Button x:Name="deleteStation" Content="מחיקת תחנה" HorizontalAlignment="Left" Margin="324,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="deleteStation_Click" />
-        <Button x:Name="updateStation" Content="עידכון תחנה" HorizontalAlignment="Left" Margin="118,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="updateStation_Click" />
-        <Button x:Name="Addstation" Content="הוספת תחנה" HorizontalAlignment="Left" Margin="532,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="AddStation_Click" />
+        <Button x:Name="deleteStation" Content="מחיקת תחנה" HorizontalAlignment="Left" Margin="375,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="deleteStation_Click" />
+        <Button x:Name="updateStation" Content="עידכון תחנה" HorizontalAlignment="Left" Margin="167,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="updateStation_Click" />
         <TextBlock  HorizontalAlignment="Left" Margin="138,55,0,0" TextWrapping="Wrap" Text="קוד" VerticalAlignment="Top" Height="28" Width="27"/>
         <TextBlock   Name="stationCodeTextBlock"  HorizontalAlignment="Left"  Height="23" Margin="97,54,0,0" TextWrapping="Wrap" Text="{Binding Path= Code }" VerticalAlignment="Top" Width="36"/>
     </Grid>
