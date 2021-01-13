@@ -116,6 +116,7 @@ namespace PL.WPF
             try
             {
                 bl.UpdateLineDetails(lineUpdate);
+             
             }
             catch (BO.BadLineIdException ex)
             {
