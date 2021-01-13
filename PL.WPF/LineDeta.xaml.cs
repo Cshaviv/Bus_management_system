@@ -114,9 +114,7 @@ namespace PL.WPF
             
         }
         private void SaveClick(object sender, RoutedEventArgs e)
-        {
-            line.LineNum = int.Parse(LineNumTextBox.Text);
-            line.Area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString()); ;
+        {         
             RefreshData();
             LineNumTextBlock.Visibility = Visibility.Visible;
             AreaTextBlock.Visibility = Visibility.Visible;
@@ -130,7 +128,7 @@ namespace PL.WPF
             
                 int lineNumber = int.Parse(LineNumTextBox.Text);
                 BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString());
-                BO.Line lineUpdate = new BO.Line() { LineId = line.LineId, LineNum = lineNumber, Area = area, Stations = line.Stations };
+                BO.Line lineUpdate = new BO.Line() { LineId = line.LineId,FirstStation= line.Stations[0].StationCode, LastStation = line.Stations[line.Stations.Count-1].StationCode, LineNum =lineNumber, Area = area, Stations = line.Stations };
                 try
                 {
                     bl.UpdateLineDetails(lineUpdate);
