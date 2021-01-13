@@ -137,26 +137,6 @@ namespace BL
                 lineBO.Stations[i + 1].Time = adjacentStations.Time;
             }
             return lineBO;
-            //BO.Line lineBO = new BO.Line();
-            //int lineId = lineDO.LineId;
-            //lineDO.CopyPropertiesTo(lineBO);
-            //List<BO.StationInLine> stations = (from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId && stat.IsDeleted == false)//Linestation
-            //                                   let station = dl.GetStation(stat.StationCode)//station
-            //                                   select station.CopyToStationInLine(stat)).ToList();
-            //stations = (stations.OrderBy(s => s.LineStationIndex)).ToList();
-            //foreach (StationInLine s in stations)
-            //{
-            //    if (s.LineStationIndex != stations[stations.Count - 1].LineStationIndex)
-            //    {
-            //        int sc1 = s.StationCode;//station code 1
-            //        int sc2 = stations[s.LineStationIndex].StationCode;//station code 2
-            //        DO.AdjacentStations adjStat = dl.GetAdjacentStations(sc1, sc2);
-            //        s.Distance = adjStat.Distance;
-            //        s.Time = adjStat.Time;
-            //    }
-            //}
-            //lineBO.Stations = stations;
-            //return lineBO;
         }
         public Line GetLine(int lineId)
         {
@@ -353,7 +333,7 @@ namespace BL
         {
             try
             {
-                DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = first.Distance, Time = first.Time, IsDeleted = false };
+                DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = second.Distance, Time = second.Time, IsDeleted = false };
                 dl.UpdateAdjacentStations(adj);
             }
             catch (Exception ex)

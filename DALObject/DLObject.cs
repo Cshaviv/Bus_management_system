@@ -116,12 +116,22 @@ namespace DL
         }
         public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
         {
-            DO.AdjacentStations adjStationsFind = DataSource.ListAdjacentStations.Find(adjStations => (adjStations.StationCode1 == adjacentStations.StationCode1 && adjStations.StationCode2 == adjacentStations.StationCode2 && adjStations.IsDeleted == false || adjStations.StationCode1 == adjacentStations.StationCode2 && adjStations.StationCode2 == adjacentStations.StationCode1 && adjStations.IsDeleted == false));
-            if (adjStationsFind == null)
-                throw new Exception();
-            DO.AdjacentStations newAdj = adjacentStations.Clone();//copy of the adjacent stations that the function got
-            DataSource.ListAdjacentStations.Remove(adjStationsFind);
-            DataSource.ListAdjacentStations.Add(newAdj);
+            DO.AdjacentStations adjacentStations1 = DataSource.ListAdjacentStations.Find(s => s.StationCode1 == adjacentStations.StationCode1 && s.StationCode2 == adjacentStations.StationCode2);
+
+            if (adjacentStations != null)
+            {
+                DataSource.ListAdjacentStations.Remove(adjacentStations1);
+                DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
+            }
+            else
+                throw new DO.BadLicenseNumException(adjacentStations.StationCode1, $"bad person id: {adjacentStations.StationCode1}");
+
+            //    DO.AdjacentStations adjStationsFind = DataSource.ListAdjacentStations.Find(adjStations => (adjStations.StationCode1 == adjacentStations.StationCode1 && adjStations.StationCode2 == adjacentStations.StationCode2 && adjStations.IsDeleted == false || adjStations.StationCode1 == adjacentStations.StationCode2 && adjStations.StationCode2 == adjacentStations.StationCode1 && adjStations.IsDeleted == false));
+            //    if (adjStationsFind == null)
+            //        throw new DO.BadLicenseNumException(adjacentStations.StationCode1, $"bad person id: {adjacentStations.StationCode1}");
+            //    DO.AdjacentStations newAdj = adjacentStations.Clone();//copy of the adjacent stations that the function got
+            //    DataSource.ListAdjacentStations.Remove(adjStationsFind);
+            //    DataSource.ListAdjacentStations.Add(newAdj);
         }
         public void UpdateAdjacentStations(int stationCode1, int stationCode2, Action<DO.AdjacentStations> update)
         {

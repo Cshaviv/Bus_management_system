@@ -42,6 +42,7 @@ namespace PL.WPF
             try
             {
                 bl.UpdateTimeAndDistance( stat, nextStation);
+                MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             catch (BO.BadLineIdException ex)
