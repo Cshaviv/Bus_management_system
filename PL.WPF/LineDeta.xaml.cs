@@ -15,13 +15,11 @@ namespace PL.WPF
     {
         IBL bl;
         BO.Line line;
-        //Rectangle IsDeletedRectangleLine;
-        public LineDeta(IBL _bl, BO.Line _line, Rectangle _IsDeletedRectangleLine)
+        public LineDeta(IBL _bl, BO.Line _line)
         {
             InitializeComponent();
             bl = _bl;
             line = _line;
-            //IsDeletedRectangleLine = _IsDeletedRectangleLine;
             linesListBox.DataContext = line.Stations;
             linesListBox.Visibility = Visibility.Visible;
             LineNumTextBlock.Text = line.LineNum.ToString();
@@ -47,16 +45,19 @@ namespace PL.WPF
             {
                 if (MessageBox.Show("Do you want to delete this station?", "delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    bl.DeleteStationInLine(line.LineId, station.StationCode);
-                    line = bl.GetLine(line.LineId);
-                    linesListBox.DataContext = line.Stations;//refresh                
+                    bl.DeleteStationInLine(line.LineId, station.StationCode/*line.Stations[station.LineStationIndex-1].StationCode, line.Stations[station.LineStationIndex +1].StationCode*/);
+                    RefreshAllLine();
                 }
                 else
                 {
                     return;
 
                 }
-            } 
+            }
+            catch (BO.BadStationCodeException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             catch (Exception)
             {
 
@@ -78,8 +79,6 @@ namespace PL.WPF
                 if (line != null)
                 {
                     bl.DeleteLine(line.LineId);
-                    //IsDeletedRectangleLine.Fill = Brushes.Red;
-                    //Close();
                 }
             }
             catch (BO.BadLineIdException ex)
@@ -110,23 +109,22 @@ namespace PL.WPF
         }
         public void RefreshData()
         {
-            
-                int lineNumber = int.Parse(LineNumTextBox.Text);
-                BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString());
-                BO.Line lineUpdate = new BO.Line() { LineId = line.LineId,FirstStation= line.Stations[0].StationCode, LastStation = line.Stations[line.Stations.Count-1].StationCode, LineNum =lineNumber, Area = area, Stations = line.Stations };
-                try
-                {
-                    bl.UpdateLineDetails(lineUpdate);
-                    Close();
-                }
-                catch (BO.BadLineIdException ex)
-                {
-                    MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+
+            int lineNumber = int.Parse(LineNumTextBox.Text);
+            BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString());
+            BO.Line lineUpdate = new BO.Line() { LineId = line.LineId, FirstStation = line.Stations[0].StationCode, LastStation = line.Stations[line.Stations.Count - 1].StationCode, LineNum = lineNumber, Area = area, Stations = line.Stations };
+            try
+            {
+                bl.UpdateLineDetails(lineUpdate);
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void CancelClick(object sender, RoutedEventArgs e)
         {

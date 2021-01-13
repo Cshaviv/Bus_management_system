@@ -35,91 +35,124 @@ namespace PL.WPF
 
         private void rbFirst_Checked(object sender, RoutedEventArgs e)
         {
-            AddLast.Visibility = Visibility.Hidden;
-            AddMiddle.Visibility = Visibility.Hidden;
             PrevStatTextBlock.Visibility = Visibility.Hidden;
             PrevstationComboBox.Visibility = Visibility.Hidden;
+            PrevDistanceTextBlock.Visibility = Visibility.Hidden;
+            PrevDistanceTextBox.Visibility = Visibility.Hidden;
+            PrevTimeTextBlock.Visibility = Visibility.Hidden;
+            PrevTimeTextBox.Visibility = Visibility.Hidden;
+            NextDistanceTextBlock.Visibility = Visibility.Visible;
+            NextDistanceTextBox.Visibility = Visibility.Visible;
+            NextTimeTextBlock.Visibility = Visibility.Visible;
+            NextTimeTextBox.Visibility = Visibility.Visible;
+            AddLast.Visibility = Visibility.Hidden;
+            AddMiddle.Visibility = Visibility.Hidden;
             AddFirst.Visibility = Visibility.Visible;
         }
-
         private void rbLast_Checked(object sender, RoutedEventArgs e)
         {
-            AddFirst.Visibility = Visibility.Hidden;
-            AddMiddle.Visibility = Visibility.Hidden;
-            AddLast.Visibility = Visibility.Visible;
             PrevStatTextBlock.Visibility = Visibility.Hidden;
             PrevstationComboBox.Visibility = Visibility.Hidden;
+            PrevDistanceTextBlock.Visibility = Visibility.Visible;
+            PrevDistanceTextBox.Visibility = Visibility.Visible;
+            PrevTimeTextBlock.Visibility = Visibility.Visible;
+            PrevTimeTextBox.Visibility = Visibility.Visible;
+            NextDistanceTextBlock.Visibility = Visibility.Hidden;
+            NextDistanceTextBox.Visibility = Visibility.Hidden;
+            NextTimeTextBlock.Visibility = Visibility.Hidden;
+            NextTimeTextBox.Visibility = Visibility.Hidden;
+            AddMiddle.Visibility = Visibility.Hidden;
+            AddFirst.Visibility = Visibility.Hidden;
+            AddLast.Visibility = Visibility.Visible;
 
         }
-
         private void rbMiddle_Checked(object sender, RoutedEventArgs e)
         {
-            AddFirst.Visibility = Visibility.Hidden;
-            AddLast.Visibility = Visibility.Hidden;
-            AddMiddle.Visibility = Visibility.Visible;
-            PrevStatTextBlock.Visibility = Visibility.Visible;
-            PrevstationComboBox.Visibility = Visibility.Visible;
+
             List<BO.StationInLine> StationInLine = line.Stations.ToList();
             PrevstationComboBox.ItemsSource = StationInLine;
             PrevstationComboBox.SelectedItem = "Code";
             PrevstationComboBox.SelectedIndex = 0;
+            PrevStatTextBlock.Visibility = Visibility.Visible;
+            PrevstationComboBox.Visibility = Visibility.Visible;
+            PrevDistanceTextBlock.Visibility = Visibility.Visible;
+            PrevDistanceTextBox.Visibility = Visibility.Visible;
+            PrevTimeTextBlock.Visibility = Visibility.Visible;
+            PrevTimeTextBox.Visibility = Visibility.Visible;
+            NextDistanceTextBlock.Visibility = Visibility.Visible;
+            NextDistanceTextBox.Visibility = Visibility.Visible;
+            NextTimeTextBlock.Visibility = Visibility.Visible;
+            NextTimeTextBox.Visibility = Visibility.Visible;
+            AddFirst.Visibility = Visibility.Hidden;
+            AddLast.Visibility = Visibility.Hidden;
+            AddMiddle.Visibility = Visibility.Visible;  
 
         }
-
-        //private void AddMiddleClick(object sender, RoutedEventArgs e)
-        //{
-        //    BO.StationInLine stat = (stationComboBox.SelectedItem) as BO.StationInLine;
-        //    //BO.LineStation newStation = new BO.LineStation() { LineId = line.LineId, LineStationIndex = 1, StationCode = stat.Code };
-        //    try
-        //    {
-        //        if (!bl.IsExistAdjacentStations(stat.StationCode, line.Stations[1].StationCode))
-        //        {
-        //            DistanceTextBlock.Visibility = Visibility.Visible;
-        //            TimeTextBlock.Visibility = Visibility.Visible;
-        //            DistanceTextBox.Visibility = Visibility.Visible;
-        //            TimeTextBox.Visibility = Visibility.Visible;
-        //            double distance = double.Parse(DistanceTextBox.Text);
-        //            TimeSpan time = TimeSpan.Parse(TimeTextBox.Text);
-        //            //BO.StationInLine newStat = new BO.StationInLine() { StationCode = stat.StationCode, Name = station.Name, DisabledAccess = station.DisabledAccess, LineStationIndex = station.LineStationIndex, Distance = distance, Time = time };
-
-        //        }
-
-        //        //bl.AddLineStation(newStation);
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //    }
-        //}
         private void AddFirstClick(object sender, RoutedEventArgs e)
         {
-            BO.StationInLine stat = (stationComboBox.SelectedItem) as BO.StationInLine;
-            double distance = double.Parse(NextDistanceTextBox.Text);
-            TimeSpan time = TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text));
-            bl.AddStationInLine(stat.StationCode, line.LineId, 0, distance, time, 0, new TimeSpan(0, 0, 0));
-            MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
-            Close();
+            try
+            {
+                BO.Station stat = (stationComboBox.SelectedItem) as BO.Station;
+
+               // BO.StationInLine stat = (stationComboBox.SelectedItem) as BO.StationInLine;
+                double distance = double.Parse(NextDistanceTextBox.Text);
+                TimeSpan time = TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text));
+                bl.AddStationInLine(stat.Code, line.LineId, 0,line.Stations[0].StationCode,0, distance, time, 0, new TimeSpan(0, 0, 0));
+                MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void AddLastClick(object sender, RoutedEventArgs e)
         {
-            BO.StationInLine stat = (stationComboBox.SelectedItem) as BO.StationInLine;
-            double distance = double.Parse(PrevDistanceTextBox.Text);
-            TimeSpan time = TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text));
-            bl.AddStationInLine(stat.StationCode, line.LineId, line.Stations.Count, 0, new TimeSpan(0, 0, 0), distance, time);
-            MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
-            Close();
+            try
+            {
+                BO.Station stat = (stationComboBox.SelectedItem) as BO.Station;
+                double distance = double.Parse(PrevDistanceTextBox.Text);
+                TimeSpan time = TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text));
+                bl.AddStationInLine(stat.Code, line.LineId, line.Stations.Count, 0, line.Stations[line.Stations.Count-1].StationCode, 0, new TimeSpan(0, 0, 0), distance, time);
+                MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void AddMiddleClick(object sender, RoutedEventArgs e)
         {
-            BO.StationInLine stat = (stationComboBox.SelectedItem) as BO.StationInLine;
-            BO.StationInLine prevStat = (PrevstationComboBox.SelectedItem) as BO.StationInLine;
-            double distanceNext = double.Parse(NextDistanceTextBox.Text);
-            TimeSpan timeNext = TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text));
-            double distancePrev = double.Parse(PrevDistanceTextBox.Text);
-            TimeSpan timePrev = TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text));
-            bl.AddStationInLine(stat.StationCode, line.LineId, prevStat.LineStationIndex+1, distanceNext, timeNext, distancePrev, timePrev);
-            MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
-            Close();
+            try
+            {
+                BO.Station stat = (stationComboBox.SelectedItem) as BO.Station;
+                BO.StationInLine prevStat = (PrevstationComboBox.SelectedItem) as BO.StationInLine;
+                double distanceNext = double.Parse(NextDistanceTextBox.Text);
+                TimeSpan timeNext = TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text));
+                double distancePrev = double.Parse(PrevDistanceTextBox.Text);
+                TimeSpan timePrev = TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text));
+                bl.AddStationInLine(stat.Code, line.LineId, prevStat.LineStationIndex + 1, line.Stations[prevStat.LineStationIndex + 1].StationCode , prevStat.StationCode,  distanceNext, timeNext, distancePrev, timePrev);
+                MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
+            }
+        
+               catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

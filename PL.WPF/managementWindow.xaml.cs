@@ -128,13 +128,14 @@ namespace PL.WPF
             busesListBox.ItemsSource = bl.GetAllBuses().ToList();
         }
         #endregion
+
         #region Lines 
         public void RefreshAllLinesList()
         {
       
          LineesListBox.ItemsSource = bl.GetAllLines().ToList();
          }
-    private void Line_Click(object sender, RoutedEventArgs e)
+        private void Line_Click(object sender, RoutedEventArgs e)
         {
             stationsListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Hidden;
@@ -152,9 +153,8 @@ namespace PL.WPF
             ListBoxItem myListBoxItem = (ListBoxItem)(LineesListBox.ItemContainerGenerator.ContainerFromItem(line));
             ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-            Rectangle IsDeletedRectangleLine = (Rectangle)myDataTemplate.FindName("IsDeletedRectangleLine", myContentPresenter);
-            LineDeta win = new LineDeta(bl, line, IsDeletedRectangleLine);
-           // win.Closing += winUpdate_Closing;
+            LineDeta win = new LineDeta(bl, line);
+            win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }
         private void winUpdate_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -167,7 +167,6 @@ namespace PL.WPF
             win.ShowDialog();
             RefreshAllLinesList();
         }
-
         private void Station_Click(object sender, RoutedEventArgs e)
         {
             LineesListBox.Visibility = Visibility.Hidden;

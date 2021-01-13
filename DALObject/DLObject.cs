@@ -47,7 +47,6 @@ namespace DL
                 throw new BadInputException("The bus is already exist");           
             DataSource.ListBuses.Add(bus.Clone());
         }
-  
         public void UpdateBus(DO.Bus bus)
         {
             DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == bus.LicenseNum && bus_.IsDeleted == false);
@@ -55,10 +54,6 @@ namespace DL
                 throw new BadLicenseNumException(bus.LicenseNum, "The bus does not exist");
             DataSource.ListBuses.Remove(busFind);
             DataSource.ListBuses.Add(bus.Clone());
-            //DO.Bus newBus = bus.Clone();
-            //DataSource.ListBuses.Remove(busFind);
-            //AddBus(newBus);
-            //DataSource.ListBuses.Add(newBus);
         }
         public void UpdateBus(int licenseNumber, Action<DO.Bus> update)
         {
@@ -78,7 +73,6 @@ namespace DL
         #endregion
 
         #region AdjacentStations
-
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
             return from adjStations in DataSource.ListAdjacentStations
@@ -90,15 +84,6 @@ namespace DL
                    where predicate(adjStations)
                    select adjStations.Clone();
         }
-        //public DO.AdjacentStations GetAdjacentStations(int stationCode1, int stationCode2)
-        //{
-        //    DO.AdjacentStations adjStationsFind = DataSource.ListAdjacentStations.Find(adjStations => (adjStations.StationCode1 == stationCode1 && adjStations.StationCode2 == stationCode2 && adjStations.IsDeleted == false));
-
-        //    if (adjStationsFind == null)
-        //        throw new Exception();
-        //    return adjStationsFind.Clone();
-
-        //}
         public DO.AdjacentStations GetAdjacentStations(int code1, int code2)
         {
             DO.AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(s => s.StationCode1 == code1 && s.StationCode2 == code2);
@@ -126,12 +111,6 @@ namespace DL
             else
                 throw new DO.BadLicenseNumException(adjacentStations.StationCode1, $"bad person id: {adjacentStations.StationCode1}");
 
-            //    DO.AdjacentStations adjStationsFind = DataSource.ListAdjacentStations.Find(adjStations => (adjStations.StationCode1 == adjacentStations.StationCode1 && adjStations.StationCode2 == adjacentStations.StationCode2 && adjStations.IsDeleted == false || adjStations.StationCode1 == adjacentStations.StationCode2 && adjStations.StationCode2 == adjacentStations.StationCode1 && adjStations.IsDeleted == false));
-            //    if (adjStationsFind == null)
-            //        throw new DO.BadLicenseNumException(adjacentStations.StationCode1, $"bad person id: {adjacentStations.StationCode1}");
-            //    DO.AdjacentStations newAdj = adjacentStations.Clone();//copy of the adjacent stations that the function got
-            //    DataSource.ListAdjacentStations.Remove(adjStationsFind);
-            //    DataSource.ListAdjacentStations.Add(newAdj);
         }
         public void UpdateAdjacentStations(int stationCode1, int stationCode2, Action<DO.AdjacentStations> update)
         {
@@ -154,7 +133,6 @@ namespace DL
                 return true;
             return false;
         }
-
         #endregion
 
         #region Line
@@ -210,75 +188,8 @@ namespace DL
             if (lineFind == null)
                 throw new BadLineIdException(lineId, "The Line ID does not exist");
             lineFind.IsDeleted = true;
-            foreach (DO.LineStation lineStat in DataSource.ListLineStations)//delete fron the line station list
-            {
-                if (lineStat.LineId == lineId && lineStat.IsDeleted == false)
-                    lineStat.IsDeleted = true;
-            }
-           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            DataSource.ListLineStations.RemoveAll(ls => ls.LineId == lineId);
         }
-
         #endregion
 
         #region LineStation
@@ -401,8 +312,7 @@ namespace DL
         #region Station
         public IEnumerable<DO.Station> GetAllStations()
         {
-            return from station in DataSource.ListStations
-                   //where station.IsDeleted == false
+            return from station in DataSource.ListStations           
                    select station.Clone();
         }
         public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate)
@@ -431,12 +341,10 @@ namespace DL
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == station.Code && stat.IsDeleted == false);
             if (stationFind == null)
                 throw new BadStationCodeException(stationFind.Code, "The station does not exist");
-            //DO.Station newStation = station.Clone();//copy of the bus that the function got
-            //stationFind = newStation;//update
-            DataSource.ListStations.Remove(stationFind);//delete the station without update details
-            DataSource.ListStations.Add(station.Clone());// add the station with update details
+            DO.Station newStation = station.Clone();//copy of the bus that the function got
+            stationFind = newStation;//update
         }
-        public void UpdateStation(int code, Action<DO.Station> update)//?
+        public void UpdateStation(int code, Action<DO.Station> update)
         {
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == code && stat.IsDeleted == false);
             if (stationFind == null)
@@ -445,24 +353,27 @@ namespace DL
         }
         public void DeleteStation(int code)
         {
-            DO.Station statFind = DataSource.ListStations.FirstOrDefault(s => s.Code == code && s.IsDeleted == false);// chrck if station exist in list station
-            if (statFind == null)
+            DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == code && stat.IsDeleted == false);
+            if (stationFind == null)
                 throw new BadStationCodeException(code, "The station does not exist");
-            statFind.IsDeleted = true;
-            foreach (DO.AdjacentStations stat in DataSource.ListAdjacentStations)//delete from adjacent Station
+            stationFind.IsDeleted = true;
+            foreach (DO.LineStation lineStat in DataSource.ListLineStations)//delete fron the line station list
             {
-                if ((stat.StationCode1 == code || stat.StationCode2 == code) && stat.IsDeleted == false)
-                    stat.IsDeleted = true;
+                if (lineStat.StationCode == code && lineStat.IsDeleted == false)
+                    lineStat.IsDeleted = true;
             }
+            foreach (DO.AdjacentStations adjStation in DataSource.ListAdjacentStations)//delete from adjacent Station list
+            {
+                if ((adjStation.StationCode1 == code || adjStation.StationCode2 == code) && adjStation.IsDeleted == false)
+                    adjStation.IsDeleted = true;
+            }
+
         }
 
+        #endregion
 
-    
-
-    #endregion
-
-    #region LineTrip
-    public IEnumerable<DO.LineTrip> GetAllLineTrips()
+        #region LineTrip
+        public IEnumerable<DO.LineTrip> GetAllLineTrips()
         {
             return from lineTrip in DataSource.ListLineTrips
                    select lineTrip.Clone();
