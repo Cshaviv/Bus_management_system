@@ -76,7 +76,7 @@
                 <Button  Content="Treat" Click="TreatClick" Name="TreatButton" Grid.Column="14" Width="70" />
             </Grid>
         </DataTemplate>
-
+        
         <DataTemplate x:Key="StationTemplate"
                   DataType="local:BO.Station">
             <Grid>

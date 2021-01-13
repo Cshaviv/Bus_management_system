@@ -48,14 +48,18 @@ namespace PL.WPF
                 if (MessageBox.Show("Do you want to delete this station?", "delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     bl.DeleteStationInLine(line.LineId, station.StationCode/*line.Stations[station.LineStationIndex-1].StationCode, line.Stations[station.LineStationIndex +1].StationCode*/);
-                    Refres hAllLine();
+                    RefreshAllLine();
                 }
                 else
                 {
                     return;
 
                 }
-            } 
+            }
+            catch (BO.BadStationCodeException ex)
+            {
+                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             catch (Exception)
             {
 

@@ -398,12 +398,23 @@ namespace BL
         }
         public void DeleteStationInLine(int lineID , int code/*,int prevCode,int nextCode*/)
         {
+            BO.Line line = new BO.Line();
+            line = GetLine(lineID);
             int index = GetLine(lineID).Stations.FindIndex(s => s.StationCode == code);
-            int statCode1 = GetLine(lineID).Stations[index - 1].StationCode;
-            int statCode2 = GetLine(lineID).Stations[index + 1].StationCode;
             try
             {
-                if (!dl.ExistAdjacentStations(statCode1, statCode2)&& index!=0&& index!= GetLine(lineID).Stations.Count - 1)
+                if(line.Stations.Count<=2)
+                {
+                    throw new BO.BadStationCodeException(code, "Station code does not exist or he is not a student");
+                }
+                if ((index == 0) || (index == line.Stations.Count-1 ))/*GetLine(lineID).Stations.Count - 1*/
+                {
+                    dl.DeleteStationInLine(lineID, code);
+                    return;
+                }
+                int statCode1 = line.Stations[index - 1].StationCode;
+                int statCode2 = line.Stations[index + 1].StationCode;
+                if (!dl.ExistAdjacentStations(statCode1, statCode2))
                 {
                     DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = statCode1, StationCode2 = statCode2, Distance = 0, Time = new TimeSpan(0,0,0)};
                     dl.AddAdjacentStations(adj);
@@ -418,6 +429,7 @@ namespace BL
             {
                 throw new BO.BadStationCodeException(code, "Station code does not exist or he is not a student");
             }
+            
         }
         #endregion
 

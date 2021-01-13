@@ -154,7 +154,7 @@ namespace PL.WPF
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
             Rectangle IsDeletedRectangleLine = (Rectangle)myDataTemplate.FindName("IsDeletedRectangleLine", myContentPresenter);
             LineDeta win = new LineDeta(bl, line, IsDeletedRectangleLine);
-           // win.Closing += winUpdate_Closing;
+            win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }
         private void winUpdate_Closing(object sender, System.ComponentModel.CancelEventArgs e)
