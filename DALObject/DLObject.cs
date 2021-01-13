@@ -387,6 +387,12 @@ namespace DL
                 NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId && next.LineStationIndex == index + 1 && next.IsDeleted == false));
             }
         }
+        public IEnumerable<DO.Line> GetLinesInStationList(Predicate<DO.LineStation> predicate)
+        {
+            return from sil in DataSource.ListLineStations
+                   where predicate(sil)
+                   select GetLine(sil.LineId);
+        }
 
 
 
