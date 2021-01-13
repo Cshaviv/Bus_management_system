@@ -93,6 +93,7 @@ namespace DLAPI
         // void AddStationInLine(LineStation first);
         #endregion
         IEnumerable<DO.LineStation> GetStationInLineList(Predicate<DO.LineStation> predicate);
+        IEnumerable<DO.Line> GetLinesInStationList(Predicate<DO.LineStation> predicate);
     }
 }
 

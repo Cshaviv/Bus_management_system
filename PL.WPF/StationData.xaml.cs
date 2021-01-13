@@ -29,7 +29,8 @@ namespace PL.WPF
             InitializeComponent();
             bl = _bl;
             station = _station;
-            LineListBox.ItemsSource = station.Lines.ToList();
+           // LineListBox.ItemsSource = station.Lines.ToList();
+            LineListBox.DataContext = station.LinesInStation;
             LineListBox.Visibility = Visibility.Visible;
             stationNameTextBlock.Text = station.Name.ToString();
             AddressTextBlock.Text = station.Address.ToString();
@@ -51,9 +52,6 @@ namespace PL.WPF
 
         }
 
-        private void AddStation_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
     }
 }

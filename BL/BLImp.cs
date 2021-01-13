@@ -123,8 +123,8 @@ namespace BL
             BO.Line lineBO = new BO.Line();
             lineDO.CopyPropertiesTo(lineBO);
             int id = lineBO.LineId;
-            lineBO.Stations = (from s in dl.GetStationInLineList(s => s.LineId == id) //רמחפשים תחנות שעוברות בקו מסוים
-                                     select new StationInLine { StationCode = s.StationCode, Name = GetStation(s.StationCode).Name, LineStationIndex=s.LineStationIndex, DistanceFromNext=s.DistanceFromNext, TimeFromNext=s.TimeFromNext }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
+            lineBO.Stations = (from stat in dl.GetStationInLineList(s => s.LineId == id) //רמחפשים תחנות שעוברות בקו מסוים
+                                     select new StationInLine { StationCode = stat.StationCode, Name = GetStation(stat.StationCode).Name, LineStationIndex=stat.LineStationIndex, DistanceFromNext=stat.DistanceFromNext, TimeFromNext=stat.TimeFromNext }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
             if (lineBO.Stations.Count != 0)// 
             {
                 lineBO.Stations[lineBO.Stations.Count-1].TimeFromNext = new TimeSpan(0, 0, 0);
@@ -281,18 +281,21 @@ namespace BL
         #region Station
         public BO.Station stationDoBoAdapter(DO.Station stationDO)
         {
-            BO.Station stationBO = new BO.Station();
-            int stationCode = stationDO.Code;
-            stationDO.CopyPropertiesTo(stationBO);
-            //lineBO.Stations = from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId)//Linestation
-            //                                         let station = dl.GetStation(stat.StationCode)//station
-            //                                         select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
-            stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
-                               let line = dl.GetLine(stat.LineId)//station
-                               select line.CopyToLineInStation(stat)).ToList();
-            //select (BO.StationInLine)station.CopyPropertiesToNew(typeof(BO.StationInLine));
-            //stationBO. = stations.OrderBy(s => s.LineStationIndex);
-            return stationBO;
+            //BO.Station stationBO = new BO.Station();
+            //int stationCode = stationDO.Code;
+            //stationDO.CopyPropertiesTo(stationBO);
+            // stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
+            //                   let line = dl.GetLine(stat.LineId)//station
+            //                   select line.CopyToLineInStation(stat)).ToList();
+            //return stationBO;
+         
+                BO.Station stationBO = new BO.Station();
+                stationDO.CopyPropertiesTo(stationBO);
+                int code = stationBO.Code;
+                stationBO.LinesInStation = (from l in dl.GetLinesInStationList(l => l.StationCode == stationBO.Code)
+                                            select new LineInStation { LineNum = l.LineNum, LineId = l.LineId }).ToList();
+                return stationBO;
+           
         }
         public IEnumerable<BO.Station> GetAllStations()
         {
@@ -323,8 +326,9 @@ namespace BL
             }
             catch (DO.BadStationCodeException ex)
             {
-                throw new BO.BadStationCodeException( ex.stationCode , "Station ID is invalid");
+                throw new BO.BadStationCodeException( ex.stationCode , ex.Message);
             }
+
         }
         public void DeleteStation(int code)
         {
