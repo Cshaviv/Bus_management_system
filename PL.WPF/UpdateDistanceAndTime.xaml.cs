@@ -30,14 +30,14 @@ namespace PL.WPF
             station = _station;
             nextStation = _nextStation;
             DistanceTextBox.Text= station.DistanceFromNext.ToString();
-            TimeTextBox.Text = station.TimeFromNext.Hours.ToString();
+            TimeTextBox.Text = station.TimeFromNext.Minutes.ToString();
 
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             double distance = double.Parse(DistanceTextBox.Text);
-            TimeSpan time = TimeSpan.Parse(TimeTextBox.Text);
+            TimeSpan time = TimeSpan.FromMinutes(double.Parse(TimeTextBox.Text));
             BO.StationInLine stat = new BO.StationInLine() { StationCode = station.StationCode, Name = station.Name, DisabledAccess = station.DisabledAccess, LineStationIndex = station.LineStationIndex, DistanceFromNext= distance, TimeFromNext=time};
             try
             {

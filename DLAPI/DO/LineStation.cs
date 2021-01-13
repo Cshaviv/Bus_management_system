@@ -14,5 +14,7 @@ namespace DO
         public int PrevStationCode { get; set; }//קוד תחנה קודמת
         public int NextStationCode { get; set; }//קוד תחנה הבאה
         public bool IsDeleted { get; set; }//מחוק או לא
+        public double DistanceFromNext { get; set; }
+        public TimeSpan TimeFromNext { get; set; }
     }
 }

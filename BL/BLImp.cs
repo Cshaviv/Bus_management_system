@@ -124,17 +124,17 @@ namespace BL
             lineDO.CopyPropertiesTo(lineBO);
             int id = lineBO.LineId;
             lineBO.Stations = (from s in dl.GetStationInLineList(s => s.LineId == id) //רמחפשים תחנות שעוברות בקו מסוים
-                                     select new StationInLine { StationCode = s.StationCode, Name = GetStation(s.StationCode).Name }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
+                                     select new StationInLine { StationCode = s.StationCode, Name = GetStation(s.StationCode).Name, LineStationIndex=s.LineStationIndex, DistanceFromNext=s.DistanceFromNext, TimeFromNext=s.TimeFromNext }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
             if (lineBO.Stations.Count != 0)// 
             {
-                lineBO.Stations[0].TimeFromNext = new TimeSpan(0, 0, 0);
-                lineBO.Stations[0].DistanceFromNext = 0;
+                lineBO.Stations[lineBO.Stations.Count-1].TimeFromNext = new TimeSpan(0, 0, 0);
+                lineBO.Stations[lineBO.Stations.Count-1].DistanceFromNext = 0;
             }
             for (int i = 0; i < lineBO.Stations.Count - 1; i++)
             {
                 DO.AdjacentStations adjacentStations = dl.GetAdjacentStations(lineBO.Stations[i].StationCode, lineBO.Stations[i + 1].StationCode);
-                lineBO.Stations[i + 1].DistanceFromNext = adjacentStations.Distance;
-                lineBO.Stations[i + 1].TimeFromNext = adjacentStations.Time;
+                lineBO.Stations[i].DistanceFromNext = adjacentStations.Distance;
+                lineBO.Stations[i].TimeFromNext = adjacentStations.Time;
             }
             return lineBO;
         }

@@ -841,9 +841,11 @@ namespace DS
                 {
                     LineId=1,
                     StationCode=91,
-                    LineStationIndex=1,
+                    LineStationIndex=0,
                     PrevStationCode=0,
                     NextStationCode=73,
+                    DistanceFromNext=6,
+                    TimeFromNext=new TimeSpan(0,8,0),
                     IsDeleted=false,
 
                 },
@@ -851,9 +853,11 @@ namespace DS
                 {
                     LineId=1,
                     StationCode=73,
-                    LineStationIndex=2,
+                    LineStationIndex=1,
                     PrevStationCode=91,
                     NextStationCode=76,
+                           DistanceFromNext=6,
+                    TimeFromNext=new TimeSpan(0,9,0),
                     IsDeleted=false,
 
                 },
@@ -861,18 +865,22 @@ namespace DS
                 {
                     LineId=1,
                     StationCode=76,
-                    LineStationIndex=3,
+                    LineStationIndex=2,
                     PrevStationCode=73,
                     NextStationCode=119,
+                           DistanceFromNext=6,
+                    TimeFromNext=new TimeSpan(0,8,15),
                     IsDeleted=false,
                 },
                 new LineStation
                 {
                     LineId=1,
                     StationCode=119,
-                    LineStationIndex=4,
+                    LineStationIndex=3,
                     PrevStationCode=76,
                     NextStationCode=0,
+                           DistanceFromNext=0,
+                    TimeFromNext=new TimeSpan(0,0,0),
                     IsDeleted=false,
                 },
             };
