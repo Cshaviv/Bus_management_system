@@ -18,7 +18,7 @@ namespace BLAPI
         void AddBus(BO.Bus bus);
         #endregion
         #region Line
-        void AddNewLine(BO.Line lineBo, double distance, TimeSpan time);
+        void AddNewLine(BO.Line lineBo);
         BO.Line GetLine(int lineId);
         IEnumerable<BO.Line> GetAllLines();
         //IEnumerable<BO.ListedPerson> GetStudentIDNameList();

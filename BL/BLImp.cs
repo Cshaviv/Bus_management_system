@@ -124,7 +124,7 @@ namespace BL
             lineDO.CopyPropertiesTo(lineBO);
             int id = lineBO.LineId;
             lineBO.Stations = (from stat in dl.GetStationInLineList(s => s.LineId == id) //רמחפשים תחנות שעוברות בקו מסוים
-                                     select new StationInLine { StationCode = stat.StationCode, Name = GetStation(stat.StationCode).Name, LineStationIndex=stat.LineStationIndex, DistanceFromNext=stat.DistanceFromNext, TimeFromNext=stat.TimeFromNext }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
+                                     select new StationInLine { StationCode = stat.StationCode, Name = GetStation(stat.StationCode).Name, LineStationIndex=stat.LineStationIndex  }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
             if (lineBO.Stations.Count != 0)// 
             {
                 lineBO.Stations[lineBO.Stations.Count - 1].TimeFromNext = new TimeSpan(0, 0, 0);
@@ -151,7 +151,7 @@ namespace BL
             }
             return lineDoBoAdapter(lineDO);
         }
-        public void AddNewLine(BO.Line lineBo,double distance,TimeSpan time)
+        public void AddNewLine(BO.Line lineBo)
         {
             DO.Line lineDo = new DO.Line();
             lineBo.CopyPropertiesTo(lineDo);
@@ -164,7 +164,7 @@ namespace BL
             {
                 if (!dl.ExistAdjacentStations(stationCode1, stationCode2))
                 {
-                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode1, StationCode2 = stationCode2, Distance =  distance, Time = time };
+                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode1, StationCode2 = stationCode2, Distance = lineBo.Stations[0].DistanceFromNext, Time = lineBo.Stations[0].TimeFromNext };
                     dl.AddAdjacentStations(adj);
                 }
 
@@ -362,7 +362,7 @@ namespace BL
         {
             try
             {
-                DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = second.DistanceFromNext, Time = second.TimeFromNext, IsDeleted = false };
+                DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = first.DistanceFromNext, Time = first.TimeFromNext, IsDeleted = false };
                 dl.UpdateAdjacentStations(adj);
             }
             catch (Exception ex)

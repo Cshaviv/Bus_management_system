@@ -63,7 +63,7 @@ namespace PL.WPF
                 newline.Stations.Add(firstStat);
                 BO.StationInLine lastStat = new BO.StationInLine() { lineNum = lineNum, StationCode = lastStation.Code, Name = lastStation.Name, LineStationIndex = 1, DistanceFromNext = 0, TimeFromNext = new TimeSpan(0,0,0) };
                 newline.Stations.Add(lastStat);
-                bl.AddNewLine(newline, distance, time);
+                bl.AddNewLine(newline);
                 MessageBox.Show("The line was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
                   
