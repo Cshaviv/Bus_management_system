@@ -34,7 +34,7 @@ namespace PL.WPF
             bus = b;
             busesListBox = _busesListBox;
             //IsDeletedRectangle = _IsDeletedRectangle;
-            licenseNumTextBox.Text = b.LicenseNum.ToString();
+            licenseNumTextBlock.Text = b.LicenseNum.ToString();
             startDateDatePicker.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
             lastTreatDatePicker.Text = b.DateLastTreat.Day + "/" + b.DateLastTreat.Month + "/" + b.DateLastTreat.Year;
             kmTextBox.Text = b.TotalKm.ToString();
@@ -84,7 +84,7 @@ namespace PL.WPF
             try
             {
                 
-                int licenseNum = int.Parse(licenseNumTextBox.Text);
+                int licenseNum = int.Parse(licenseNumTextBlock.Text);
                 double fuel = double.Parse(kmafterrefuelingTextBox.Text);
                  DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
                 DateTime lastDate = DateTime.Parse(lastTreatDatePicker.Text);

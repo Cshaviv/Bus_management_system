@@ -29,8 +29,8 @@ namespace PL.WPF
             bl = _bl;
             station = _station;
             nextStation = _nextStation;
-            DistanceTextBox.Text= station.Distance.ToString();
-            TimeTextBox.Text = station.Time.Hours.ToString();
+            DistanceTextBox.Text= station.DistanceFromNext.ToString();
+            TimeTextBox.Text = station.TimeFromNext.Hours.ToString();
 
         }
 
@@ -38,10 +38,11 @@ namespace PL.WPF
         {
             double distance = double.Parse(DistanceTextBox.Text);
             TimeSpan time = TimeSpan.Parse(TimeTextBox.Text);
-            BO.StationInLine stat = new BO.StationInLine() { StationCode = station.StationCode, Name = station.Name, DisabledAccess = station.DisabledAccess, LineStationIndex = station.LineStationIndex, Distance= distance, Time=time};
+            BO.StationInLine stat = new BO.StationInLine() { StationCode = station.StationCode, Name = station.Name, DisabledAccess = station.DisabledAccess, LineStationIndex = station.LineStationIndex, DistanceFromNext= distance, TimeFromNext=time};
             try
             {
                 bl.UpdateTimeAndDistance( stat, nextStation);
+                MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             catch (BO.BadLineIdException ex)

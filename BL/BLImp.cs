@@ -127,36 +127,16 @@ namespace BL
                                      select new StationInLine { StationCode = s.StationCode, Name = GetStation(s.StationCode).Name }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
             if (lineBO.Stations.Count != 0)// 
             {
-                lineBO.Stations[0].Time = new TimeSpan(0, 0, 0);
-                lineBO.Stations[0].Distance = 0;
+                lineBO.Stations[0].TimeFromNext = new TimeSpan(0, 0, 0);
+                lineBO.Stations[0].DistanceFromNext = 0;
             }
             for (int i = 0; i < lineBO.Stations.Count - 1; i++)
             {
                 DO.AdjacentStations adjacentStations = dl.GetAdjacentStations(lineBO.Stations[i].StationCode, lineBO.Stations[i + 1].StationCode);
-                lineBO.Stations[i + 1].Distance = adjacentStations.Distance;
-                lineBO.Stations[i + 1].Time = adjacentStations.Time;
+                lineBO.Stations[i + 1].DistanceFromNext = adjacentStations.Distance;
+                lineBO.Stations[i + 1].TimeFromNext = adjacentStations.Time;
             }
             return lineBO;
-            //BO.Line lineBO = new BO.Line();
-            //int lineId = lineDO.LineId;
-            //lineDO.CopyPropertiesTo(lineBO);
-            //List<BO.StationInLine> stations = (from stat in dl.GetAllLineStationsBy(stat => stat.LineId == lineId && stat.IsDeleted == false)//Linestation
-            //                                   let station = dl.GetStation(stat.StationCode)//station
-            //                                   select station.CopyToStationInLine(stat)).ToList();
-            //stations = (stations.OrderBy(s => s.LineStationIndex)).ToList();
-            //foreach (StationInLine s in stations)
-            //{
-            //    if (s.LineStationIndex != stations[stations.Count - 1].LineStationIndex)
-            //    {
-            //        int sc1 = s.StationCode;//station code 1
-            //        int sc2 = stations[s.LineStationIndex].StationCode;//station code 2
-            //        DO.AdjacentStations adjStat = dl.GetAdjacentStations(sc1, sc2);
-            //        s.Distance = adjStat.Distance;
-            //        s.Time = adjStat.Time;
-            //    }
-            //}
-            //lineBO.Stations = stations;
-            //return lineBO;
         }
         public Line GetLine(int lineId)
         {
@@ -184,7 +164,7 @@ namespace BL
             {
                 if (!dl.ExistAdjacentStations(stationCode1, stationCode2))
                 {
-                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode1, StationCode2 = stationCode2, Distance = lineBo.Stations[1].Distance, Time = lineBo.Stations[1].Time };
+                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode1, StationCode2 = stationCode2, Distance = lineBo.Stations[0].DistanceFromNext, Time = lineBo.Stations[0].TimeFromNext };
                     dl.AddAdjacentStations(adj);
                 }
 
@@ -366,7 +346,7 @@ namespace BL
         {
             try
             {
-                DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = first.Distance, Time = first.Time, IsDeleted = false };
+                DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = second.DistanceFromNext, Time = second.TimeFromNext, IsDeleted = false };
                 dl.UpdateAdjacentStations(adj);
             }
             catch (Exception ex)
