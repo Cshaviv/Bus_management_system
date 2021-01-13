@@ -183,7 +183,7 @@ namespace DL
         } 
         public void AddLine(DO.Line line)
         {
-            //line.LineId = Config.LineId++;
+            line.LineId = Config.LineId++;
             if (DataSource.ListLines.FirstOrDefault(_line => _line.LineId == line.LineId && _line.IsDeleted == false) != null)
                 throw new BadLineIdException(line.LineId, "The Line ID is already  exist");
             DataSource.ListLines.Add(line.Clone());
@@ -637,6 +637,22 @@ namespace DL
                    orderby sil.LineStationIndex
                    select sil;
 
+        }
+        public void DeleteStationInLine(int busID , int stationID)
+        {
+            DO.LineStation lineStation = DataSource.ListLineStations.Find(sil => (sil.StationCode == stationID && sil.LineId == busID));
+            int index = lineStation.LineStationIndex;
+            if (lineStation != null)
+            {
+                DataSource.ListLineStations.Remove(lineStation);
+                foreach (DO.LineStation s in GetStationInLineList(s => s.LineId == busID))
+                {
+                    if (s.LineStationIndex > index)
+                        s.LineStationIndex--;
+                }
+            }
+            else
+                throw new DO.BadStationCodeException(stationID, "station ID is NOT registered to bus ID");
         }
     }
 }
