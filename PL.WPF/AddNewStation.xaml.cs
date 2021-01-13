@@ -32,5 +32,34 @@ namespace PL.WPF
             // Load data by setting the CollectionViewSource.Source property:
             // busViewSource.Source = [generic data source]
         }
+
+        private void addButton_click(object sender, RoutedEventArgs e)
+        {
+            //try
+            //{
+            //    int code = int.Parse(codeTextBox.Text);
+            //    string name = nameTextBox.Text;
+            //    string address = addressTextBox.Text;
+            //    BO.Station station = new BO.Station() { Code = code, Name = name, Address = address, DateLastTreat = lastDate, StatusBus = status, TotalKm = totalKm, KmLastTreat = kmLastTreat };
+            //    if (station != null)
+            //    {
+            //        bl.AddStation(station);
+            //        Close();
+            //    }
+            //}
+            //catch (BO.BadLicenseNumException ex)
+            //{
+            //    MessageBox.Show(ex.Message + ": " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
+            //catch (BO.BadInputException ex)
+            //{
+            //    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
+       
+        }
     }
 }
