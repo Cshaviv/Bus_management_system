@@ -344,14 +344,44 @@ namespace BL
         }
 
         #region StationInLine
-        public void AddStationInLine(int stationID, int busID, int index)
+        public void AddStationInLine(int stationCode, int busID, int index,double distanceNext,TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
         {
             try
             {
-                dl.AddAdjacentStations(new DO.AdjacentStations { StationCode1 = GetLine(busID).Stations[index - 1].StationCode, StationCode2 = stationID, Distance = 0, Time = new TimeSpan(0, 0, 0) });
-                if (!(index >= GetLine(busID).Stations.Count))
-                    dl.AddAdjacentStations(new DO.AdjacentStations { StationCode1 = stationID, StationCode2 = GetLine(busID).Stations[index].StationCode, Distance = 0, Time = new TimeSpan(0, 0, 0) });
-                dl.AddStationInLine(stationID, busID, index);
+                if(index==0)
+                {
+                    if (!dl.ExistAdjacentStations(stationCode, GetLine(busID).Stations[index + 1].StationCode))
+                    {
+                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode, StationCode2 = GetLine(busID).Stations[index + 1].StationCode, Distance = distanceNext, Time = timeNext };
+                        dl.AddAdjacentStations(adj);
+                    }
+                }
+                else if (!(index >= GetLine(busID).Stations.Count))
+                {
+                    if (!dl.ExistAdjacentStations(stationCode, GetLine(busID).Stations[index -1 ].StationCode))
+                    {
+                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode, StationCode2 = GetLine(busID).Stations[index + 1].StationCode, Distance = distancePrev, Time = timePrev };
+                        dl.AddAdjacentStations(adj);
+                    }
+                }
+                else
+                {
+                    if (!dl.ExistAdjacentStations(stationCode, GetLine(busID).Stations[index + 1].StationCode))
+                    {
+                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode, StationCode2 = GetLine(busID).Stations[index + 1].StationCode, Distance = distanceNext, Time = timeNext };
+                        dl.AddAdjacentStations(adj);
+                    }
+                    if (!dl.ExistAdjacentStations(stationCode, GetLine(busID).Stations[index - 1].StationCode))
+                    {
+                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode, StationCode2 = GetLine(busID).Stations[index + 1].StationCode, Distance = distancePrev, Time = timePrev };
+                        dl.AddAdjacentStations(adj);
+                    }
+                }
+
+                //dl.AddAdjacentStations(new DO.AdjacentStations { StationCode1 = GetLine(busID).Stations[index - 1].StationCode, StationCode2 = stationCode, Distance = 0, Time = new TimeSpan(0, 0, 0) });
+                //if (!(index >= GetLine(busID).Stations.Count))
+                //    dl.AddAdjacentStations(new DO.AdjacentStations { StationCode1 = stationCode, StationCode2 = GetLine(busID).Stations[index].StationCode, Distance = 0, Time = new TimeSpan(0, 0, 0) });
+                dl.AddStationInLine(stationCode, busID, index);
             }
             catch (DO.BadInputException ex)
             {
