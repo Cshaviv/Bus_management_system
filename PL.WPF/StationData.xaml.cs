@@ -23,20 +23,29 @@ namespace PL.WPF
     {
         IBL bl;
         BO.Station station;
-       // ListBox stationsListBox;
-        public StationData( IBL _bl, BO.Station _station) //, ListBox _stationsListBox)
+       ListBox stationsListBox;
+        Rectangle IsDeletedRectangleStation;
+        public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox, Rectangle _IsDeletedRectangleStation) //, ListBox _stationsListBox)
         {
             InitializeComponent();
             bl = _bl;
             station = _station;
-            // LineListBox.ItemsSource = station.Lines.ToList();
-            LineInStationListBox.DataContext = station.LinesInStation;
+            stationsListBox = _stationsListBox;
+            IsDeletedRectangleStation = _IsDeletedRectangleStation;
+            addressTextBox.Text= station.Address.ToString();
+            nameTextBox.Text= station.Name.ToString();
+            LineInStationListBox.ItemsSource = station.LinesInStation;
+           // LineInStationListBox.DataContext = station.LinesInStation;
             LineInStationListBox.Visibility = Visibility.Visible;
             stationNameTextBlock.Text = station.Name.ToString();
             AddressTextBlock.Text = station.Address.ToString();
             stationCodeTextBlock.Text = station.Code.ToString();
         }
-
+        void RefreshAllStations()
+        {
+            stationsListBox.ItemsSource = bl.GetAllStations().ToList();
+            
+        }
         private void updateStation_Click(object sender, RoutedEventArgs e)
         {
 
@@ -44,6 +53,25 @@ namespace PL.WPF
 
         private void deleteStation_Click(object sender, RoutedEventArgs e)
         {
+            try
+            { 
+                MessageBoxResult res = MessageBox.Show("?אתה בטוח שאתה רוצה למחוק את התחנה", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res == MessageBoxResult.No)
+                    return;
+                int stationCode = int.Parse(stationCodeTextBlock.Text);
+                bl.DeleteStation(stationCode);
+                RefreshAllStations();
+                Close();
+                MessageBox.Show("התחנה נמחקה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (BO.BadStationCodeException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
 
@@ -52,6 +80,12 @@ namespace PL.WPF
 
         }
 
-       
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // stationViewSource.Source = [generic data source]
+        }
     }
 }

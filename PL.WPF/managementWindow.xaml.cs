@@ -202,7 +202,8 @@ namespace PL.WPF
             ListBoxItem myListBoxItem = (ListBoxItem)(stationsListBox.ItemContainerGenerator.ContainerFromItem(station));
             ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-            StationData win = new StationData(bl, station);
+            Rectangle IsDeletedRectangleStation = (Rectangle)myDataTemplate.FindName("IsDeletedRectangleStation", myContentPresenter);
+            StationData win = new StationData(bl, station, stationsListBox, IsDeletedRectangleStation);
             // win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }

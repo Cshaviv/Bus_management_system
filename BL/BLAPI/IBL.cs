@@ -36,7 +36,6 @@ namespace BLAPI
         //void AddAdjacentStations(BO.AdjacentStation adjBO);
         #endregion
         #region Station
-        BO.Station stationDoBoAdapter(DO.Station stationDO);
         IEnumerable<BO.Station> GetAllStations();
         BO.Station GetStation(int code);
         void AddStation(BO.Station station);

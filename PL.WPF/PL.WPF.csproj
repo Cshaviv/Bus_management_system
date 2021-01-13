@@ -73,6 +73,7 @@
     <Compile Include="AddStationToLine.xaml.cs">
       <DependentUpon>AddStationToLine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BrushColorConverter.cs" />
     <Compile Include="BusData.xaml.cs">
       <DependentUpon>BusData.xaml</DependentUpon>
     </Compile>

@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="managementWindow" Height="450" Width="1042.348">
     <Window.Resources>
+        
+     <local:BrushColorConverter x:Key="BConverter"></local:BrushColorConverter>
+       
         <DataTemplate x:Key="LineTemplate"
                   DataType="local:BO.Line">
             <Grid>
@@ -84,6 +87,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="90" />
@@ -93,10 +98,11 @@
                     <ColumnDefinition Width="80" />
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="6" Name="CodeTextBox" Text=":קוד תחנה" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
-                <TextBox Grid.Column="4" Name="statCodeTextBox" Text="{Binding Path=Code }" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="2" Name="nameTextBox" Text=":שם התחנה " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
-                <TextBox Grid.Column="0" x:Name="statNameTextBlock" Text="{Binding Path=Name}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+                <Rectangle Grid.Column="0"  Name="IsDeletedRectangleStation" Fill="{Binding Path=IsDeleted, Converter={StaticResource BConverter}}" Width="10" Height="10"/>
+                <TextBlock Grid.Column="8" Name="CodeTextBox" Text=":קוד תחנה" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
+                <TextBox Grid.Column="6" Name="statCodeTextBox" Text="{Binding Path=Code }" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="4" Name="nameTextBox" Text=":שם התחנה " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
+                <TextBox Grid.Column="2" x:Name="statNameTextBlock" Text="{Binding Path=Name}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
             </Grid>
         </DataTemplate>
 

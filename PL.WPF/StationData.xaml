@@ -1,11 +1,12 @@
-﻿<Window x:Class="PL.WPF.StationData"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
+        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.WPF.StationData"
         mc:Ignorable="d"
-        Title="StationData" Height="450" Width="800">
+        Title="StationData" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <DataTemplate x:Key="MyDataTemplate" DataType="local: BO.StationInLine">
             <Grid>
@@ -15,33 +16,48 @@
                 <Grid.ColumnDefinitions>
 
                     <ColumnDefinition Width="95" />
-                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="80" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="100" />
-
+                    <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap" Text="מספר קו:" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding Path=LineNum}" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
             </Grid>
         </DataTemplate>
+
+        <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
 
     </Window.Resources>
     <Grid>
         <TextBlock  Text=":שם תחנה" FontFamily="Dubai Light"  FontSize="20" FontWeight="Bold" Margin="657,50,33,336" />
-        <TextBlock  Name="stationNameTextBlock"  Text="{Binding Path= Name }" Margin="411,50,155,336" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
+        <TextBox  x:Name="stationNameTextBlock"  Text="{Binding Name}" Margin="411,50,155,336" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
         <TextBlock  FontFamily="Dubai Light"  FontSize="20" FontWeight="Bold"  Text=":כתובת" Margin="673,89,48,289" />
-        <TextBlock Grid.Column="0" Name="AddressTextBlock"   Text="{Binding Path= Address }" Margin="411,89,139,294"  FontFamily="Dubai Light"  FontSize="14"/>
+        <TextBlock Grid.Column="0" x:Name="AddressTextBlock"   Text="{Binding Address}" Margin="411,89,139,294"  FontFamily="Dubai Light"  FontSize="14"/>
 
         <ListBox x:Name="LineInStationListBox" ItemsSource="{Binding}" Height="174" Margin="34,92,627,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" SelectionChanged="LineListBox_SelectionChanged" />
         <Button x:Name="deleteStation" Content="מחיקת תחנה" HorizontalAlignment="Left" Margin="496,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="deleteStation_Click" />
         <Button x:Name="updateStation" Content="עידכון תחנה" HorizontalAlignment="Left" Margin="219,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="updateStation_Click" />
         <TextBlock  HorizontalAlignment="Left" Margin="138,55,0,0" TextWrapping="Wrap" Text="קוד" VerticalAlignment="Top" Height="28" Width="27"/>
-        <TextBlock   Name="stationCodeTextBlock"  HorizontalAlignment="Left"  Height="23" Margin="97,54,0,0" TextWrapping="Wrap" Text="{Binding Path= Code }" VerticalAlignment="Top" Width="36"/>
+        <TextBlock   x:Name="stationCodeTextBlock"  HorizontalAlignment="Left"  Height="23" Margin="97,54,0,0" TextWrapping="Wrap" Text="{Binding Code}" VerticalAlignment="Top" Width="36"/>
+        <Grid x:Name="grid1" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Left" Margin="267,111,0,0" VerticalAlignment="Top" Height="173" Width="228">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Code:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBlock x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        </Grid>
     </Grid>
 </Window>
