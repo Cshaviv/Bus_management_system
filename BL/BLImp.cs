@@ -277,33 +277,32 @@ namespace BL
                 return true;
             return false;
         }
-  
+
         #endregion
 
         #region Station
-        public BO.Station stationDoBoAdapter(DO.Station stationDO)
+        public BO.Station StationDoBoAdapter(DO.Station stationDO)
         {
+            BO.Station stationBO = new BO.Station();
+            int stationCode = stationDO.Code;
+            stationDO.CopyPropertiesTo(stationBO);
+            stationBO.LinesInStation = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
+                                        let line = dl.GetLine(stat.LineId)//line
+                                        select line.CopyToLineInStation(stat)).ToList();
+            return stationBO;
+
             //BO.Station stationBO = new BO.Station();
-            //int stationCode = stationDO.Code;
             //stationDO.CopyPropertiesTo(stationBO);
-            // stationBO.Lines = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
-            //                   let line = dl.GetLine(stat.LineId)//station
-            //                   select line.CopyToLineInStation(stat)).ToList();
+            //int code = stationBO.Code;
+            //stationBO.LinesInStation = (from l in dl.GetLinesInStationList(l => l.StationCode == stationBO.Code)
+            //                            select new LineInStation { LineNum = l.LineNum, LineId = l.LineId }).ToList();
             //return stationBO;
-         
-                BO.Station stationBO = new BO.Station();
-                stationDO.CopyPropertiesTo(stationBO);
-                int code = stationBO.Code;
-                stationBO.LinesInStation = (from l in dl.GetLinesInStationList(l => l.StationCode == stationBO.Code)
-                                            select new LineInStation { LineNum = l.LineNum, LineId = l.LineId }).ToList();
-                return stationBO;
-           
+
         }
         public IEnumerable<BO.Station> GetAllStations()
         {
             return from item in dl.GetAllStations()
-                   where(item.IsDeleted==false)
-                   select stationDoBoAdapter(item);
+                   select StationDoBoAdapter(item);
         }
         public BO.Station GetStation(int code)
         {
@@ -314,12 +313,11 @@ namespace BL
             }
             catch (DO.BadStationCodeException ex)
             {
-                throw new BO.BadStationCodeException(0,"station code does not exist or he is not a student");
+                throw new BO.BadStationCodeException(0, "station code does not exist or he is not a student");
             }
-            return stationDoBoAdapter(station);
+            return StationDoBoAdapter(station);
         }
-        #endregion
-      public  void AddStation(BO.Station station )
+        public void AddStation(BO.Station station)
         {
             DO.Station stationDO = new DO.Station();
             station.CopyPropertiesTo(stationDO);
@@ -329,21 +327,29 @@ namespace BL
             }
             catch (DO.BadStationCodeException ex)
             {
-                throw new BO.BadStationCodeException( ex.stationCode , ex.Message);
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
 
         }
-        public void DeleteStation(int code)
+        public void DeleteStation(int statCode)
         {
-            //try
-            //{
-            //    dl.DeleteBus(code);
-            //}
-            //catch (DO.BadStationCodeException ex)
-            //{
-            //    throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
-            //}
+            try
+            {
+                DO.Station statDO = dl.GetStation(statCode);
+                BO.Station statBO = StationDoBoAdapter(statDO);
+                if (statBO.LinesInStation.Count == 0)
+                    dl.DeleteStation(statCode);
+                else
+                    throw new BO.BadStationCodeException(statCode, "לא ניתן למחוק את התחנה כיוון שיש קווים שעוברים בה");
+
+
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+            }
         }
+        #endregion
 
         #region StationInLine
         public void AddStationInLine(int stationCode, int busID, int index, int indexNextCode, int indexPrevCode,double distanceNext,TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
