@@ -123,7 +123,7 @@ namespace BL
             BO.Line lineBO = new BO.Line();
             lineDO.CopyPropertiesTo(lineBO);
             int id = lineBO.LineId;
-            lineBO.Stations = (from stat in dl.GetStationInLineList(s => s.LineId == id) //רמחפשים תחנות שעוברות בקו מסוים
+            lineBO.Stations = (from stat in dl.GetStationInLineList(s => s.LineId == id&&s.IsDeleted==false) //רמחפשים תחנות שעוברות בקו מסוים
                                      select new StationInLine { StationCode = stat.StationCode, Name = GetStation(stat.StationCode).Name, LineStationIndex=stat.LineStationIndex  }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
             if (lineBO.Stations.Count != 0)// 
             {
@@ -184,6 +184,7 @@ namespace BL
         public IEnumerable<BO.Line> GetAllLines()
         {
             return from item in dl.GetAllLines()
+                   where (item.IsDeleted == false )
                    select lineDoBoAdapter(item);
         }
         public IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate)
@@ -301,6 +302,7 @@ namespace BL
         public IEnumerable<BO.Station> GetAllStations()
         {
             return from item in dl.GetAllStations()
+                   where(item.IsDeleted==false)
                    select stationDoBoAdapter(item);
         }
         public BO.Station GetStation(int code)
