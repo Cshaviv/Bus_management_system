@@ -13,8 +13,8 @@ namespace BO
         public string Name { get; set; } // name of the station
         public bool DisabledAccess { get; set; } //access to disabled
         public int LineStationIndex { get; set; } //the index of the station in the line
-        public double Distance { get; set; }
-        public TimeSpan Time { get; set; }
+        public double DistanceFromNext { get; set; }
+        public TimeSpan TimeFromNext { get; set; }
 
         public override string ToString()
         {
