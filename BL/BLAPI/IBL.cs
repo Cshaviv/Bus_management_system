@@ -46,7 +46,8 @@ namespace BLAPI
         #endregion
         #region StationInLine
         void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second);
-        void AddStationInLine(int stationID, int busID, int index);
+        void AddStationInLine(int stationCode, int busID, int index, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev);
+        void DeleteStationInLine(int code, int lineID);
 
         #endregion
     }

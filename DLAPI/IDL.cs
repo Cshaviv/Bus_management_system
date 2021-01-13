@@ -60,6 +60,7 @@ namespace DLAPI
         DO.LineStation GetLineStation(int lineId, int stationCode);
         void AddLineStation(DO.LineStation lineStation);
         void AddStationInLine(int stationID, int busID, int index);
+        void DeleteStationInLine(int stationID, int busID);
         void UpdateLineStation(DO.LineStation lineStation);
         void UpdateLineStation(int lineId, int stationCode, Action<DO.LineStation> update);
         void DeleteLineStation(int lineId, int stationCode);

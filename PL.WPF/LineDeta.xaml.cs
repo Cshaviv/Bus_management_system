@@ -40,21 +40,6 @@ namespace PL.WPF
         {
             RefreshAllLine();
         }
-        //private void updateStation(object sender, RoutedEventArgs e)//continue
-        //{
-            
-        //    BO.StationInLine stat = (sender as Button).DataContext as BO.StationInLine;
-        //    if (stat.StationCode == line.Stations[line.Stations.Count].StationCode)
-        //    {
-        //        MessageBox.Show("travel distance/time from Last station cant be updated.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-        //        return;
-        //    }
-        //    BO.StationInLine next = line.Stations[stat.LineStationIndex];
-        //    UpdateDistanceAndTime win = new UpdateDistanceAndTime(bl, stat, next);
-        //    win.Closing += winUpdate_Closing;
-        //    win.ShowDialog();
-
-        //}
         private void deleteStationClick(object sender, RoutedEventArgs e)
         {
             BO.StationInLine station = (sender as Button).DataContext as BO.StationInLine;
@@ -62,7 +47,7 @@ namespace PL.WPF
             {
                 if (MessageBox.Show("Do you want to delete this station?", "delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    bl.DeleteLineStation(line.LineId, station.StationCode);
+                    bl.DeleteStationInLine(line.LineId, station.StationCode);
                     line = bl.GetLine(line.LineId);
                     linesListBox.DataContext = line.Stations;//refresh                
                 }

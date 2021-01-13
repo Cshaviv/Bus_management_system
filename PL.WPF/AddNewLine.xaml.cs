@@ -59,7 +59,7 @@ namespace PL.WPF
                 BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString());
                 BO.Line newline = new BO.Line() { LineNum = lineNum, Area = area, FirstStation = firstStation.Code, LastStation = lastStation.Code };
                 newline.Stations = new List<BO.StationInLine>();
-                BO.StationInLine firstStat = new BO.StationInLine() { lineNum = lineNum, StationCode = firstStation.Code, Name = firstStation.Name, LineStationIndex = 0, DistanceFromNext = distance, TimeFromNext = time };
+                BO.StationInLine firstStat = new BO.StationInLine() { lineNum = lineNum, StationCode = firstStation.Code, Name = firstStation.Name, LineStationIndex = 0 , DistanceFromNext = distance, TimeFromNext = time};
                 newline.Stations.Add(firstStat);
                 BO.StationInLine lastStat = new BO.StationInLine() { lineNum = lineNum, StationCode = lastStation.Code, Name = lastStation.Name, LineStationIndex = 1, DistanceFromNext = 0, TimeFromNext = new TimeSpan(0,0,0) };
                 newline.Stations.Add(lastStat);
