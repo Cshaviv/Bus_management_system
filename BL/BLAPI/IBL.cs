@@ -15,6 +15,7 @@ namespace BLAPI
         IEnumerable<BO.Bus> GetBusesBy(Predicate<BO.Bus> predicate);
         void UpdateBusDetails(BO.Bus bus);
         void DeleteBus(int licenseNum);
+        void AddBus(BO.Bus bus);
         #endregion
         #region Line
         void AddNewLine(BO.Line lineBo);
@@ -24,7 +25,7 @@ namespace BLAPI
         IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate);
         void UpdateLineDetails(BO.Line line);
         void DeleteLine(int LineId);
-        void AddBus(BO.Bus bus);
+        
         #endregion
         #region LineStation
         void AddLineStation(BO.LineStation s);
@@ -38,6 +39,9 @@ namespace BLAPI
         BO.Station stationDoBoAdapter(DO.Station stationDO);
         IEnumerable<BO.Station> GetAllStations();
         BO.Station GetStation(int code);
+        void AddStation(BO.Station station);
+       // void DeleteStation(int code);
+       // void UpdateStationDetails(BO.Station station);
 
         #endregion
         #region StationInLine

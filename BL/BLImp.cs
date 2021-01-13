@@ -333,6 +333,19 @@ namespace BL
             return stationDoBoAdapter(station);
         }
         #endregion
+      public  void AddStation(BO.Station station )
+        {
+            DO.Station stationDO = new DO.Station();
+            station.CopyPropertiesTo(stationDO);
+            try
+            {
+                dl.AddStation(stationDO);
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException( ex.stationCode , ex.Message);
+            }
+        }
 
         #region StationInLine
         public void AddStationInLine(int stationID, int busID, int index)

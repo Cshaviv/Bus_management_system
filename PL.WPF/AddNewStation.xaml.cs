@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLAPI;
+using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 
 namespace PL.WPF
 {
@@ -35,31 +38,31 @@ namespace PL.WPF
 
         private void addButton_click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    int code = int.Parse(codeTextBox.Text);
-            //    string name = nameTextBox.Text;
-            //    string address = addressTextBox.Text;
-            //    BO.Station station = new BO.Station() { Code = code, Name = name, Address = address, DateLastTreat = lastDate, StatusBus = status, TotalKm = totalKm, KmLastTreat = kmLastTreat };
-            //    if (station != null)
-            //    {
-            //        bl.AddStation(station);
-            //        Close();
-            //    }
-            //}
-            //catch (BO.BadLicenseNumException ex)
-            //{
-            //    MessageBox.Show(ex.Message + ": " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
-            //catch (BO.BadInputException ex)
-            //{
-            //    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
-       
+            try
+            {
+                int code = int.Parse(codeTextBox.Text);
+                string name = nameTextBox.Text;
+                string address = addressTextBox.Text;
+                BO.Station station = new BO.Station() { Code = code, Name = name, Address = address,  };
+                if (station != null)
+                {
+                    bl.AddStation(station);
+                    Close();
+                }
+            }
+            catch (BO.BadStationCodeException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
     }
 }
