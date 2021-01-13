@@ -18,18 +18,18 @@
 
             </StackPanel>
         </GroupBox>
-        <Button x:Name="AddFirst" Content="להתחלה הוספה" Click="AddFirstClick" Visibility="Visible" HorizontalAlignment="Left" Margin="217,366,0,0" VerticalAlignment="Top" Width="172" Height="50"/>
-        <Button x:Name="AddLast" Content="הוספה לסוף" Click="AddLastClick" Visibility="Hidden" HorizontalAlignment="Left" Margin="29,361,0,0" VerticalAlignment="Top" Width="172" Height="50"/>
-        <Button x:Name="AddMiddle" Content=" לאמצע הוספה"  Click="AddMiddleClick" Visibility="Hidden"  HorizontalAlignment="Left" Margin="472,360,0,0" VerticalAlignment="Top" Width="172" Height="50"/>
-        <TextBlock x:Name="PrevStatTextBlock" Visibility="Visible"  HorizontalAlignment="Left"  Margin="49,233,0,0" TextWrapping="Wrap" Text="בחר את התחנה שנמצאת לפני התחנה שאתה רוצה להוסיף " VerticalAlignment="Top" Height="28" Width="306"/>
-        <ComboBox x:Name="PrevstationComboBox" Visibility="Visible" HorizontalAlignment="Left" Margin="7,274,0,0" VerticalAlignment="Top" Width="439" Height="39"/>
-        <TextBlock x:Name="NextDistanceTextBlock"  HorizontalAlignment="Left" Margin="483,271,0,0" TextWrapping="Wrap" Text="dis from next" VerticalAlignment="Top" Height="28" Width="79"/>
-        <TextBlock x:Name="NextTimeTextBlock"  HorizontalAlignment="Left" Margin="469,318,0,0" TextWrapping="Wrap" Text="time from next" VerticalAlignment="Top" Height="28" Width="232"/>
-        <TextBox x:Name="NextDistanceTextBox"  HorizontalAlignment="Left" Height="23" Margin="459,289,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="NextTimeTextBox" HorizontalAlignment="Left" Height="23" Margin="464,356,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="PrevDistanceTextBlock"  HorizontalAlignment="Left" Margin="595,271,-33.667,0" TextWrapping="Wrap" Text="dis from prev" VerticalAlignment="Top" Height="28" Width="232"/>
-        <TextBlock x:Name="PrevTimeTextBlock"  HorizontalAlignment="Left" Margin="597,318,-35.667,0" TextWrapping="Wrap" Text="time from prev" VerticalAlignment="Top" Height="28" Width="232"/>
-        <TextBox x:Name="PrevDistanceTextBox"  HorizontalAlignment="Left" Height="23" Margin="590,292,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="PrevTimeTextBox"  HorizontalAlignment="Left" Height="23" Margin="601,353,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="AddFirst" Content="להתחלה הוספה" Visibility="Hidden" Click="AddFirstClick" HorizontalAlignment="Left" Margin="217,366,0,0" VerticalAlignment="Top" Width="172" Height="50"/>
+        <Button x:Name="AddLast" Content="הוספה לסוף" Visibility="Hidden" Click="AddLastClick"  HorizontalAlignment="Left" Margin="29,361,0,0" VerticalAlignment="Top" Width="172" Height="50"/>
+        <Button x:Name="AddMiddle" Content=" לאמצע הוספה" Visibility="Hidden" Click="AddMiddleClick"  HorizontalAlignment="Left" Margin="472,360,0,0" VerticalAlignment="Top" Width="172" Height="50"/>
+        <TextBlock x:Name="PrevStatTextBlock" Visibility="Hidden"  HorizontalAlignment="Left"  Margin="49,233,0,0" TextWrapping="Wrap" Text="בחר את התחנה שנמצאת לפני התחנה שאתה רוצה להוסיף " VerticalAlignment="Top" Height="28" Width="306"/>
+        <ComboBox x:Name="PrevstationComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="7,274,0,0" VerticalAlignment="Top" Width="439" Height="39"/>
+        <TextBlock x:Name="NextDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="468,271,0,0" TextWrapping="Wrap" Text="dis from next" VerticalAlignment="Top" Height="28" Width="79"/>
+        <TextBlock x:Name="NextTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="469,318,0,0" TextWrapping="Wrap" Text="time from next" VerticalAlignment="Top" Height="28" Width="232"/>
+        <TextBox x:Name="NextDistanceTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="459,289,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="NextTimeTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="464,356,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="PrevDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="595,271,-33.667,0" TextWrapping="Wrap" Text="dis from prev" VerticalAlignment="Top" Height="28" Width="232"/>
+        <TextBlock x:Name="PrevTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="597,318,-35.667,0" TextWrapping="Wrap" Text="time from prev" VerticalAlignment="Top" Height="28" Width="232"/>
+        <TextBox x:Name="PrevDistanceTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="590,292,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PrevTimeTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="601,353,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

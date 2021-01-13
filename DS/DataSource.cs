@@ -750,87 +750,87 @@ namespace DS
                     LastStation=119, //קרית הילד/סורוצקין
                     IsDeleted=false
                 },
-                new Line //2
-                {
-                    LineId=2,
-                    LineNum=12,
-                    Area= Area.Jerusalem,
-                    FirstStation=84, //מלכי ישראל/הטורים
-                    LastStation=1492, //בית וגן/הרב שאג
-                    IsDeleted=false
-                },
-                   new Line //3
-                {
-                    LineId=3,
-                    LineNum=53,
-                    Area= Area.Jerusalem,
-                    FirstStation=78, //שרי ישראל/יפו
-                    LastStation=1511, //טהון/גולומב
-                    IsDeleted=false
-                },
-                new Line //4
-                {
-                    LineId=4,
-                    LineNum=240,
-                    Area= Area.Jerusalem,
-                    FirstStation=102,//גולדה/שלמה הלוי
-                    LastStation=122, //מרכז סולם/סורוצקין
-                    IsDeleted=false
-                },
-                new Line //5
-                {
-                    LineId=5,
-                    LineNum=74,
-                    Area= Area.Jerusalem,
-                    FirstStation=105, //גבעת משה
-                    LastStation=1490, //הרב פרדס/צוקרמן
-                    IsDeleted=false
-                },
-                new Line //6
-                {
-                    LineId=6,
-                    LineNum=9,
-                    Area= Area.Jerusalem,
-                    FirstStation=123, //אוהל דוד/סורוצקין
-                    LastStation=1491, //ברזיל
-                    IsDeleted=false
-                },
-                new Line //7
-                {
-                    LineId=7,
-                    LineNum=139,
-                    Area= Area.Jerusalem,
-                    FirstStation=1518, //פרץ ברנשטיין/נזר דוד
-                    LastStation=116, //זית רענן/תורת חסד
-                    IsDeleted=false
-                },
-                 new Line //8
-                {
-                    LineId=8,
-                    LineNum=68,
-                    Area= Area.Jerusalem,
-                    FirstStation=108, //עזרת תורה/עלי הכהן
-                    LastStation=97, //שכונת בזבז 2
-                    IsDeleted=false
-                },
-                  new Line //9
-                {
-                    LineId=9,
-                    LineNum=82,
-                    Area= Area.Jerusalem,
-                    FirstStation=111, //יעקובזון/עזרת תורה
-                    LastStation=1493, //בית וגן/עוזיאל
-                    IsDeleted=false
-                },
-                   new Line //10
-                {
-                    LineId=10,
-                    LineNum=67,
-                    Area= Area.Jerusalem,
-                    FirstStation=1512, //הרב הרצוג/ שח"ל
-                    LastStation=113, //זית רענן/אוהל יהושע
-                    IsDeleted=false
-                },
+            //    new Line //2
+            //    {
+            //        LineId=2,
+            //        LineNum=12,
+            //        Area= Area.Jerusalem,
+            //        FirstStation=84, //מלכי ישראל/הטורים
+            //        LastStation=1492, //בית וגן/הרב שאג
+            //        IsDeleted=false
+            //    },
+            //       new Line //3
+            //    {
+            //        LineId=3,
+            //        LineNum=53,
+            //        Area= Area.Jerusalem,
+            //        FirstStation=78, //שרי ישראל/יפו
+            //        LastStation=1511, //טהון/גולומב
+            //        IsDeleted=false
+            //    },
+            //    new Line //4
+            //    {
+            //        LineId=4,
+            //        LineNum=240,
+            //        Area= Area.Jerusalem,
+            //        FirstStation=102,//גולדה/שלמה הלוי
+            //        LastStation=122, //מרכז סולם/סורוצקין
+            //        IsDeleted=false
+            //    },
+            //    new Line //5
+            //    {
+            //        LineId=5,
+            //        LineNum=74,
+            //        Area= Area.Jerusalem,
+            //        FirstStation=105, //גבעת משה
+            //        LastStation=1490, //הרב פרדס/צוקרמן
+            //        IsDeleted=false
+            //    },
+            //    new Line //6
+            //    {
+            //        LineId=6,
+            //        LineNum=9,
+            //        Area= Area.Jerusalem,
+            //        FirstStation=123, //אוהל דוד/סורוצקין
+            //        LastStation=1491, //ברזיל
+            //        IsDeleted=false
+            //    },
+            //    new Line //7
+            //    {
+            //        LineId=7,
+            //        LineNum=139,
+            //        Area= Area.Jerusalem,
+            //        FirstStation=1518, //פרץ ברנשטיין/נזר דוד
+            //        LastStation=116, //זית רענן/תורת חסד
+            //        IsDeleted=false
+            //    },
+            //     new Line //8
+            //    {
+            //        LineId=8,
+            //        LineNum=68,
+            //        Area= Area.Jerusalem,
+            //        FirstStation=108, //עזרת תורה/עלי הכהן
+            //        LastStation=97, //שכונת בזבז 2
+            //        IsDeleted=false
+            //    },
+            //      new Line //9
+            //    {
+            //        LineId=9,
+            //        LineNum=82,
+            //        Area= Area.Jerusalem,
+            //        FirstStation=111, //יעקובזון/עזרת תורה
+            //        LastStation=1493, //בית וגן/עוזיאל
+            //        IsDeleted=false
+            //    },
+            //       new Line //10
+            //    {
+            //        LineId=10,
+            //        LineNum=67,
+            //        Area= Area.Jerusalem,
+            //        FirstStation=1512, //הרב הרצוג/ שח"ל
+            //        LastStation=113, //זית רענן/אוהל יהושע
+            //        IsDeleted=false
+            //    },
             };
             #endregion
             #region ListLineStation
