@@ -323,8 +323,19 @@ namespace BL
             }
             catch (DO.BadStationCodeException ex)
             {
-                throw new BO.BadStationCodeException( ex.stationCode , ex.Message);
+                throw new BO.BadStationCodeException( ex.stationCode , "Station ID is invalid");
             }
+        }
+        public void DeleteStation(int code)
+        {
+            //try
+            //{
+            //    dl.DeleteBus(code);
+            //}
+            //catch (DO.BadStationCodeException ex)
+            //{
+            //    throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+            //}
         }
 
         #region StationInLine

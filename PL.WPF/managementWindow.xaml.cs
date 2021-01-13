@@ -188,9 +188,9 @@ namespace PL.WPF
         }
         private void AddStation_Click(object sender, RoutedEventArgs e)
         {
-            //AddNewStation win = new AddNewStation(bl);
-            //win.ShowDialog();
-            RefreshAllLinesList();
+            AddNewStation win = new AddNewStation(bl);
+            win.ShowDialog();
+            RefreshAllStations();
         }
 
 
