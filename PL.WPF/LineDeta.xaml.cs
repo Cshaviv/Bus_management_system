@@ -47,9 +47,8 @@ namespace PL.WPF
             {
                 if (MessageBox.Show("Do you want to delete this station?", "delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    bl.DeleteStationInLine(line.LineId, station.StationCode);
-                    line = bl.GetLine(line.LineId);
-                    linesListBox.DataContext = line.Stations;//refresh                
+                    bl.DeleteStationInLine(line.LineId, station.StationCode/*line.Stations[station.LineStationIndex-1].StationCode, line.Stations[station.LineStationIndex +1].StationCode*/);
+                    Refres hAllLine();
                 }
                 else
                 {

@@ -396,7 +396,7 @@ namespace BL
                 throw new Exception("Error, it cannot be update");
             }
         }
-        public void DeleteStationInLine(int lineID , int code)
+        public void DeleteStationInLine(int lineID , int code/*,int prevCode,int nextCode*/)
         {
             int index = GetLine(lineID).Stations.FindIndex(s => s.StationCode == code);
             int statCode1 = GetLine(lineID).Stations[index - 1].StationCode;

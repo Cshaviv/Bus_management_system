@@ -49,7 +49,6 @@ namespace PL.WPF
             AddMiddle.Visibility = Visibility.Hidden;
             AddFirst.Visibility = Visibility.Visible;
         }
-
         private void rbLast_Checked(object sender, RoutedEventArgs e)
         {
             PrevStatTextBlock.Visibility = Visibility.Hidden;
@@ -67,7 +66,6 @@ namespace PL.WPF
             AddLast.Visibility = Visibility.Visible;
 
         }
-
         private void rbMiddle_Checked(object sender, RoutedEventArgs e)
         {
 
@@ -90,7 +88,6 @@ namespace PL.WPF
             AddMiddle.Visibility = Visibility.Visible;  
 
         }
-
         private void AddFirstClick(object sender, RoutedEventArgs e)
         {
             try
