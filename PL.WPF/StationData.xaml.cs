@@ -29,9 +29,9 @@ namespace PL.WPF
             InitializeComponent();
             bl = _bl;
             station = _station;
-           // LineListBox.ItemsSource = station.Lines.ToList();
-            LineListBox.DataContext = station.LinesInStation;
-            LineListBox.Visibility = Visibility.Visible;
+            // LineListBox.ItemsSource = station.Lines.ToList();
+            LineInStationListBox.DataContext = station.LinesInStation;
+            LineInStationListBox.Visibility = Visibility.Visible;
             stationNameTextBlock.Text = station.Name.ToString();
             AddressTextBlock.Text = station.Address.ToString();
             stationCodeTextBlock.Text = station.Code.ToString();
