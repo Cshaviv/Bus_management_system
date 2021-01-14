@@ -40,7 +40,7 @@ namespace BLAPI
         BO.Station GetStation(int code);
         void AddStation(BO.Station station);
         void DeleteStation(int code);
-        // void UpdateStationDetails(BO.Station station);
+         void UpdateStation(BO.Station station);
 
         #endregion
         #region StationInLine

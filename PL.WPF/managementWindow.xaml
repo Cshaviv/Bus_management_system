@@ -99,10 +99,10 @@
 
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="0"  Name="IsDeletedRectangleStation" Fill="{Binding Path=IsDeleted, Converter={StaticResource BConverter}}" Width="10" Height="10"/>
-                <TextBlock Grid.Column="8" Name="CodeTextBox" Text=":קוד תחנה" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
-                <TextBox Grid.Column="6" Name="statCodeTextBox" Text="{Binding Path=Code }" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="4" Name="nameTextBox" Text=":שם התחנה " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
-                <TextBox Grid.Column="2" x:Name="statNameTextBlock" Text="{Binding Path=Name}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+                <TextBlock Grid.Column="8" Name="CodeTextBlock" Text=":קוד תחנה" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="6" Name="statCodeTextBlock" Text="{Binding Path=Code }" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="4" Name="nameTextBlock" Text=":שם התחנה " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="2" x:Name="statNameTextBlock" Text="{Binding Path=Name}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
             </Grid>
         </DataTemplate>
 

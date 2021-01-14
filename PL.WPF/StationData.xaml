@@ -20,8 +20,8 @@
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" TextWrapping="Wrap" Text="מספר קו:" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding Path=LineNum}" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="1" TextWrapping="Wrap" Text=":מספר קו" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap" Text="{Binding Path=LineNum}" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
             </Grid>
         </DataTemplate>
 
@@ -29,18 +29,13 @@
 
     </Window.Resources>
     <Grid>
-        <TextBlock  Text=":שם תחנה" FontFamily="Dubai Light"  FontSize="20" FontWeight="Bold" Margin="657,50,33,336" />
-        <TextBox  x:Name="stationNameTextBlock"  Text="{Binding Name}" Margin="411,50,155,336" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
-        <TextBlock  FontFamily="Dubai Light"  FontSize="20" FontWeight="Bold"  Text=":כתובת" Margin="673,89,48,289" />
-        <TextBlock Grid.Column="0" x:Name="AddressTextBlock"   Text="{Binding Address}" Margin="411,89,139,294"  FontFamily="Dubai Light"  FontSize="14"/>
-
-        <ListBox x:Name="LineInStationListBox" ItemsSource="{Binding}" Height="174" Margin="34,92,627,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
-                 ItemTemplate="{StaticResource MyDataTemplate}" SelectionChanged="LineListBox_SelectionChanged" />
+        <ListBox x:Name="LineInStationListBox" ItemsSource="{Binding}" Height="190" Margin="34,92,489,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+                 ItemTemplate="{StaticResource MyDataTemplate}"  />
         <Button x:Name="deleteStation" Content="מחיקת תחנה" HorizontalAlignment="Left" Margin="496,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="deleteStation_Click" />
         <Button x:Name="updateStation" Content="עידכון תחנה" HorizontalAlignment="Left" Margin="219,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="updateStation_Click" />
         <TextBlock  HorizontalAlignment="Left" Margin="138,55,0,0" TextWrapping="Wrap" Text="קוד" VerticalAlignment="Top" Height="28" Width="27"/>
-        <TextBlock   x:Name="stationCodeTextBlock"  HorizontalAlignment="Left"  Height="23" Margin="97,54,0,0" TextWrapping="Wrap" Text="{Binding Code}" VerticalAlignment="Top" Width="36"/>
-        <Grid x:Name="grid1" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Left" Margin="267,111,0,0" VerticalAlignment="Top" Height="173" Width="228">
+        <TextBlock   x:Name="stationCodeTextBlock"  HorizontalAlignment="Right"  Height="23" Margin="0,52,663,0" TextWrapping="Wrap" Text="{Binding Code}" VerticalAlignment="Top" Width="36"/>
+        <Grid x:Name="grid1" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Right" Margin="0,55,29,0" VerticalAlignment="Top" Height="73" Width="357">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -52,12 +47,10 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Code:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBlock x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":כתובת" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,-65,4" Grid.Row="4" VerticalAlignment="Center" Width="115"/>
+            <TextBox x:Name="addressTextBox" Grid.Column="0" HorizontalAlignment="Right" Height="22" Margin="0,6,3,7" Grid.Row="4" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="220"/>
+            <Label Content=":שם התחנה" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,-65,4" Grid.Row="0" VerticalAlignment="Center" Width="122"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="0" Height="22" Margin="1,6,3,7" Grid.Row="0" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
         </Grid>
     </Grid>
 </Window>

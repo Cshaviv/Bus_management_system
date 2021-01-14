@@ -349,6 +349,21 @@ namespace BL
                 throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
         }
+        public void UpdateStation(BO.Station stationBO)
+        {
+            DO.Station stationDO = new DO.Station();
+            stationBO.CopyPropertiesTo(stationDO);
+            try
+            {
+                dl.UpdateStation(stationDO);
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadLicenseNumException(ex.stationCode, ex.Message);
+            }
+           
+        }
+    
         #endregion
 
         #region StationInLine
