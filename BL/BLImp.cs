@@ -458,10 +458,10 @@ namespace BL
         public BO.User SignIn(string username, string passcode)
         {
             BO.User userBo;
-            try
+            try 
             {
                 DO.User userDo = dl.GetUser(username);
-                if (passcode != userDo.Password)
+                if (passcode != userDo.passCode)
                     throw new Exception();
                 userBo = new BO.User();
                 userDo.CopyPropertiesTo(userBo);
@@ -471,6 +471,19 @@ namespace BL
                 throw new Exception();
             }
             return userBo;
+        }
+        public void addNewUser(BO.User userBo)
+        {
+            try
+            {
+                DO.User UserDo = new DO.User();
+                userBo.CopyPropertiesTo(UserDo);
+                dl.AddUser(UserDo);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         #endregion

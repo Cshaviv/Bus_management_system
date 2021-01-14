@@ -188,7 +188,12 @@ namespace DL
             if (lineFind == null)
                 throw new BadLineIdException(lineId, "The Line ID does not exist");
             lineFind.IsDeleted = true;
-            DataSource.ListLineStations.RemoveAll(ls => ls.LineId == lineId);
+            foreach (DO.LineStation s in DataSource.ListLineStations)
+            {
+                if (s.LineId == lineId && s.IsDeleted == false)
+                    s.IsDeleted = true;
+            }
+            // DataSource.ListLineStations.RemoveAll(ls => ls.LineId == lineId);
         }
         #endregion
 
@@ -308,7 +313,6 @@ namespace DL
 
 
         #endregion
-
         
         #region Station
         public IEnumerable<DO.Station> GetAllStations()
@@ -438,7 +442,7 @@ namespace DL
         }
         public DO.User GetUser(string userName)
         {
-            DO.User userFind = DataSource.ListUsers.Find(user => user.UserName == userName && user.IsDeleted == false);
+            DO.User userFind = DataSource.ListUsers.Find(user => user.UserName == userName);
 
             if (userFind == null)
                 throw new Exception();
@@ -447,13 +451,13 @@ namespace DL
         }
         public void AddUser(DO.User user)
         {
-            if (DataSource.ListUsers.FirstOrDefault(_user => _user.UserName == user.UserName && _user.IsDeleted == false) != null)
+            if (DataSource.ListUsers.FirstOrDefault(_user => _user.UserName == user.UserName ) != null)
                 throw new Exception();
             DataSource.ListUsers.Add(user.Clone());
         }
         public void UpdateUser(DO.User user)
         {
-            DO.User userFind = DataSource.ListUsers.Find(_user => _user.UserName == user.UserName && _user.IsDeleted == false);
+            DO.User userFind = DataSource.ListUsers.Find(_user => _user.UserName == user.UserName );
             if (userFind == null)
                 throw new Exception();
             DO.User newUser = user.Clone();//copy of the bus that the function got
@@ -461,18 +465,18 @@ namespace DL
         }
         public void UpdateUser(string userName, Action<DO.User> update)
         {
-            DO.User userFind = DataSource.ListUsers.Find(user => user.UserName == userName && user.IsDeleted == false);
+            DO.User userFind = DataSource.ListUsers.Find(user => user.UserName == userName );
             if (userFind == null)
                 throw new Exception();
             update(userFind);
         }
         public void DeleteUser(string userName)
         {
-            DO.User userFind = DataSource.ListUsers.Find(user => user.UserName == userName && user.IsDeleted == false);
+            DO.User userFind = DataSource.ListUsers.Find(user => user.UserName == userName);
 
             if (userFind == null)
                 throw new Exception();
-            userFind.IsDeleted = true;
+            DataSource.ListUsers.Remove(userFind);
         }
 
         #endregion

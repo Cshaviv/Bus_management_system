@@ -49,5 +49,13 @@ namespace BLAPI
         void DeleteStationInLine(int code, int lineID);
 
         #endregion
+
+        #region user
+        BO.User SignIn(string username, string passcode);
+        void addNewUser(BO.User userBo);
+
+
+        #endregion
+
     }
 }

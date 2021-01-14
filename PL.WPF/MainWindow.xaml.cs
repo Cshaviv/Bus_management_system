@@ -28,27 +28,29 @@ namespace PL.WPF
         public MainWindow()
         {
             InitializeComponent();
-            btnGO.Content = "any text";
-            var allBuses = bl.GetAllBuses().ToList();
-            ////Select(b => b.LicenseNum + "_" + b.StartDate.ToString()).ToList();
-            busesListBox.ItemsSource = allBuses;
-
-
         }
-
-        //private void InitBuses()
-        //{
-        //    //Label action = (Label)bus.FindName("action", myContentPresenter);
-        //}
-
-
 
         private void btnGO_Click(object sender, RoutedEventArgs e)
         {
-            if (rbManagement.IsChecked == true)
+            string userName = userNameTextBox.Text;
+            string passcode = passwordTextBox.Text;
+            if(userName==""|| passcode=="")
             {
-                managementWindow win = new managementWindow(bl);
-                win.Show();
+                MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            BO.User logtIn = new BO.User();
+            logtIn = bl.SignIn(userName, passcode);
+            if (rbManagement.IsChecked == true )
+            {
+                if(logtIn.accountType)
+                {
+                    managementWindow win = new managementWindow(bl);
+                    win.ShowDialog();
+                }
+               else
+                    MessageBox.Show("למשתמש זה אין אפשרות כניסה כמנהל", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
             else if (rbUser.IsChecked == true)
             {
@@ -62,6 +64,12 @@ namespace PL.WPF
         private void busesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NewUser win = new NewUser(bl);
+            win.ShowDialog();
         }
     }
 } 
