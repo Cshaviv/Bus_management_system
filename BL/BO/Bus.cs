@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-   public class Bus
+   public class Bus// אוטובוס
     {
-        public int LicenseNum { get; set; }//license number
-        public DateTime StartDate { get; set; }//start date(date of start)
-        public double TotalKm { get; set; }//total km
-        public double FuelTank { get; set; }//fuel tank
+        public int LicenseNum { get; set; }//מספר רישוי
+        public DateTime StartDate { get; set; }//(תאריך התחלה (התחלת פעילות
+        public double TotalKm { get; set; }//סה"כ קילומטר
+        public double FuelTank { get; set; }//דלק-כמה נסע מהתדלוק
         //public double kmAfterRefuling { get; set; }//fuel tank
-        public BusStatus StatusBus { get; set; }//status of the bus
-        public DateTime DateLastTreat { get; set; }//date of the last treatment
-        public double KmLastTreat { get; set; }// total km from the last treatment
-        public override string ToString()
+        public BusStatus StatusBus { get; set; }//(סטטוס האוטובוס (באיזה מצב נמצא
+        public DateTime DateLastTreat { get; set; }//תאריך הטיפול הקודם
+        public double KmLastTreat { get; set; }// כמה קילומטר נסע מהטיפול הקודם
+        public override string ToString()//הדפסה של המספר רישוי . יש הבדל במספר הספרות של המספר לפי תאריך ההתחלה של האוטובוס 
         {
-            int year = StartDate.Year;
+            int year = StartDate.Year;// שנת תחילת הפעילות
             string licenNum = LicenseNum.ToString();
             if (year < 2018)
                 return "" +  licenNum[0] + licenNum[1] + "-" + licenNum[2] + licenNum[3] + licenNum[4] + "-" + licenNum[5] + licenNum[6]; 

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-   public class User
+   public class User// משתמש
     {
-        public string UserName { get; set; } //user name
-        public string passCode { get; set; }//user passcode
-        public bool managaccount { get; set; } //access for admin
+        public string UserName { get; set; } //שם משתמש
+        public string passCode { get; set; }//סיסמה של המשתמש
+        public bool managaccount { get; set; } // גישה למנהל
     }
 }

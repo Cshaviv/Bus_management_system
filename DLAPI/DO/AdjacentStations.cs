@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class AdjacentStations
+    public class AdjacentStations//זוג תחנות עוקבות
     {
-        public int StationCode1 { get; set; }
-        public int StationCode2 { get; set; }
-        public double Distance { get; set; }
-        public TimeSpan Time { get; set; }
-        public bool IsDeleted { get; set; }
+        public int StationCode1 { get; set; }// קוד תחנה ראשונה
+        public int StationCode2 { get; set; }//קוד תחנה שנייה
+        public double Distance { get; set; }// מרחק בין שתי התחנות
+        public TimeSpan Time { get; set; }//זמן הנסיעה בין שתי התחנות
+        public bool IsDeleted { get; set; }// האם מחוק
     }
 }

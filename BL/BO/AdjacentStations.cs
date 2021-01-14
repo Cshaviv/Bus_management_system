@@ -6,17 +6,12 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    class AdjacentStations
+    public class AdjacentStation//זוג תחנות עוקבות
     {
-        
-        public class AdjacentStation
-        {
-            public int StationCode1 { get; set; }
-            public int StationCode2 { get; set; }
-            public double Distance { get; set; }
-            public TimeSpan Time { get; set; }
-            
-        }
-    }
+        public int StationCode1 { get; set; }// קוד תחנה ראשונה
+        public int StationCode2 { get; set; }//קוד תחנה שנייה
+        public double Distance { get; set; }// מרחק בין שתי התחנות
+        public TimeSpan Time { get; set; }//זמן הנסיעה בין שתי התחנות
+    } 
 }
 

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class LineInStation
+    public class LineInStation// קווים שעוברים בתחנה 
     {
-        public int LineId { get; set; } //id of the line
-        public int LineNum { get; set; } //number of the line
-        public int LineStationIndex { get; set; } //the index of the station in the line
-                                                  //public int TargetStation { get; set; }
-        public int TargetStation { get; set; }
+        public int LineId { get; set; }  //מזהה ייחודי של הקו
+        public int LineNum { get; set; } //מספר קו
+        public int LineStationIndex { get; set; } //האינדקס בתחנת קו                                        
+        public int TargetStation { get; set; }// תחנת היעד
+
     }
 }
     
