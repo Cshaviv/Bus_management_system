@@ -115,7 +115,7 @@ namespace PL.WPF
                 myBus.FuelTank = 0;
             }
         }
-        private void AddBus_Click(object sender, RoutedEventArgs e)
+        private void AddBus_Click(object sender, RoutedEventArgs e)//yes
         {
             AddBusWindow win = new AddBusWindow(bl);
             win.ShowDialog();

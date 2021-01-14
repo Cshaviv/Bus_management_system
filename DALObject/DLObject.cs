@@ -25,7 +25,7 @@ namespace DL
             return from bus in DataSource.ListBuses
                    where bus.IsDeleted == false
                    select bus.Clone();
-        }
+        }//yes
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
         {
             return from bus in DataSource.ListBuses
