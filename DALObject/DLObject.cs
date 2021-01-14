@@ -345,8 +345,9 @@ namespace DL
         public void UpdateStation(DO.Station station)
         {
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == station.Code && stat.IsDeleted == false);
+            int code = station.Code;
             if (stationFind == null)
-                throw new BadStationCodeException(stationFind.Code, "The station does not exist");
+                throw new BadStationCodeException(code, "The station does not exist");
               DataSource.ListStations.Remove(stationFind);//delete the station without update details
             DataSource.ListStations.Add(station.Clone());// add the station with update details
         }
