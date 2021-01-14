@@ -292,7 +292,7 @@ namespace BL
             //return stationBO;
             stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code)
                                         let line = dl.GetLine(l.LineId)
-                                        select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation=line.LastStation}).ToList();
+                                        select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation=line.St,}).ToList();
 
             return stationBO;
         }
@@ -488,11 +488,5 @@ namespace BL
 
         #endregion
 
-
-
     }
-
-
-
-
 }
