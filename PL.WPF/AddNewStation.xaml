@@ -12,7 +12,7 @@
     </Window.Resources>
     <Grid>
 
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="239,48,0,0" HorizontalAlignment="Left" DataContext="{StaticResource stationViewSource}" Height="148" Width="246">
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="211,53,0,0" HorizontalAlignment="Left" DataContext="{StaticResource stationViewSource}" Height="118" Width="349">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2.34"/>
                 <RowDefinition Height="30.66"/>
@@ -24,14 +24,14 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3,1.66,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Address:"/>
-            <TextBox x:Name="addressTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3,2.66,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3,3,0,4" HorizontalAlignment="Left" Grid.Column="0" Content="Code:"/>
-            <TextBox x:Name="codeTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3,5,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3,3,0,4" HorizontalAlignment="Left" Grid.Column="0" Content="Name:"/>
-            <TextBox x:Name="nameTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3,5,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,1.66,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Address:"/>
+            <TextBox x:Name="addressTextBox" Width="250" VerticalAlignment="Center" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3,2.66,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Bottom" Grid.Row="1" Margin="3,0,0,5" HorizontalAlignment="Left" Grid.Column="0" Content="Code:"/>
+            <TextBox x:Name="codeTextBox" Width="250" VerticalAlignment="Center" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3,5,0,5" Height="21" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3,3,0,4" HorizontalAlignment="Left" Grid.Column="0" Content="Name:"/>
+            <TextBox x:Name="nameTextBox" Width="250" VerticalAlignment="Center" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3,5,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
         </Grid>
-        <Button Name="addButton" Content="הוספה" HorizontalAlignment="Left" Margin="254,196,0,0" VerticalAlignment="Top" Width="126" Height="25" Click="addButton_click"/>
+        <Button Name="addButton" Content="הוספה" HorizontalAlignment="Left" Margin="313,214,0,0" VerticalAlignment="Top" Width="126" Height="25" Click="addButton_click"/>
 
     </Grid>
 </Window>

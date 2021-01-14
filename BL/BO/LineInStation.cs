@@ -11,6 +11,7 @@ namespace BO
         public int LineId { get; set; } //id of the line
         public int LineNum { get; set; } //number of the line
         public int LineStationIndex { get; set; } //the index of the station in the line
+                                                  //public int TargetStation { get; set; }
         public int TargetStation { get; set; }
     }
 }

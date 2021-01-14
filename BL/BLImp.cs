@@ -286,9 +286,14 @@ namespace BL
             BO.Station stationBO = new BO.Station();
             int stationCode = stationDO.Code;
             stationDO.CopyPropertiesTo(stationBO);
-            stationBO.LinesInStation = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
-                                        let line = dl.GetLine(stat.LineId)//line
-                                        select line.CopyToLineInStation(stat)).ToList();
+            //stationBO.LinesInStation = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
+            //                            let line = dl.GetLine(stat.LineId)//line
+            //                            select line.CopyToLineInStation(stat)).ToList();
+            //return stationBO;
+            stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code)
+                                        let line = dl.GetLine(l.LineId)
+                                        select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation=line.LastStation}).ToList();
+
             return stationBO;
         }
         public IEnumerable<BO.Station> GetAllStations()
