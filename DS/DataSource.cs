@@ -836,7 +836,7 @@ namespace DS
             {
                 new User //1
                 {
-                    UserName= "casi",
+                    UserName= "123",
                     passCode="123",
                     managaccount=true,
                     //IsDeleted= false

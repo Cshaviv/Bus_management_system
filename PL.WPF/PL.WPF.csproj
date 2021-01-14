@@ -228,8 +228,5 @@
   <ItemGroup>
     <Resource Include="StationSign.png111.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="StationSign.png1bus.pngff.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
