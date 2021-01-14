@@ -9,6 +9,7 @@ namespace BO
    public class User
     {
         public string UserName { get; set; } //user name
-        public bool AdminAccess { get; set; } //access for admin
+        public string passCode { get; set; }//user passcode
+        public bool accountType { get; set; } //access for admin
     }
 }

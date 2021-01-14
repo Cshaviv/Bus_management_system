@@ -43,7 +43,7 @@ namespace PL.WPF
             logtIn = bl.SignIn(userName, passcode);
             if (rbManagement.IsChecked == true )
             {
-                if(logtIn.AdminAccess)
+                if(logtIn.accountType)
                 {
                     managementWindow win = new managementWindow(bl);
                     win.ShowDialog();
@@ -64,6 +64,12 @@ namespace PL.WPF
         private void busesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NewUser win = new NewUser(bl);
+            win.ShowDialog();
         }
     }
 } 

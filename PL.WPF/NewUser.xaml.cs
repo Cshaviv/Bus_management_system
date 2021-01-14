@@ -18,10 +18,10 @@ namespace PL.WPF
     /// <summary>
     /// Interaction logic for LogInUser.xaml
     /// </summary>
-    public partial class SignLogInUser : Window
+    public partial class NewUser  : Window
     {
         IBL bl;
-        public SignLogInUser(IBL _bl)
+        public NewUser(IBL _bl)
         {
             InitializeComponent();
             bl = _bl;
@@ -31,7 +31,14 @@ namespace PL.WPF
         {
             string userName = userNameTextBox.Text;
             string passcode =  passwordTextBox.Text;
-
+            bool AcountType = (bool)AcountTypeCheckBox.IsChecked;
+            if (userName == "" || passcode == "")
+            {
+                MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            BO.User newUser = new BO.User() {UserName= userName,passCode= passcode,accountType= AcountType };
+            bl.addNewUser(newUser);
         }
     }
 }

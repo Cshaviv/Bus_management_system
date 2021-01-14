@@ -12,10 +12,10 @@
                   DataType="local:Bus">
             <Grid>
                 <Label x:Name="action" HorizontalAlignment="Left" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
-            </Grid> 
+            </Grid>
         </DataTemplate>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="43*"/>
@@ -26,14 +26,18 @@
             <StackPanel Margin="21,20,175.333,0" Height="66" VerticalAlignment="Top" >
                 <RadioButton x:Name ="rbManagement" Content="management" Height="24" IsChecked="True"/>
                 <RadioButton x:Name ="rbUser" Content=" user" Height="23" Margin="0,0,-11,0"/>
-               
+
             </StackPanel>
         </GroupBox>
-        <Button x:Name="btnGO" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
+        <Button x:Name="btnGO" HorizontalAlignment="Left" Height="42" Margin="229,365,0,0" VerticalAlignment="Top" Width="105" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="365,201,0,0" TextWrapping="Wrap" Text="שם משתמש" VerticalAlignment="Top" Height="32" Width="90"/>
         <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="33" Margin="217,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
         <TextBlock HorizontalAlignment="Left" Margin="378,252,0,0" TextWrapping="Wrap" Text="סיסמא" VerticalAlignment="Top" Height="32" Width="126"/>
         <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="34" Margin="217,247,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="142"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="TextBlock"/><InlineUIContainer>
+                <TextBlock TextWrapping="Wrap" Text="TextBlock"/>
+            </InlineUIContainer></TextBlock>
+        <Button Content="אני רוצה ליצור משתמש חדש" HorizontalAlignment="Left" Margin="182,292,0,0" VerticalAlignment="Top" Width="225" Height="22" Click="Button_Click"/>
 
     </Grid>
 </Window>

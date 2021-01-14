@@ -50,8 +50,10 @@ namespace BLAPI
 
         #endregion
 
-        #region
+        #region user
         BO.User SignIn(string username, string passcode);
+        void addNewUser(BO.User userBo);
+
 
         #endregion
 

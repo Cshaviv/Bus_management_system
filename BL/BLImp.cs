@@ -467,6 +467,19 @@ namespace BL
             }
             return userBo;
         }
+        public void addNewUser(BO.User userBo)
+        {
+            try
+            {
+                DO.User UserDo = new DO.User();
+                userBo.CopyPropertiesTo(UserDo);
+                dl.AddUser(UserDo);
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
 
         #endregion
 

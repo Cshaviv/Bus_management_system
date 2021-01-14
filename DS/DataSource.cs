@@ -653,80 +653,80 @@ namespace DS
                 {
                     UserName= "shira123",
                     Password="sh123",
-                    AdminAccess=true,
-                    IsDeleted= false
+                    accountType=true,
+                    //IsDeleted= false
                 },
 
                 new User //2
                 {
                     UserName= "ayala6521",
                     Password= "abc33",
-                    AdminAccess=true,
-                    IsDeleted= false
+                    accountType=true,
+                    //IsDeleted= false
                 },
 
                 new User //3
                 {
                     UserName= "tahel87",
                     Password= "df456",
-                    AdminAccess=true,
-                    IsDeleted= false
+                    accountType=true,
+                    //IsDeleted= false
                 },
 
                 new User //4
                 {
                     UserName= "dav983",
                     Password= "pro865",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                  //  IsDeleted= false
                 },
 
                 new User //5
                 {
                     UserName= "duc4569",
                     Password= "xzxz",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                //   IsDeleted= false
                 },
 
                 new User //6
                 {
                     UserName= "cut765",
                     Password= "fuyfuy",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                 //   IsDeleted= false
                 },
 
                 new User //7
                 {
                     UserName= "dog555",
                     Password= "digdig",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                 //   IsDeleted= false
                 },
 
                 new User //8
                 {
                     UserName= "fug897",
                     Password= "strstr",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                 //   IsDeleted= false
                 },
 
                 new User //9
                 {
                     UserName= "noa8642",
                     Password= "ttt456",
-                    AdminAccess=true,
-                    IsDeleted= false
+                    accountType=true,
+                   // IsDeleted= false
                 },
 
                 new User //10
                 {
                     UserName= "classb",
                     Password= "shalom4",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                 //   IsDeleted= false
                 },
             };
             #endregion
@@ -922,80 +922,80 @@ namespace DS
                 {
                     UserName= "ayisrael",
                     Password="ay3223",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                    //IsDeleted= false
                 },
 
                 new User //2
                 {
                     UserName= "ayala6521",
                     Password= "abc33",
-                    AdminAccess=true,
-                    IsDeleted= false
+                    accountType=true,
+                   // IsDeleted= false
                 },
 
                 new User //3
                 {
                     UserName= "tahel87",
                     Password= "df456",
-                    AdminAccess=true,
-                    IsDeleted= false
+                    accountType=true,
+                   // IsDeleted= false
                 },
 
                 new User //4
                 {
                     UserName= "dav983",
                     Password= "pro865",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                  //  IsDeleted= false
                 },
 
                 new User //5
                 {
                     UserName= "duc4569",
                     Password= "xzxz",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                 //   IsDeleted= false
                 },
 
                 new User //6
                 {
                     UserName= "cut765",
                     Password= "fuyfuy",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                  //  IsDeleted= false
                 },
 
                 new User //7
                 {
                     UserName= "dog555",
                     Password= "digdig",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+               //     IsDeleted= false
                 },
 
                 new User //8
                 {
                     UserName= "fug897",
                     Password= "strstr",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                    //IsDeleted= false
                 },
 
                 new User //9
                 {
                     UserName= "noa8642",
                     Password= "ttt456",
-                    AdminAccess=true,
-                    IsDeleted= false
+                    accountType=true,
+                   // IsDeleted= false
                 },
 
                 new User //10
                 {
                     UserName= "classb",
                     Password= "shalom4",
-                    AdminAccess=false,
-                    IsDeleted= false
+                    accountType=false,
+                 //   IsDeleted= false
                 },
             };
             #endregion
