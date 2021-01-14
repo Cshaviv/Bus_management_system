@@ -456,7 +456,7 @@ namespace BL
             try 
             {
                 DO.User userDo = dl.GetUser(username);
-                if (passcode != userDo.Password)
+                if (passcode != userDo.passCode)
                     throw new Exception();
                 userBo = new BO.User();
                 userDo.CopyPropertiesTo(userBo);

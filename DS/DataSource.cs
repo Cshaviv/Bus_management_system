@@ -652,7 +652,7 @@ namespace DS
                 new User //1
                 {
                     UserName= "shira123",
-                    Password="sh123",
+                    passCode="sh123",
                     accountType=true,
                     //IsDeleted= false
                 },
@@ -660,7 +660,7 @@ namespace DS
                 new User //2
                 {
                     UserName= "ayala6521",
-                    Password= "abc33",
+                    passCode= "abc33",
                     accountType=true,
                     //IsDeleted= false
                 },
@@ -668,7 +668,7 @@ namespace DS
                 new User //3
                 {
                     UserName= "tahel87",
-                    Password= "df456",
+                    passCode= "df456",
                     accountType=true,
                     //IsDeleted= false
                 },
@@ -676,7 +676,7 @@ namespace DS
                 new User //4
                 {
                     UserName= "dav983",
-                    Password= "pro865",
+                    passCode= "pro865",
                     accountType=false,
                   //  IsDeleted= false
                 },
@@ -684,7 +684,7 @@ namespace DS
                 new User //5
                 {
                     UserName= "duc4569",
-                    Password= "xzxz",
+                    passCode= "xzxz",
                     accountType=false,
                 //   IsDeleted= false
                 },
@@ -692,7 +692,7 @@ namespace DS
                 new User //6
                 {
                     UserName= "cut765",
-                    Password= "fuyfuy",
+                    passCode= "fuyfuy",
                     accountType=false,
                  //   IsDeleted= false
                 },
@@ -700,7 +700,7 @@ namespace DS
                 new User //7
                 {
                     UserName= "dog555",
-                    Password= "digdig",
+                    passCode= "digdig",
                     accountType=false,
                  //   IsDeleted= false
                 },
@@ -708,7 +708,7 @@ namespace DS
                 new User //8
                 {
                     UserName= "fug897",
-                    Password= "strstr",
+                    passCode= "strstr",
                     accountType=false,
                  //   IsDeleted= false
                 },
@@ -716,7 +716,7 @@ namespace DS
                 new User //9
                 {
                     UserName= "noa8642",
-                    Password= "ttt456",
+                    passCode= "ttt456",
                     accountType=true,
                    // IsDeleted= false
                 },
@@ -724,7 +724,7 @@ namespace DS
                 new User //10
                 {
                     UserName= "classb",
-                    Password= "shalom4",
+                    passCode= "shalom4",
                     accountType=false,
                  //   IsDeleted= false
                 },
@@ -921,7 +921,7 @@ namespace DS
                 new User //1
                 {
                     UserName= "ayisrael",
-                    Password="ay3223",
+                    passCode="ay3223",
                     accountType=false,
                     //IsDeleted= false
                 },
@@ -929,7 +929,7 @@ namespace DS
                 new User //2
                 {
                     UserName= "ayala6521",
-                    Password= "abc33",
+                    passCode= "abc33",
                     accountType=true,
                    // IsDeleted= false
                 },
@@ -937,7 +937,7 @@ namespace DS
                 new User //3
                 {
                     UserName= "tahel87",
-                    Password= "df456",
+                    passCode= "df456",
                     accountType=true,
                    // IsDeleted= false
                 },
@@ -945,7 +945,7 @@ namespace DS
                 new User //4
                 {
                     UserName= "dav983",
-                    Password= "pro865",
+                    passCode= "pro865",
                     accountType=false,
                   //  IsDeleted= false
                 },
@@ -953,7 +953,7 @@ namespace DS
                 new User //5
                 {
                     UserName= "duc4569",
-                    Password= "xzxz",
+                    passCode= "xzxz",
                     accountType=false,
                  //   IsDeleted= false
                 },
@@ -961,7 +961,7 @@ namespace DS
                 new User //6
                 {
                     UserName= "cut765",
-                    Password= "fuyfuy",
+                    passCode= "fuyfuy",
                     accountType=false,
                   //  IsDeleted= false
                 },
@@ -969,7 +969,7 @@ namespace DS
                 new User //7
                 {
                     UserName= "dog555",
-                    Password= "digdig",
+                    passCode= "digdig",
                     accountType=false,
                //     IsDeleted= false
                 },
@@ -977,7 +977,7 @@ namespace DS
                 new User //8
                 {
                     UserName= "fug897",
-                    Password= "strstr",
+                    passCode= "strstr",
                     accountType=false,
                     //IsDeleted= false
                 },
@@ -985,7 +985,7 @@ namespace DS
                 new User //9
                 {
                     UserName= "noa8642",
-                    Password= "ttt456",
+                    passCode= "ttt456",
                     accountType=true,
                    // IsDeleted= false
                 },
@@ -993,7 +993,7 @@ namespace DS
                 new User //10
                 {
                     UserName= "classb",
-                    Password= "shalom4",
+                    passCode= "shalom4",
                     accountType=false,
                  //   IsDeleted= false
                 },

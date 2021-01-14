@@ -313,7 +313,6 @@ namespace DL
 
 
         #endregion
-
         
         #region Station
         public IEnumerable<DO.Station> GetAllStations()

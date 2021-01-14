@@ -39,6 +39,7 @@ namespace PL.WPF
             }
             BO.User newUser = new BO.User() {UserName= userName,passCode= passcode,accountType= AcountType };
             bl.addNewUser(newUser);
+            Close();
         }
     }
 }
