@@ -24,8 +24,9 @@ namespace PL.WPF
         IBL bl;
         BO.Station station;
        ListBox stationsListBox;
-        Rectangle IsDeletedRectangleStation;
-        public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox /*Rectangle _IsDeletedRectangleStation*/) //, ListBox _stationsListBox)
+       Rectangle IsDeletedRectangleStation;
+       
+        public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox ) //ctor
         {
             InitializeComponent();
             bl = _bl;
@@ -44,26 +45,35 @@ namespace PL.WPF
             
         }
 
-
+        /// <summary>
+        /// הפונקציה מרעננת את הרשימת אוטובוסים, נקרא לה לאחר ביצוע שינויים ועדכונים
+        /// </summary>
         void RefreshAllStations()
         {
             stationsListBox.ItemsSource = bl.GetAllStations().ToList();
             
         }
-        private void updateStation_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        ///פונקציה זו מעדכנת את פרטי התחנה, בפונקציה זו אנחנו שולחים את קוד התחנה לפונקציה של עדכון 
+        /// ששולחת לפונקציה ב  BL התחנה בשכבת ה  
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void updateStation_Click(object sender, RoutedEventArgs e)// כפתור עדכון תחנה
         {
             try
             {
                 string stationName = nameTextBox.Text;
                 string stationAddress = addressTextBox.Text;
                 int stationCode = int.Parse(stationCodeTextBlock.Text);
-                BO.Station stat = new BO.Station() { Name = stationName, Address = stationAddress, Code = stationCode };
-                bl.UpdateStation(stat);
-                RefreshAllStations();
-                MessageBox.Show("התחנה עודכנה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                BO.Station stat = new BO.Station() { Name = stationName, Address = stationAddress, Code = stationCode };// יוצרת אובייקט של תחנה ומציבה בה את הנתונים
+                bl.UpdateStation(stat);//שליחה לפונקצית עדכון 
+                RefreshAllStations();// רענון הרשימת תחנות
+                MessageBox.Show("התחנה עודכנה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);//שליחת הודעה שהעדכון הצליח
                 Close();
             }
-            catch (BO.BadStationCodeException ex)
+            catch (BO.BadStationCodeException ex)// חריגות
             {
                 MessageBox.Show(ex.Message + ": " + ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -74,35 +84,29 @@ namespace PL.WPF
         }
     
 
-        private void deleteStation_Click(object sender, RoutedEventArgs e)
+        private void deleteStation_Click(object sender, RoutedEventArgs e)//כפתור מחיקת תחנה
         {
             try
             { 
-                MessageBoxResult res = MessageBox.Show("?אתה בטוח שאתה רוצה למחוק את התחנה", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult res = MessageBox.Show("?אתה בטוח שאתה רוצה למחוק את התחנה", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);//שליחת הודעה למשתמש אם רוצה למחוק את התחנה
                 if (res == MessageBoxResult.No)
                     return;
-                int stationCode = int.Parse(stationCodeTextBlock.Text);
-                bl.DeleteStation(stationCode);
-                RefreshAllStations();
+                int stationCode = int.Parse(stationCodeTextBlock.Text);//קוד התחנה
+                bl.DeleteStation(stationCode);//שליחה לפנוקצית מחיקה
+                RefreshAllStations();//רענון רשימת התחנות
                 Close();
-                MessageBox.Show("התחנה נמחקה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("התחנה נמחקה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);// שליחת הודעה שהמחיקה הצליחה
             }
-            catch (BO.BadStationCodeException ex)
+            catch (BO.BadStationCodeException ex)//חריגה
             {
                 MessageBox.Show(ex.Message + ": " + ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception ex)//חריגה
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
-
-        private void LineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
