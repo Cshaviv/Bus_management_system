@@ -35,6 +35,8 @@ namespace PL.WPF
             addressTextBox.Text= station.Address.ToString();
             nameTextBox.Text= station.Name.ToString();
             stationCodeTextBlock.Text = station.Code.ToString();
+            
+            
         }
         void RefreshAllStations()
         {
