@@ -25,13 +25,13 @@ namespace PL.WPF
         BO.Station station;
        ListBox stationsListBox;
         Rectangle IsDeletedRectangleStation;
-        public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox, Rectangle _IsDeletedRectangleStation) //, ListBox _stationsListBox)
+        public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox /*Rectangle _IsDeletedRectangleStation*/) //, ListBox _stationsListBox)
         {
             InitializeComponent();
             bl = _bl;
             station = _station;
             stationsListBox = _stationsListBox;
-            IsDeletedRectangleStation = _IsDeletedRectangleStation;
+           // IsDeletedRectangleStation = _IsDeletedRectangleStation;
             addressTextBox.Text= station.Address.ToString();
             nameTextBox.Text= station.Name.ToString();
             LineInStationListBox.ItemsSource = station.LinesInStation;
@@ -44,12 +44,6 @@ namespace PL.WPF
             
         }
 
-        public StationData(IBL bl, Station station, ListBox stationsListBox)
-        {
-            this.bl = bl;
-            this.station = station;
-            this.stationsListBox = stationsListBox;
-        }
 
         void RefreshAllStations()
         {
@@ -58,8 +52,27 @@ namespace PL.WPF
         }
         private void updateStation_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                string stationName = nameTextBox.Text;
+                string stationAddress = addressTextBox.Text;
+                int stationCode = int.Parse(stationCodeTextBlock.Text);
+                BO.Station stat = new BO.Station() { Name = stationName, Address = stationAddress, Code = stationCode };
+                bl.UpdateStation(stat);
+                RefreshAllStations();
+                MessageBox.Show("התחנה עודכנה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
+            }
+            catch (BO.BadStationCodeException ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+    
 
         private void deleteStation_Click(object sender, RoutedEventArgs e)
         {
