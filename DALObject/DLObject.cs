@@ -20,12 +20,17 @@ namespace DL
         #endregion
 
         #region Bus
+        /// <summary>
+        /// הפונקציה מחזירה את רשימת האוטובוסים שלא מחוקים
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.Bus> GetAllBuses()
         {
             return from bus in DataSource.ListBuses
                    where bus.IsDeleted == false
                    select bus.Clone();
         }//yes
+        //
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
         {
             return from bus in DataSource.ListBuses
