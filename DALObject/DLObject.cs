@@ -440,7 +440,7 @@ namespace DL
                    select user.Clone();
         }
         public DO.User GetUser(string userName)
-        {
+          {
             DO.User userFind = DataSource.ListUsers.Find(user => user.UserName == userName);
 
             if (userFind == null)

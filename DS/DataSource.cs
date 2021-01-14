@@ -645,91 +645,7 @@ namespace DS
                     IsDeleted=false
                 },
             };
-            #endregion
-            #region ListUsers
-            ListUsers = new List<User>
-            {
-                new User //1
-                {
-                    UserName= "shira123",
-                    passCode="sh123",
-                    accountType=true,
-                    //IsDeleted= false
-                },
-
-                new User //2
-                {
-                    UserName= "ayala6521",
-                    passCode= "abc33",
-                    accountType=true,
-                    //IsDeleted= false
-                },
-
-                new User //3
-                {
-                    UserName= "tahel87",
-                    passCode= "df456",
-                    accountType=true,
-                    //IsDeleted= false
-                },
-
-                new User //4
-                {
-                    UserName= "dav983",
-                    passCode= "pro865",
-                    accountType=false,
-                  //  IsDeleted= false
-                },
-
-                new User //5
-                {
-                    UserName= "duc4569",
-                    passCode= "xzxz",
-                    accountType=false,
-                //   IsDeleted= false
-                },
-
-                new User //6
-                {
-                    UserName= "cut765",
-                    passCode= "fuyfuy",
-                    accountType=false,
-                 //   IsDeleted= false
-                },
-
-                new User //7
-                {
-                    UserName= "dog555",
-                    passCode= "digdig",
-                    accountType=false,
-                 //   IsDeleted= false
-                },
-
-                new User //8
-                {
-                    UserName= "fug897",
-                    passCode= "strstr",
-                    accountType=false,
-                 //   IsDeleted= false
-                },
-
-                new User //9
-                {
-                    UserName= "noa8642",
-                    passCode= "ttt456",
-                    accountType=true,
-                   // IsDeleted= false
-                },
-
-                new User //10
-                {
-                    UserName= "classb",
-                    passCode= "shalom4",
-                    accountType=false,
-                 //   IsDeleted= false
-                },
-            };
-            #endregion
+            #endregion 
             #region ListLines
             ListLines = new List<Line>
             {
@@ -920,9 +836,9 @@ namespace DS
             {
                 new User //1
                 {
-                    UserName= "ayisrael",
-                    passCode="ay3223",
-                    accountType=false,
+                    UserName= "casi",
+                    passCode="123",
+                    managaccount=true,
                     //IsDeleted= false
                 },
 
@@ -930,7 +846,7 @@ namespace DS
                 {
                     UserName= "ayala6521",
                     passCode= "abc33",
-                    accountType=true,
+                    managaccount=true,
                    // IsDeleted= false
                 },
 
@@ -938,7 +854,7 @@ namespace DS
                 {
                     UserName= "tahel87",
                     passCode= "df456",
-                    accountType=true,
+                    managaccount=true,
                    // IsDeleted= false
                 },
 
@@ -946,7 +862,7 @@ namespace DS
                 {
                     UserName= "dav983",
                     passCode= "pro865",
-                    accountType=false,
+                    managaccount=false,
                   //  IsDeleted= false
                 },
 
@@ -954,7 +870,7 @@ namespace DS
                 {
                     UserName= "duc4569",
                     passCode= "xzxz",
-                    accountType=false,
+                    managaccount=false,
                  //   IsDeleted= false
                 },
 
@@ -962,7 +878,7 @@ namespace DS
                 {
                     UserName= "cut765",
                     passCode= "fuyfuy",
-                    accountType=false,
+                    managaccount=false,
                   //  IsDeleted= false
                 },
 
@@ -970,7 +886,7 @@ namespace DS
                 {
                     UserName= "dog555",
                     passCode= "digdig",
-                    accountType=false,
+                    managaccount=false,
                //     IsDeleted= false
                 },
 
@@ -978,7 +894,7 @@ namespace DS
                 {
                     UserName= "fug897",
                     passCode= "strstr",
-                    accountType=false,
+                    managaccount=false,
                     //IsDeleted= false
                 },
 
@@ -986,7 +902,7 @@ namespace DS
                 {
                     UserName= "noa8642",
                     passCode= "ttt456",
-                    accountType=true,
+                    managaccount=true,
                    // IsDeleted= false
                 },
 
@@ -994,7 +910,7 @@ namespace DS
                 {
                     UserName= "classb",
                     passCode= "shalom4",
-                    accountType=false,
+                    managaccount=false,
                  //   IsDeleted= false
                 },
             };

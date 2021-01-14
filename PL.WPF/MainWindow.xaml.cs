@@ -43,7 +43,7 @@ namespace PL.WPF
             logtIn = bl.SignIn(userName, passcode);
             if (rbManagement.IsChecked == true )
             {
-                if(logtIn.accountType)
+                if(logtIn.managaccount)
                 {
                     managementWindow win = new managementWindow(bl);
                     win.ShowDialog();
