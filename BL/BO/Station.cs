@@ -8,12 +8,12 @@ namespace BO
 {
    public class Station
     {
-        public int Code { get; set; } //code of the station
-        public string Name { get; set; } // name of the station
-        public string Address { get; set; } //address of station
+        public int Code { get; set; } //קוד התחנה
+        public string Name { get; set; } // שם התחנה
+        public string Address { get; set; } // כתובת התחנה
         public bool DisabledAccess { get; set; } //access to disabled
-        public bool IsDeleted { get; set; }
-        public List<LineInStation> LinesInStation { get; set; }
+        public bool IsDeleted { get; set; }// האם מחוק
+        public List<LineInStation> LinesInStation { get; set; }// תחנה של קווים שעוברים בתחנה
         public override string ToString()
         {
             return "station code: " + Code + " station name: " + Name;

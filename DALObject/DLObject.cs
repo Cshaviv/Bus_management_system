@@ -309,10 +309,12 @@ namespace DL
 
         #endregion
 
+        
         #region Station
         public IEnumerable<DO.Station> GetAllStations()
         {
-            return from station in DataSource.ListStations           
+            return from station in DataSource.ListStations
+                       //where station.IsDeleted == false
                    select station.Clone();
         }
         public IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate)
@@ -341,10 +343,10 @@ namespace DL
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == station.Code && stat.IsDeleted == false);
             if (stationFind == null)
                 throw new BadStationCodeException(stationFind.Code, "The station does not exist");
-            DO.Station newStation = station.Clone();//copy of the bus that the function got
-            stationFind = newStation;//update
+              DataSource.ListStations.Remove(stationFind);//delete the station without update details
+            DataSource.ListStations.Add(station.Clone());// add the station with update details
         }
-        public void UpdateStation(int code, Action<DO.Station> update)
+        public void UpdateStation(int code, Action<DO.Station> update)//?
         {
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == code && stat.IsDeleted == false);
             if (stationFind == null)
@@ -353,22 +355,18 @@ namespace DL
         }
         public void DeleteStation(int code)
         {
-            DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == code && stat.IsDeleted == false);
-            if (stationFind == null)
+            DO.Station statFind = DataSource.ListStations.FirstOrDefault(s => s.Code == code && s.IsDeleted == false);// chrck if station exist in list station
+            if (statFind == null)
                 throw new BadStationCodeException(code, "The station does not exist");
-            stationFind.IsDeleted = true;
-            foreach (DO.LineStation lineStat in DataSource.ListLineStations)//delete fron the line station list
+            statFind.IsDeleted = true;
+            foreach (DO.AdjacentStations stat in DataSource.ListAdjacentStations)//delete from adjacent Station
             {
-                if (lineStat.StationCode == code && lineStat.IsDeleted == false)
-                    lineStat.IsDeleted = true;
+                if ((stat.StationCode1 == code || stat.StationCode2 == code) && stat.IsDeleted == false)
+                    stat.IsDeleted = true;
             }
-            foreach (DO.AdjacentStations adjStation in DataSource.ListAdjacentStations)//delete from adjacent Station list
-            {
-                if ((adjStation.StationCode1 == code || adjStation.StationCode2 == code) && adjStation.IsDeleted == false)
-                    adjStation.IsDeleted = true;
-            }
-
         }
+
+
 
         #endregion
 
@@ -566,4 +564,4 @@ namespace DL
                 throw new DO.BadStationCodeException(stationID, "station ID is NOT registered to bus ID");
         }
     }
-}
+} 
