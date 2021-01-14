@@ -26,6 +26,7 @@
                 <TextBlock Grid.Column="1" TextWrapping="Wrap" Text=":מספר קו" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="0" TextWrapping="Wrap" Text="{Binding Path=LineNum}" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="3" TextWrapping="Wrap" Text=":תחנת יעד" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="2" TextWrapping="Wrap" Text="{Binding Path=TargetStation}" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
 
             </Grid>
         </DataTemplate>

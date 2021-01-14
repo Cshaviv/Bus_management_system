@@ -40,6 +40,8 @@ namespace PL.WPF
             stationNameTextBlock.Text = station.Name.ToString();
             AddressTextBlock.Text = station.Address.ToString();
             stationCodeTextBlock.Text = station.Code.ToString();
+            
+            
         }
 
         public StationData(IBL bl, Station station, ListBox stationsListBox)
