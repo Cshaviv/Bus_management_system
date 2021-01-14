@@ -41,20 +41,20 @@ namespace DL
             else
                 throw new BadLicenseNumException(licenseNumber, "The bus does not exist");
         }
-        public void AddBus(DO.Bus bus)
+        public void AddBus(DO.Bus busBo)//yes
         {
-            if (DataSource.ListBuses.FirstOrDefault(bus_ => bus_.LicenseNum == bus.LicenseNum && bus_.IsDeleted == false) != null)
-                throw new BadInputException("The bus is already exist");           
-            DataSource.ListBuses.Add(bus.Clone());
+            if (DataSource.ListBuses.FirstOrDefault(bus_ => bus_.LicenseNum == busBo.LicenseNum && bus_.IsDeleted == false) != null)
+                throw new BadLicenseNumException(busBo.LicenseNum,"The bus is already exist");           
+            DataSource.ListBuses.Add(busBo.Clone());
         }
         public void UpdateBus(DO.Bus bus)
         {
             DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == bus.LicenseNum && bus_.IsDeleted == false);
             if (busFind == null)
-                throw new BadLicenseNumException(bus.LicenseNum, "The bus does not exist");
+                throw new BadLicenseNumException(bus.LicenseNum, "הקו אינו קיים במערכת");
             DataSource.ListBuses.Remove(busFind);
             DataSource.ListBuses.Add(bus.Clone());
-        }
+        }//yes
         public void UpdateBus(int licenseNumber, Action<DO.Bus> update)
         {
             DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == licenseNumber && bus_.IsDeleted == false);
@@ -62,11 +62,11 @@ namespace DL
                 throw new BadLicenseNumException(licenseNumber, "The bus does not exist");
             update(busFind);
         }
-        public void DeleteBus(int licenseNumber)
+        public void DeleteBus(int licenseNumber)//yes
         {
             DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == licenseNumber && bus_.IsDeleted == false);
             if (busFind == null)
-                throw new BadLicenseNumException(licenseNumber, "The bus does not exist");
+                throw new BadLicenseNumException(licenseNumber, "הקו אינו קיים במערכת");
             busFind.IsDeleted = true;//delete
 
         }

@@ -33,15 +33,12 @@ namespace PL.WPF
             bl = _bl;
             bus = b;
             busesListBox = _busesListBox;
-            //IsDeletedRectangle = _IsDeletedRectangle;
-            licenseNumTextBlock.Text = b.LicenseNum.ToString();
+            licenseNumTextBox.Text = b.LicenseNum.ToString();
             startDateDatePicker.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
             lastTreatDatePicker.Text = b.DateLastTreat.Day + "/" + b.DateLastTreat.Month + "/" + b.DateLastTreat.Year;
-            kmTextBox.Text = b.TotalKm.ToString();
-            kmafterrefuelingTextBox.Text = b.FuelTank.ToString();
-            kmafterTreatTextBox.Text = b.KmLastTreat.ToString();
-         
-
+            totalKmTextBox.Text = b.TotalKm.ToString();
+            fuelTankTextBox.Text = b.FuelTank.ToString();
+            kmafterTreatTextBox.Text = b.KmLastTreat.ToString();       
         }
         void RefreshAllBuses()
         {
@@ -56,7 +53,7 @@ namespace PL.WPF
             // busViewSource.Source = [generic data source]
         }
 
-        private void delete_Click(object sender, RoutedEventArgs e)
+        private void delete_Click(object sender, RoutedEventArgs e)//yes
         {
             MessageBoxResult res = MessageBox.Show("Are you sure deleting selected bus?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.No)
@@ -66,10 +63,13 @@ namespace PL.WPF
                 if (bus != null)
                 {
                     bl.DeleteBus(bus.LicenseNum);
-                    //IsDeletedRectangle.Fill = Brushes.Red;
-                    //RefreshAllBuses();
                     Close();
                 }
+            }
+            catch (BO.BadLicenseNumException ex)
+            {
+                MessageBox.Show(ex.Message + " " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
             catch (Exception ex)
             {
@@ -77,18 +77,18 @@ namespace PL.WPF
             }
         }
        
-        private void updateButtonClick(object sender, RoutedEventArgs e)
+        private void updateButtonClick(object sender, RoutedEventArgs e)//yes
         {
             try
             {
                 
-                int licenseNum = int.Parse(licenseNumTextBlock.Text);
-                double fuel = double.Parse(kmafterrefuelingTextBox.Text);
+                int licenseNum = int.Parse(licenseNumTextBox.Text);
+                double fuel = double.Parse(fuelTankTextBox.Text);
                  DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
                 DateTime lastDate = DateTime.Parse(lastTreatDatePicker.Text);
                 double kmLastTreat = double.Parse(kmafterTreatTextBox.Text);
                 //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
-                double totalKm = double.Parse(kmTextBox.Text);
+                double totalKm = double.Parse(totalKmTextBox.Text);
                 BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, /*StatusBus = status,*/ TotalKm = totalKm, KmLastTreat = kmLastTreat };
                 bl.UpdateBusDetails(b);
                 Close();
@@ -96,15 +96,14 @@ namespace PL.WPF
            
             catch (BO.BadLicenseNumException ex)
             {
-                MessageBox.Show(ex.Message + ": " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message + " " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (BO.BadInputException ex)
-            {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            //catch (BO.BadInputException ex)
+            //{
+            //    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
             catch (Exception ex)
             {
-                //licenseNumTextBox.BorderBrush = Brushes.Red;
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

@@ -26,17 +26,16 @@ namespace PL.WPF
         {
             InitializeComponent();
             bl = _bl;
-            busStatusCombo.ItemsSource = Enum.GetValues(typeof(BusStatus)).Cast<BusStatus>();
-            busStatusCombo.SelectedIndex = 0;
-        }
-
+            //busStatusCombo.ItemsSource = Enum.GetValues(typeof(BusStatus)).Cast<BusStatus>();
+            //busStatusCombo.SelectedIndex = 0;
+        }//yes
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             System.Windows.Data.CollectionViewSource busViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("busViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // busViewSource.Source = [generic data source]
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        }//yes
+        private void AddBus_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -46,8 +45,8 @@ namespace PL.WPF
                 double kmLastTreat = double.Parse(kmLastTreatTextBox.Text);
                 double fuel = double.Parse(fuelTankTextBox.Text);
                 double totalKm = double.Parse(totalKmTextBox.Text);
-                BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
-                BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, StatusBus = status, TotalKm = totalKm, KmLastTreat = kmLastTreat };
+                //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
+                BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, StatusBus = BusStatus.Available, TotalKm = totalKm, KmLastTreat = kmLastTreat };
                 if(b!=null)
                 { 
                     bl.AddBus(b);
@@ -60,7 +59,8 @@ namespace PL.WPF
             }
             catch (BO.BadInputException ex)
             {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                Exceptions(ex.num1, ex.Message);
+              
             }
             catch (Exception ex)
             {
@@ -69,6 +69,20 @@ namespace PL.WPF
             }
        
 
+        }
+
+        private void Exceptions(int num,string massage)
+        {
+            if (num == 1)
+            {
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                licenseNumTextBox.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Green;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Green;
+                kmLastTreatTextBox.BorderBrush = Brushes.Green;
+                fuelTankTextBox.BorderBrush = Brushes.Green;
+                totalKmTextBox.BorderBrush = Brushes.Green;
+            }
         }
     }
 }

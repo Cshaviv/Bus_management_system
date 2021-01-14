@@ -28,7 +28,7 @@ namespace PL.WPF
         {
             InitializeComponent();
             bl = _bl;
-           RefreshAllBuses();
+            RefreshAllBuses();
            RefreshAllLinesList();
             RefreshAllStations();
         }
@@ -44,8 +44,8 @@ namespace PL.WPF
             AddLine.Visibility = Visibility.Hidden;
             AddStation.Visibility = Visibility.Hidden;
             RefreshAllBuses();
-        }
-        private void doubleClickBusInfromation(object sender, RoutedEventArgs e)//Clicking "double click" on a bus in the list will open a window showing the bus data
+        }//yes
+        private void doubleClickBusInfromation(object sender, RoutedEventArgs e)//yes Clicking "double click" on a bus in the list will open a window showing the bus data
         {
             Bus myBus = (sender as ListBox).SelectedItem as Bus;
             if (myBus != null)
@@ -53,11 +53,9 @@ namespace PL.WPF
                 ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                //Rectangle IsDeletedRectangle = (Rectangle)myDataTemplate.FindName("IsDeletedRectangle", myContentPresenter);
                 BusData win = new BusData(myBus, bl, busesListBox);
                 win.ShowDialog();
-                RefreshAllBuses();
-              
+                RefreshAllBuses();          
             }
 
         }
@@ -78,7 +76,7 @@ namespace PL.WPF
                 }
             }
             return null;
-        }  
+        }  //yes
         private void RefuelClick(object sender, RoutedEventArgs e)
         {
             Bus myBus = (sender as Button).DataContext as Bus;
@@ -94,8 +92,8 @@ namespace PL.WPF
             }
             myBus.StatusBus = BusStatus.OnRefueling;//update status
             myBus.FuelTank = 0;//update fields
-        }
-        private void TreatClick(object sender, RoutedEventArgs e)
+        }//לא בשימוש בנתיים
+        private void TreatClick(object sender, RoutedEventArgs e)//לא בשימוש בנתיים
         {
             Bus myBus = (sender as Button).DataContext as Bus;
             if (myBus.StatusBus == BusStatus.InTravel || myBus.StatusBus == BusStatus.OnTreatment || myBus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
@@ -126,7 +124,7 @@ namespace PL.WPF
         void RefreshAllBuses()
         {
             busesListBox.ItemsSource = bl.GetAllBuses().ToList();
-        }
+        }//yes
         #endregion
 
         #region Lines 

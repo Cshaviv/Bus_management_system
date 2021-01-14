@@ -13,12 +13,7 @@
     <Grid DataContext="{StaticResource busViewSource}" Margin="0,0,0,-3">
         <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="68,330,0,0" VerticalAlignment="Top" Width="135" Height="39"/>
         <Button  Content="עדכון נתונים" Click="updateButtonClick" Name="updateButton" Margin="245,330,420,57" />
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="120,46,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="101.897"/>
-                <ColumnDefinition Width="26.103"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="117,33,0,0" HorizontalAlignment="Left" DataContext="{StaticResource busViewSource}" Height="208" Width="260">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -26,20 +21,26 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <!--<RowDefinition Height="Auto"/>-->
             </Grid.RowDefinitions>
-            <Label Content="Km:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,5" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="30"/>
-            <TextBox x:Name="kmTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="22" Margin="4,6,0,7" Grid.Row="3" Text="{Binding Path=TotalKm}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="fuelTank//Km after refueling:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="125" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="kmafterrefuelingTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,6,0,6" Grid.Row="4" Text="{Binding Path= FuelTank}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Km after treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4" Grid.Row="5" VerticalAlignment="Center" Height="26" Width="125" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="kmafterTreatTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,6,0,6" Grid.Row="5" Text="{Binding Path= KmLastTreat}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Last Treat:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,5" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="63"/>
-            <DatePicker x:Name="lastTreatDatePicker" Grid.Column="2" HorizontalAlignment="Left" Margin="4,3,0,5" Grid.Row="2" SelectedDate="{Binding Path=DateLastTreat}" Width="120"/>
-            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,6" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="115" Grid.ColumnSpan="2"/>
-            <TextBlock x:Name="licenseNumTextBlock" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,5,0,7" Grid.Row="0" Text="{Binding Path= LicenseNum}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,8" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="65"/>
-            <DatePicker x:Name="startDateDatePicker" Grid.Column="2" HorizontalAlignment="Left" Margin="4,5,0,8" Grid.Row="1" SelectedDate="{Binding Path=StartDate}" VerticalAlignment="Center" Width="120" Height="26"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="154"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="0,3.667,3,3" HorizontalAlignment="Right" Grid.Column="1" Content="תאריך טיפול אחרון" Width="127"/>
+            <DatePicker x:Name="lastTreatDatePicker" VerticalAlignment="Center" SelectedDate="{Binding DateLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3,4,0,4.333" HorizontalAlignment="Left" Grid.Column="0" Width="120"/>
+            <Label VerticalAlignment="Center" Grid.Row="5" Margin="0,1,-18.667,5" HorizontalAlignment="Right" Content=":ק''מ מאז תדלוק אחרון" Grid.ColumnSpan="2" Width="164"/>
+            <TextBox x:Name="fuelTankTextBox" Width="120" VerticalAlignment="Center" Text="{Binding FuelTank, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="0,1.667,-94.667,5" HorizontalAlignment="Right" Content=":ק''מ מאז טיפול אחרון" Width="238" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="kmafterTreatTextBox" Width="120" VerticalAlignment="Center" Text="{Binding KmLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="34,6,23.667,8"  HorizontalAlignment="Center" Grid.Column="1" Content=":מספר רישוי" Width="73"/>
+            <TextBox x:Name="licenseNumTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LicenseNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="0,3.667,11.333,6.333" HorizontalAlignment="Right" Content=":תאריך תחילת פעולה" Width="134" Grid.ColumnSpan="2"/>
+            <DatePicker x:Name="startDateDatePicker" VerticalAlignment="Center" SelectedDate="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3,3.333,0,3.333" HorizontalAlignment="Left" Grid.Column="0" Width="120"/>
+            <!--<Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content="Status Bus:"/>-->
+            <!--<ComboBox x:Name="busStatusCombo" Width="120" VerticalAlignment="Center" Text="{Binding StatusBus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>-->
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="0,2.667,-70.667,5.333" HorizontalAlignment="Right" Grid.Column="1" Content="ק''מ" Width="125"/>
+            <TextBox x:Name="totalKmTextBox" Width="120" VerticalAlignment="Center" Text="{Binding TotalKm, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
         </Grid>
 
 

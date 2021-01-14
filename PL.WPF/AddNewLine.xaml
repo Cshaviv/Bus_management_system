@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:PL.WPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.WPF.AddNewLine"
         mc:Ignorable="d"
-        Title="AddNewLine" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="AddNewLine" Height="388" Width="542" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
     </Window.Resources>
-    <Grid DataContext="{StaticResource lineViewSource}">
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="251,125,0,0" VerticalAlignment="Top" Width="224" Height="142">
+    <Grid DataContext="{StaticResource lineViewSource}" Margin="0,0,97.333,-0.333">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="173,43,0,0" VerticalAlignment="Top" Width="224" Height="210">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -27,37 +27,37 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <ComboBox x:Name="AreaComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120">
+            <Label Content=":אזור נסיעה" Grid.Column="1" HorizontalAlignment="Left" Margin="23.333,4.333,-1,3.667" Grid.Row="1" VerticalAlignment="Center"/>
+            <ComboBox x:Name="AreaComboBox" Grid.Column="0"  HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <ComboBox x:Name="firstStationComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120">
+            <Label Content=":תחנה ראשונה" Grid.Column="1" HorizontalAlignment="Left" Margin="7.333,4,0,4" Grid.Row="3" VerticalAlignment="Center"/>
+            <ComboBox x:Name="firstStationComboBox" Grid.Column="0"  HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <ComboBox x:Name="lastStationComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="120">
+            <Label Content=":תחנה אחרונה" Grid.Column="1" HorizontalAlignment="Left" Margin="9.333,3,-0.667,3.667" Grid.Row="4" VerticalAlignment="Center"/>
+            <ComboBox x:Name="lastStationComboBox" Grid.Column="0" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label Content="Line Num:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="lineNumTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Name="timeLabel" Content="זמן בין תחנות" Grid.Column="0"  HorizontalAlignment="Left" Margin="3,5,0,-17" Grid.Row="6" VerticalAlignment="Center" Grid.RowSpan="3"/>
-            <TextBox x:Name="TimeTextBox" Grid.Column="1"  HorizontalAlignment="Left" Height="24" Margin="2.667,7.667,0,-19" Grid.Row="6" VerticalAlignment="Center" Width="120" Grid.RowSpan="3"/>
-            <Label  Name="distanceLabel" Content="מרחק בין תחנות" Grid.Column="0" HorizontalAlignment="Left" Margin="-9,24,0,-46" Grid.Row="8" VerticalAlignment="Center"/>
-            <TextBox x:Name="distanceTextBox"  Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,39,0,-54" Grid.Row="6" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":מספר קו" Grid.Column="1" HorizontalAlignment="Left" Margin="33.333,3,0,5" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="lineNumTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Name="timeLabel" Content="זמן בין תחנות" Grid.Column="1"  HorizontalAlignment="Left" Margin="13.333,5.333,0,-9.333" Grid.Row="6" VerticalAlignment="Center" Grid.RowSpan="3"/>
+            <TextBox x:Name="TimeTextBox" Grid.Column="0"  HorizontalAlignment="Left" Height="24" Margin="3,7.667,0,-12.333" Grid.Row="6" VerticalAlignment="Center" Width="120" Grid.RowSpan="3"/>
+            <Label  Name="distanceLabel" Content="מרחק בין תחנות" HorizontalAlignment="Left" Margin="125,24.667,0,-41.333" Grid.Row="8" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="distanceTextBox"  Grid.Column="0" HorizontalAlignment="Left" Height="24" Margin="3,39,0,-54" Grid.Row="6" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Button x:Name="AddLine" Content="הוספה" Click="AddLineClick" HorizontalAlignment="Left" Margin="571,243,0,0" VerticalAlignment="Top" Width="105" Height="35"/>
+        <Button x:Name="AddLine" Content="הוספה" Click="AddLineClick" HorizontalAlignment="Left" Margin="182,292,0,0" VerticalAlignment="Top" Width="189" Height="35"/>
     </Grid>
 </Window>
