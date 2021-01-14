@@ -38,8 +38,6 @@
                 <TextBlock Grid.Column="12" Text="{Binding Path=LineNum }" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="10" Text=":אזור " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
                 <TextBlock Grid.Column="8" x:Name="kmTextBlock" Text="{Binding Path=Area}" FontFamily="Dubai Light"  FontSize="14" />
-                <Button  Content="update" Grid.Column="6"  Width="70"/>
-                <Button Content="delete" Grid.Column="4" Width="70"/>
                 <TextBlock Grid.Column="15" Text="{Binding Path=LineId }" FontFamily="Dubai Light"  FontSize="14"/>
 
             </Grid>

@@ -439,10 +439,10 @@ namespace DL
         {
             DO.User userFind = DataSource.ListUsers.Find(user => user.UserName == userName && user.IsDeleted == false);
 
-            if (userFind != null)
-                return userFind.Clone();
-            else
+            if (userFind == null)
                 throw new Exception();
+            else
+                return userFind.Clone();
         }
         public void AddUser(DO.User user)
         {

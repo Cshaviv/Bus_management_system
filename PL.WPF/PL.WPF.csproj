@@ -87,6 +87,9 @@
     <Compile Include="LineDeta.xaml.cs">
       <DependentUpon>LineDeta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SignLogInUser.xaml.cs">
+      <DependentUpon>SignLogInUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StationData.xaml.cs">
       <DependentUpon>StationData.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LineDeta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignLogInUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

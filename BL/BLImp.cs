@@ -448,6 +448,29 @@ namespace BL
         }
         #endregion
 
+        #region user
+
+        public BO.User SignIn(string username, string passcode)
+        {
+            BO.User userBo;
+            try
+            {
+                DO.User userDo = dl.GetUser(username);
+                if (passcode != userDo.Password)
+                    throw new Exception();
+                userBo = new BO.User();
+                userDo.CopyPropertiesTo(userBo);
+            }
+            catch(Exception)
+            {
+                throw new Exception();
+            }
+            return userBo;
+        }
+
+        #endregion
+
+
 
     }
 
