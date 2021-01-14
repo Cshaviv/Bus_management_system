@@ -41,13 +41,18 @@ namespace PL.WPF
             }
             BO.User logtIn = new BO.User();
             logtIn = bl.SignIn(userName, passcode);
-
-            if (rbManagement.IsChecked == true && logtIn.AdminAccess )
+            if (rbManagement.IsChecked == true )
             {
-                managementWindow win = new managementWindow(bl);
-                win.Show();
+                if(logtIn.AdminAccess)
+                {
+                    managementWindow win = new managementWindow(bl);
+                    win.ShowDialog();
+                }
+               else
+                    MessageBox.Show("למשתמש זה אין אפשרות כניסה כמנהל", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
-            else if (rbUser.IsChecked == true && logtIn.AdminAccess==false)
+            else if (rbUser.IsChecked == true)
             {
                 UserWindows win = new UserWindows(bl);
                 win.Show();

@@ -922,7 +922,7 @@ namespace DS
                 {
                     UserName= "ayisrael",
                     Password="ay3223",
-                    AdminAccess=true,
+                    AdminAccess=false,
                     IsDeleted= false
                 },
 
