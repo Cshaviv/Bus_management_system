@@ -181,7 +181,7 @@ namespace PL.WPF
         #endregion
 
         #region Station
-        void RefreshAllStations()
+        void RefreshAllStations()//
         {
             stationsListBox.ItemsSource = bl.GetAllStations().ToList();
         }
