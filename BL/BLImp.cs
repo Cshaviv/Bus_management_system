@@ -290,14 +290,6 @@ namespace BL
                                         let line = dl.GetLine(stat.LineId)//line
                                         select line.CopyToLineInStation(stat)).ToList();
             return stationBO;
-
-            //BO.Station stationBO = new BO.Station();
-            //stationDO.CopyPropertiesTo(stationBO);
-            //int code = stationBO.Code;
-            //stationBO.LinesInStation = (from l in dl.GetLinesInStationList(l => l.StationCode == stationBO.Code)
-            //                            select new LineInStation { LineNum = l.LineNum, LineId = l.LineId }).ToList();
-            //return stationBO;
-
         }
         public IEnumerable<BO.Station> GetAllStations()
         {
@@ -337,7 +329,7 @@ namespace BL
             {
                 DO.Station statDO = dl.GetStation(statCode);
                 BO.Station statBO = StationDoBoAdapter(statDO);
-                if (statBO.LinesInStation.Count == 0)
+                if (statBO.LinesInStation.Count==0)
                     dl.DeleteStation(statCode);
                 else
                     throw new BO.BadStationCodeException(statCode, "לא ניתן למחוק את התחנה כיוון שיש קווים שעוברים בה");

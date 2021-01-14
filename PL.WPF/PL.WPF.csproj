@@ -77,7 +77,13 @@
     <Compile Include="BusData.xaml.cs">
       <DependentUpon>BusData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BusDataUser.xaml.cs">
+      <DependentUpon>BusDataUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ibl.cs" />
+    <Compile Include="LineDataUser.xaml.cs">
+      <DependentUpon>LineDataUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LineDeta.xaml.cs">
       <DependentUpon>LineDeta.xaml</DependentUpon>
     </Compile>
@@ -89,6 +95,9 @@
     </Compile>
     <Compile Include="UpdateStationInLine.xaml.cs">
       <DependentUpon>UpdateStationInLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserWindows.xaml.cs">
+      <DependentUpon>UserWindows.xaml</DependentUpon>
     </Compile>
     <Page Include="AddBusWindow.xaml">
       <SubType>Designer</SubType>
@@ -111,6 +120,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BusData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BusDataUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LineDataUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateStationInLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -76,9 +76,7 @@ namespace PL.WPF
                 MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        
-
-
+       
         private void updateButtonClick(object sender, RoutedEventArgs e)
         {
             try

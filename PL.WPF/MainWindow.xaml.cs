@@ -52,9 +52,9 @@ namespace PL.WPF
             }
             else if (rbUser.IsChecked == true)
             {
-            //    userWindow win = new userWindow(bl);
-            //    win.Show();
-            
+                UserWindows win = new UserWindows(bl);
+                win.Show();
+
             }
 
         }
