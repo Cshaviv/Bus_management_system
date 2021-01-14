@@ -36,7 +36,7 @@ namespace BL
         {
             return from item in dl.GetAllBuses()
                    select busDoBoAdapter(item);
-        }
+        }//yes
         public Bus GetBus(int licenseNum)
         {
             DO.Bus busDO;
@@ -71,12 +71,13 @@ namespace BL
             //    throw new BO.BadInputException(ex.Message);
             //}
         }
-        public void AddBus(BO.Bus bus)
+        public void AddBus(BO.Bus bus)//yes
         {
             DO.Bus busDO = new DO.Bus();
             bus.CopyPropertiesTo(busDO);
             try
             {
+                dl.AddBus(busDO);
                 if (bus.StartDate > DateTime.Now)
                     throw new BadInputException(1,"The date of start operation is not valid");
                 if (bus.DateLastTreat > DateTime.Now)
@@ -88,15 +89,14 @@ namespace BL
                 if (bus.TotalKm < bus.FuelTank)
                     throw new BadInputException(5,"The total km or fuel Tank treat are not correct");
                 if (bus.FuelTank < 0 || bus.FuelTank > 1200)
-                    throw new BadInputException(6,"The fuel tank is not valid");
+                    throw new BadInputException(5,"The fuel tank is not valid");
                 int lengthLicNumber = LengthOfLicNum(bus.LicenseNum);
                 if (!((lengthLicNumber == 7 && bus.StartDate.Year < 2018) || (lengthLicNumber == 8 && bus.StartDate.Year >= 2018)))
-                    throw new BadInputException(7,"The license number and the date of start operation do not match");
+                    throw new BadInputException(6,"The license number and the date of start operation do not match");
                 if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.StartDate)
-                    throw new BadInputException(8,"The date of last treatment is not valid");
+                    throw new BadInputException(2,"The date of last treatment is not valid");
                 if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalKm)
-                    throw new BadInputException(9,"The kilometrage of last treatment is not valid");
-                dl.AddBus(busDO);
+                    throw new BadInputException(4,"The kilometrage of last treatment is not valid");
             }
             catch (DO.BadLicenseNumException ex)
             {

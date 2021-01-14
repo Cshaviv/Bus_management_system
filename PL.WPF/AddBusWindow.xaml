@@ -33,7 +33,7 @@
             <Label VerticalAlignment="Center" Grid.Row="4" Margin="0,1.667,-94.667,5" HorizontalAlignment="Right" Content=":ק''מ מאז טיפול אחרון" Width="238" Grid.ColumnSpan="2"/>
             <TextBox x:Name="kmLastTreatTextBox" Width="120" VerticalAlignment="Center" Text="{Binding KmLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="34,6,23.667,8"  HorizontalAlignment="Center" Grid.Column="1" Content=":מספר רישוי" Width="73"/>
-            <TextBox x:Name="licenseNumTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LicenseNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <TextBox x:Name="licenseNumTextBox"  Width="120" VerticalAlignment="Center" Text="{Binding LicenseNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="0,3.667,11.333,6.333" HorizontalAlignment="Right" Content=":תאריך תחילת פעולה" Width="134" Grid.ColumnSpan="2"/>
             <DatePicker x:Name="startDateDatePicker" VerticalAlignment="Center" SelectedDate="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3,3.333,0,3.333" HorizontalAlignment="Left" Grid.Column="0" Width="120"/>
             <!--<Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content="Status Bus:"/>-->

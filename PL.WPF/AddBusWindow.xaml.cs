@@ -35,7 +35,7 @@ namespace PL.WPF
             // Load data by setting the CollectionViewSource.Source property:
             // busViewSource.Source = [generic data source]
         }//yes
-        private void AddBus_Click(object sender, RoutedEventArgs e)
+        private void AddBus_Click(object sender, RoutedEventArgs e)//yes
         {
             try
             {
@@ -59,24 +59,71 @@ namespace PL.WPF
             }
             catch (BO.BadInputException ex)
             {
-                Exceptions(ex.num1, ex.Message);
-              
+                Exceptions(ex.num1, ex.Message);          
             }
             catch (Exception ex)
             {
-                //licenseNumTextBox.BorderBrush = Brushes.Red;
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
        
 
         }
-
-        private void Exceptions(int num,string massage)
+        private void Exceptions(int num,string massage)//yes
         {
             if (num == 1)
             {
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 licenseNumTextBox.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Red;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Green;
+                kmLastTreatTextBox.BorderBrush = Brushes.Green;
+                fuelTankTextBox.BorderBrush = Brushes.Green;
+                totalKmTextBox.BorderBrush = Brushes.Green;
+            }
+            if (num == 2)
+            {
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                licenseNumTextBox.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Green;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Red;
+                kmLastTreatTextBox.BorderBrush = Brushes.Green;
+                fuelTankTextBox.BorderBrush = Brushes.Green;
+                totalKmTextBox.BorderBrush = Brushes.Green;
+            }
+            if (num == 3)
+            {
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                licenseNumTextBox.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Green;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Green;
+                kmLastTreatTextBox.BorderBrush = Brushes.Green;
+                fuelTankTextBox.BorderBrush = Brushes.Green;
+                totalKmTextBox.BorderBrush = Brushes.Red;
+            }
+            if (num == 4)
+            {
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                licenseNumTextBox.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Green;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Green;
+                kmLastTreatTextBox.BorderBrush = Brushes.Red;
+                fuelTankTextBox.BorderBrush = Brushes.Green;
+                totalKmTextBox.BorderBrush = Brushes.Green;
+            }
+            if (num == 5)
+            {
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                licenseNumTextBox.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Green;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Green;
+                kmLastTreatTextBox.BorderBrush = Brushes.Green;
+                fuelTankTextBox.BorderBrush = Brushes.Red;
+                totalKmTextBox.BorderBrush = Brushes.Green;
+            }
+            if (num == 6)
+            {
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                licenseNumTextBox.BorderBrush = Brushes.Red;
                 startDateDatePicker.BorderBrush = Brushes.Green;
                 dateLastTreatDatePicker.BorderBrush = Brushes.Green;
                 kmLastTreatTextBox.BorderBrush = Brushes.Green;
