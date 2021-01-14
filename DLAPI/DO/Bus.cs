@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class Bus
+    public class Bus//אוטובוס
     {
-        public int LicenseNum { get; set; }//license number
-        public DateTime StartDate { get; set; }//start date
-        public double TotalKm { get; set; }//total km
-        public double FuelTank { get; set; }//fuel tank
-        public BusStatus StatusBus { get; set; }//status
-        public DateTime DateLastTreat { get; set; }//Date of Last Treat
-        public double KmLastTreat { get; set; }//Km of Last Treat
-        public bool IsDeleted { get; set; }//if it possible
+        public int LicenseNum { get; set; }//מספר רישוי
+        public DateTime StartDate { get; set; }//(תאריך התחלה (התחלת פעילות
+        public double TotalKm { get; set; }//סה"כ קילומטר
+        public double FuelTank { get; set; }//דלק-כמה נסע מהתדלוק
+        public BusStatus StatusBus { get; set; }//(סטטוס האוטובוס (באיזה מצב נמצא
+        public DateTime DateLastTreat { get; set; }//תאריך הטיפול הקודם
+        public double KmLastTreat { get; set; }//כמה קילומטר נסע מהטיפול הקודם
+        public bool IsDeleted { get; set; }//האם מחוק
 
    
        
