@@ -24,14 +24,13 @@ namespace PL.WPF
         IBL bl;
         BO.Station station;
        ListBox stationsListBox;
-        Rectangle IsDeletedRectangleStation;
-        public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox, Rectangle _IsDeletedRectangleStation) //, ListBox _stationsListBox)
+        public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox) 
         {
             InitializeComponent();
             bl = _bl;
             station = _station;
             stationsListBox = _stationsListBox;
-            IsDeletedRectangleStation = _IsDeletedRectangleStation;
+            //IsDeletedRectangleStation = _IsDeletedRectangleStation;
             LineInStationListBox.ItemsSource = station.LinesInStation;
             addressTextBox.Text= station.Address.ToString();
             nameTextBox.Text= station.Name.ToString();
@@ -69,8 +68,8 @@ namespace PL.WPF
         {
             try
             { 
-                MessageBoxResult res = MessageBox.Show("?אתה בטוח שאתה רוצה למחוק את התחנה", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (res == MessageBoxResult.No)
+                MessageBoxResult answer = MessageBox.Show("?אתה בטוח שאתה רוצה למחוק את התחנה", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (answer == MessageBoxResult.No)
                     return;
                 int stationCode = int.Parse(stationCodeTextBlock.Text);
                 bl.DeleteStation(stationCode);
