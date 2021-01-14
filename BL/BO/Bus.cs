@@ -21,9 +21,9 @@ namespace BO
             int year = StartDate.Year;
             string licenNum = LicenseNum.ToString();
             if (year < 2018)
-                return "" + "license number: " + licenNum[0] + licenNum[1] + "-" + licenNum[2] + licenNum[3] + licenNum[4] + "-" + licenNum[5] + licenNum[6] + " Total Km:" + TotalKm; 
+                return "" +  licenNum[0] + licenNum[1] + "-" + licenNum[2] + licenNum[3] + licenNum[4] + "-" + licenNum[5] + licenNum[6]; 
             else
-                return ""+ "license number: " + licenNum[0] + licenNum[1] + licenNum[2] + "-" + licenNum[3] + licenNum[4] + "-" + licenNum[5] + licenNum[6] + licenNum[7] + " Total Km:" + TotalKm;
+                return "" + licenNum[0] + licenNum[1] + licenNum[2] + "-" + licenNum[3] + licenNum[4] + "-" + licenNum[5] + licenNum[6] + licenNum[7] ;
         }
     }
 }

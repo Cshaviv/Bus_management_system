@@ -17,31 +17,22 @@
                     <RowDefinition Height="Auto"  />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0" />
+                    <ColumnDefinition Width="500" />
+                    <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="0" />
-                    <ColumnDefinition Width="95" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="80" />
-                    <ColumnDefinition Width="20" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="1" />
-                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="60" />
                     <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="80" />
-                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="70" />
+                  
+                   
                 </Grid.ColumnDefinitions>
-                <Rectangle Grid.Column="2"  Name="IsDeletedRectangleLine" Fill="LightGreen" Width="10" Height="10"/>
-                <TextBlock Grid.Column="14"  Text=":מספר רישוי" FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="12" Text="{Binding Path=LineNum }" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="10" Text=":אזור " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="8" x:Name="kmTextBlock" Text="{Binding Path=Area}" FontFamily="Dubai Light"  FontSize="14" />
-                <Button  Content="update" Grid.Column="6"  Width="70"/>
-                <Button Content="delete" Grid.Column="4" Width="70"/>
-                <TextBlock Grid.Column="15" Text="{Binding Path=LineId }" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="7"  Text=":מספר קו" FontFamily="Dubai Light" HorizontalAlignment="Right"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="5" Text="{Binding Path=LineNum}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="3" Text=":אזור " FontFamily="Dubai Light" HorizontalAlignment="Right"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="1" x:Name="kmTextBlock" Text="{Binding Path=Area}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+                <!--<TextBlock Grid.Column="15" Text="{Binding Path=LineId }" FontFamily="Dubai Light"  FontSize="14"/>-->
 
             </Grid>
         </DataTemplate>
@@ -52,31 +43,25 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="90" />
+                    <ColumnDefinition Width="90" />
                     <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="95" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="80" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="1" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="90" />
                     <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="100" />
+
+
                 </Grid.ColumnDefinitions>
-                <Rectangle Grid.Column="0"  Name="IsDeletedRectangle" Fill="LightGreen" Width="10" Height="10"/>
-                <TextBlock Grid.Column="2" Visibility="Visible" Text="License Number:" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="4" Text="{Binding Path=LicenseNum }" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="6" Text=" Km: " FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="8" x:Name="kmTextBlock" Text="{Binding Path=TotalKm}" FontFamily="Dubai Light"  FontSize="14" />
-                <Button  Content="Refueling" Click="RefuelClick" Name="ButtonRefuel"  Grid.Column="12" Width="70" />
-                <Button  Content="Treat" Click="TreatClick" Name="TreatButton" Grid.Column="14" Width="70" />
+                <Rectangle Grid.Column="0"  Name="IsDeletedRectangle" HorizontalAlignment="Left" Fill="LightGreen" Width="10" Height="10"/>
+                <TextBlock Grid.Column="9" Visibility="Visible" Text=":מספר רישוי" HorizontalAlignment="Right" FontFamily="Dubai Light" FontSize="14" />
+                <TextBlock Grid.Column="7" Text="{Binding}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="5" Text=":ק'מ" FontFamily="Dubai Light" HorizontalAlignment="Right"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="4" x:Name="kmTextBlock" Text="{Binding Path=TotalKm}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+                <Button  Content="Refueling" Click="RefuelClick" HorizontalAlignment="Left" Name="ButtonRefuel"  Grid.Column="1" Width="70" />
+                <Button  Content="Treat" Click="TreatClick" HorizontalAlignment="Left" Name="TreatButton" Grid.Column="2" Width="70" />
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="StationTemplate"
@@ -110,10 +95,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="99*"/>
             <RowDefinition Height="322*"/>
+            
         </Grid.RowDefinitions>
         <ListBox x:Name="stationsListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickStationInfromation" Margin="109,1,0,92" Grid.RowSpan="2" />
-        <ListBox x:Name="busesListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickBusInfromation" Margin="109,1,0,92" Grid.RowSpan="2" />
-        <ListBox x:Name="LineesListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickLineInfromation" Margin="109,1,-2,91" Grid.RowSpan="2" />
+        <ListBox x:Name="busesListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickBusInfromation" Margin="109,1,2,92" Grid.RowSpan="2" />
+        <ListBox x:Name="LineesListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickLineInfromation" Margin="109,1,9,91" Grid.RowSpan="2" />
         <Button x:Name="Bus" Content="אוטובוסים" HorizontalAlignment="Left" Margin="14,32,0,0" VerticalAlignment="Top" Width="62" Height="70" Click="Bus_Click" Grid.RowSpan="2"/>
         <Button x:Name="Line" Content="קווים" HorizontalAlignment="Left" Margin="11,34.555,0,0" VerticalAlignment="Top" Width="68" Height="70" Grid.Row="1" Click="Line_Click"/>
         <Button x:Name="Station" Content="תחנות" HorizontalAlignment="Left" Margin="17,147.555,0,0" VerticalAlignment="Top" Width="59" Height="70" Grid.Row="1" Click="Station_Click"/>

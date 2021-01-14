@@ -10,6 +10,6 @@ namespace BO
     {
         public string UserName { get; set; } //user name
         public string passCode { get; set; }//user passcode
-        public bool accountType { get; set; } //access for admin
+        public bool managaccount { get; set; } //access for admin
     }
 }

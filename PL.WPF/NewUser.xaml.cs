@@ -37,7 +37,7 @@ namespace PL.WPF
                 MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            BO.User newUser = new BO.User() {UserName= userName,passCode= passcode,accountType= AcountType };
+            BO.User newUser = new BO.User() {UserName= userName,passCode= passcode,managaccount= AcountType };
             bl.addNewUser(newUser);
             Close();
         }
