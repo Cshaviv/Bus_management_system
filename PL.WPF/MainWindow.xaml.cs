@@ -28,29 +28,26 @@ namespace PL.WPF
         public MainWindow()
         {
             InitializeComponent();
-            btnGO.Content = "any text";
-            var allBuses = bl.GetAllBuses().ToList();
-            ////Select(b => b.LicenseNum + "_" + b.StartDate.ToString()).ToList();
-            busesListBox.ItemsSource = allBuses;
-
-
         }
-
-        //private void InitBuses()
-        //{
-        //    //Label action = (Label)bus.FindName("action", myContentPresenter);
-        //}
-
-
 
         private void btnGO_Click(object sender, RoutedEventArgs e)
         {
-            if (rbManagement.IsChecked == true)
+            string userName = userNameTextBox.Text;
+            string passcode = passwordTextBox.Text;
+            if(userName==""|| passcode=="")
+            {
+                MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            BO.User logtIn = new BO.User();
+            logtIn = bl.SignIn(userName, passcode);
+
+            if (rbManagement.IsChecked == true && logtIn.AdminAccess )
             {
                 managementWindow win = new managementWindow(bl);
                 win.Show();
             }
-            else if (rbUser.IsChecked == true)
+            else if (rbUser.IsChecked == true && logtIn.AdminAccess==false)
             {
                 UserWindows win = new UserWindows(bl);
                 win.Show();

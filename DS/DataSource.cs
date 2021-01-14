@@ -920,8 +920,8 @@ namespace DS
             {
                 new User //1
                 {
-                    UserName= "shira123",
-                    Password="sh123",
+                    UserName= "ayisrael",
+                    Password="ay3223",
                     AdminAccess=true,
                     IsDeleted= false
                 },

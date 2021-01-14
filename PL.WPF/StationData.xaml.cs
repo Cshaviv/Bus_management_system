@@ -24,18 +24,31 @@ namespace PL.WPF
         IBL bl;
         BO.Station station;
        ListBox stationsListBox;
-        public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox) 
+        Rectangle IsDeletedRectangleStation;
+        public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox, Rectangle _IsDeletedRectangleStation) //, ListBox _stationsListBox)
         {
             InitializeComponent();
             bl = _bl;
             station = _station;
             stationsListBox = _stationsListBox;
-            //IsDeletedRectangleStation = _IsDeletedRectangleStation;
-            LineInStationListBox.ItemsSource = station.LinesInStation;
+            IsDeletedRectangleStation = _IsDeletedRectangleStation;
             addressTextBox.Text= station.Address.ToString();
             nameTextBox.Text= station.Name.ToString();
+            LineInStationListBox.ItemsSource = station.LinesInStation;
+           // LineInStationListBox.DataContext = station.LinesInStation;
+            LineInStationListBox.Visibility = Visibility.Visible;
+            stationNameTextBlock.Text = station.Name.ToString();
+            AddressTextBlock.Text = station.Address.ToString();
             stationCodeTextBlock.Text = station.Code.ToString();
         }
+
+        public StationData(IBL bl, Station station, ListBox stationsListBox)
+        {
+            this.bl = bl;
+            this.station = station;
+            this.stationsListBox = stationsListBox;
+        }
+
         void RefreshAllStations()
         {
             stationsListBox.ItemsSource = bl.GetAllStations().ToList();
@@ -43,33 +56,15 @@ namespace PL.WPF
         }
         private void updateStation_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                string stationName = nameTextBox.Text;
-                string stationAddress = addressTextBox.Text;
-                int stationCode = int.Parse(stationCodeTextBlock.Text);
-                BO.Station stat = new BO.Station() { Name = stationName, Address = stationAddress, Code = stationCode };
-                bl.UpdateStation(stat);
-                RefreshAllStations();
-                MessageBox.Show("התחנה עודכנה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                Close();
-            }
-            catch (BO.BadStationCodeException ex)
-            {
-                MessageBox.Show(ex.Message + ": " + ex.stationCode, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+
         }
 
         private void deleteStation_Click(object sender, RoutedEventArgs e)
         {
             try
             { 
-                MessageBoxResult answer = MessageBox.Show("?אתה בטוח שאתה רוצה למחוק את התחנה", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (answer == MessageBoxResult.No)
+                MessageBoxResult res = MessageBox.Show("?אתה בטוח שאתה רוצה למחוק את התחנה", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res == MessageBoxResult.No)
                     return;
                 int stationCode = int.Parse(stationCodeTextBlock.Text);
                 bl.DeleteStation(stationCode);
@@ -85,6 +80,11 @@ namespace PL.WPF
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+        }
+
+        private void LineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
 
