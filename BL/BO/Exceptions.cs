@@ -20,11 +20,11 @@ namespace BO
     }
     public class BadInputException : Exception
     {
-        public int num1;
+        public int num;
         public BadInputException(string message) : base(message) { }
         public override string ToString() => base.ToString();
         public BadInputException(int ln, string message) :
-           base(message) => num1 = ln;
+           base(message) => num = ln;
      
     }
     public class BadLineIdException : Exception

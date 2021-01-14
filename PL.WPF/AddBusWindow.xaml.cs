@@ -59,7 +59,7 @@ namespace PL.WPF
             }
             catch (BO.BadInputException ex)
             {
-                Exceptions(ex.num1, ex.Message);          
+                Exceptions(ex.num, ex.Message);          
             }
             catch (Exception ex)
             {
