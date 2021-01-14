@@ -44,7 +44,7 @@ namespace DL
         public void AddBus(DO.Bus busBo)//yes
         {
             if (DataSource.ListBuses.FirstOrDefault(bus_ => bus_.LicenseNum == busBo.LicenseNum && bus_.IsDeleted == false) != null)
-                throw new BadLicenseNumException(busBo.LicenseNum,"The bus is already exist");           
+                throw new BadLicenseNumException(busBo.LicenseNum,"אוטובוס זה כבר קיים במערכת");           
             DataSource.ListBuses.Add(busBo.Clone());
         }
         public void UpdateBus(DO.Bus bus)
@@ -91,15 +91,15 @@ namespace DL
             if (adjacentStations != null)
                 return adjacentStations.Clone();
             else
-                throw new DO.BadLicenseNumException(code1, $"bad stations number: {code1}");
-        }
-        public void AddAdjacentStations(DO.AdjacentStations adjacentStations)
+                throw new DO.BadInputException(code1, "מצטערים חסר מידע על תחנה זו");
+        }//yes
+        public void AddAdjacentStations(DO.AdjacentStations adjacentStations)//yes
         {
             if (DataSource.ListAdjacentStations.FirstOrDefault(adjStations => (adjStations.StationCode1 == adjacentStations.StationCode1 && adjStations.StationCode2 == adjacentStations.StationCode2 && adjStations.IsDeleted == false)) != null)//if those adjacent stations already exist in the list
-                throw new Exception();
+                throw new DO.BadInputException("מצטערים, לא היה ניתן לעדכן שדות אלו");
             DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
         }
-        public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
+        public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)//yes
         {
             DO.AdjacentStations adjacentStations1 = DataSource.ListAdjacentStations.Find(s => s.StationCode1 == adjacentStations.StationCode1 && s.StationCode2 == adjacentStations.StationCode2);
 
@@ -109,8 +109,7 @@ namespace DL
                 DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
             }
             else
-                throw new DO.BadLicenseNumException(adjacentStations.StationCode1, $"bad person id: {adjacentStations.StationCode1}");
-
+                AddAdjacentStations(adjacentStations);
         }
         public void UpdateAdjacentStations(int stationCode1, int stationCode2, Action<DO.AdjacentStations> update)
         {
@@ -132,11 +131,11 @@ namespace DL
             if (adjStationsFind != null)
                 return true;
             return false;
-        }
+        }//yes
         #endregion
 
         #region Line
-        public IEnumerable<DO.Line> GetAllLines()
+        public IEnumerable<DO.Line> GetAllLines()//yes
         {
             return from line in DataSource.ListLines
                    where line.IsDeleted == false
@@ -157,21 +156,21 @@ namespace DL
             if (lineFind != null)
                 return lineFind.Clone();
             else
-                throw new BadLineIdException(lineId, "The Line ID does not exist");
+                throw new BadLineIdException(lineId, "קו זה לא קיים במערכת");
         } 
-        public void AddLine(DO.Line line)
+        public void AddLine(DO.Line line)//yes
         {
             line.LineId = Config.LineId++;
             if (DataSource.ListLines.FirstOrDefault(_line => _line.LineId == line.LineId && _line.IsDeleted == false) != null)
-                throw new BadLineIdException(line.LineId, "The Line ID is already  exist");
+                throw new BadLineIdException(line.LineId, "קו זה כבר קיים במערכת");
             DataSource.ListLines.Add(line.Clone());
         }
-        public void UpdateLine(DO.Line line)
+        public void UpdateLine(DO.Line line)//yes
         {
             DO.Line lineFind = DataSource.ListLines.Find(_line => _line.LineId == line.LineId && _line.IsDeleted == false);
             if (lineFind == null)
-                throw new BadLineIdException(line.LineId, "The Line ID does not exist");
-            DO.Line newLine = line.Clone();//copy of the line that the function got
+                throw new BadLineIdException(line.LineId, "קו זה לא קיים במערכת");
+            DO.Line newLine = line.Clone();
             DataSource.ListLines.Remove(lineFind);
             DataSource.ListLines.Add(newLine);
         }
@@ -182,11 +181,11 @@ namespace DL
                 throw new BadLineIdException(lineId, "The Line ID does not exist");
             update(lineFind);
         }
-        public void DeleteLine(int lineId)
+        public void DeleteLine(int lineId)//yes
         {
             DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
             if (lineFind == null)
-                throw new BadLineIdException(lineId, "The Line ID does not exist");
+                throw new BadLineIdException(lineId, "קו אוטובוס זה לא קיים במערכת");
             lineFind.IsDeleted = true;
             foreach (DO.LineStation s in DataSource.ListLineStations)
             {
@@ -205,14 +204,11 @@ namespace DL
         }
         public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate)
         {
-            //return from lineStation in DataSource.ListLineStations
-            //       where predicate(lineStation)
-            //       select lineStation.Clone();
             return from sil in DataSource.ListLineStations
                    where predicate(sil)
                    orderby sil.LineStationIndex
                    select sil;
-        }//new
+        }//yes
         public DO.LineStation GetLineStation(int lineId, int stationCode)
         {
             DO.LineStation lineStationFind = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineId && lineStat.StationCode == stationCode));
@@ -309,13 +305,10 @@ namespace DL
                    where predicate(sil)
                    select GetLine(sil.LineId);
         }
-
-
-
         #endregion
         
         #region Station
-        public IEnumerable<DO.Station> GetAllStations()
+        public IEnumerable<DO.Station> GetAllStations()//yes
         {
             return from station in DataSource.ListStations
                        //where station.IsDeleted == false
@@ -533,28 +526,20 @@ namespace DL
 
         #endregion
 
-
-        public void AddStationInLine(int stationID, int busID, int index)//new
+        #region StationInLine
+        public void AddStationInLine(int stationID, int busID, int index)//yes
         {
             if (DataSource.ListLineStations.FirstOrDefault(sil => (sil.StationCode == stationID && sil.LineId == busID)) != null)
-                throw new DO.BadStationCodeException(stationID, "station ID is already registered to line ID");
+                throw new DO.BadStationCodeException(stationID, "התחנה כבר קיימת בקו זה");
             DO.LineStation lineStation = new DO.LineStation() { StationCode = stationID, LineId = busID, LineStationIndex = index };
             foreach (DO.LineStation s in GetAllLineStationsBy(s => s.LineId == busID))
                 if (s.LineStationIndex >= index)
                     s.LineStationIndex++;
             DataSource.ListLineStations.Add(lineStation);
         }
-        public IEnumerable<DO.LineStation> GetStationInLineList(Predicate<DO.LineStation> predicate)
+        public void DeleteStationInLine(int busID , int stationCode)//yes
         {
-            return from sil in DataSource.ListLineStations
-                   where predicate(sil)
-                   orderby sil.LineStationIndex
-                   select sil;
-
-        }
-        public void DeleteStationInLine(int busID , int stationID)
-        {
-            DO.LineStation lineStation = DataSource.ListLineStations.Find(sil => (sil.StationCode == stationID && sil.LineId == busID));
+            DO.LineStation lineStation = DataSource.ListLineStations.Find(sil => (sil.StationCode == stationCode && sil.LineId == busID));
             int index = lineStation.LineStationIndex;
             if (lineStation != null)
             {
@@ -566,7 +551,16 @@ namespace DL
                 }
             }
             else
-                throw new DO.BadStationCodeException(stationID, "station ID is NOT registered to bus ID");
+                throw new DO.BadStationCodeException(stationCode, "קו אוטובוס זה לא עובר בתחנה זו");
         }
+        public IEnumerable<DO.LineStation> GetStationInLineList(Predicate<DO.LineStation> predicate)
+        {
+            return from sil in DataSource.ListLineStations
+                   where predicate(sil)
+                   orderby sil.LineStationIndex
+                   select sil;
+
+        }//yes
+        #endregion
     }
 } 

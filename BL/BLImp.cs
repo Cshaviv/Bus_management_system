@@ -122,25 +122,38 @@ namespace BL
         #region Line
         BO.Line lineDoBoAdapter(DO.Line lineDO)
         {
-            BO.Line lineBO = new BO.Line();
-            lineDO.CopyPropertiesTo(lineBO);
-            int id = lineBO.LineId;
-            lineBO.Stations = (from stat in dl.GetStationInLineList(s => s.LineId == id&&s.IsDeleted==false) //רמחפשים תחנות שעוברות בקו מסוים
-                                     select new StationInLine { StationCode = stat.StationCode, Name = GetStation(stat.StationCode).Name, LineStationIndex=stat.LineStationIndex  }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
-            if (lineBO.Stations.Count != 0)// 
+            try
             {
-                lineBO.Stations[lineBO.Stations.Count - 1].TimeFromNext = new TimeSpan(0, 0, 0);
-                lineBO.Stations[lineBO.Stations.Count - 1].DistanceFromNext = 0;
+                BO.Line lineBO = new BO.Line();
+                lineDO.CopyPropertiesTo(lineBO);
+                int id = lineBO.LineId;
+                lineBO.Stations = (from stat in dl.GetStationInLineList(s => s.LineId == id && s.IsDeleted == false) //רמחפשים תחנות שעוברות בקו מסוים
+                                   select new StationInLine { StationCode = stat.StationCode, Name = GetStation(stat.StationCode).Name, LineStationIndex = stat.LineStationIndex }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
+                if (lineBO.Stations.Count != 0)// 
+                {
+                    lineBO.Stations[lineBO.Stations.Count - 1].TimeFromNext = new TimeSpan(0, 0, 0);
+                    lineBO.Stations[lineBO.Stations.Count - 1].DistanceFromNext = 0;
+                }
+                if (lineBO.Stations.Count >= 2)
+                {
+                    lineBO.FirstStation = lineBO.Stations[0].StationCode;
+                    lineBO.LastStation = lineBO.Stations[lineBO.Stations.Count - 1].StationCode;
+                }
+                for (int i = 0; i < lineBO.Stations.Count - 1; i++)
+                {
+                    DO.AdjacentStations adjacentStations = dl.GetAdjacentStations(lineBO.Stations[i].StationCode, lineBO.Stations[i + 1].StationCode);
+                    lineBO.Stations[i].DistanceFromNext = adjacentStations.Distance;
+                    lineBO.Stations[i].TimeFromNext = adjacentStations.Time;
+                }
+                return lineBO;
             }
-            for (int i = 0; i < lineBO.Stations.Count - 1; i++)
+            catch(DO.BadInputException ex)
             {
-                DO.AdjacentStations adjacentStations = dl.GetAdjacentStations(lineBO.Stations[i].StationCode, lineBO.Stations[i + 1].StationCode);
-                lineBO.Stations[i].DistanceFromNext = adjacentStations.Distance;
-                lineBO.Stations[i].TimeFromNext = adjacentStations.Time;
+                throw new BO.BadInputException(ex.Message);
             }
-            return lineBO;
-        }
-        public Line GetLine(int lineId)
+          
+        }//yes
+        public Line GetLine(int lineId)//yes
         {
             DO.Line lineDO;
             try
@@ -153,7 +166,7 @@ namespace BL
             }
             return lineDoBoAdapter(lineDO);
         }
-        public void AddNewLine(BO.Line lineBo)
+        public void AddNewLine(BO.Line lineBo)//yes
         {
             DO.Line lineDo = new DO.Line();
             lineBo.CopyPropertiesTo(lineDo);
@@ -181,9 +194,17 @@ namespace BL
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
+            catch(DO.BadInputException ex)
+            {
+                throw new BO.BadInputException(ex.Message);
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+            }
 
         }
-        public IEnumerable<BO.Line> GetAllLines()
+        public IEnumerable<BO.Line> GetAllLines()//yes
         {
             return from item in dl.GetAllLines()
                    where (item.IsDeleted == false )
@@ -193,7 +214,7 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-        public void UpdateLineDetails(BO.Line line)
+        public void UpdateLineDetails(BO.Line line)//yes
         {
             DO.Line lineDO = new DO.Line();
             line.CopyPropertiesTo(lineDO);
@@ -206,7 +227,7 @@ namespace BL
                 throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
         }
-        public void DeleteLine(int lineId)
+        public void DeleteLine(int lineId)//yes
         {
             try
             {
@@ -283,7 +304,7 @@ namespace BL
         #endregion
 
         #region Station
-        public BO.Station StationDoBoAdapter(DO.Station stationDO)
+        public BO.Station StationDoBoAdapter(DO.Station stationDO)//yes
         {
             BO.Station stationBO = new BO.Station();
             int stationCode = stationDO.Code;
@@ -298,7 +319,7 @@ namespace BL
 
             return stationBO;
         }
-        public IEnumerable<BO.Station> GetAllStations()
+        public IEnumerable<BO.Station> GetAllStations()//yes
         {
             return from item in dl.GetAllStations()
                    select StationDoBoAdapter(item);
@@ -366,70 +387,79 @@ namespace BL
         #endregion
 
         #region StationInLine
-        public void AddStationInLine(int stationCode, int busID, int index, int indexNextCode, int indexPrevCode,double distanceNext,TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
+        public void AddStationInLine(int stationCode, int busID, int index,int nextStatCode, int prevStatCode, double distanceNext,TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
         {
             try
             {
-                if(index==0)
+                if (index==0)
                 {
-                    if (!dl.ExistAdjacentStations(stationCode, indexNextCode/*GetLine(busID).Stations[index + 1].StationCode*/))
+                    if (!dl.ExistAdjacentStations(stationCode,nextStatCode))
                     {
-                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode, StationCode2 = indexNextCode, Distance = distanceNext, Time = timeNext };
+                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode, StationCode2 = nextStatCode, Distance = distanceNext, Time = timeNext };
                         dl.AddAdjacentStations(adj);
                     }
                 }
                 else if (index >= GetLine(busID).Stations.Count-1)
                 {
-                    if (!dl.ExistAdjacentStations(stationCode, indexPrevCode /*GetLine(busID).Stations[index -1 ].StationCode*/))
+                    if (!dl.ExistAdjacentStations(stationCode, prevStatCode))
                     {
-                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = indexPrevCode, StationCode2 = stationCode, Distance = distancePrev, Time = timePrev };
+                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = prevStatCode, StationCode2 = stationCode, Distance = distancePrev, Time = timePrev };
                         dl.AddAdjacentStations(adj);
                     }
                 }
                 else
                 {
-                    if (!dl.ExistAdjacentStations(stationCode, indexNextCode))
+                    if (!dl.ExistAdjacentStations(stationCode, nextStatCode))
                     {
-                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode, StationCode2 = indexNextCode, Distance = distanceNext, Time = timeNext };
+                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode, StationCode2 = nextStatCode, Distance = distanceNext, Time = timeNext };
                         dl.AddAdjacentStations(adj);
                     }
-                    if (!dl.ExistAdjacentStations(stationCode, indexPrevCode))
+                    if (!dl.ExistAdjacentStations(stationCode, prevStatCode))
                     {
-                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = indexPrevCode , StationCode2 = stationCode, Distance = distancePrev, Time = timePrev };
+                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = prevStatCode, StationCode2 = stationCode, Distance = distancePrev, Time = timePrev };
                         dl.AddAdjacentStations(adj);
                     }
                 }
                 dl.AddStationInLine(stationCode, busID, index);
-            }
-            catch (DO.BadInputException ex)
+            }          
+            catch(DO.BadStationCodeException ex)
             {
-                throw new BO.BadInputException("Station code and line ID is Not exist");
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
-        }
-        public void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second)
+            catch(DO.BadInputException ex)
+            {
+                throw new BO.BadInputException(ex.Message);
+            }
+        }//yes
+        public void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second)//yes
         {
             try
             {
                 DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = first.DistanceFromNext, Time = first.TimeFromNext, IsDeleted = false };
                 dl.UpdateAdjacentStations(adj);
             }
-            catch (Exception ex)
+            catch(DO.BadInputException ex)
             {
-                throw new Exception("Error, it cannot be update");
+                throw new BO.BadInputException(ex.Message);
+            }
+            catch (Exception)
+            {
+                throw new Exception("מצטערים, לא היה ניתן לעדכן שדה זה");
             }
         }
-        public void DeleteStationInLine(int lineID , int code/*,int prevCode,int nextCode*/)
+        public void DeleteStationInLine(int lineID , int code)//yes
         {
             BO.Line line = new BO.Line();
             line = GetLine(lineID);
+
             int index = GetLine(lineID).Stations.FindIndex(s => s.StationCode == code);
             try
             {
                 if(line.Stations.Count<=2)
                 {
-                    throw new BO.BadStationCodeException(code, "Station code does not exist or he is not a student");
+                    throw new BO.BadStationCodeException(code, "בקו זה אין מספיק תחנות ולכן אין אפשרות למחוק תחנה זו");
                 }
-                if ((index == 0) || (index == line.Stations.Count-1 ))/*GetLine(lineID).Stations.Count - 1*/
+                if ((index == 0) || (index == line.Stations.Count-1 ))
                 {
                     dl.DeleteStationInLine(lineID, code);
                     return;
@@ -438,20 +468,19 @@ namespace BL
                 int statCode2 = line.Stations[index + 1].StationCode;
                 if (!dl.ExistAdjacentStations(statCode1, statCode2))
                 {
-                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = statCode1, StationCode2 = statCode2, Distance = 0, Time = new TimeSpan(0,0,0)};
-                    dl.AddAdjacentStations(adj);
+                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = statCode1, StationCode2 = statCode2, Distance = 0, Time = new TimeSpan(0, 0, 0) };            
+                        dl.AddAdjacentStations(adj);                
                 }
                 dl.DeleteStationInLine(lineID , code);
             }
             catch (DO.BadLineIdException ex)
             {
-                throw new BO.BadLineIdException(lineID,"Station code and line ID is Not exist");
+                throw new BO.BadLineIdException(ex.code," קו האוטובוס או התחנה לא זמינים");
             }
             catch (DO.BadStationCodeException ex)
             {
-                throw new BO.BadStationCodeException(code, "Station code does not exist or he is not a student");
-            }
-            
+                throw new BO.BadStationCodeException(ex.stationCode, "קו אוטובוס זה לא עובר בתחנה זו");
+            }          
         }
         #endregion
 

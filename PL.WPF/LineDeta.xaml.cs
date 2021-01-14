@@ -51,16 +51,19 @@ namespace PL.WPF
                 else
                 {
                     return;
-
                 }
+            }
+            catch (BO.BadLineIdException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (BO.BadStationCodeException ex)
             {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception)
             {
-
+                MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void Addstation_Click(object sender, RoutedEventArgs e)
@@ -83,7 +86,11 @@ namespace PL.WPF
             }
             catch (BO.BadLineIdException ex)
             {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }       
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR ", "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             Close();
         }
@@ -122,9 +129,9 @@ namespace PL.WPF
             {
                 MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void CancelClick(object sender, RoutedEventArgs e)

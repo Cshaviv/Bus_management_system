@@ -130,9 +130,8 @@ namespace PL.WPF
         #region Lines 
         public void RefreshAllLinesList()
         {
-      
-         LineesListBox.ItemsSource = bl.GetAllLines().ToList();
-         }
+            LineesListBox.ItemsSource = bl.GetAllLines().ToList();
+        }//yes
         private void Line_Click(object sender, RoutedEventArgs e)
         {
             stationsListBox.Visibility = Visibility.Hidden;
@@ -189,8 +188,6 @@ namespace PL.WPF
             win.ShowDialog();
             RefreshAllStations();
         }
-
-
         private void doubleClickStationInfromation(object sender, MouseButtonEventArgs e)
         {
             BO.Station station = (sender as ListBox).SelectedItem as BO.Station;

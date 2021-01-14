@@ -24,8 +24,8 @@ namespace BO
         public BadInputException(string message) : base(message) { }
         public override string ToString() => base.ToString();
         public BadInputException(int ln, string message) :
-           base(message) => num = ln;
-     
+          base(message) => num = ln;
+
     }
     public class BadLineIdException : Exception
     {

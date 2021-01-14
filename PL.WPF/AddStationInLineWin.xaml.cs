@@ -101,13 +101,17 @@ namespace PL.WPF
                 MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
-            catch (BO.BadLineIdException ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
+            catch (BO.BadStationCodeException ex)
             {
                 MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception )
+            {
+                MessageBox.Show("ERROR ", "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void AddLastClick(object sender, RoutedEventArgs e)
@@ -121,13 +125,17 @@ namespace PL.WPF
                 MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
-            catch (BO.BadLineIdException ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
+            catch (BO.BadStationCodeException ex)
             {
                 MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR ", "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void AddMiddleClick(object sender, RoutedEventArgs e)
@@ -144,14 +152,17 @@ namespace PL.WPF
                 MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
-        
-               catch (BO.BadLineIdException ex)
-            {
-                MessageBox.Show(ex.ToString(), "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
+            catch (BO.BadStationCodeException ex)
             {
                 MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadInputException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("ERROR ", "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

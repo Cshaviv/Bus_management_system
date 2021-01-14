@@ -33,7 +33,6 @@ namespace PL.WPF
             TimeTextBox.Text = station.TimeFromNext.Minutes.ToString();
 
         }
-
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             double distance = double.Parse(DistanceTextBox.Text);
@@ -45,9 +44,9 @@ namespace PL.WPF
                 MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
-            catch (BO.BadLineIdException ex)
+            catch (BO.BadInputException ex)
             {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
