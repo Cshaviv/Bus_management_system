@@ -128,6 +128,7 @@ namespace PL.WPF
             {
                 bl.UpdateLineDetails(lineUpdate);
                 MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
                 return;
             }
             catch (BO.BadLineIdException ex)
