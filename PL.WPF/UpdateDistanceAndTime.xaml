@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
         Title="UpdateDistanceAndTime" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="save" Content="שמירת שינויים" Click="Save_Click" HorizontalAlignment="Left" Margin="232,361,0,0" VerticalAlignment="Top" Width="177" Height="41"/>
-        <TextBox x:Name="TimeTextBox" HorizontalAlignment="Left" Height="65" Margin="63,126,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="196"/>
-        <TextBox x:Name="DistanceTextBox" HorizontalAlignment="Left" Height="42" Margin="460,137,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="153"/>
-        <TextBlock Name="TimeTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text=":זמן" VerticalAlignment="Top" Margin="107,88,0,0" Height="21" Width="77"/>
-        <TextBlock Name="DistanceRideTextBox" HorizontalAlignment="Left" Margin="530,96,0,0" TextWrapping="Wrap" Text=":מרחק" VerticalAlignment="Top"/>
+    <Grid Background="#FFF0F0F0" >
+        <Button x:Name="save" Content="שמירת שינויים" Click="Save_Click" HorizontalAlignment="Left" Margin="232,326,0,0" VerticalAlignment="Top" Width="197" Height="58" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="TimeTextBox" HorizontalAlignment="Left" Height="42" Margin="63,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153"/>
+        <TextBox x:Name="DistanceTextBox" HorizontalAlignment="Left" Height="42" Margin="460,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153"/>
+        <TextBlock Name="TimeTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text=":זמן" VerticalAlignment="Top" Margin="119,96,0,0" Height="21" Width="77" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
+        <TextBlock Name="DistanceRideTextBox" HorizontalAlignment="Left" Margin="530,96,0,0" TextWrapping="Wrap" Text=":מרחק" VerticalAlignment="Top" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
 
     </Grid>
 </Window>
