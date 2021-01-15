@@ -154,7 +154,7 @@ namespace DL
                    select line.Clone();
 
         }
-        public DO.Line GetLine(int lineId)
+        public DO.Line GetLine(int lineId)//yes
         {
             DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
 
@@ -325,19 +325,19 @@ namespace DL
                    where predicate(station)
                    select station.Clone();
         }
-        public DO.Station GetStation(int code)
+        public DO.Station GetStation(int code)//yes
         {
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == code && stat.IsDeleted == false);
 
             if (stationFind != null)
                 return stationFind.Clone();
             else
-                throw new BadStationCodeException(code, "The station does not exist");
+                throw new BadStationCodeException(code, "תחנה זו לא קיימת במערכת");
         }
-        public void AddStation(DO.Station station)
+        public void AddStation(DO.Station station)//yes
         {
             if (DataSource.ListStations.FirstOrDefault(stat => stat.Code == station.Code && stat.IsDeleted == false) != null)
-                throw new BadStationCodeException(station.Code, "The station is already exist");
+                throw new BadStationCodeException(station.Code, "תחנה זו כבר קיימת במערכת");
             DataSource.ListStations.Add(station.Clone());
         }
         public void UpdateStation(DO.Station station)

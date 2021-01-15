@@ -164,6 +164,10 @@ namespace PL.WPF
             win.ShowDialog();
             RefreshAllLinesList();
         }
+
+        #endregion
+
+        #region Station
         private void Station_Click(object sender, RoutedEventArgs e)
         {
             LineesListBox.Visibility = Visibility.Hidden;
@@ -174,13 +178,20 @@ namespace PL.WPF
             AddStation.Visibility = Visibility.Visible;
             RefreshAllStations();
         }
-
-        #endregion
-
-        #region Station
-        void RefreshAllStations()//
+        void RefreshAllStations()//yes
         {
-            stationsListBox.ItemsSource = bl.GetAllStations().ToList();
+            try
+            {
+                stationsListBox.ItemsSource = bl.GetAllStations().ToList();
+            }
+            catch(BO.BadLineIdException)
+            {
+                MessageBox.Show("מצטערים חסר למערכת מידע", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadStationCodeException)
+            {
+                MessageBox.Show("מצטערים חסר למערכת מידע", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void AddStation_Click(object sender, RoutedEventArgs e)
         {

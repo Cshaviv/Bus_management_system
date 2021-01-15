@@ -11,7 +11,7 @@ namespace BO
         public int LineId { get; set; }  //מזהה ייחודי של הקו
         public int LineNum { get; set; } //מספר קו
         public int LineStationIndex { get; set; } //האינדקס בתחנת קו                                        
-        public int TargetStation { get; set; }// תחנת היעד
+        public string TargetStation { get; set; }// תחנת היעד
 
     }
 }

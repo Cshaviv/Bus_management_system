@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="AddStationInLineWin" Height="450" Width="800">
     <Grid Background="#FFF0F0F0">
-        <TextBlock HorizontalAlignment="Left" Margin="272,28,0,0" TextWrapping="Wrap" Text="בחר את התחנה שאתה רוצה להוסיף" VerticalAlignment="Top" Height="28" Width="232" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
-        <ComboBox x:Name="stationComboBox" HorizontalAlignment="Left" Margin="193,54,0,0" VerticalAlignment="Top" Width="472" Height="39"/>
-        <GroupBox Background="LightGray"  Header=":בחר אפשרות" HorizontalAlignment="Left" Height="111" Margin="34,105,0,0" VerticalAlignment="Top" Width="505" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
-            <StackPanel Background="LightGray" Margin="-2,7,2.333,-5" Height="80" VerticalAlignment="Top">
+        <TextBlock HorizontalAlignment="Left" Margin="530,24,0,0" TextWrapping="Wrap" Text="בחר את התחנה שאתה רוצה להוסיף" VerticalAlignment="Top" Height="28" Width="232" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
+        <ComboBox x:Name="stationComboBox" HorizontalAlignment="Left" Margin="310,59,0,0" VerticalAlignment="Top" Width="472" Height="39"/>
+        <GroupBox Background="LightGray"  Header=":בחר אפשרות" HorizontalAlignment="Left" Height="111" Margin="334,101,0,0" VerticalAlignment="Top" Width="436" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" FlowDirection="RightToLeft">
+            <StackPanel Background="LightGray" Margin="-2,7,2.3,-5" Height="80" FlowDirection="RightToLeft" HorizontalAlignment="Right">
 
                 <RadioButton x:Name ="rbFirst" Content="התחלה" Height="24"  Margin="0,0,323,0" Checked="rbFirst_Checked" FontFamily="Dubai Medium" FontWeight="Bold"/>
                 <RadioButton x:Name ="rbLast" Content=" לסוף"  Height="24" Margin="0,0,314,0" Checked="rbLast_Checked" FontWeight="Bold" FontStyle="Normal" FontFamily="Dubai Medium"/>
