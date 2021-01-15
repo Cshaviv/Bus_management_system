@@ -45,7 +45,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="20,110,0,0" TextWrapping="Wrap" Text="מספר קו" VerticalAlignment="Top" Height="29" Width="87" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
         <TextBlock x:Name="LineNumTextBlock"  HorizontalAlignment="Left" Margin="4,137,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87"/>
         <TextBox x:Name="LineNumTextBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="4,137,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87"/>
-        <TextBlock x:Name="AreaTextBlock"  HorizontalAlignment="Left" Margin="5,175,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87" FontFamily="Dubai Medium"/>
+        <TextBlock x:Name="AreaTextBlock"  HorizontalAlignment="Left" Margin="11,175,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87" FontFamily="Dubai Medium" FontSize="14"/>
         <ComboBox x:Name="AreaComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="5,175,0,0"  VerticalAlignment="Top" Height="29" Width="87"/>
         <Button x:Name="Save" Content="שמור" Click="SaveClick" Visibility="Hidden" HorizontalAlignment="Left" Margin="11,212,0,0" VerticalAlignment="Top" Width="75" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
         <Button x:Name="Cancel" Content="בטל" Click="CancelClick" Visibility="Hidden" HorizontalAlignment="Left" Margin="11,242,0,0" VerticalAlignment="Top" Width="75" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
