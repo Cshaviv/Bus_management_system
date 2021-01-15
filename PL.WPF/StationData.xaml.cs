@@ -24,7 +24,7 @@ namespace PL.WPF
         IBL bl;
         BO.Station station;
        ListBox stationsListBox;
-       Rectangle IsDeletedRectangleStation;
+       Rectangle IsDeletedRectangleStation;//
        
         public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox ) //ctor
         {
