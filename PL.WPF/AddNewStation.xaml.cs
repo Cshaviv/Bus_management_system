@@ -47,6 +47,7 @@ namespace PL.WPF
                 if (station != null)
                 {
                     bl.AddStation(station);
+                    MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
             }

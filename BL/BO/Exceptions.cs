@@ -27,9 +27,15 @@ namespace BO
           base(message) => num = ln;
 
     }
+    public class BadUserException : Exception
+    {
+        public BadUserException(string message) : base(message) { }
+        public override string ToString() => base.ToString();
+    }
     public class BadLineIdException : Exception
     {
         public int ID;
+        public BadLineIdException(string message) : base(message) { }
         public BadLineIdException(int id) : base() => ID = id;
         public BadLineIdException(int id, string message) :
             base(message) => ID = id;

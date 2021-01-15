@@ -41,7 +41,7 @@ namespace PL.WPF
             try
             {
                 bl.UpdateTimeAndDistance( stat, nextStation);
-                MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             catch (BO.BadInputException ex)

@@ -12,8 +12,6 @@
         <TextBlock x:Name="PrevStatTextBlock"  HorizontalAlignment="Left"  Margin="235,216,0,0" TextWrapping="Wrap" Text="בחר את התחנה שנמצאת לפני התחנה שאתה רוצה להוסיף " VerticalAlignment="Top" Height="28" Width="306"/>
         <ComboBox x:Name="PrevstationComboBox"  HorizontalAlignment="Left" Margin="185,244,0,0" VerticalAlignment="Top" Width="485" Height="39"/>
         <TextBlock HorizontalAlignment="Left" Margin="287,148,0,0" TextWrapping="Wrap" Text="ברצוני להוסיף את התחנה לתחילת המסלול " VerticalAlignment="Top" Height="28" Width="306"/>
-        <CheckBox Name="YesCheckBox" Content="yes"   HorizontalAlignment="Left" Margin="419,182,0,0" VerticalAlignment="Top" Height="17" Width="41" Checked="IfCheckedYes" RenderTransformOrigin="-0.403,0.521" />
-        <Button x:Name="AddNo" Content=" noהוספה "  HorizontalAlignment="Left" Margin="282,344,0,0"  VerticalAlignment="Top" Width="204" Height="37" Click="AddNo_Click"/>
 
     </Grid>
 </Window>

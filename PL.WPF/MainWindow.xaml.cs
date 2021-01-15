@@ -32,37 +32,42 @@ namespace PL.WPF
 
         private void btnGO_Click(object sender, RoutedEventArgs e)
         {
-            string userName = userNameTextBox.Text;
-            string passcode = passwordTextBox.Text;
-            if(userName==""|| passcode=="")
+            try
             {
-                MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            BO.User logtIn = new BO.User();
-            logtIn = bl.SignIn(userName, passcode);
-            if (rbManagement.IsChecked == true )
-            {
-                if(logtIn.managaccount)
+                string userName = userNameTextBox.Text;
+                string passcode = passwordTextBox.Text;
+                if (userName == "" || passcode == "")
                 {
-                    managementWindow win = new managementWindow(bl);
-                    win.ShowDialog();
+                    MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
-               else
-                    MessageBox.Show("למשתמש זה אין אפשרות כניסה כמנהל", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                BO.User logtIn = new BO.User();
+                logtIn = bl.SignIn(userName, passcode);
+                if (rbManagement.IsChecked == true)
+                {
+                    if (logtIn.managaccount)
+                    {
+                        managementWindow win = new managementWindow(bl);
+                        win.ShowDialog();
+                    }
+                    else
+                        MessageBox.Show("למשתמש זה אין אפשרות כניסה כמנהל", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
 
+                }
+                else if (rbUser.IsChecked == true)
+                {
+                    UserWindows win = new UserWindows(bl);
+                    win.Show();
+
+                }
+               
             }
-            else if (rbUser.IsChecked == true)
+            catch(BO.BadUserException ex)
             {
-                UserWindows win = new UserWindows(bl);
-                win.Show();
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
 
-        }
-
-        private void busesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
         }
 

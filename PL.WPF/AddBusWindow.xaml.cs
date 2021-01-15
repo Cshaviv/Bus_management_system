@@ -50,6 +50,7 @@ namespace PL.WPF
                 if(b!=null)
                 { 
                     bl.AddBus(b);
+                    MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
             }

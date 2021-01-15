@@ -29,17 +29,26 @@ namespace PL.WPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string userName = userNameTextBox.Text;
-            string passcode =  passwordTextBox.Text;
-            bool AcountType = (bool)AcountTypeCheckBox.IsChecked;
-            if (userName == "" || passcode == "")
+            try
             {
-                MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                string userName = userNameTextBox.Text;
+                string passcode = passwordTextBox.Text;
+                bool AcountType = (bool)AcountTypeCheckBox.IsChecked;
+                if (userName == "" || passcode == "")
+                {
+                    MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                BO.User newUser = new BO.User() { UserName = userName, passCode = passcode, managaccount = AcountType };
+                bl.addNewUser(newUser);
+                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
             }
-            BO.User newUser = new BO.User() {UserName= userName,passCode= passcode,managaccount= AcountType };
-            bl.addNewUser(newUser);
-            Close();
+            catch(BO.BadUserException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
     }
 }

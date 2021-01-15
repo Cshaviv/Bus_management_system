@@ -26,6 +26,11 @@ namespace DO
         public BadInputException(int ln, string message) :
           base(message) => num = ln;
     }
+    public class BadUserException : Exception
+    {
+        public BadUserException(string message) : base(message) { }
+        public override string ToString() => base.ToString();
+    }
     public class BadLineIdException : Exception
     {
         public int ID;

@@ -438,19 +438,19 @@ namespace DL
                    where predicate(user)
                    select user.Clone();
         }
-        public DO.User GetUser(string userName)
+        public DO.User GetUser(string userName)//yes
           {
             DO.User userFind = DataSource.ListUsers.Find(user => user.UserName == userName);
 
             if (userFind == null)
-                throw new Exception();
+                throw new DO.BadUserException("משתמש זה לא קיים במערכת");
             else
                 return userFind.Clone();
         }
         public void AddUser(DO.User user)
         {
             if (DataSource.ListUsers.FirstOrDefault(_user => _user.UserName == user.UserName ) != null)
-                throw new Exception();
+                throw new DO.BadUserException("שם משתמש זה כבר קיים במערכת");
             DataSource.ListUsers.Add(user.Clone());
         }
         public void UpdateUser(DO.User user)

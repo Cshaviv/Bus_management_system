@@ -27,18 +27,18 @@ namespace PL.WPF
         ListBox busesListBox;
         
 
-        public BusData(Bus b,IBL _bl,  ListBox _busesListBox)
+        public BusData(Bus _bus,IBL _bl,  ListBox _busesListBox)
         {
             InitializeComponent();
             bl = _bl;
-            bus = b;
+            bus = _bus;
             busesListBox = _busesListBox;
-            licenseNumTextBox.Text = b.LicenseNum.ToString();
-            startDateDatePicker.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
-            lastTreatDatePicker.Text = b.DateLastTreat.Day + "/" + b.DateLastTreat.Month + "/" + b.DateLastTreat.Year;
-            totalKmTextBox.Text = b.TotalKm.ToString();
-            fuelTankTextBox.Text = b.FuelTank.ToString();
-            kmafterTreatTextBox.Text = b.KmLastTreat.ToString();       
+            licenseNumTextBox.Text = bus.LicenseNum.ToString();
+            startDateDatePicker.Text = bus.StartDate.Day + "/" + bus.StartDate.Month + "/" + bus.StartDate.Year;
+            lastTreatDatePicker.Text = bus.DateLastTreat.Day + "/" + bus.DateLastTreat.Month + "/" + bus.DateLastTreat.Year;
+            totalKmTextBox.Text = bus.TotalKm.ToString();
+            fuelTankTextBox.Text = bus.FuelTank.ToString();
+            kmafterTreatTextBox.Text = bus.KmLastTreat.ToString();       
         }
         void RefreshAllBuses()
         {
@@ -55,17 +55,23 @@ namespace PL.WPF
 
         private void delete_Click(object sender, RoutedEventArgs e)//yes
         {
-            MessageBoxResult res = MessageBox.Show("Are you sure deleting selected bus?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (res == MessageBoxResult.No)
-                return;
             try
             {
-                if (bus != null)
+                if (MessageBox.Show("?האם אתה בטוח שברצונך למחוק את האוטובוס", "delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    bl.DeleteBus(bus.LicenseNum);
-                    Close();
+                    if (bus != null)
+                    {
+                        bl.DeleteBus(bus.LicenseNum);
+                        MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Close();
+                    }
+                }
+                else
+                {
+                    return;
                 }
             }
+    
             catch (BO.BadLicenseNumException ex)
             {
                 MessageBox.Show(ex.Message + " " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -81,27 +87,35 @@ namespace PL.WPF
         {
             try
             {
-                
-                int licenseNum = int.Parse(licenseNumTextBox.Text);
-                double fuel = double.Parse(fuelTankTextBox.Text);
-                 DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
-                DateTime lastDate = DateTime.Parse(lastTreatDatePicker.Text);
-                double kmLastTreat = double.Parse(kmafterTreatTextBox.Text);
-                //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
-                double totalKm = double.Parse(totalKmTextBox.Text);
-                BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, /*StatusBus = status,*/ TotalKm = totalKm, KmLastTreat = kmLastTreat };
-                bl.UpdateBusDetails(b);
-                Close();
+                MessageBoxResult res = MessageBox.Show("?האם אתה בטוח שברצונך לשנות את הנתונים", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res == MessageBoxResult.Yes)
+                {
+                    int licenseNum = int.Parse(licenseNumTextBox.Text);
+                    double fuel = double.Parse(fuelTankTextBox.Text);
+                    DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
+                    DateTime lastDate = DateTime.Parse(lastTreatDatePicker.Text);
+                    double kmLastTreat = double.Parse(kmafterTreatTextBox.Text);
+                    //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
+                    double totalKm = double.Parse(totalKmTextBox.Text);
+                    BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, /*StatusBus = status,*/ TotalKm = totalKm, KmLastTreat = kmLastTreat };
+                    bl.UpdateBusDetails(b);
+                    MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
+                }
+                else
+                {
+                    licenseNumTextBox.Text = bus.LicenseNum.ToString();
+                    startDateDatePicker.Text = bus.StartDate.Day + "/" + bus.StartDate.Month + "/" + bus.StartDate.Year;
+                    lastTreatDatePicker.Text = bus.DateLastTreat.Day + "/" + bus.DateLastTreat.Month + "/" + bus.DateLastTreat.Year;
+                    totalKmTextBox.Text = bus.TotalKm.ToString();
+                    fuelTankTextBox.Text = bus.FuelTank.ToString();
+                    kmafterTreatTextBox.Text = bus.KmLastTreat.ToString();
+                }
             }
-           
             catch (BO.BadLicenseNumException ex)
             {
                 MessageBox.Show(ex.Message + " " + ex.licenseNum, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            //catch (BO.BadInputException ex)
-            //{
-            //    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);

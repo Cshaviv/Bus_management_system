@@ -98,7 +98,7 @@ namespace PL.WPF
                 double distance = double.Parse(NextDistanceTextBox.Text);
                 TimeSpan time = TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text));
                 bl.AddStationInLine(stat.Code, line.LineId, 0,line.Stations[0].StationCode,0, distance, time, 0, new TimeSpan(0, 0, 0));
-                MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             catch (BO.BadStationCodeException ex)
@@ -122,7 +122,7 @@ namespace PL.WPF
                 double distance = double.Parse(PrevDistanceTextBox.Text);
                 TimeSpan time = TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text));
                 bl.AddStationInLine(stat.Code, line.LineId, line.Stations.Count, 0, line.Stations[line.Stations.Count-1].StationCode, 0, new TimeSpan(0, 0, 0), distance, time);
-                MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             catch (BO.BadStationCodeException ex)
@@ -149,7 +149,7 @@ namespace PL.WPF
                 double distancePrev = double.Parse(PrevDistanceTextBox.Text);
                 TimeSpan timePrev = TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text));
                 bl.AddStationInLine(stat.Code, line.LineId, prevStat.LineStationIndex + 1, line.Stations[prevStat.LineStationIndex + 1].StationCode , prevStat.StationCode,  distanceNext, timeNext, distancePrev, timePrev);
-                MessageBox.Show("successfull", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             catch (BO.BadStationCodeException ex)

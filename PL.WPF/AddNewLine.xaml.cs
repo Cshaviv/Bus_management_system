@@ -52,7 +52,7 @@ namespace PL.WPF
                 BO.Station firstStation = (firstStationComboBox.SelectedItem) as BO.Station;
                 BO.Station lastStation = (lastStationComboBox.SelectedItem) as BO.Station;
                 if (firstStation == lastStation)
-                    throw new Exception("error");
+                    throw new BO.BadLineIdException("לא ניתן להכניס שוב את אותה תחנה");
                 int lineNum = int.Parse(lineNumTextBox.Text);
                 double distance = double.Parse(distanceTextBox.Text);
                 TimeSpan time = TimeSpan.FromMinutes(double.Parse(TimeTextBox.Text));
@@ -64,7 +64,7 @@ namespace PL.WPF
                 BO.StationInLine lastStat = new BO.StationInLine() { lineNum = lineNum, StationCode = lastStation.Code, Name = lastStation.Name, LineStationIndex = 1, DistanceFromNext = 0, TimeFromNext = new TimeSpan(0,0,0) };
                 newline.Stations.Add(lastStat);
                 bl.AddNewLine(newline);
-                MessageBox.Show("The line was added successfully", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
                   
             }

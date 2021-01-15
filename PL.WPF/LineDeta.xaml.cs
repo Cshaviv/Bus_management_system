@@ -43,15 +43,15 @@ namespace PL.WPF
             BO.StationInLine station = (sender as Button).DataContext as BO.StationInLine;
             try
             {
-                if (MessageBox.Show("Do you want to delete this station?", "delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("?האם אתה בטוח שברצונך למחוק תחנה זו", "delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    bl.DeleteStationInLine(line.LineId, station.StationCode/*line.Stations[station.LineStationIndex-1].StationCode, line.Stations[station.LineStationIndex +1].StationCode*/);
+                    bl.DeleteStationInLine(line.LineId, station.StationCode);
+                    MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     RefreshAllLine();
                 }
-                else
-                {
+               
                     return;
-                }
+                
             }
             catch (BO.BadLineIdException ex)
             {
@@ -74,15 +74,20 @@ namespace PL.WPF
         }
         private void deleteLine_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult res = MessageBox.Show("Are you sure deleting selected line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (res == MessageBoxResult.No)
-                return;
+          
             try
-            { 
-                if (line != null)
+            {
+                if (MessageBox.Show("?האם אתה בטוח שברצונך למחוק קו זה", "delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    bl.DeleteLine(line.LineId);
+                    if (line != null)
+                    {
+                        bl.DeleteLine(line.LineId);
+                        MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                        RefreshAllLine();
+                        Close();
+                    }
                 }
+                return;         
             }
             catch (BO.BadLineIdException ex)
             {
@@ -92,7 +97,6 @@ namespace PL.WPF
             {
                 MessageBox.Show("ERROR ", "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            Close();
         }
         private void update_Click(object sender, RoutedEventArgs e)
         {
@@ -123,7 +127,8 @@ namespace PL.WPF
             try
             {
                 bl.UpdateLineDetails(lineUpdate);
-             
+                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
             }
             catch (BO.BadLineIdException ex)
             {
@@ -148,7 +153,7 @@ namespace PL.WPF
             BO.StationInLine stat = (sender as Button).DataContext as BO.StationInLine;
             if (stat.StationCode == line.Stations[line.Stations.Count-1].StationCode)
             {
-                MessageBox.Show("travel distance/time from Last station cant be updated.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("לא ניתן לעדכן תחנה זו ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             BO.StationInLine next = line.Stations[stat.LineStationIndex+1];

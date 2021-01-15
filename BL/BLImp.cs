@@ -485,20 +485,20 @@ namespace BL
         #endregion
 
         #region user
-        public BO.User SignIn(string username, string passcode)
+        public BO.User SignIn(string username, string passcode)//yes
         {
             BO.User userBo;
             try 
             {
                 DO.User userDo = dl.GetUser(username);
                 if (passcode != userDo.passCode)
-                    throw new Exception();
+                    throw new BO.BadUserException("סיסמא לא נכונה");
                 userBo = new BO.User();
                 userDo.CopyPropertiesTo(userBo);
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                throw new Exception();
+                throw new BO.BadUserException(ex.Message);
             }
             return userBo;
         }
@@ -510,9 +510,9 @@ namespace BL
                 userBo.CopyPropertiesTo(UserDo);
                 dl.AddUser(UserDo);
             }
-            catch (Exception)
+            catch (DO.BadUserException ex)
             {
-                throw new Exception();
+                throw new BO.BadUserException(ex.Message);
             }
         }
 
