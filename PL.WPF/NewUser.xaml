@@ -8,11 +8,11 @@
         Title="LogInUser" Height="450" Width="554.328">
     <Grid Margin="0,0,6.333,-0.333">
         <TextBlock HorizontalAlignment="Left" Margin="214,75,0,0" TextWrapping="Wrap" Text="שם משתמש" VerticalAlignment="Top" Height="32" Width="90" RenderTransformOrigin="-1.341,-0.186"/>
-        <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="33" Margin="186,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
+        <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="33" Margin="186,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
         <TextBlock HorizontalAlignment="Left" Margin="244,147,0,0" TextWrapping="Wrap" Text="סיסמא" VerticalAlignment="Top" Height="32" Width="126"/>
         <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="34" Margin="189,180,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="142"/>
         <Button Content="הרשמה" HorizontalAlignment="Left" Margin="172,279,0,0" VerticalAlignment="Top" Width="166" Height="43" Click="Button_Click"/>
-        <CheckBox x:Name="AcountTypeCheckBox" Content="CheckBox" HorizontalAlignment="Stretch" Margin="202,232,217,0" VerticalAlignment="Top" Height="23" Width="122"/>
+        <CheckBox x:Name="AcountTypeCheckBox" Content="CheckBox" HorizontalAlignment="Stretch" Margin="202,232,217,0" VerticalAlignment="Top" Height="23" Width="122" FlowDirection="RightToLeft"/>
 
     </Grid>
 </Window>
