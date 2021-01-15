@@ -16,6 +16,8 @@ namespace BLAPI
         void UpdateBusDetails(BO.Bus bus);
         void DeleteBus(int licenseNum);
         void AddBus(BO.Bus bus);
+        void BusException(BO.Bus busBO);
+
         #endregion
         #region Line
         void AddNewLine(BO.Line lineBo);

@@ -54,49 +54,29 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-        public void UpdateBusDetails(BO.Bus bus)//yes
+        public void UpdateBusDetails(BO.Bus busBO)//yes
         {
             DO.Bus busDO = new DO.Bus();
-            bus.CopyPropertiesTo(busDO);
+            busBO.CopyPropertiesTo(busDO);
             try
             {
                 dl.UpdateBus(busDO);
+                BusException(busBO);
             }
             catch (DO.BadLicenseNumException ex)
             {
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
-            //catch (DO.BadInputException ex)
-            //{
-            //    throw new BO.BadInputException(ex.Message);
-            //}
         }
-        public void AddBus(BO.Bus bus)//yes
+        public void AddBus(BO.Bus busBO)//yes
         {
             DO.Bus busDO = new DO.Bus();
-            bus.CopyPropertiesTo(busDO);
+            busBO.CopyPropertiesTo(busDO);
             try
             {
                 dl.AddBus(busDO);
-                if (bus.StartDate > DateTime.Now)
-                    throw new BadInputException(1,"The date of start operation is not valid");
-                if (bus.DateLastTreat > DateTime.Now)
-                    throw new BadInputException(2, "The date of lasttreat operation is not valid");
-                if (bus.TotalKm < 0)
-                    throw new BadInputException(3,"The total km is not valid");
-                if (bus.TotalKm < bus.KmLastTreat)
-                    throw new BadInputException(4,"The total km or km last treat are not correct");
-                if (bus.TotalKm < bus.FuelTank)
-                    throw new BadInputException(5,"The total km or fuel Tank treat are not correct");
-                if (bus.FuelTank < 0 || bus.FuelTank > 1200)
-                    throw new BadInputException(5,"The fuel tank is not valid");
-                int lengthLicNumber = LengthOfLicNum(bus.LicenseNum);
-                if (!((lengthLicNumber == 7 && bus.StartDate.Year < 2018) || (lengthLicNumber == 8 && bus.StartDate.Year >= 2018)))
-                    throw new BadInputException(6,"The license number and the date of start operation do not match");
-                if (bus.DateLastTreat > DateTime.Now || bus.DateLastTreat < bus.StartDate)
-                    throw new BadInputException(2,"The date of last treatment is not valid");
-                if (bus.KmLastTreat < 0 || bus.KmLastTreat > bus.TotalKm)
-                    throw new BadInputException(4,"The kilometrage of last treatment is not valid");
+                BusException(busBO);
+
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -107,6 +87,29 @@ namespace BL
                 throw new BO.BadInputException(ex.Message);
             }
         }
+        public void BusException(BO.Bus busBO)
+        {
+            if (busBO.StartDate > DateTime.Now)
+                throw new BadInputException(1, "The date of start operation is not valid");
+            if (busBO.DateLastTreat > DateTime.Now)
+                throw new BadInputException(2, "The date of lasttreat operation is not valid");
+            if (busBO.TotalKm < 0)
+                throw new BadInputException(3, "The total km is not valid");
+            if (busBO.TotalKm < busBO.KmLastTreat)
+                throw new BadInputException(4, "The total km or km last treat are not correct");
+            if (busBO.TotalKm < busBO.FuelTank)
+                throw new BadInputException(5, "The total km or fuel Tank treat are not correct");
+            if (busBO.FuelTank < 0 || busBO.FuelTank > 1200)
+                throw new BadInputException(5, "The fuel tank is not valid");
+            int lengthLicNumber = LengthOfLicNum(busBO.LicenseNum);
+            if (!((lengthLicNumber == 7 && busBO.StartDate.Year < 2018) || (lengthLicNumber == 8 && busBO.StartDate.Year >= 2018)))
+                throw new BadInputException(6, "The license number and the date of start operation do not match");
+            if (busBO.DateLastTreat > DateTime.Now || busBO.DateLastTreat < busBO.StartDate)
+                throw new BadInputException(2, "The date of last treatment is not valid");
+            if (busBO.KmLastTreat < 0 || busBO.KmLastTreat > busBO.TotalKm)
+                throw new BadInputException(4, "The kilometrage of last treatment is not valid");
+        }
+  
         private int LengthOfLicNum(int licNum)// This function returns the number of digits in the license number
         {
             int counter = 0;

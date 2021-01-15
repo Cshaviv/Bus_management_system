@@ -211,6 +211,10 @@ namespace PL.WPF
             // win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }
+        public void nana()
+        {
+
+        }
     }
 }
 #endregion
