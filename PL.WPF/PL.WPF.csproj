@@ -93,6 +93,9 @@
     <Compile Include="StationData.xaml.cs">
       <DependentUpon>StationData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StationDataUser.xaml.cs">
+      <DependentUpon>StationDataUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateDistanceAndTime.xaml.cs">
       <DependentUpon>UpdateDistanceAndTime.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StationData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationDataUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

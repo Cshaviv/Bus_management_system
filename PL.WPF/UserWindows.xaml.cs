@@ -41,15 +41,16 @@ namespace PL.WPF
         private void doubleClickBusInfromation(object sender, RoutedEventArgs e)//Clicking "double click" on a bus in the list will open a window showing the bus data
         {
             Bus myBus = (sender as ListBox).SelectedItem as Bus;
-            if (myBus != null)
+            if (myBus == null)
             {
-                ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
-                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
-                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                BusDataUser win = new BusDataUser(myBus, bl);
-                win.ShowDialog();
+                MessageBox.Show("לאוטובוס זה אין נתונים להציג", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;          
             }
-
+            ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
+            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+            BusDataUser win = new BusDataUser(myBus, bl);
+            win.ShowDialog();
         }
         #endregion
         #region Line
@@ -63,22 +64,39 @@ namespace PL.WPF
         {
             BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
             if (line == null)
+            {
+                MessageBox.Show("לקו זה אין נתונים להציג", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
+            }
+
             ListBoxItem myListBoxItem = (ListBoxItem)(LineesListBox.ItemContainerGenerator.ContainerFromItem(line));
             ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
             LineDataUser win = new LineDataUser(bl, line);
             win.ShowDialog();
         }
-        #endregion 
+        #endregion
+
+        #region station
+
         private void Station_Click(object sender, RoutedEventArgs e)
         {
-
+            stationsListBox.Visibility = Visibility.Visible;
+            busesListBox.Visibility = Visibility.Hidden;
+            LineesListBox.Visibility = Visibility.Hidden;
         }
         private void doubleClickStationInfromation(object sender, RoutedEventArgs e)//Clicking "double click" on a bus in the list will open a window showing the bus data
         {
-
+            BO.Station stat = (sender as ListBox).SelectedItem as BO.Station;
+            if (stat == null)
+            {
+                MessageBox.Show("לתחנה זו אין נתונים להציג", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }         
+           // BusDataUser win = new StationDataUser(bl,stat);
+           // win.ShowDialog();
         }
+        #endregion
 
         private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
         {

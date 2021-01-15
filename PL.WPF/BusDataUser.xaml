@@ -10,8 +10,7 @@
         <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="137,75,0,0" VerticalAlignment="Top">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="101.897"/>
-                <ColumnDefinition Width="26.103"/>
+                <ColumnDefinition Width="154"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -23,18 +22,20 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Km:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,5" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="30" FontFamily="Dubai Medium" FontWeight="Bold"/>
-            <TextBlock x:Name="kmTextBlock" Grid.Column="2" HorizontalAlignment="Left" Height="22" Margin="4,6,0,7" Grid.Row="3" Text="{Binding Path=TotalKm}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="fuelTank//Km after refueling:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="125" Grid.ColumnSpan="2" FontFamily="Dubai Medium"/>
-            <TextBlock x:Name="kmafterrefuelingTextBlock" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,6,0,6" Grid.Row="4" Text="{Binding Path= FuelTank}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Km after treatment:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4" Grid.Row="5" VerticalAlignment="Center" Height="26" Width="125" Grid.ColumnSpan="2" FontFamily="Dubai Medium"/>
-            <TextBlock x:Name="kmafterTreatTextBlock" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,6,0,6" Grid.Row="5" Text="{Binding Path= KmLastTreat}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Last Treat:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,5" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="63" FontFamily="Dubai Medium" FontWeight="Bold"/>
-            <TextBlock x:Name="lastTreatTextBlock" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,5,0,7" Grid.Row="2" Text="{Binding Path= DateLastTreat}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="License Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,6" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="115" Grid.ColumnSpan="2" FontFamily="Dubai Medium" FontWeight="Bold"/>
-            <TextBlock x:Name="licenseNumTextBlock" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,5,0,7" Grid.Row="0" Text="{Binding Path= LicenseNum}" VerticalAlignment="Center" Width="120" FontFamily="Dubai Light"/>
-            <Label Content="Start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,8" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="65" FontFamily="Dubai Medium" FontWeight="Bold"/>
-            <TextBlock x:Name="startDateTextBlock" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="4,0,0,9" Grid.Row="1" Text="{Binding Path= StartDate}" VerticalAlignment="Bottom" Width="120"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="0,3.667,3,3" HorizontalAlignment="Right" Grid.Column="1" Content="תאריך טיפול אחרון" Width="127"/>
+            <TextBlock x:Name="lastTreatTextBlock" VerticalAlignment="Center"  Grid.Row="2" Margin="3,4,0,4.333" HorizontalAlignment="Left" Grid.Column="0" Width="120"/>
+            <Label VerticalAlignment="Center" Grid.Row="5" Margin="0,1,-18.667,5" HorizontalAlignment="Right" Content=":ק''מ מאז תדלוק אחרון" Grid.ColumnSpan="2" Width="164"/>
+            <TextBlock x:Name="fuelTankTextBlock" Width="120" VerticalAlignment="Center" Text="{Binding Path=FuelTank}" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="0,1.667,-94.667,5" HorizontalAlignment="Right" Content=":ק''מ מאז טיפול אחרון" Width="238" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="kmafterTreatTextBlock" Width="120" VerticalAlignment="Center" Text="{Binding Path=KmLastTreat }" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="34,6,23.667,8"  HorizontalAlignment="Center" Grid.Column="1" Content=":מספר רישוי" Width="73"/>
+            <TextBlock x:Name="licenseNumTextBlock" Width="120" VerticalAlignment="Center" Text="{Binding}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="0,3.667,11.333,6.333" HorizontalAlignment="Right" Content=":תאריך תחילת פעולה" Width="134" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="startDateTextBlock" VerticalAlignment="Center"   Grid.Row="1" Margin="3,3.333,0,3.333" HorizontalAlignment="Left" Grid.Column="0" Width="120"/>
+            <!--<Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content="Status Bus:"/>-->
+            <!--<ComboBox x:Name="busStatusCombo" Width="120" VerticalAlignment="Center" Text="{Binding StatusBus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>-->
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="0,2.667,-70.667,5.333" HorizontalAlignment="Right" Grid.Column="1" Content="ק''מ" Width="125"/>
+            <TextBlock x:Name="totalKmTextBlock" Width="120" VerticalAlignment="Center" Text="{Binding Path=TotalKm}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
 
         </Grid>
     </Grid>

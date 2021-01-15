@@ -31,8 +31,8 @@ namespace PL.WPF
             licenseNumTextBlock.Text = b.LicenseNum.ToString();
             startDateTextBlock.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
             lastTreatTextBlock.Text = b.DateLastTreat.Day + "/" + b.DateLastTreat.Month + "/" + b.DateLastTreat.Year;
-            kmTextBlock.Text = b.TotalKm.ToString();
-            kmafterrefuelingTextBlock.Text = b.FuelTank.ToString();
+            totalKmTextBlock.Text = b.TotalKm.ToString();
+            fuelTankTextBlock.Text = b.FuelTank.ToString();
             kmafterTreatTextBlock.Text = b.KmLastTreat.ToString();
         }
     }

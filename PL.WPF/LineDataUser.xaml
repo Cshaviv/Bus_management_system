@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="LineDataUser" Height="450" Width="800">
+        Title="LineDataUser" Height="450" Width="800" Background="#FFF0F0F0">
     <Window.Resources>
         <DataTemplate x:Key="MyDataTemplate" DataType="local: BO.StationInLine">
             <Grid>
@@ -14,32 +14,30 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
 
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="280" />
+                    <ColumnDefinition Width="0" />
                     <ColumnDefinition Width="95" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="80" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="25" />
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0"   Text="{Binding Path= StationCode }" FontFamily="Dubai Light" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="2" Text="{Binding Path= Name }" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="4" Text="Area:" FontFamily="Dubai Light"  FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="6" Name="AreaStatTextBlock"  FontFamily="Dubai Light"  FontSize="14" />
+                <TextBlock Grid.Column="7"   Text="{Binding Path= StationCode }" FontFamily="Dubai Light" FontSize="14" HorizontalAlignment="Right"  FontWeight="Bold" />
+                <TextBlock Grid.Column="4" Text="{Binding Path= Name }" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="6" Text=":שם התחנה" HorizontalAlignment="Right" FontFamily="Dubai Medium"  FontSize="14" FontWeight="Normal" />
+                <TextBlock Grid.Column="8" Text=":קוד"  HorizontalAlignment="Right"  FontSize="14" FontWeight="Bold" FontFamily="Dubai Medium" />
             </Grid>
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <ListBox x:Name="linesListBox" ItemsSource="{Binding}" Height="277" Margin="122,29,8.333,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+        <ListBox x:Name="linesListBox" Background="#FFF0F0F0"  ItemsSource="{Binding}" Height="277" Margin="118,29,8,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" />
-        <TextBlock HorizontalAlignment="Left" Margin="20,110,0,0" TextWrapping="Wrap" Text="מספר קו" VerticalAlignment="Top" Height="29" Width="87"/>
-        <TextBlock x:Name="LineNumTextBlock"  HorizontalAlignment="Left" Margin="4,137,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87"/>
-        <TextBlock x:Name="AreaTextBlock"  HorizontalAlignment="Left" Margin="5,175,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87"/>
+        <TextBlock HorizontalAlignment="Left" Margin="20,110,0,0" TextWrapping="Wrap" Text=":מספר קו" VerticalAlignment="Top" Height="29" Width="87" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
+        <TextBlock x:Name="LineNumTextBlock"  HorizontalAlignment="Right" Margin="0,139,666,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="28" Width="87" FontSize="14"/>
+        <TextBlock x:Name="AreaTextBlock"  HorizontalAlignment="Left" Margin="13,171,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87" FontSize="14"/>
     </Grid>
 
 </Window>

@@ -29,6 +29,7 @@ namespace PL.WPF
             line = _line;
             linesListBox.DataContext = line.Stations;
             linesListBox.Visibility = Visibility.Visible;
+            linesListBox.Visibility = Visibility.Visible;
             LineNumTextBlock.Text = line.LineNum.ToString();
             AreaTextBlock.Text = line.Area.ToString();
             
