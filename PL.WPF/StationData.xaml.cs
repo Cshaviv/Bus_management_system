@@ -38,9 +38,7 @@ namespace PL.WPF
             LineInStationListBox.ItemsSource = station.LinesInStation;
            // LineInStationListBox.DataContext = station.LinesInStation;
             LineInStationListBox.Visibility = Visibility.Visible;
-            nameTextBox.Text = station.Name.ToString();
-            addressTextBox.Text = station.Address.ToString();
-            stationCodeTextBlock.Text = station.Code.ToString();
+             stationCodeTextBlock.Text = station.Code.ToString();
             
             
         }

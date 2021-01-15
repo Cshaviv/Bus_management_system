@@ -28,6 +28,7 @@ namespace PL.WPF
             bl = _bl;
             busesListBox.ItemsSource = bl.GetAllBuses().ToList();
             LineesListBox.ItemsSource = bl.GetAllLines().ToList();
+            stationsListBox.ItemsSource = bl.GetAllStations().ToList();
 
         }
 
@@ -92,9 +93,9 @@ namespace PL.WPF
             {
                 MessageBox.Show("לתחנה זו אין נתונים להציג", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
-            }         
-           // BusDataUser win = new StationDataUser(bl,stat);
-           // win.ShowDialog();
+            }
+            StationDataUser win = new StationDataUser(bl, stat, stationsListBox);
+            win.ShowDialog();
         }
         #endregion
 

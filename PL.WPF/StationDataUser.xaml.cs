@@ -23,11 +23,28 @@ namespace PL.WPF
     {
         IBL BL;
         BO.Station stat;
-        public StationDataUser(IBL _bl, Station _stat)
+        ListBox stationsListBox;
+        public StationDataUser(IBL _bl, Station _stat, ListBox _stationsListBox)
         {
             InitializeComponent();
             BL = _bl;
             stat = _stat;
+             stationsListBox = _stationsListBox;
+            // IsDeletedRectangleStation = _IsDeletedRectangleStation;
+            addressTextBlock.Text = stat.Address.ToString();
+            nameTextBlock.Text = stat.Name.ToString();
+            LineInStationListBox.ItemsSource = stat.LinesInStation;
+            // LineInStationListBox.DataContext = station.LinesInStation;
+            LineInStationListBox.Visibility = Visibility.Visible;
+             stationCodeTextBlock.Text = stat.Code.ToString();
+
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // stationViewSource.Source = [generic data source]
         }
     }
 }

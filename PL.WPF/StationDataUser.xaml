@@ -4,9 +4,57 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
+         xmlns:BO="clr-namespace:BO;assembly=BL" 
         mc:Ignorable="d"
-        Title="StationDataUser" Height="450" Width="800">
-    <Grid>
-        
+         Title="StationData" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <DataTemplate x:Key="MyDataTemplate" DataType="local: BO.StationInLine">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="65" />
+
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="3" TextWrapping="Wrap" Grid.Row="3" Text=":מספר קו" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="2" TextWrapping="Wrap" Grid.Row="3" Text="{Binding Path=LineNum}" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="1" TextWrapping="Wrap" Grid.Row="3" Text=":תחנת יעד" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap" Grid.Row="3" Text="{Binding Path=TargetStation}" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
+
+            </Grid>
+        </DataTemplate>
+
+        <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
+
+    </Window.Resources>
+    <Grid Background="#FFF0F0F0">
+        <ListBox x:Name="LineInStationListBox" ItemsSource="{Binding}" Height="190" Margin="34,118,473,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+                 ItemTemplate="{StaticResource MyDataTemplate}" Background="#FFFFFF08"  />
+        <Image HorizontalAlignment="Left" Height="108" Margin="34,34,0,0" VerticalAlignment="Top" Width="276" Source="StationSign.png111.png"/>
+        <Grid x:Name="grid1" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Right" Margin="0,55,29,0" VerticalAlignment="Top" Height="73" Width="357">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content=":כתובת" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,-65,4" Grid.Row="4" VerticalAlignment="Center" Width="115" FontFamily="Dubai Medium" FontWeight="Bold"/>
+            <TextBlock x:Name="addressTextBlock" Grid.Column="0" HorizontalAlignment="Right" Height="22" Margin="0,9,3,8" Grid.Row="4" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="220"/>
+            <Label Content=":שם התחנה" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,-65,4" Grid.Row="0" VerticalAlignment="Center" Width="122" FontFamily="Dubai Medium" FontWeight="Bold"/>
+            <TextBlock x:Name="nameTextBlock" Grid.Column="0" Height="22" Margin="1,13,3,7" Grid.Row="0" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+        </Grid>
+        <TextBlock  HorizontalAlignment="Left" Margin="245,56,0,0" TextWrapping="Wrap" Text="קוד" VerticalAlignment="Top" Height="43" Width="75" RenderTransformOrigin="3.519,0.393" FontFamily="Segoe UI Black" FontWeight="Bold" TextDecorations="{x:Null}" FontSize="16" Foreground="Black"/>
+        <TextBlock   x:Name="stationCodeTextBlock"  HorizontalAlignment="Right"  Height="37" Margin="0,58,532,0" TextWrapping="Wrap" Text="{Binding Code}" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.944,1.261" FontFamily="Segoe UI Black" FontSize="16" Foreground="Black"/>
     </Grid>
 </Window>
