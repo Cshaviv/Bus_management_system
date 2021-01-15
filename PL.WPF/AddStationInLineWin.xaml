@@ -6,30 +6,30 @@
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
         Title="AddStationInLineWin" Height="450" Width="800">
-    <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="272,28,0,0" TextWrapping="Wrap" Text="בחר את התחנה שאתה רוצה להוסיף" VerticalAlignment="Top" Height="28" Width="232"/>
+    <Grid Background="#FFF0F0F0">
+        <TextBlock HorizontalAlignment="Left" Margin="272,28,0,0" TextWrapping="Wrap" Text="בחר את התחנה שאתה רוצה להוסיף" VerticalAlignment="Top" Height="28" Width="232" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
         <ComboBox x:Name="stationComboBox" HorizontalAlignment="Left" Margin="193,54,0,0" VerticalAlignment="Top" Width="472" Height="39"/>
-        <GroupBox Header="Choose Option:" HorizontalAlignment="Left" Height="111" Margin="34,105,0,0" VerticalAlignment="Top" Width="505" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
-            <StackPanel Margin="-2,7,2.333,-5" Height="80" VerticalAlignment="Top">
+        <GroupBox Background="LightGray"  Header=":בחר אפשרות" HorizontalAlignment="Left" Height="111" Margin="34,105,0,0" VerticalAlignment="Top" Width="505" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
+            <StackPanel Background="LightGray" Margin="-2,7,2.333,-5" Height="80" VerticalAlignment="Top">
 
-                <RadioButton x:Name ="rbFirst" Content="התחלה" Height="24"  Margin="0,0,323,0" Checked="rbFirst_Checked"/>
-                <RadioButton x:Name ="rbLast" Content=" לסוף"  Height="24" Margin="0,0,314,0" Checked="rbLast_Checked"/>
-                <RadioButton x:Name ="rbMiddle" Content=" לאמצע" Height="24" Margin="0,0,314,0" Checked="rbMiddle_Checked"/>
+                <RadioButton x:Name ="rbFirst" Content="התחלה" Height="24"  Margin="0,0,323,0" Checked="rbFirst_Checked" FontFamily="Dubai Medium" FontWeight="Bold"/>
+                <RadioButton x:Name ="rbLast" Content=" לסוף"  Height="24" Margin="0,0,314,0" Checked="rbLast_Checked" FontWeight="Bold" FontStyle="Normal" FontFamily="Dubai Medium"/>
+                <RadioButton x:Name ="rbMiddle" Content=" לאמצע" Height="24" Margin="0,0,314,0" Checked="rbMiddle_Checked" FontFamily="Dubai Medium" FontWeight="Bold"/>
 
             </StackPanel>
         </GroupBox>
-        <Button x:Name="AddFirst" Content="להתחלה הוספה" Visibility="Hidden" Click="AddFirstClick" HorizontalAlignment="Left" Margin="217,366,0,0" VerticalAlignment="Top" Width="172" Height="50"/>
-        <Button x:Name="AddLast" Content="הוספה לסוף" Visibility="Hidden" Click="AddLastClick"  HorizontalAlignment="Left" Margin="29,361,0,0" VerticalAlignment="Top" Width="172" Height="50"/>
-        <Button x:Name="AddMiddle" Content=" לאמצע הוספה" Visibility="Hidden" Click="AddMiddleClick"  HorizontalAlignment="Left" Margin="472,360,0,0" VerticalAlignment="Top" Width="172" Height="50"/>
-        <TextBlock x:Name="PrevStatTextBlock" Visibility="Hidden"  HorizontalAlignment="Left"  Margin="49,233,0,0" TextWrapping="Wrap" Text="בחר את התחנה שנמצאת לפני התחנה שאתה רוצה להוסיף " VerticalAlignment="Top" Height="28" Width="306"/>
-        <ComboBox x:Name="PrevstationComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="7,274,0,0" VerticalAlignment="Top" Width="439" Height="39"/>
-        <TextBlock x:Name="NextDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="468,271,0,0" TextWrapping="Wrap" Text="dis from next" VerticalAlignment="Top" Height="28" Width="79"/>
-        <TextBlock x:Name="NextTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="469,318,0,0" TextWrapping="Wrap" Text="time from next" VerticalAlignment="Top" Height="28" Width="232"/>
-        <TextBox x:Name="NextDistanceTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="459,289,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="NextTimeTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="464,356,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="PrevDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="595,271,-33.667,0" TextWrapping="Wrap" Text="dis from prev" VerticalAlignment="Top" Height="28" Width="232"/>
-        <TextBlock x:Name="PrevTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="597,318,-35.667,0" TextWrapping="Wrap" Text="time from prev" VerticalAlignment="Top" Height="28" Width="232"/>
-        <TextBox x:Name="PrevDistanceTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="590,292,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="PrevTimeTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="601,353,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="AddFirst" Content="להתחלה הוספה" Visibility="Hidden" Click="AddFirstClick" HorizontalAlignment="Left" Margin="219,346,0,0" VerticalAlignment="Top" Width="172" Height="50" FontFamily="Dubai Medium" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="AddLast" Content="הוספה לסוף" Visibility="Hidden" Click="AddLastClick"  HorizontalAlignment="Left" Margin="29,347,0,0" VerticalAlignment="Top" Width="172" Height="50" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
+        <Button x:Name="AddMiddle" Content=" לאמצע הוספה" Visibility="Hidden" Click="AddMiddleClick"  HorizontalAlignment="Left" Margin="228,348,0,0" VerticalAlignment="Top" Width="172" Height="50" FontFamily="Dubai Medium" FontSize="14" FontWeight="Bold"/>
+        <TextBlock x:Name="PrevStatTextBlock" Visibility="Hidden"  HorizontalAlignment="Left"  Margin="49,233,0,0" TextWrapping="Wrap" Text="בחר את התחנה שנמצאת לפני התחנה שאתה רוצה להוסיף " VerticalAlignment="Top" Height="28" Width="306" FontFamily="Dubai Medium"/>
+        <ComboBox x:Name="PrevstationComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="13,264,0,0" VerticalAlignment="Top" Width="439" Height="39"/>
+        <TextBlock x:Name="NextDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="462,271,0,0" TextWrapping="Wrap" Text="מרחק לתחנה הבאה" VerticalAlignment="Top" Height="28" Width="108" FontFamily="Dubai Medium"/>
+        <TextBlock x:Name="NextTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="471,318,0,0" TextWrapping="Wrap" Text="זמן לתחנה הבאה" VerticalAlignment="Top" Height="28" Width="91" FontFamily="Dubai Medium"/>
+        <TextBox x:Name="NextDistanceTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="457,292,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="NextTimeTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="22" Margin="458,344,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="PrevDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="604,271,0,0" TextWrapping="Wrap" Text="מרחק מתחנה קודמת" VerticalAlignment="Top" Height="28" Width="114" FontFamily="Dubai Medium"/>
+        <TextBlock x:Name="PrevTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="610,318,0,0" TextWrapping="Wrap" Text="זמן מתחנה קודמת" VerticalAlignment="Top" Height="28" Width="96" FontFamily="Dubai Medium"/>
+        <TextBox x:Name="PrevDistanceTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="601,292,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PrevTimeTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="602,343,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

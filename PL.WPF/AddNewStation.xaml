@@ -10,7 +10,7 @@
     <Window.Resources>
         <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
     </Window.Resources>
-    <Grid>
+    <Grid Background="#FFF0F0F0">
 
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="114,47,0,0" HorizontalAlignment="Left" DataContext="{StaticResource stationViewSource}" Height="118" Width="349">
             <Grid.RowDefinitions>
@@ -24,14 +24,14 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="3" Margin="2.667,0,0,5.333" HorizontalAlignment="Left" Grid.Column="1" Content=":כתובת תחנה"/>
-            <TextBox x:Name="addressTextBox" Width="250" VerticalAlignment="Center" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3,2.66,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
-            <Label VerticalAlignment="Bottom" Grid.Row="1" Margin="16.667,0,0,3.667" HorizontalAlignment="Left" Grid.Column="1" Content=":קוד תחנה"/>
-            <TextBox x:Name="codeTextBox" Width="250" VerticalAlignment="Center" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3,5,0,5" Height="21" HorizontalAlignment="Left" Grid.Column="0"/>
-            <Label VerticalAlignment="Bottom" Grid.Row="2" Margin="15.667,0,0,6" HorizontalAlignment="Left" Grid.Column="1" Content=":שם תחנה"/>
-            <TextBox x:Name="nameTextBox" Width="250" VerticalAlignment="Center" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3,5,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="2.667,0,0,5.333" HorizontalAlignment="Left" Grid.Column="1" Content=":כתובת תחנה" FontFamily="Dubai Medium" FontWeight="Bold"/>
+            <TextBox x:Name="addressTextBox" Width="250" VerticalAlignment="Center" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3,2.66,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="0" FontFamily="Dubai Light"/>
+            <Label VerticalAlignment="Bottom" Grid.Row="1" Margin="16.667,0,0,3.667" HorizontalAlignment="Left" Grid.Column="1" Content=":קוד תחנה" FontFamily="Dubai Medium" FontWeight="Bold"/>
+            <TextBox x:Name="codeTextBox" Width="250" VerticalAlignment="Center" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3,5,0,5" Height="21" HorizontalAlignment="Left" Grid.Column="0" FontFamily="Dubai Light"/>
+            <Label VerticalAlignment="Bottom" Grid.Row="2" Margin="15.667,0,0,6" HorizontalAlignment="Left" Grid.Column="1" Content=":שם תחנה" FontFamily="Dubai Medium" FontWeight="Bold"/>
+            <TextBox x:Name="nameTextBox" Width="250" VerticalAlignment="Center" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3,5,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="0" FontFamily="Dubai Light"/>
         </Grid>
-        <Button Name="addButton" Content="הוספה" HorizontalAlignment="Left" Margin="185,198,0,0" VerticalAlignment="Top" Width="189" Height="30" Click="addButton_click"/>
+        <Button Name="addButton" Content="הוספה" HorizontalAlignment="Left" Margin="148,198,0,0" VerticalAlignment="Top" Width="200" Height="38" Click="addButton_click" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
 
     </Grid>
 </Window>

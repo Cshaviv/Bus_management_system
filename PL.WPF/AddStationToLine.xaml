@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="AddStationToLine" Height="450" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="272,66,0,0" TextWrapping="Wrap" Text="בחר את התחנה שאתה רוצה להוסיף" VerticalAlignment="Top" Height="28" Width="232"/>
+        <TextBlock HorizontalAlignment="Left" Margin="293,66,0,0" TextWrapping="Wrap" Text="בחר את התחנה שאתה רוצה להוסיף" VerticalAlignment="Top" Height="28" Width="232"/>
         <ComboBox x:Name="stationComboBox" HorizontalAlignment="Left" Margin="193,100,0,0" VerticalAlignment="Top" Width="472" Height="39"/>
         <TextBlock x:Name="PrevStatTextBlock"  HorizontalAlignment="Left"  Margin="235,216,0,0" TextWrapping="Wrap" Text="בחר את התחנה שנמצאת לפני התחנה שאתה רוצה להוסיף " VerticalAlignment="Top" Height="28" Width="306"/>
         <ComboBox x:Name="PrevstationComboBox"  HorizontalAlignment="Left" Margin="185,244,0,0" VerticalAlignment="Top" Width="485" Height="39"/>
-        <TextBlock HorizontalAlignment="Left" Margin="287,148,0,0" TextWrapping="Wrap" Text="ברצוני להוסיף את התחנה לתחילת המסלול " VerticalAlignment="Top" Height="28" Width="306"/>
+        <TextBlock HorizontalAlignment="Left" Margin="285,148,0,0" TextWrapping="Wrap" Text="ברצוני להוסיף את התחנה לתחילת המסלול " VerticalAlignment="Top" Height="28" Width="306"/>
 
     </Grid>
 </Window>
