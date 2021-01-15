@@ -318,7 +318,6 @@ namespace BL
                 stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code)
                                             let line = dl.GetLine(l.LineId)
                                             select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation = dl.GetStation(line.LastStation).Name }).ToList();
-
                 return stationBO;
             }
             catch(DO.BadStationCodeException ex)
@@ -363,7 +362,7 @@ namespace BL
             }
 
         }
-        public void DeleteStation(int statCode)
+        public void DeleteStation(int statCode)//yes
         {
             try
             {
@@ -381,7 +380,7 @@ namespace BL
                 throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
         }
-        public void UpdateStation(BO.Station stationBO)
+        public void UpdateStation(BO.Station stationBO)//yes
         {
             DO.Station stationDO = new DO.Station();
             stationBO.CopyPropertiesTo(stationDO);

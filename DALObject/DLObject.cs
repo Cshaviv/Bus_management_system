@@ -340,14 +340,14 @@ namespace DL
                 throw new BadStationCodeException(station.Code, "תחנה זו כבר קיימת במערכת");
             DataSource.ListStations.Add(station.Clone());
         }
-        public void UpdateStation(DO.Station station)
+        public void UpdateStation(DO.Station station)//yes
         {
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == station.Code && stat.IsDeleted == false);
             int code = station.Code;
             if (stationFind == null)
-                throw new BadStationCodeException(code, "The station does not exist");
-              DataSource.ListStations.Remove(stationFind);//delete the station without update details
-            DataSource.ListStations.Add(station.Clone());// add the station with update details
+                throw new BadStationCodeException(code, "תחנה זו לא קיימת במערכת");
+              DataSource.ListStations.Remove(stationFind);
+            DataSource.ListStations.Add(station.Clone());
         }
         public void UpdateStation(int code, Action<DO.Station> update)//?
         {
@@ -360,7 +360,7 @@ namespace DL
         {
             DO.Station statFind = DataSource.ListStations.FirstOrDefault(s => s.Code == code && s.IsDeleted == false);// chrck if station exist in list station
             if (statFind == null)
-                throw new BadStationCodeException(code, "The station does not exist");
+                throw new BadStationCodeException(code, "תחנה זו לא קיימת במערכת");
             statFind.IsDeleted = true;
             foreach (DO.AdjacentStations stat in DataSource.ListAdjacentStations)//delete from adjacent Station
             {

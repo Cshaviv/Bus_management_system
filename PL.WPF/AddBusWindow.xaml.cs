@@ -45,6 +45,7 @@ namespace PL.WPF
                 double kmLastTreat = double.Parse(kmLastTreatTextBox.Text);
                 double fuel = double.Parse(fuelTankTextBox.Text);
                 double totalKm = double.Parse(totalKmTextBox.Text);
+                //if (licenseNum = null || startDate = null || lastDate = null||)
                 //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
                 BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, StatusBus = BusStatus.Available, TotalKm = totalKm, KmLastTreat = kmLastTreat };
                 if(b!=null)
