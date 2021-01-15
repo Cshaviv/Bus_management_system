@@ -306,18 +306,30 @@ namespace BL
         #region Station
         public BO.Station StationDoBoAdapter(DO.Station stationDO)//yes
         {
-            BO.Station stationBO = new BO.Station();
-            int stationCode = stationDO.Code;
-            stationDO.CopyPropertiesTo(stationBO);
-            //stationBO.LinesInStation = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
-            //                            let line = dl.GetLine(stat.LineId)//line
-            //                            select line.CopyToLineInStation(stat)).ToList();
-            //return stationBO;
-            stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code)
-                                        let line = dl.GetLine(l.LineId)
-                                        select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation=line.LastStation}).ToList();
+            try
+            {
+                BO.Station stationBO = new BO.Station();
+                int stationCode = stationDO.Code;
+                stationDO.CopyPropertiesTo(stationBO);
+                //stationBO.LinesInStation = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
+                //                            let line = dl.GetLine(stat.LineId)//line
+                //                            select line.CopyToLineInStation(stat)).ToList();
+                //return stationBO;
+                stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code)
+                                            let line = dl.GetLine(l.LineId)
+                                            select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation = dl.GetStation(line.LastStation).Name }).ToList();
 
-            return stationBO;
+                return stationBO;
+            }
+            catch(DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException(ex.stationCode,ex.Message);
+            }
+
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.ID, ex.Message);
+            }
         }
         public IEnumerable<BO.Station> GetAllStations()//yes
         {
@@ -333,11 +345,11 @@ namespace BL
             }
             catch (DO.BadStationCodeException ex)
             {
-                throw new BO.BadStationCodeException(0, "station code does not exist or he is not a student");
+                throw new BO.BadStationCodeException(0, "התחנה לא קיימת במערכת");
             }
             return StationDoBoAdapter(station);
         }
-        public void AddStation(BO.Station station)
+        public void AddStation(BO.Station station)//yes
         {
             DO.Station stationDO = new DO.Station();
             station.CopyPropertiesTo(stationDO);

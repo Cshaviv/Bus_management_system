@@ -36,7 +36,7 @@ namespace PL.WPF
                 bool AcountType = (bool)AcountTypeCheckBox.IsChecked;
                 if (userName == "" || passcode == "")
                 {
-                    MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("אנא מלא את כל השדות", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 BO.User newUser = new BO.User() { UserName = userName, passCode = passcode, managaccount = AcountType };
