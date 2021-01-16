@@ -21,6 +21,10 @@ namespace BL
             busDO.CopyPropertiesTo(busBO);
             return busBO;
         }//yes
+        /// <summary>
+        /// A function that delete bus 
+        /// </summary>
+        /// <param name="licenseNum">Bus license number</param>
         public void DeleteBus(int licenseNum)//yes
         {
             try
@@ -32,7 +36,7 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
         }
-        public IEnumerable<BO.Bus> GetAllBuses()
+         public IEnumerable<BO.Bus> GetAllBuses()
         {
             return from item in dl.GetAllBuses()
                    select busDoBoAdapter(item);
@@ -50,11 +54,11 @@ namespace BL
             }
             return busDoBoAdapter(busDO);
         }
-        public IEnumerable<Bus> GetBusesBy(Predicate<Bus> predicate)
+       public IEnumerable<Bus> GetBusesBy(Predicate<Bus> predicate)///??
         {
             throw new NotImplementedException();
         }
-        public void UpdateBusDetails(BO.Bus busBO)//yes
+         public void UpdateBusDetails(BO.Bus busBO)//yes
         {
             DO.Bus busDO = new DO.Bus();
             busBO.CopyPropertiesTo(busDO);
@@ -68,7 +72,7 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
         }
-        public void AddBus(BO.Bus busBO)//yes
+       public void AddBus(BO.Bus busBO)//yes
         {
             DO.Bus busDO = new DO.Bus();
             busBO.CopyPropertiesTo(busDO);
@@ -88,6 +92,10 @@ namespace BL
                 throw new BO.BadInputException(ex.Message);
             }
         }
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="busBO"></param>
         public void BusException(BO.Bus busBO)
         {
             if (busBO.StartDate > DateTime.Now)
@@ -110,7 +118,11 @@ namespace BL
             if (busBO.KmLastTreat < 0 || busBO.KmLastTreat > busBO.TotalKm)
                 throw new BadInputException(4, "הקילומטרים מהטיפול האחרון אינם תקינים");
         }
-  
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="licNum">Bus license number</param>
+        /// <returns></returns>
         private int LengthOfLicNum(int licNum)// This function returns the number of digits in the license number
         {
             int counter = 0;

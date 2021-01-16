@@ -21,22 +21,26 @@ namespace DL
 
         #region Bus
         /// <summary>
-        /// הפונקציה מחזירה את רשימת האוטובוסים שלא מחוקים
+        ///  A function that returns the list of buses that exist in the system
         /// </summary>
-        /// <returns></returns>
+        /// <returns>buses list</returns>
         public IEnumerable<DO.Bus> GetAllBuses()
         {
             return from bus in DataSource.ListBuses
                    where bus.IsDeleted == false
                    select bus.Clone();
-        }//yes
-        //
-        public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)
+        }
+        public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)//???
         {
             return from bus in DataSource.ListBuses
                    where predicate(bus)
                    select bus.Clone();
         }
+        /// <summary>
+        /// The function received a license number and returns the bus according to the license number
+        /// </summary>
+        /// <param name="licenseNumber">Bus license number</param>
+        /// <returns>bus</returns>
         public DO.Bus GetBus(int licenseNumber)
         {
             DO.Bus bus = DataSource.ListBuses.Find(b => b.LicenseNum == licenseNumber && b.IsDeleted == false);
@@ -46,12 +50,20 @@ namespace DL
             else
                 throw new BadLicenseNumException(licenseNumber, "The bus does not exist");
         }
+        /// <summary>
+        /// A function that receives a bus and adds it to the system
+        /// </summary>
+        /// <param name="busBo"> bus</param>
         public void AddBus(DO.Bus busBo)//yes
         {
             if (DataSource.ListBuses.FirstOrDefault(bus_ => bus_.LicenseNum == busBo.LicenseNum && bus_.IsDeleted == false) != null)
                 throw new BadLicenseNumException(busBo.LicenseNum,"אוטובוס זה כבר קיים במערכת");           
             DataSource.ListBuses.Add(busBo.Clone());
         }
+        /// <summary>
+        /// A function that recived a bus and updates the bus details
+        /// </summary>
+        /// <param name="bus"> bus</param>
         public void UpdateBus(DO.Bus bus)
         {
             DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == bus.LicenseNum && bus_.IsDeleted == false);
@@ -60,13 +72,17 @@ namespace DL
             DataSource.ListBuses.Remove(busFind);
             DataSource.ListBuses.Add(bus.Clone());
         }//yes
-        public void UpdateBus(int licenseNumber, Action<DO.Bus> update)
+        public void UpdateBus(int licenseNumber, Action<DO.Bus> update)//???
         {
             DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == licenseNumber && bus_.IsDeleted == false);
             if (busFind == null)
                 throw new BadLicenseNumException(licenseNumber, "The bus does not exist");
             update(busFind);
         }
+        /// <summary>
+        /// A function that delete bus from the system
+        /// </summary>
+        /// <param name="licenseNumber">Bus license number</param>
         public void DeleteBus(int licenseNumber)//yes
         {
             DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == licenseNumber && bus_.IsDeleted == false);
@@ -78,17 +94,27 @@ namespace DL
         #endregion
 
         #region AdjacentStations
+        /// <summary>
+        /// A function that returns the list of Adjacent Stations that exist in the system
+        /// </summary>
+        /// <returns>list of Adjacent Stations</returns>
         public IEnumerable<DO.AdjacentStations> GetAllAdjacentStations()
         {
             return from adjStations in DataSource.ListAdjacentStations
                    select adjStations.Clone();
         }
-        public IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<DO.AdjacentStations> predicate)
+        public IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<DO.AdjacentStations> predicate)//???
         {
             return from adjStations in DataSource.ListAdjacentStations
                    where predicate(adjStations)
                    select adjStations.Clone();
         }
+        /// <summary>
+        /// The function received Station code of two consecutive stations and returns the Adjacent Stations according to the codes
+        /// </summary>
+        /// <param name="code1"> code of station 1</param>
+        /// <param name="code2">code of station 2</param>
+        /// <returns>Adjacent Stations Of the two stations</returns>
         public DO.AdjacentStations GetAdjacentStations(int code1, int code2)
         {
             DO.AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(s => s.StationCode1 == code1 && s.StationCode2 == code2);
@@ -98,12 +124,20 @@ namespace DL
             else
                 throw new DO.BadInputException(code1, "מצטערים חסר מידע על תחנה זו");
         }//yes
+        /// <summary>
+        /// A function that receives a adjacentStations and adds it to the system
+        /// </summary>
+        /// <param name="adjacentStations">adjacent stations</param>
         public void AddAdjacentStations(DO.AdjacentStations adjacentStations)//yes
         {
             if (DataSource.ListAdjacentStations.FirstOrDefault(adjStations => (adjStations.StationCode1 == adjacentStations.StationCode1 && adjStations.StationCode2 == adjacentStations.StationCode2 && adjStations.IsDeleted == false)) != null)//if those adjacent stations already exist in the list
-                throw new DO.BadInputException("מצטערים, לא היה ניתן לעדכן שדות אלו");
+                throw new DO.BadInputException("התחנות עוקבות קיימות במערכת");
             DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="adjacentStations"> </param>
         public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)//yes
         {
             DO.AdjacentStations adjacentStations1 = DataSource.ListAdjacentStations.Find(s => s.StationCode1 == adjacentStations.StationCode1 && s.StationCode2 == adjacentStations.StationCode2);
