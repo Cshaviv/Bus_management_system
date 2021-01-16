@@ -15,6 +15,11 @@ namespace BL
         IDL dl = DLFactory.GetDL();
 
         #region Bus
+        /// <summary>
+        /// A function that converts the bus from the DO to the BO
+        /// </summary>
+        /// <param name="busDO"></param>
+        /// <returns></returns>
         BO.Bus busDoBoAdapter(DO.Bus busDO)
         {
             BO.Bus busBO = new BO.Bus();
@@ -36,11 +41,20 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
         }
-         public IEnumerable<BO.Bus> GetAllBuses()
+      /// <summary>
+      /// A function that calls to another function in the Dl that get all busses 
+      /// </summary>
+      /// <returns></returns>
+        public IEnumerable<BO.Bus> GetAllBuses()
         {
             return from item in dl.GetAllBuses()
                    select busDoBoAdapter(item);
         }//yes
+        /// <summary>
+        /// A function that calls to another function in the Dl that get the license number and returns the bus 
+        /// </summary>
+        /// <param name="licenseNum"></param>
+        /// <returns></returns>
         public Bus GetBus(int licenseNum)
         {
             DO.Bus busDO;
@@ -54,11 +68,11 @@ namespace BL
             }
             return busDoBoAdapter(busDO);
         }
-       public IEnumerable<Bus> GetBusesBy(Predicate<Bus> predicate)///??
+        public IEnumerable<Bus> GetBusesBy(Predicate<Bus> predicate)///??
         {
             throw new NotImplementedException();
         }
-         public void UpdateBusDetails(BO.Bus busBO)//yes
+        public void UpdateBusDetails(BO.Bus busBO)//yes
         {
             DO.Bus busDO = new DO.Bus();
             busBO.CopyPropertiesTo(busDO);
@@ -72,7 +86,7 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
         }
-       public void AddBus(BO.Bus busBO)//yes
+        public void AddBus(BO.Bus busBO)//yes
         {
             DO.Bus busDO = new DO.Bus();
             busBO.CopyPropertiesTo(busDO);
@@ -92,10 +106,10 @@ namespace BL
                 throw new BO.BadInputException(ex.Message);
             }
         }
-       /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="busBO"></param>
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="busBO"></param>
         public void BusException(BO.Bus busBO)
         {
             if (busBO.StartDate > DateTime.Now)
@@ -163,11 +177,11 @@ namespace BL
                 }
                 return lineBO;
             }
-            catch(DO.BadInputException ex)
+            catch (DO.BadInputException ex)
             {
                 throw new BO.BadInputException(ex.Message);
             }
-          
+
         }//yes
         public Line GetLine(int lineId)//yes
         {
@@ -202,7 +216,7 @@ namespace BL
                 dl.AddLine(lineDo);
                 DO.LineStation first = new DO.LineStation() { LineId = lineDo.LineId, StationCode = stationCode1, LineStationIndex = lineBo.Stations[0].LineStationIndex, IsDeleted = false };
                 DO.LineStation last = new DO.LineStation() { LineId = lineDo.LineId, StationCode = stationCode2, LineStationIndex = lineBo.Stations[1].LineStationIndex, IsDeleted = false };
-                dl.AddStationInLine(first.StationCode,first.LineId,first.LineStationIndex);
+                dl.AddStationInLine(first.StationCode, first.LineId, first.LineStationIndex);
                 dl.AddStationInLine(last.StationCode, last.LineId, last.LineStationIndex);
 
             }
@@ -210,7 +224,7 @@ namespace BL
             {
                 throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
-            catch(DO.BadInputException ex)
+            catch (DO.BadInputException ex)
             {
                 throw new BO.BadInputException(ex.Message);
             }
@@ -223,7 +237,7 @@ namespace BL
         public IEnumerable<BO.Line> GetAllLines()//yes
         {
             return from item in dl.GetAllLines()
-                   where (item.IsDeleted == false )
+                   where (item.IsDeleted == false)
                    select lineDoBoAdapter(item);
         }
         public IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate)
@@ -336,9 +350,9 @@ namespace BL
                                             select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation = dl.GetStation(line.LastStation).Name }).ToList();
                 return stationBO;
             }
-            catch(DO.BadStationCodeException ex)
+            catch (DO.BadStationCodeException ex)
             {
-                throw new BO.BadStationCodeException(ex.stationCode,ex.Message);
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
 
             catch (DO.BadLineIdException ex)
@@ -384,7 +398,7 @@ namespace BL
             {
                 DO.Station statDO = dl.GetStation(statCode);
                 BO.Station statBO = StationDoBoAdapter(statDO);
-                if (statBO.LinesInStation.Count==0)
+                if (statBO.LinesInStation.Count == 0)
                     dl.DeleteStation(statCode);
                 else
                     throw new BO.BadStationCodeException(statCode, "לא ניתן למחוק את התחנה כיוון שיש קווים שעוברים בה");
@@ -408,25 +422,25 @@ namespace BL
             {
                 throw new BO.BadLicenseNumException(ex.stationCode, ex.Message);
             }
-           
+
         }
-    
+
         #endregion
 
         #region StationInLine
-        public void AddStationInLine(int stationCode, int busID, int index,int nextStatCode, int prevStatCode, double distanceNext,TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
+        public void AddStationInLine(int stationCode, int busID, int index, int nextStatCode, int prevStatCode, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
         {
             try
             {
-                if (index==0)
+                if (index == 0)
                 {
-                    if (!dl.ExistAdjacentStations(stationCode,nextStatCode))
+                    if (!dl.ExistAdjacentStations(stationCode, nextStatCode))
                     {
                         DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode, StationCode2 = nextStatCode, Distance = distanceNext, Time = timeNext };
                         dl.AddAdjacentStations(adj);
                     }
                 }
-                else if (index >= GetLine(busID).Stations.Count-1)
+                else if (index >= GetLine(busID).Stations.Count - 1)
                 {
                     if (!dl.ExistAdjacentStations(stationCode, prevStatCode))
                     {
@@ -448,12 +462,12 @@ namespace BL
                     }
                 }
                 dl.AddStationInLine(stationCode, busID, index);
-            }          
-            catch(DO.BadStationCodeException ex)
+            }
+            catch (DO.BadStationCodeException ex)
             {
                 throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
-            catch(DO.BadInputException ex)
+            catch (DO.BadInputException ex)
             {
                 throw new BO.BadInputException(ex.Message);
             }
@@ -465,7 +479,7 @@ namespace BL
                 DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = first.StationCode, StationCode2 = second.StationCode, Distance = first.DistanceFromNext, Time = first.TimeFromNext, IsDeleted = false };
                 dl.UpdateAdjacentStations(adj);
             }
-            catch(DO.BadInputException ex)
+            catch (DO.BadInputException ex)
             {
                 throw new BO.BadInputException(ex.Message);
             }
@@ -474,7 +488,7 @@ namespace BL
                 throw new Exception("מצטערים, לא היה ניתן לעדכן שדה זה");
             }
         }
-        public void DeleteStationInLine(int lineID , int code)//yes
+        public void DeleteStationInLine(int lineID, int code)//yes
         {
             BO.Line line = new BO.Line();
             line = GetLine(lineID);
@@ -482,11 +496,11 @@ namespace BL
             int index = GetLine(lineID).Stations.FindIndex(s => s.StationCode == code);
             try
             {
-                if(line.Stations.Count<=2)
+                if (line.Stations.Count <= 2)
                 {
                     throw new BO.BadStationCodeException(code, "בקו זה אין מספיק תחנות ולכן אין אפשרות למחוק תחנה זו");
                 }
-                if ((index == 0) || (index == line.Stations.Count-1 ))
+                if ((index == 0) || (index == line.Stations.Count - 1))
                 {
                     dl.DeleteStationInLine(lineID, code);
                     return;
@@ -495,19 +509,19 @@ namespace BL
                 int statCode2 = line.Stations[index + 1].StationCode;
                 if (!dl.ExistAdjacentStations(statCode1, statCode2))
                 {
-                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = statCode1, StationCode2 = statCode2, Distance = 0, Time = new TimeSpan(0, 0, 0) };            
-                        dl.AddAdjacentStations(adj);                
+                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = statCode1, StationCode2 = statCode2, Distance = 0, Time = new TimeSpan(0, 0, 0) };
+                    dl.AddAdjacentStations(adj);
                 }
-                dl.DeleteStationInLine(lineID , code);
+                dl.DeleteStationInLine(lineID, code);
             }
             catch (DO.BadLineIdException ex)
             {
-                throw new BO.BadLineIdException(ex.code," קו האוטובוס או התחנה לא זמינים");
+                throw new BO.BadLineIdException(ex.code, " קו האוטובוס או התחנה לא זמינים");
             }
             catch (DO.BadStationCodeException ex)
             {
                 throw new BO.BadStationCodeException(ex.stationCode, "קו אוטובוס זה לא עובר בתחנה זו");
-            }          
+            }
         }
         #endregion
 
@@ -515,7 +529,7 @@ namespace BL
         public BO.User SignIn(string username, string passcode)//yes
         {
             BO.User userBo;
-            try 
+            try
             {
                 DO.User userDo = dl.GetUser(username);
                 if (passcode != userDo.passCode)
@@ -523,7 +537,7 @@ namespace BL
                 userBo = new BO.User();
                 userDo.CopyPropertiesTo(userBo);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new BO.BadUserException(ex.Message);
             }
