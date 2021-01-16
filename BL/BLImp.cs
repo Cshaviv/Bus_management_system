@@ -91,24 +91,24 @@ namespace BL
         public void BusException(BO.Bus busBO)
         {
             if (busBO.StartDate > DateTime.Now)
-                throw new BadInputException(1, "The date of start operation is not valid");
+                throw new BadInputException(1, "תאריך תחילת הפעולה אינו תקין");
             if (busBO.DateLastTreat > DateTime.Now)
-                throw new BadInputException(2, "The date of lasttreat operation is not valid");
+                throw new BadInputException(2, "תאריך פעולת הטיפול האחרון אינו תקין");
             if (busBO.TotalKm < 0)
-                throw new BadInputException(3, "The total km is not valid");
+                throw new BadInputException(3, "סך כל הקילומטרים אינו תקין");
             if (busBO.TotalKm < busBO.KmLastTreat)
-                throw new BadInputException(4, "The total km or km last treat are not correct");
+                throw new BadInputException(4, "סך כל הקילומטרים או הקילומטרים מהטיפול האחרון אינם תקינים");
             if (busBO.TotalKm < busBO.FuelTank)
-                throw new BadInputException(5, "The total km or fuel Tank treat are not correct");
+                throw new BadInputException(5, "סך כל הקילומטרים או הקילומרים מהתדלוק האחרון אינם תקינים ");
             if (busBO.FuelTank < 0 || busBO.FuelTank > 1200)
-                throw new BadInputException(5, "The fuel tank is not valid");
+                throw new BadInputException(5, "הקילומרים מהתדלוק האחרון אינם תקינים");
             int lengthLicNumber = LengthOfLicNum(busBO.LicenseNum);
             if (!((lengthLicNumber == 7 && busBO.StartDate.Year < 2018) || (lengthLicNumber == 8 && busBO.StartDate.Year >= 2018)))
-                throw new BadInputException(6, "The license number and the date of start operation do not match");
+                throw new BadInputException(6, "מספר הרישוי ותאריך התחלת הפעולה אינם מתואמים");
             if (busBO.DateLastTreat > DateTime.Now || busBO.DateLastTreat < busBO.StartDate)
-                throw new BadInputException(2, "The date of last treatment is not valid");
+                throw new BadInputException(2, "תאריך הטיפול האחרון אינו תקין");
             if (busBO.KmLastTreat < 0 || busBO.KmLastTreat > busBO.TotalKm)
-                throw new BadInputException(4, "The kilometrage of last treatment is not valid");
+                throw new BadInputException(4, "הקילומטרים מהטיפול האחרון אינם תקינים");
         }
   
         private int LengthOfLicNum(int licNum)// This function returns the number of digits in the license number
