@@ -18,19 +18,19 @@ namespace BL
         /// <summary>
         /// A function that converts the bus from the DO to the BO
         /// </summary>
-        /// <param name="busDO"></param>
+        /// <param name="busDO">bus</param>
         /// <returns></returns>
         BO.Bus busDoBoAdapter(DO.Bus busDO)
         {
             BO.Bus busBO = new BO.Bus();
             busDO.CopyPropertiesTo(busBO);
             return busBO;
-        }//yes
+        }
         /// <summary>
-        /// A function that delete bus 
+        ///  A function that calls to another function in the Dl that delete bus from the system
         /// </summary>
         /// <param name="licenseNum">Bus license number</param>
-        public void DeleteBus(int licenseNum)//yes
+        public void DeleteBus(int licenseNum)
         {
             try
             {
@@ -42,19 +42,19 @@ namespace BL
             }
         }
       /// <summary>
-      /// A function that calls to another function in the Dl that get all busses 
+      /// A function that calls to another function in the Dl that get all buses 
       /// </summary>
-      /// <returns></returns>
+      /// <returns>list of buses</returns>
         public IEnumerable<BO.Bus> GetAllBuses()
         {
             return from item in dl.GetAllBuses()
                    select busDoBoAdapter(item);
-        }//yes
+        }
         /// <summary>
         /// A function that calls to another function in the Dl that get the license number and returns the bus 
         /// </summary>
         /// <param name="licenseNum"></param>
-        /// <returns></returns>
+        /// <returns>bus</returns>
         public Bus GetBus(int licenseNum)
         {
             DO.Bus busDO;
@@ -67,12 +67,16 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
             return busDoBoAdapter(busDO);
-        }
+        } 
         public IEnumerable<Bus> GetBusesBy(Predicate<Bus> predicate)///??
         {
             throw new NotImplementedException();
         }
-        public void UpdateBusDetails(BO.Bus busBO)//yes
+        /// <summary>
+        ///  A function that calls to another function in the Dl that update bus details 
+        /// </summary>
+        /// <param name="busBO">bus</param>
+        public void UpdateBusDetails(BO.Bus busBO)
         {
             DO.Bus busDO = new DO.Bus();
             busBO.CopyPropertiesTo(busDO);
@@ -86,7 +90,12 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
         }
-        public void AddBus(BO.Bus busBO)//yes
+        /// <summary>
+        ///  A function that calls to another function in the Dl that add bus to the system
+        /// 
+        /// </summary>
+        /// <param name="busBO">bus</param>
+        public void AddBus(BO.Bus busBO)
         {
             DO.Bus busDO = new DO.Bus();
             busBO.CopyPropertiesTo(busDO);
@@ -107,9 +116,9 @@ namespace BL
             }
         }
         /// <summary>
-        ///  
+        ///  The function checks the integrity of all bus data
         /// </summary>
-        /// <param name="busBO"></param>
+        /// <param name="busBO">bus</param>
         public void BusException(BO.Bus busBO)
         {
             if (busBO.StartDate > DateTime.Now)
@@ -133,7 +142,7 @@ namespace BL
                 throw new BadInputException(4, "הקילומטרים מהטיפול האחרון אינם תקינים");
         }
         /// <summary>
-        /// 
+        /// The function checks the length of the license number
         /// </summary>
         /// <param name="licNum">Bus license number</param>
         /// <returns></returns>
@@ -150,6 +159,11 @@ namespace BL
         #endregion
 
         #region Line
+        /// <summary>
+        /// A function that converts the line from the DO to the BO
+        /// </summary>
+        /// <param name="lineDO">line</param>
+        /// <returns>line BO</returns>
         BO.Line lineDoBoAdapter(DO.Line lineDO)
         {
             try
@@ -182,8 +196,13 @@ namespace BL
                 throw new BO.BadInputException(ex.Message);
             }
 
-        }//yes
-        public Line GetLine(int lineId)//yes
+        }
+        /// <summary>
+        ///  A function that calls to another function in the Dl that get the line id and returns the line
+        /// </summary>
+        /// <param name="lineId">lineId of line</param>
+        /// <returns>line</returns>
+        public Line GetLine(int lineId)
         {
             DO.Line lineDO;
             try
@@ -196,7 +215,11 @@ namespace BL
             }
             return lineDoBoAdapter(lineDO);
         }
-        public void AddNewLine(BO.Line lineBo)//yes
+        /// <summary>
+        /// A function that calls to another function in the Dl that add line to the system
+        /// </summary>
+        /// <param name="lineBo">line</param>
+        public void AddNewLine(BO.Line lineBo)
         {
             DO.Line lineDo = new DO.Line();
             lineBo.CopyPropertiesTo(lineDo);
@@ -234,7 +257,11 @@ namespace BL
             }
 
         }
-        public IEnumerable<BO.Line> GetAllLines()//yes
+        /// <summary>
+        /// A function that calls to another function in the Dl that get all lines
+        /// </summary>
+        /// <returns>list of line</returns>
+        public IEnumerable<BO.Line> GetAllLines()
         {
             return from item in dl.GetAllLines()
                    where (item.IsDeleted == false)
@@ -244,7 +271,11 @@ namespace BL
         {
             throw new NotImplementedException();
         }
-        public void UpdateLineDetails(BO.Line line)//yes
+        /// <summary>
+        ///  A function that calls to another function in the Dl that update line details 
+        /// </summary>
+        /// <param name="line">line</param>
+        public void UpdateLineDetails(BO.Line line)
         {
             DO.Line lineDO = new DO.Line();
             line.CopyPropertiesTo(lineDO);
@@ -257,7 +288,11 @@ namespace BL
                 throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
         }
-        public void DeleteLine(int lineId)//yes
+        /// <summary>
+        /// A function that calls to another function in the Dl that delete line from the system
+        /// </summary>
+        /// <param name="lineId">lineId of line</param>
+        public void DeleteLine(int lineId)
         {
             try
             {
@@ -272,15 +307,14 @@ namespace BL
         #endregion
 
         #region LineStation לא ברור
-
-        public void AddLineStation(BO.LineStation s)
+       
+        public void AddLineStation(BO.LineStation s)//??
         {
             DO.LineStation sDO = (DO.LineStation)s.CopyPropertiesToNew(typeof(DO.LineStation));
             try
             {
                 dl.AddLineStation(sDO);
                 List<DO.LineStation> lst = ((dl.GetAllLineStationsBy(stat => stat.LineId == sDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
-                //lst.Order
 
                 //DO.LineStation prev = lst[s.LineStationIndex - 2];
                 //DO.LineStation next = lst[s.LineStationIndex + 1];
@@ -309,7 +343,7 @@ namespace BL
                 throw new Exception();
             }
         }
-        public void DeleteLineStation(int lineId, int stationCode)
+        public void DeleteLineStation(int lineId, int stationCode)//?? חסר חריגה?
         {
             try
             {
@@ -324,6 +358,12 @@ namespace BL
         #endregion
 
         #region AdjacentStations
+        /// <summary>
+        /// The function checks if it exists AdjacentStation for the two adjacent stations
+        /// </summary>
+        /// <param name="stationCode1">code of station 1</param>
+        /// <param name="stationCode2">code of station 2</param>
+        /// <returns>true if exist, else return false</returns>
         public bool IsExistAdjacentStations(int stationCode1, int stationCode2)
         {
             if (dl.ExistAdjacentStations(stationCode1, stationCode2))
@@ -334,7 +374,12 @@ namespace BL
         #endregion
 
         #region Station
-        public BO.Station StationDoBoAdapter(DO.Station stationDO)//yes
+        /// <summary>
+        ///  A function that converts the station from the DO to the BO
+        /// </summary>
+        /// <param name="stationDO">station</param>
+        /// <returns>stationBO</returns>
+        public BO.Station StationDoBoAdapter(DO.Station stationDO)
         {
             try
             {
@@ -345,7 +390,7 @@ namespace BL
                 //                            let line = dl.GetLine(stat.LineId)//line
                 //                            select line.CopyToLineInStation(stat)).ToList();
                 //return stationBO;
-                stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code)
+                stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code&& l.IsDeleted == false)
                                             let line = dl.GetLine(l.LineId)
                                             select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation = dl.GetStation(line.LastStation).Name }).ToList();
                 return stationBO;
@@ -360,11 +405,20 @@ namespace BL
                 throw new BO.BadLineIdException(ex.ID, ex.Message);
             }
         }
-        public IEnumerable<BO.Station> GetAllStations()//yes
+        /// <summary>
+        /// A function that calls to another function in the Dl that get all stations 
+        /// </summary>
+        /// <returns>list of station</returns>
+        public IEnumerable<BO.Station> GetAllStations()
         {
             return from item in dl.GetAllStations()
                    select StationDoBoAdapter(item);
         }
+        /// <summary>
+        ///  A function that calls to another function in the Dl that get the station code and returns the station 
+        /// </summary>
+        /// <param name="code">code of station</param>
+        /// <returns>station</returns>
         public BO.Station GetStation(int code)
         {
             DO.Station station;
@@ -378,7 +432,11 @@ namespace BL
             }
             return StationDoBoAdapter(station);
         }
-        public void AddStation(BO.Station station)//yes
+        /// <summary>
+        ///  A function that calls to another function in the Dl that add station to the system
+        /// </summary>
+        /// <param name="station">station</param>
+        public void AddStation(BO.Station station)
         {
             DO.Station stationDO = new DO.Station();
             station.CopyPropertiesTo(stationDO);
@@ -392,7 +450,11 @@ namespace BL
             }
 
         }
-        public void DeleteStation(int statCode)//yes
+        /// <summary>
+        /// A function that calls to another function in the Dl that delete station from the system
+        /// </summary>
+        /// <param name="statCode">code of station</param>
+        public void DeleteStation(int statCode)
         {
             try
             {
@@ -410,7 +472,11 @@ namespace BL
                 throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
         }
-        public void UpdateStation(BO.Station stationBO)//yes
+        /// <summary>
+        /// A function that calls to another function in the Dl that update station details
+        /// </summary>
+        /// <param name="stationBO">station</param>
+        public void UpdateStation(BO.Station stationBO)
         {
             DO.Station stationDO = new DO.Station();
             stationBO.CopyPropertiesTo(stationDO);
