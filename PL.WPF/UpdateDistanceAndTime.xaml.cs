@@ -35,11 +35,12 @@ namespace PL.WPF
         }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            double distance = double.Parse(DistanceTextBox.Text);
-            TimeSpan time = TimeSpan.FromMinutes(double.Parse(TimeTextBox.Text));
-            BO.StationInLine stat = new BO.StationInLine() { StationCode = station.StationCode, Name = station.Name, DisabledAccess = station.DisabledAccess, LineStationIndex = station.LineStationIndex, DistanceFromNext= distance, TimeFromNext=time};
             try
             {
+                double distance = double.Parse(DistanceTextBox.Text);
+            TimeSpan time = TimeSpan.FromMinutes(double.Parse(TimeTextBox.Text));
+            BO.StationInLine stat = new BO.StationInLine() { StationCode = station.StationCode, Name = station.Name, DisabledAccess = station.DisabledAccess, LineStationIndex = station.LineStationIndex, DistanceFromNext= distance, TimeFromNext=time};
+           
                 bl.UpdateTimeAndDistance( stat, nextStation);
                 MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();

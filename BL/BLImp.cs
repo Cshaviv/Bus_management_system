@@ -74,8 +74,9 @@ namespace BL
             busBO.CopyPropertiesTo(busDO);
             try
             {
-                dl.AddBus(busDO);
                 BusException(busBO);
+                dl.AddBus(busDO);
+                //BusException(busBO);
 
             }
             catch (DO.BadLicenseNumException ex)
