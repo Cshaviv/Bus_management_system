@@ -41,10 +41,10 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
         }
-      /// <summary>
-      /// A function that calls to another function in the Dl that get all busses 
-      /// </summary>
-      /// <returns></returns>
+        /// <summary>
+        /// A function that calls to another function in the Dl that get all busses 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BO.Bus> GetAllBuses()
         {
             return from item in dl.GetAllBuses()
@@ -428,6 +428,18 @@ namespace BL
         #endregion
 
         #region StationInLine
+        /// <summary>
+        /// The function checks if there is information in the system about the following stations, if it does not exist it calls another function that adds information, and after the information enters the function system calls the function that adds the station to the list of stations of the line
+        /// </summary>
+        /// <param name="stationCode">the code of the station we whant to add</param>
+        /// <param name="busID">The id of the bus that we whant to add a station to his station's list</param>
+        /// <param name="index">TThe index of where we want to add the station</param>
+        /// <param name="nextStatCode"> The code of the station that follows the station we want to add </param>
+        /// <param name="prevStatCode">The code of the previous station that  we want to add</param>
+        /// <param name="distanceNext">The distance of the new station from the next station</param>
+        /// <param name="timeNext">The time of the new station from the next station</param>
+        /// <param name="distancePrev">The distance of the new station from the previous station</param>
+        /// <param name="timePrev">The time of the new station from the previous station</param>
         public void AddStationInLine(int stationCode, int busID, int index, int nextStatCode, int prevStatCode, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
         {
             try
@@ -472,6 +484,11 @@ namespace BL
                 throw new BO.BadInputException(ex.Message);
             }
         }//yes
+        /// <summary>
+        /// The function updates the distance and time between two stations
+        /// </summary>
+        /// <param name="first">first station</param>
+        /// <param name="second">second station</param>
         public void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second)//yes
         {
             try
@@ -488,6 +505,11 @@ namespace BL
                 throw new Exception("מצטערים, לא היה ניתן לעדכן שדה זה");
             }
         }
+        /// <summary>
+        /// The function checks if the station can be deleted and if so calls another function in the DL that deletes the station from the line list of the line
+        /// </summary>
+        /// <param name="lineID">The id number of the line from which a station is delited</param>
+        /// <param name="code">the code of the station we whant to deleted</param>
         public void DeleteStationInLine(int lineID, int code)//yes
         {
             BO.Line line = new BO.Line();
@@ -526,6 +548,12 @@ namespace BL
         #endregion
 
         #region user
+        /// <summary>
+        /// The function calls another function in the DL that checks if the username exists in the system and if it exists it checks if the password is correct
+        /// </summary>
+        /// <param name="username">the name of the user</param>
+        /// <param name="passcode">the passcode of the user</param>
+        /// <returns></returns>
         public BO.User SignIn(string username, string passcode)//yes
         {
             BO.User userBo;
@@ -543,6 +571,10 @@ namespace BL
             }
             return userBo;
         }
+        /// <summary>
+        /// The function calls another function in the DL that checks if the username does not exist in the system and if it does not exist he calls another function in the DL that adds it to the system
+        /// </summary>
+        /// <param name="userBo">the new user</param>
         public void addNewUser(BO.User userBo)
         {
             try
