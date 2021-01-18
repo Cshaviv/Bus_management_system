@@ -104,6 +104,6 @@
         <Button x:Name="Station" Content="תחנות" HorizontalAlignment="Left" Margin="14,148,0,0" VerticalAlignment="Top" Width="62" Height="70" Grid.Row="1" Click="Station_Click" Background="LightGray" FontFamily="Dubai Medium" FontWeight="Bold"/>
         <Button x:Name="AddBus" Content="הוספת אוטובוס" HorizontalAlignment="Left" Visibility="Visible"  Margin="438,243.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="AddBus_Click" FontFamily="Dubai Medium" FontWeight="Bold"/>
         <Button x:Name="AddLine" Content="הוספת קו" HorizontalAlignment="Left" Visibility="Hidden"  Margin="438,243.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="AddLine_Click" FontFamily="Dubai Medium" FontWeight="Bold"/>
-        <Button x:Name="AddStation" Content="הוספת תחנה" HorizontalAlignment="Left" Visibility="Hidden" Margin="438,243.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="AddStation_Click" FontWeight="Bold"/>
+        <Button x:Name="AddStation" Content="הוספת תחנה" HorizontalAlignment="Left" Visibility="Hidden" Margin="438,243.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="AddStation_Click" FontWeight="Bold" FontFamily="Dubai Medium"/>
     </Grid>
 </Window>
