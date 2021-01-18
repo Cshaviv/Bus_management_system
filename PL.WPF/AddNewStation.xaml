@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.WPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.WPF.AddNewStation"
         mc:Ignorable="d"
-        Title="AddNewStation" Height="388" Width="542" Loaded="Window_Loaded">
+        Title="AddNewStation" Height="388" Width="542" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
     </Window.Resources>

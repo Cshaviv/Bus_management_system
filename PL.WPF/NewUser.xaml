@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="LogInUser" Height="450" Width="554.328">
+        Title="LogInUser" Height="450" Width="554.328" WindowStartupLocation="CenterScreen">
     <Grid Background="#FFF0F0F0" Margin="0,0,6.333,-0.333">
         <TextBlock HorizontalAlignment="Left" Margin="214,75,0,0" TextWrapping="Wrap" Text="שם משתמש" VerticalAlignment="Top" Height="32" Width="90" RenderTransformOrigin="-1.341,-0.186" FontFamily="Dubai Medium" FontSize="14"/>
         <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="33" Margin="186,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>

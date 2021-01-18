@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.WPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.WPF.AddBusWindow"
         mc:Ignorable="d"
-        Title="AddBusWindow" Height="388" Width="490" Loaded="Window_Loaded">
+        Title="AddBusWindow" Height="388" Width="490" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
     </Window.Resources>
