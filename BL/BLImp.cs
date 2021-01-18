@@ -494,8 +494,19 @@ namespace BL
         #endregion
 
         #region StationInLine
-       
-        public void AddStationInLine(int stationCode, int busID, int index, int nextStatCode, int prevStatCode, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
+        /// <summary>
+        /// A function that calls to another function in the Dl that add stationInLine to line in the system
+        /// </summary>
+        /// <param name="stationCode">code of station</param>
+        /// <param name="lineID">line id</param>
+        /// <param name="index">index-The index to which you want to add the station</param>
+        /// <param name="nextStatCode">code of next station</param>
+        /// <param name="prevStatCode">code of prev station</param>
+        /// <param name="distanceNext"><distance to next station/param>
+        /// <param name="timeNext">time to next station</param>
+        /// <param name="distancePrev">distance from prev station</param>
+        /// <param name="timePrev">time from prev station</param>
+        public void AddStationInLine(int stationCode, int lineID, int index, int nextStatCode, int prevStatCode, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
         {
             try
             {
@@ -507,7 +518,7 @@ namespace BL
                         dl.AddAdjacentStations(adj);
                     }
                 }
-                else if (index >= GetLine(busID).Stations.Count - 1)
+                else if (index >= GetLine(lineID).Stations.Count - 1)
                 {
                     if (!dl.ExistAdjacentStations(stationCode, prevStatCode))
                     {
@@ -528,7 +539,7 @@ namespace BL
                         dl.AddAdjacentStations(adj);
                     }
                 }
-                dl.AddStationInLine(stationCode, busID, index);
+                dl.AddStationInLine(stationCode, lineID, index);
             }
             catch (DO.BadStationCodeException ex)
             {
@@ -538,8 +549,13 @@ namespace BL
             {
                 throw new BO.BadInputException(ex.Message);
             }
-        }//yes
-        public void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second)//yes
+        }
+        /// <summary>
+        ///  A function that calls to another function in the Dl that update time and distance of station in line
+        /// </summary>
+        /// <param name="first">first StationInLine </param>
+        /// <param name="second">second StationInLine</param>
+        public void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second)
         {
             try
             {
@@ -555,7 +571,12 @@ namespace BL
                 throw new Exception("מצטערים, לא היה ניתן לעדכן שדה זה");
             }
         }
-        public void DeleteStationInLine(int lineID, int code)//yes
+        /// <summary>
+        /// A function that calls to another function in the Dl that delete stationInLine from line
+        /// </summary>
+        /// <param name="lineID">line id</param>
+        /// <param name="code">scode of station</param>
+        public void DeleteStationInLine(int lineID, int code)
         {
             BO.Line line = new BO.Line();
             line = GetLine(lineID);
@@ -593,7 +614,13 @@ namespace BL
         #endregion
 
         #region user
-        public BO.User SignIn(string username, string passcode)//yes
+        /// <summary>
+        ///  A function that calls to another function in the Dl that get the username and password and returns the user
+        /// </summary>
+        /// <param name="username"> user name</param>
+        /// <param name="passcode">password code</param>
+        /// <returns>user</returns>
+        public BO.User SignIn(string username, string passcode)
         {
             BO.User userBo;
             try
@@ -610,6 +637,10 @@ namespace BL
             }
             return userBo;
         }
+        /// <summary>
+        ///  A function that calls to another function in the Dl that add user to the system
+        /// </summary>
+        /// <param name="userBo">user</param>
         public void addNewUser(BO.User userBo)
         {
             try
