@@ -307,32 +307,35 @@ namespace BL
         #endregion
 
         #region LineStation לא ברור
-       
-        public void AddLineStation(BO.LineStation s)//??
+        /// <summary>
+        /// A function that calls to another function in the Dl that add Linestation to the system
+        /// </summary>
+        /// <param name="lineStat">line station</param>
+        public void AddLineStation(BO.LineStation lineStat)
         {
-            DO.LineStation sDO = (DO.LineStation)s.CopyPropertiesToNew(typeof(DO.LineStation));
+            DO.LineStation lineStatDO = (DO.LineStation)lineStat.CopyPropertiesToNew(typeof(DO.LineStation));
             try
             {
-                dl.AddLineStation(sDO);
-                List<DO.LineStation> lst = ((dl.GetAllLineStationsBy(stat => stat.LineId == sDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
+                dl.AddLineStation(lineStatDO);
+                List<DO.LineStation> lst = ((dl.GetAllLineStationsBy(stat => stat.LineId == lineStatDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
 
                 //DO.LineStation prev = lst[s.LineStationIndex - 2];
                 //DO.LineStation next = lst[s.LineStationIndex + 1];
-                if (s.LineStationIndex != 1)//if its the first station- it doesnt have prev
+                if (lineStat.LineStationIndex != 1)//if its the first station- it doesnt have prev
                 {
-                    DO.LineStation prev = lst[s.LineStationIndex - 2];
-                    if (!IsExistAdjacentStations(prev.StationCode, s.StationCode))
+                    DO.LineStation prev = lst[lineStat.LineStationIndex - 2];
+                    if (!IsExistAdjacentStations(prev.StationCode, lineStat.StationCode))
                     {
-                        DO.AdjacentStations adjPrev = new DO.AdjacentStations() { StationCode1 = prev.StationCode, StationCode2 = s.StationCode };
+                        DO.AdjacentStations adjPrev = new DO.AdjacentStations() { StationCode1 = prev.StationCode, StationCode2 = lineStat.StationCode };
                         dl.AddAdjacentStations(adjPrev);
                     }
                 }
-                if (s.LineStationIndex != lst[lst.Count - 1].LineStationIndex)//if its the last station- it doesnt have next
+                if (lineStat.LineStationIndex != lst[lst.Count - 1].LineStationIndex)//if its the last station- it doesnt have next
                 {
-                    DO.LineStation next = lst[s.LineStationIndex];
-                    if (!IsExistAdjacentStations(s.StationCode, next.StationCode))
+                    DO.LineStation next = lst[lineStat.LineStationIndex];
+                    if (!IsExistAdjacentStations(lineStat.StationCode, next.StationCode))
                     {
-                        DO.AdjacentStations adjNext = new DO.AdjacentStations() { StationCode1 = s.StationCode, StationCode2 = next.StationCode };
+                        DO.AdjacentStations adjNext = new DO.AdjacentStations() { StationCode1 = lineStat.StationCode, StationCode2 = next.StationCode };
                         dl.AddAdjacentStations(adjNext);
                     }
                 }
@@ -343,6 +346,7 @@ namespace BL
                 throw new Exception();
             }
         }
+        
         public void DeleteLineStation(int lineId, int stationCode)//?? חסר חריגה?
         {
             try
