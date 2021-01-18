@@ -39,12 +39,25 @@ namespace PL.WPF
         {
             try
             {
-                int licenseNum = int.Parse(licenseNumTextBox.Text);
+               //int licenseNum = int.Parse(licenseNumTextBox.Text);
+
+                int licenseNum;
+                if(!Int32.TryParse(licenseNumTextBox.Text, out licenseNum))
+                    throw new BadInputException(6, "מחרוזת קלט לא היתה בתבנית הנכונה");
                 DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
                 DateTime lastDate = DateTime.Parse(dateLastTreatDatePicker.Text);
-                double kmLastTreat = double.Parse(kmLastTreatTextBox.Text);
-                double fuel = double.Parse(fuelTankTextBox.Text);
-                double totalKm = double.Parse(totalKmTextBox.Text);
+                //double kmLastTreat = double.Parse(kmLastTreatTextBox.Text);
+                double kmLastTreat;
+                if(!Double.TryParse(kmLastTreatTextBox.Text, out kmLastTreat))
+                    throw new BadInputException(4, "מחרוזת קלט לא היתה בתבנית הנכונה");
+                //double fuel = double.Parse(fuelTankTextBox.Text);
+                double fuel;
+                if (!Double.TryParse(fuelTankTextBox.Text, out fuel))
+                    throw new BadInputException(5, "מחרוזת קלט לא היתה בתבנית הנכונה");
+                //double totalKm = double.Parse(totalKmTextBox.Text);
+                double totalKm;
+                if (!Double.TryParse(totalKmTextBox.Text, out totalKm))
+                    throw new BadInputException(3, "מחרוזת קלט לא היתה בתבנית הנכונה");
                 //if (licenseNum = null || startDate = null || lastDate = null||)
                 //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
                 BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, StatusBus = BusStatus.Available, TotalKm = totalKm, KmLastTreat = kmLastTreat };

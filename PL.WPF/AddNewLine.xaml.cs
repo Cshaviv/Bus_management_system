@@ -54,7 +54,12 @@ namespace PL.WPF
                 if (firstStation == lastStation)
                     throw new BO.BadLineIdException("לא ניתן להכניס שוב את אותה תחנה");
                 int lineNum = int.Parse(lineNumTextBox.Text);
-                double distance = double.Parse(distanceTextBox.Text);
+
+               // double distance = double.Parse(distanceTextBox.Text);
+                double distance;
+                if (!Double.TryParse(distanceTextBox.Text, out distance))
+                    distance=0;// throw new BadInputException(4, "מחרוזת קלט לא היתה בתבנית הנכונה");
+
                 TimeSpan time = TimeSpan.FromMinutes(double.Parse(TimeTextBox.Text));
                 BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString());
                 BO.Line newline = new BO.Line() { LineNum = lineNum, Area = area, FirstStation = firstStation.Code, LastStation = lastStation.Code };

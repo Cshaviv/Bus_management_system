@@ -490,7 +490,7 @@ namespace BL
             }
             catch (DO.BadStationCodeException ex)
             {
-                throw new BO.BadLicenseNumException(ex.stationCode, ex.Message);
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
             }
 
         }

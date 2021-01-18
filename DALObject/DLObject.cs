@@ -199,7 +199,7 @@ namespace DL
         /// <summary>
         ///   A function that returns the list of lines that exist in the system
         /// </summary>
-        /// <returns></returns>       
+        /// <returns>list of lines</returns>       
         public IEnumerable<DO.Line> GetAllLines()
         {
             return from line in DataSource.ListLines
@@ -211,7 +211,7 @@ namespace DL
         ///  A function that returns the list of lines that exist in the system according predicate
         /// </summary>
         /// <param name="predicate"></param>
-        /// <returns></returns>
+        /// <returns>list of lines</returns>
         public IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate)
         {
             return from line in DataSource.ListLines
@@ -223,7 +223,7 @@ namespace DL
         /// The function received a line id and returns the line according to the line id
         /// </summary>
         /// <param name="lineId"></param>
-        /// <returns></returns>
+        /// <returns>line</returns>
         public DO.Line GetLine(int lineId)
         {
             DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
@@ -236,7 +236,7 @@ namespace DL
         /// <summary>
         /// A function that receives a line and adds it to the system
         /// </summary>
-        /// <param name="line"></param>
+        /// <param name="line">line</param>
         public void AddLine(DO.Line line)
         {
             line.LineId = Config.LineId++;
@@ -247,7 +247,7 @@ namespace DL
         /// <summary>
         /// A function that recived a line and updates line bus details
         /// </summary>
-        /// <param name="line"></param>
+        /// <param name="line">line</param>
         public void UpdateLine(DO.Line line)
         {
             DO.Line lineFind = DataSource.ListLines.Find(_line => _line.LineId == line.LineId && _line.IsDeleted == false);
@@ -267,7 +267,7 @@ namespace DL
         /// <summary>
         ///  A function that delete line from the system
         /// </summary>
-        /// <param name="lineId"></param>
+        /// <param name="lineId">line id</param>
         public void DeleteLine(int lineId)
         {
             DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
@@ -430,8 +430,8 @@ namespace DL
         /// <summary>
         /// A function that returns the list of stations that exist in the system
         /// </summary>
-        /// <returns></returns>
-        public IEnumerable<DO.Station> GetAllStations()//yes
+        /// <returns>list of station</returns>
+        public IEnumerable<DO.Station> GetAllStations()
         {
             return from station in DataSource.ListStations
                        //where station.IsDeleted == false
@@ -451,9 +451,9 @@ namespace DL
         /// <summary>
         ///  The function received a station code and returns the station according to the station code
         /// </summary>
-        /// <param name="code"></param>
-        /// <returns></returns>
-        public DO.Station GetStation(int code)//yes
+        /// <param name="code">code of station</param>
+        /// <returns>station</returns>
+        public DO.Station GetStation(int code)
         {
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == code && stat.IsDeleted == false);
 
@@ -465,8 +465,8 @@ namespace DL
         /// <summary>
         /// A function that receives a statioin and adds it to the system
         /// </summary>
-        /// <param name="station"></param>
-        public void AddStation(DO.Station station)//yes
+        /// <param name="station">station</param>
+        public void AddStation(DO.Station station)
         {
             if (DataSource.ListStations.FirstOrDefault(stat => stat.Code == station.Code && stat.IsDeleted == false) != null)
                 throw new BadStationCodeException(station.Code, "תחנה זו כבר קיימת במערכת");
@@ -475,8 +475,8 @@ namespace DL
         /// <summary>
         /// A function that recived a station and updates the station details
         /// </summary>
-        /// <param name="station"></param>
-        public void UpdateStation(DO.Station station)//yes
+        /// <param name="station">station</param>
+        public void UpdateStation(DO.Station station)
         {
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == station.Code && stat.IsDeleted == false);
             int code = station.Code;
@@ -495,7 +495,7 @@ namespace DL
         /// <summary>
         ///  A function that delete station from the system
         /// </summary>
-        /// <param name="code"></param>
+        /// <param name="code">code of station</param>
         public void DeleteStation(int code)
         {
             DO.Station statFind = DataSource.ListStations.FirstOrDefault(s => s.Code == code && s.IsDeleted == false);// chrck if station exist in list station
@@ -706,45 +706,45 @@ namespace DL
         /// <summary>
         /// A function that receives a station code , bus and index and add the station it to the line's station list
         /// </summary>
-        /// <param name="stationID"></param>
-        /// <param name="busID"></param>
-        /// <param name="index"></param>
-        public void AddStationInLine(int stationID, int busID, int index)//yes
+        /// <param name="statCode">code of station</param>
+        /// <param name="lineID">line id</param>
+        /// <param name="index">index of lineStation</param>
+        public void AddStationInLine(int statCode, int lineID, int index)
         {
-            if (DataSource.ListLineStations.FirstOrDefault(sil => (sil.StationCode == stationID && sil.LineId == busID)) != null)
-                throw new DO.BadStationCodeException(stationID, "התחנה כבר קיימת בקו זה");
-            DO.LineStation lineStation = new DO.LineStation() { StationCode = stationID, LineId = busID, LineStationIndex = index };
-            foreach (DO.LineStation s in GetAllLineStationsBy(s => s.LineId == busID))
-                if (s.LineStationIndex >= index)
-                    s.LineStationIndex++;
+            if (DataSource.ListLineStations.FirstOrDefault(sil => (sil.StationCode == statCode && sil.LineId == lineID)) != null)
+                throw new DO.BadStationCodeException(statCode, "התחנה כבר קיימת בקו זה");
+            DO.LineStation lineStation = new DO.LineStation() { StationCode = statCode, LineId = lineID, LineStationIndex = index };
+            foreach (DO.LineStation lineStat in GetAllLineStationsBy(s => s.LineId == lineID))
+                if (lineStat.LineStationIndex >= index)
+                    lineStat.LineStationIndex++;
             DataSource.ListLineStations.Add(lineStation);
         }
         /// <summary>
         ///  A function that receives a station code ,and bus  and delete the station from  the line's station list
         /// </summary>
-        /// <param name="busID"></param>
-        /// <param name="stationCode"></param>
-        public void DeleteStationInLine(int busID , int stationCode)//yes
+        /// <param name="lineID">line id</param>
+        /// <param name="statCode">code of station</param>
+        public void DeleteStationInLine(int lineID , int statCode)
         {
-            DO.LineStation lineStation = DataSource.ListLineStations.Find(sil => (sil.StationCode == stationCode && sil.LineId == busID));
+            DO.LineStation lineStation = DataSource.ListLineStations.Find(sil => (sil.StationCode == statCode && sil.LineId == lineID));
             int index = lineStation.LineStationIndex;
             if (lineStation != null)
             {
                 DataSource.ListLineStations.Remove(lineStation);
-                foreach (DO.LineStation s in GetStationInLineList(s => s.LineId == busID))
+                foreach (DO.LineStation lineStat in GetStationInLineList(s => s.LineId == lineID))
                 {
-                    if (s.LineStationIndex > index)
-                        s.LineStationIndex--;
+                    if (lineStat.LineStationIndex > index)
+                        lineStat.LineStationIndex--;
                 }
             }
             else
-                throw new DO.BadStationCodeException(stationCode, "קו אוטובוס זה לא עובר בתחנה זו");
+                throw new DO.BadStationCodeException(statCode, "קו אוטובוס זה לא עובר בתחנה זו");
         }
      /// <summary>
      /// A function that get all the station that the line passthrough them
      /// </summary>
      /// <param name="predicate"></param>
-     /// <returns></returns>
+     /// <returns>list of stationInLine</returns>
         public IEnumerable<DO.LineStation> GetStationInLineList(Predicate<DO.LineStation> predicate)
         {
             return from sil in DataSource.ListLineStations
@@ -752,7 +752,7 @@ namespace DL
                    orderby sil.LineStationIndex
                    select sil;
 
-        }//yes
+        }
         #endregion
     }
 } 
