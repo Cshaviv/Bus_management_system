@@ -35,7 +35,7 @@ namespace PL.WPF
             try
             {
                 string userName = userNameTextBox.Text;
-                string passcode = passwordTextBox.Text;
+                string passcode = passwordTextBox.Password;
                 if (userName == "" || passcode == "")
                 {
                     MessageBox.Show("ERROR", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
