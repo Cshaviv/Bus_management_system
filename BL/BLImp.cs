@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BLAPI;
 using DLAPI;
-using BO;//
+using BO;
 using System.Threading;
 
 namespace BL
@@ -494,6 +494,7 @@ namespace BL
         #endregion
 
         #region StationInLine
+       
         public void AddStationInLine(int stationCode, int busID, int index, int nextStatCode, int prevStatCode, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
         {
             try
