@@ -241,7 +241,7 @@ namespace DL
         {
             line.LineId = Config.LineId++;
             if (DataSource.ListLines.FirstOrDefault(_line => _line.LineId == line.LineId && _line.IsDeleted == false) != null)
-                throw new BadLineIdException(line.LineId, "קו זה כבר קיים במערכת");
+                throw new BadLineIdException(1, " כבר קיים במערכת" + line.LineId+ "קו מספר  ");
             DataSource.ListLines.Add(line.Clone());
         }
         /// <summary>
@@ -252,7 +252,7 @@ namespace DL
         {
             DO.Line lineFind = DataSource.ListLines.Find(_line => _line.LineId == line.LineId && _line.IsDeleted == false);
             if (lineFind == null)
-                throw new BadLineIdException(line.LineId, "קו זה לא קיים במערכת");
+                throw new BadLineIdException(0 , " לא קיים במערכת" + line.LineId + "קו מספר  ");
             DO.Line newLine = line.Clone();
             DataSource.ListLines.Remove(lineFind);
             DataSource.ListLines.Add(newLine);
@@ -272,7 +272,7 @@ namespace DL
         {
             DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
             if (lineFind == null)
-                throw new BadLineIdException(lineId, "קו אוטובוס זה לא קיים במערכת");
+                throw new BadLineIdException(0, " לא קיים במערכת" + lineId + "קו מספר  ");
             lineFind.IsDeleted = true;
             foreach (DO.LineStation s in DataSource.ListLineStations)
             {

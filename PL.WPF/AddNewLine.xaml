@@ -58,11 +58,11 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <Label Content=":מספר קו" Grid.Column="1" HorizontalAlignment="Left" Margin="33.333,3,0,5" Grid.Row="0" VerticalAlignment="Center" FontFamily="Dubai Medium" FontWeight="Bold"/>
-            <TextBox x:Name="lineNumTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="24" Margin="3" Grid.Row="0" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Dubai Light"/>
+            <TextBox x:Name="lineNumTextBox" KeyDown="keyCheck" Grid.Column="0" HorizontalAlignment="Left" Height="24" Margin="3" Grid.Row="0" Text="{Binding LineNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Dubai Light"/>
             <Label Name="timeLabel" Content=":זמן בין תחנות" Grid.Column="1"  HorizontalAlignment="Left" Margin="13.333,5.333,0,-9.333" Grid.Row="6" VerticalAlignment="Center" Grid.RowSpan="3" FontWeight="Bold"/>
-            <TextBox x:Name="TimeTextBox" Grid.Column="0"  HorizontalAlignment="Left" Height="24" Margin="3,10,0,-6" Grid.Row="6" VerticalAlignment="Center" Width="120" Grid.RowSpan="3" FontFamily="Dubai Light"/>
-            <Label  Name="distanceLabel" Content=":מרחק בין תחנות" HorizontalAlignment="Left" Margin="125,24.667,0,-41.333" Grid.Row="8" VerticalAlignment="Center" Grid.ColumnSpan="2" FontWeight="Bold"/>
-            <TextBox x:Name="distanceTextBox"  Grid.Column="0" HorizontalAlignment="Left" Height="24" Margin="3,39,0,-54" Grid.Row="6" VerticalAlignment="Center" Width="120" FontFamily="Dubai Light"/>
+            <TextBox x:Name="TimeTextBox" KeyDown="keyCheck" Grid.Column="0" HorizontalAlignment="Left" Height="24" Margin="3,10,0,-6" Grid.Row="6" VerticalAlignment="Center" Width="120" Grid.RowSpan="3" FontFamily="Dubai Light"/>
+            <Label  Name="distanceLabel" Content=":מרחק בין תחנות"  HorizontalAlignment="Left" Margin="125,24.667,0,-41.333" Grid.Row="8" VerticalAlignment="Center" Grid.ColumnSpan="2" FontWeight="Bold"/>
+            <TextBox x:Name="distanceTextBox" KeyDown="keyCheck" Grid.Column="0"  HorizontalAlignment="Left" Height="24" Margin="3,39,0,-54" Grid.Row="6" VerticalAlignment="Center" Width="120" FontFamily="Dubai Light"/>
         </Grid>
         <Button x:Name="AddLine" Content="הוספה" Click="AddLineClick" HorizontalAlignment="Left" Margin="182,292,0,0" VerticalAlignment="Top" Width="189" Height="35" FontWeight="Bold" FontSize="14"/>
     </Grid>

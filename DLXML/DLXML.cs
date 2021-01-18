@@ -69,7 +69,6 @@ namespace DL
 
             return adjStation;
         }
-
         public void AddAdjacentStations(DO.AdjacentStations adjacentStations)
         {
             XElement adjStationssRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
@@ -91,31 +90,31 @@ namespace DL
             adjStationssRootElem.Add(adjElem);
             XMLTools.SaveListToXMLElement(adjStationssRootElem, adjacentStationsPath);
         }
-        public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
-        {
-            XElement adjStationssRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
+        //public void UpdateAdjacentStations(DO.AdjacentStations adjacentStations)
+        //{
+        //    XElement adjStationssRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
 
-            XElement per = (from p in adjStationssRootElem.Elements()
-                            where int.Parse(p.Element("ID").Value) == person.ID
-                            select p).FirstOrDefault();
+        //    XElement per = (from p in adjStationssRootElem.Elements()
+        //                    where int.Parse(p.Element("ID").Value) == person.ID
+        //                    select p).FirstOrDefault();
 
-            if (per != null)
-            {
-                per.Element("ID").Value = person.ID.ToString();
-                per.Element("Name").Value = person.Name;
-                per.Element("Street").Value = person.Street;
-                per.Element("HouseNumber").Value = person.HouseNumber.ToString();
-                per.Element("City").Value = person.City;
-                per.Element("BirthDate").Value = person.BirthDate.ToString();
-                per.Element("PersonalStatus").Value = person.PersonalStatus.ToString();
-                per.Element("Duration").Value = person.Duration.ToString();
+        //    if (per != null)
+        //    {
+        //        per.Element("ID").Value = person.ID.ToString();
+        //        per.Element("Name").Value = person.Name;
+        //        per.Element("Street").Value = person.Street;
+        //        per.Element("HouseNumber").Value = person.HouseNumber.ToString();
+        //        per.Element("City").Value = person.City;
+        //        per.Element("BirthDate").Value = person.BirthDate.ToString();
+        //        per.Element("PersonalStatus").Value = person.PersonalStatus.ToString();
+        //        per.Element("Duration").Value = person.Duration.ToString();
 
-                XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
-            }
-            else
-                throw new DO.BadPersonIdException(person.ID, $"bad person id: {person.ID}");
-        }
-    }
+        //        XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
+        //    }
+        //    else
+        //        throw new DO.BadPersonIdException(person.ID, $"bad person id: {person.ID}");
+        //}
+    
         public void UpdateAdjacentStations(int stationCode1, int stationCode2, Action<DO.AdjacentStations> update)
         {
 

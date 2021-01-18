@@ -39,6 +39,7 @@ namespace DO
         public BadLineIdException(int id) : base() => ID = id;
         public BadLineIdException(int id, string message) :
             base(message) => ID = id;
+       
         public BadLineIdException(int id, string message, Exception innerException) :
             base(message, innerException) => ID = id;
 

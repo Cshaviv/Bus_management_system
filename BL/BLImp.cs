@@ -232,8 +232,15 @@ namespace BL
             {
                 if (!dl.ExistAdjacentStations(stationCode1, stationCode2))
                 {
-                    DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode1, StationCode2 = stationCode2, Distance = lineBo.Stations[0].DistanceFromNext, Time = lineBo.Stations[0].TimeFromNext };
-                    dl.AddAdjacentStations(adj);
+                    try
+                    {
+                        DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode1, StationCode2 = stationCode2, Distance = lineBo.Stations[0].DistanceFromNext, Time = lineBo.Stations[0].TimeFromNext };
+                        dl.AddAdjacentStations(adj);
+                    }
+                    catch(DO.BadInputException )
+                    {
+                        
+                    }                
                 }
 
                 dl.AddLine(lineDo);
@@ -617,7 +624,7 @@ namespace BL
         }
         #endregion
 
-        #region user
+         #region user
         /// <summary>
         ///  A function that calls to another function in the Dl that get the username and password and returns the user
         /// </summary>

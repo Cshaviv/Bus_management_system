@@ -26,8 +26,6 @@ namespace PL.WPF
         {
             InitializeComponent();
             bl = _bl;
-            //busStatusCombo.ItemsSource = Enum.GetValues(typeof(BusStatus)).Cast<BusStatus>();
-            //busStatusCombo.SelectedIndex = 0;
         }//yes
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -39,27 +37,20 @@ namespace PL.WPF
         {
             try
             {
-               //int licenseNum = int.Parse(licenseNumTextBox.Text);
-
                 int licenseNum;
                 if(!Int32.TryParse(licenseNumTextBox.Text, out licenseNum))
                     throw new BadInputException(6, "מחרוזת קלט לא היתה בתבנית הנכונה");
                 DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
                 DateTime lastDate = DateTime.Parse(dateLastTreatDatePicker.Text);
-                //double kmLastTreat = double.Parse(kmLastTreatTextBox.Text);
                 double kmLastTreat;
                 if(!Double.TryParse(kmLastTreatTextBox.Text, out kmLastTreat))
                     throw new BadInputException(4, "מחרוזת קלט לא היתה בתבנית הנכונה");
-                //double fuel = double.Parse(fuelTankTextBox.Text);
                 double fuel;
                 if (!Double.TryParse(fuelTankTextBox.Text, out fuel))
                     throw new BadInputException(5, "מחרוזת קלט לא היתה בתבנית הנכונה");
-                //double totalKm = double.Parse(totalKmTextBox.Text);
                 double totalKm;
                 if (!Double.TryParse(totalKmTextBox.Text, out totalKm))
                     throw new BadInputException(3, "מחרוזת קלט לא היתה בתבנית הנכונה");
-                //if (licenseNum = null || startDate = null || lastDate = null||)
-                //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
                 BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, StatusBus = BusStatus.Available, TotalKm = totalKm, KmLastTreat = kmLastTreat };
                 if(b!=null)
                 { 
@@ -87,64 +78,72 @@ namespace PL.WPF
         {
             if (num == 1)
             {
-                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                licenseNumTextBox.BorderBrush = Brushes.Green;
+                licenseNumTextBox.BorderBrush = Brushes.Gray;
                 startDateDatePicker.BorderBrush = Brushes.Red;
-                dateLastTreatDatePicker.BorderBrush = Brushes.Green;
-                kmLastTreatTextBox.BorderBrush = Brushes.Green;
-                fuelTankTextBox.BorderBrush = Brushes.Green;
-                totalKmTextBox.BorderBrush = Brushes.Green;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
+                kmLastTreatTextBox.BorderBrush = Brushes.Gray;
+                fuelTankTextBox.BorderBrush = Brushes.Gray;
+                totalKmTextBox.BorderBrush = Brushes.Gray;
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (num == 2)
             {
-                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                licenseNumTextBox.BorderBrush = Brushes.Green;
-                startDateDatePicker.BorderBrush = Brushes.Green;
+                licenseNumTextBox.BorderBrush = Brushes.Gray;
+                startDateDatePicker.BorderBrush = Brushes.Gray;
                 dateLastTreatDatePicker.BorderBrush = Brushes.Red;
-                kmLastTreatTextBox.BorderBrush = Brushes.Green;
-                fuelTankTextBox.BorderBrush = Brushes.Green;
-                totalKmTextBox.BorderBrush = Brushes.Green;
+                kmLastTreatTextBox.BorderBrush = Brushes.Gray;
+                fuelTankTextBox.BorderBrush = Brushes.Gray;
+                totalKmTextBox.BorderBrush = Brushes.Gray;
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (num == 3)
             {
-                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                licenseNumTextBox.BorderBrush = Brushes.Green;
-                startDateDatePicker.BorderBrush = Brushes.Green;
-                dateLastTreatDatePicker.BorderBrush = Brushes.Green;
-                kmLastTreatTextBox.BorderBrush = Brushes.Green;
-                fuelTankTextBox.BorderBrush = Brushes.Green;
+                licenseNumTextBox.BorderBrush = Brushes.Gray;
+                startDateDatePicker.BorderBrush = Brushes.Gray;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
+                kmLastTreatTextBox.BorderBrush = Brushes.Gray;
+                fuelTankTextBox.BorderBrush = Brushes.Gray;
                 totalKmTextBox.BorderBrush = Brushes.Red;
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (num == 4)
             {
-                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                licenseNumTextBox.BorderBrush = Brushes.Green;
-                startDateDatePicker.BorderBrush = Brushes.Green;
-                dateLastTreatDatePicker.BorderBrush = Brushes.Green;
+                licenseNumTextBox.BorderBrush = Brushes.Gray;
+                startDateDatePicker.BorderBrush = Brushes.Gray;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
                 kmLastTreatTextBox.BorderBrush = Brushes.Red;
-                fuelTankTextBox.BorderBrush = Brushes.Green;
-                totalKmTextBox.BorderBrush = Brushes.Green;
+                fuelTankTextBox.BorderBrush = Brushes.Gray;
+                totalKmTextBox.BorderBrush = Brushes.Gray;
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (num == 5)
             {
-                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                licenseNumTextBox.BorderBrush = Brushes.Green;
-                startDateDatePicker.BorderBrush = Brushes.Green;
-                dateLastTreatDatePicker.BorderBrush = Brushes.Green;
-                kmLastTreatTextBox.BorderBrush = Brushes.Green;
+                licenseNumTextBox.BorderBrush = Brushes.Gray;
+                startDateDatePicker.BorderBrush = Brushes.Gray;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
+                kmLastTreatTextBox.BorderBrush = Brushes.Gray;
                 fuelTankTextBox.BorderBrush = Brushes.Red;
-                totalKmTextBox.BorderBrush = Brushes.Green;
+                totalKmTextBox.BorderBrush = Brushes.Gray;
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (num == 6)
             {
-                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 licenseNumTextBox.BorderBrush = Brushes.Red;
-                startDateDatePicker.BorderBrush = Brushes.Green;
-                dateLastTreatDatePicker.BorderBrush = Brushes.Green;
-                kmLastTreatTextBox.BorderBrush = Brushes.Green;
-                fuelTankTextBox.BorderBrush = Brushes.Green;
-                totalKmTextBox.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Gray;
+                dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
+                kmLastTreatTextBox.BorderBrush = Brushes.Gray;
+                fuelTankTextBox.BorderBrush = Brushes.Gray;
+                totalKmTextBox.BorderBrush = Brushes.Gray;
+                MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void keyCheck(object sender, KeyEventArgs e)
+        {
+            if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.Enter && e.Key != Key.Escape && e.Key != Key.Back)
+                e.Handled = true;
+        }
+
+
     }
 }
