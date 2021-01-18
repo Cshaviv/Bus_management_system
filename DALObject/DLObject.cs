@@ -502,14 +502,12 @@ namespace DL
             if (statFind == null)
                 throw new BadStationCodeException(code, "תחנה זו לא קיימת במערכת");
             statFind.IsDeleted = true;
-            foreach (DO.AdjacentStations stat in DataSource.ListAdjacentStations)//delete from adjacent Station
-            {
-                if ((stat.StationCode1 == code || stat.StationCode2 == code) && stat.IsDeleted == false)
-                    stat.IsDeleted = true;
-            }
+            //foreach (DO.AdjacentStations stat in DataSource.ListAdjacentStations)//delete from adjacent Station
+            //{
+            //    if ((stat.StationCode1 == code || stat.StationCode2 == code) && stat.IsDeleted == false)
+            //        stat.IsDeleted = true;
+            //}
         }
-
-
 
         #endregion
 
@@ -645,7 +643,8 @@ namespace DL
 
             if (userFind == null)
                 throw new Exception();
-            DataSource.ListUsers.Remove(userFind);
+            userFind.IsDeleted = true;
+            // DataSource.ListUsers.Remove(userFind);
         }
 
         #endregion
