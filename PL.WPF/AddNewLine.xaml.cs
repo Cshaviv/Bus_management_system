@@ -96,12 +96,7 @@ namespace PL.WPF
             catch (BO.BadInputException ex)
             {
                 Exceptions(ex.num, ex.Message);
-                //MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            }         
         }
         private void Exceptions(int num,string message)
         {
@@ -129,7 +124,7 @@ namespace PL.WPF
         }
         private void keyCheck(object sender, KeyEventArgs e)
         {
-            if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.Enter && e.Key != Key.Escape && e.Key != Key.Back)
+            if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.OemPeriod && e.Key != Key.Escape && e.Key != Key.Back)
                 e.Handled = true;
         }
     }
