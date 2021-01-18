@@ -11,5 +11,6 @@ namespace DO
         public string UserName { get; set; }//שם משתמש
         public string passCode { get; set; }//סיסמה של המשתמש
         public bool managaccount { get; set; }// גישה למנהל
+        public bool IsDeleted { get; set; }// האם מחוק
     }
 }
