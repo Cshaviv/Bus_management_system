@@ -667,6 +667,9 @@ namespace BL
         }
 
         #endregion
+        #region Line Trip
+
+        #endregion
 
     }
 }

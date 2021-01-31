@@ -20,7 +20,7 @@ namespace DL
 
         #region DS XML Files
 
-       // string lineTripsPath = @"TripsXml.xml"; //XElement
+       string lineTripsPath = @"LineTripsXml.xml"; //XElement
 
         string busesPath = @"BusesXml.xml"; //XMLSerializer
         string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XElement
@@ -733,6 +733,116 @@ namespace DL
         }
         #endregion
 
+        #region Line Trip
+        public IEnumerable<DO.LineTrip> GetAllLineTrips()
+        {
+            XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);
 
+            return (from lTrip in lineTripsRootElem.Elements()
+                    where bool.Parse(lTrip.Element("IsDeleted").Value) == false
+                    select new LineTrip()
+                    {
+                        LineId = int.Parse(lTrip.Element("LineId").Value),
+                        StartAt = TimeSpan.Parse(lTrip.Element("StartAt").Value),
+                        IsDeleted = bool.Parse(lTrip.Element("IsDeleted").Value)
+                    }
+                   );
+        }
+        public IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate)
+        {
+            XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);
+
+            return from lTrip in lineTripsRootElem.Elements()
+                   let lTrip1 = new LineTrip()
+                   {
+                       LineId = int.Parse(lTrip.Element("LineId").Value),
+                       StartAt = TimeSpan.Parse(lTrip.Element("StartAt").Value),
+                       IsDeleted = bool.Parse(lTrip.Element("IsDeleted").Value)
+                   }
+                   where predicate(lTrip1)
+                   select lTrip1;
+        }
+        public DO.LineTrip GetLineTrip(int lineId, TimeSpan time)
+        {
+            XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);
+            LineTrip lineTrip = (from lTrip in lineTripsRootElem.Elements()
+                                 where int.Parse(lTrip.Element("LineId").Value) == lineId && TimeSpan.Parse(lTrip.Element("StartAt").Value) == time && bool.Parse(lTrip.Element("IsDeleted").Value) == false
+                                 select new LineTrip()
+                                 {
+                                     LineId = int.Parse(lTrip.Element("LineId").Value),
+                                     StartAt = TimeSpan.Parse(lTrip.Element("StartAt").Value),
+                                     IsDeleted = bool.Parse(lTrip.Element("IsDeleted").Value)
+                                 }
+                       ).FirstOrDefault();
+
+            if (lineTrip == null)
+                throw new Exception();
+               // throw new DO.BadLineTripException(lineId, time, "This line trip does not exist");
+            return lineTrip;
+        }
+        public void AddLineTrip(DO.LineTrip lineTrip)
+        {
+            XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);
+
+            XElement line_Trip = (from lTrip in lineTripsRootElem.Elements()
+                                  where int.Parse(lTrip.Element("LineId").Value) == lineTrip.LineId && TimeSpan.Parse(lTrip.Element("StartAt").Value) == lineTrip.StartAt && bool.Parse(lTrip.Element("IsDeleted").Value) == false
+                                  select lTrip).FirstOrDefault();
+
+            if (line_Trip != null)
+                throw new Exception();
+                //throw new BadLineTripException(lineTrip.LineId, lineTrip.StartAt, "This user name is already exist");
+
+            XElement lineTripElem = new XElement("LineTrip",
+                                    new XElement("LineId", lineTrip.LineId).ToString(),
+                                    new XElement("StartAt", lineTrip.StartAt).ToString(),
+                                    new XElement("IsDeleted", lineTrip.IsDeleted.ToString()));
+            lineTripsRootElem.Add(lineTripElem);
+            XMLTools.SaveListToXMLElement(lineTripsRootElem, lineTripsPath);
+        }
+        public void UpdateLineTrip(DO.LineTrip lineTrip)
+        {
+            XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);
+
+            XElement lineTripElem = (from lTrip in lineTripsRootElem.Elements()
+                                     where int.Parse(lTrip.Element("LineId").Value) == lineTrip.LineId && TimeSpan.Parse(lTrip.Element("StartAt").Value) == lineTrip.StartAt && bool.Parse(lTrip.Element("IsDeleted").Value) == false
+                                     select lTrip).FirstOrDefault();
+
+            if (lineTripElem != null)
+            {
+                lineTripElem.Element("LineId").Value = lineTrip.LineId.ToString();
+                lineTripElem.Element("StartAt").Value = lineTrip.StartAt.ToString();
+                lineTripElem.Element("IsDeleted").Value = lineTrip.IsDeleted.ToString();
+                XMLTools.SaveListToXMLElement(lineTripsRootElem, lineTripsPath);
+            }
+            else
+                throw new Exception();
+                //throw new BadLineTripException(lineTrip.LineId, lineTrip.StartAt, "The line trip does not exist");
+        }
+        public void UpdateLineTrip(int lineId, TimeSpan time, Action<DO.LineTrip> update)
+        {
+            throw new NotImplementedException();
+            //DO.LineTrip lTripFind = DataSource.ListLineTrips.Find(l => l.LineId == lineId && l.StartAt == time && l.IsDeleted == false);
+            //if (lTripFind == null)
+            //    throw new BadLineTripException(lineId, time, "The line trip does not exist");
+            //update(lTripFind);
+        }
+        public void DeleteLineTrip(int lineId, TimeSpan time)
+        {
+            XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);
+            XElement lineTrip = (from lTrip in lineTripsRootElem.Elements()
+                                 where int.Parse(lTrip.Element("LineId").Value) == lineId && TimeSpan.Parse(lTrip.Element("StartAt").Value) == time && bool.Parse(lTrip.Element("IsDeleted").Value) == false
+                                 select lTrip).FirstOrDefault();
+
+            if (lineTrip != null)
+            {
+                lineTrip.Element("IsDeleted").Value = true.ToString();
+                XMLTools.SaveListToXMLElement(lineTripsRootElem, lineTripsPath);
+            }
+            else
+                throw new Exception();
+                //throw new BadLineTripException(lineId, time, "The line trip does not exist");
+        }
+
+        #endregion
     }
 }
