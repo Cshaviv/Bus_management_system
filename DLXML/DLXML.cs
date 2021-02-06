@@ -2,6 +2,7 @@
 using DO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,19 +10,20 @@ using System.Xml.Linq;
 
 namespace DL
 {
-    public class DLXML
+    public class DLXML : IDL
     {
+
         #region singelton
         static readonly DLXML instance = new DLXML();
         static DLXML() { }// static ctor to ensure instance init is done just before first usage
         DLXML() { } // default => private
         public static DLXML Instance { get => instance; }// The public Instance property to use
-        #endregion
+       #endregion
 
         #region DS XML Files
 
-       string lineTripsPath = @"LineTripsXml.xml"; //XElement
-
+        string lineTripsPath = @"LineTripsXml.xml"; //XElement
+               
         string busesPath = @"BusesXml.xml"; //XMLSerializer
         string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XElement
         string linesPath = @"LinesXml.xml"; //XMLSerializer
@@ -30,6 +32,53 @@ namespace DL
         string usersPath = @"UserXml.xml"; //XMLSerializer
         string runningNumberPath = @"TripsXml.xml"; //XMLSerializer
         #endregion
+      //  //private DLXML()
+      //  //{
+      //      //if (!File.Exists(busesPath))
+      //      //    DL.XMLTools.SaveListToXMLSerializer<DO.Bus>(DS.DataSource.ListBuses, busesPath);
+      //      //if (!File.Exists(linesPath))
+      //      //    DL.XMLTools.SaveListToXMLSerializer<DO.Line>(DS.DataSource.ListLines, linesPath);
+      //      //if (!File.Exists(adjacentStationsPath))
+      //      //{
+      //      //    XElement adjStationssRootElem = new XElement("AdjacentStations");
+      //      //    foreach (var item in DS.DataSource.ListAdjacentStations)
+      //      //    {
+      //      //        XElement adjStatElem = new XElement("AdjacentStation",
+      //      //                           new XElement("StationCode1", item.StationCode1.ToString()),
+      //      //                           new XElement("StationCode2", item.StationCode2.ToString()),
+      //      //                           new XElement("Distance", item.Distance.ToString()),
+      //      //                           new XElement("Time", item.Time.ToString()),
+      //      //                           new XElement("IsDeleted", item.IsDeleted.ToString()));
+      //      //        adjStationssRootElem.Add(adjStatElem);
+
+      //      //    }
+      //      //    DL.XMLTools.SaveListToXMLElement(adjStationssRootElem, adjacentStationsPath);
+      //      //}
+      //      //if (!File.Exists(lineStationsPath))
+      //      //    DL.XMLTools.SaveListToXMLSerializer<DO.LineStation>(DS.DataSource.ListLineStations, lineStationsPath);
+      //      //if (!File.Exists(stationsPath))
+      //      //    DL.XMLTools.SaveListToXMLSerializer<DO.Station>(DS.DataSource.ListStations, stationsPath);
+      //      //if (!File.Exists(usersPath))
+      //      //    DL.XMLTools.SaveListToXMLSerializer<DO.User>(DS.DataSource.ListUsers, usersPath);
+      //  //    if (!File.Exists(runningNumberPath))
+      //  //        DL.XMLTools.SaveListToXMLSerializer<DO.Bus>(DS.DataSource.ListBuses, runningNumberPath);
+      //  //if (!File.Exists(lineTripsPath))
+      //  //    {
+      //  //        XElement lineTripsRootElem = new XElement("LineTrips");
+      //  //        foreach (var item in DS.DataSource.ListLineTrips)
+      //  //        {
+      //  //            XElement lineTripElem = new XElement("LineTrip",
+      //  //                            new XElement("LineId", item.LineId.ToString()),
+      //  //                            new XElement("StartAt", item.StartAt.ToString()),
+      //  //                            new XElement("IsDeleted", item.IsDeleted.ToString()));
+      //  //            lineTripsRootElem.Add(lineTripElem);
+      //  //            XMLTools.SaveListToXMLElement(lineTripsRootElem, lineTripsPath);
+                    
+
+      //  //        }
+      //  //        DL.XMLTools.SaveListToXMLElement(lineTripsRootElem, lineTripsPath);
+      //  //    }
+      ////  }
 
         #region Bus
         public IEnumerable<DO.Bus> GetAllBuses()
@@ -841,6 +890,56 @@ namespace DL
             else
                 throw new Exception();
                 //throw new BadLineTripException(lineId, time, "The line trip does not exist");
+        }
+
+        public IEnumerable<Trip> GetAllTrips()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Trip> GetAllTripsBy(Predicate<Trip> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Trip GetTrip(int tripId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddTrip(Trip trip)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateTrip(Trip trip)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateTrip(int tripId, Action<Trip> update)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteTrip(int tripId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public LineTrip GetLineTrip(int lineTripId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateLineTrip(int lineTripId, Action<LineTrip> update)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteLineTrip(int lineTripId)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
