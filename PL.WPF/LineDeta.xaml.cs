@@ -83,8 +83,9 @@ namespace PL.WPF
                     {
                         bl.DeleteLine(line.LineId);
                         MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                        RefreshAllLine();
                         Close();
+                        //RefreshAllLine();
+                        //Close();
                     }
                 }
                 return;         

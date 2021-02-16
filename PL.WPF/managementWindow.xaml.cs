@@ -3,6 +3,7 @@ using BLAPI;
 using BO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace PL.WPF
     public partial class managementWindow : Window
     {
         IBL bl;
+      //  public ObservableCollection<Bus> BusesCollection;
         //BO.Student curStu;
         public managementWindow(IBL _bl)
         {
@@ -129,7 +131,7 @@ namespace PL.WPF
 
         #region Lines 
         public void RefreshAllLinesList()
-        {
+        {        
             LineesListBox.ItemsSource = bl.GetAllLines().ToList();
         }//yes
         private void Line_Click(object sender, RoutedEventArgs e)

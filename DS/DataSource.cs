@@ -25,6 +25,7 @@ namespace DS
         }
         static void InitAllLists()
         {
+            #region
             //    #region ListStations 
             //    ListStations = new List<Station>
             //    {
@@ -830,7 +831,7 @@ namespace DS
             //        IsDeleted=false,
             //    },
             //};
-            //#endregion
+            #endregion
             #region ListUsers
             ListUsers = new List<User>
             {
@@ -1647,7 +1648,7 @@ namespace DS
 
             };
             #endregion
-
+            #region AdjacentStation
             ListAdjacentStations = new List<AdjacentStations>
             {
                 new AdjacentStations{StationCode1=73,StationCode2=77,Distance=5.1,Time=TimeSpan.FromMinutes(3.4),IsDeleted=false},
@@ -1707,7 +1708,7 @@ namespace DS
                 new AdjacentStations{StationCode1=110,StationCode2=94,Distance=3.24,Time=TimeSpan.FromMinutes(2.5),IsDeleted=false},
 
             };
-
+            #endregion
             //ListUsers = new List<User>
             //{
             //    new User{UserName="2",Password="2",NickName="Hadar", Admin=true,IsDeleted=false},

@@ -501,7 +501,68 @@ namespace BL
             }
 
         }
+        //public IEnumerable<LineTiming> GetLineTimingPerStation(BO.Station stationBO, TimeSpan currentTime)
+        //{
+        //    //list of lines that pass in the station
+        //    List<BO.Line> listLines = (from l in GetAllLines()
+        //                               where l.Stations.Find(s => s.StationCode == stationBO.Code) != null
+        //                               select l).ToList();
 
+        //    List<LineTiming> times = new List<LineTiming>();
+        //    TimeSpan hour = new TimeSpan(1, 0, 0);//help to find the times that in the range of one hour from currentTime                           
+
+        //    for (int i = 0; i < listLines.Count(); i++)//for all the lines that pass in the station
+        //    {//calculate the times 
+        //        TimeSpan tmp;//= TimeSpan.Zero;
+        //        int currentLineid = listLines[i].LineId;
+        //        List<DO.LineTrip> lineSchedual = dl.GetAllLineTripsBy(trip => trip.LineId == currentLineid && trip.IsDeleted == false).ToList();// times of the current Line
+        //        TimeSpan timeTilStatin = travelTime(stationBO.Code, currentLineid);
+        //        for (int j = 0; j < lineSchedual.Count; j++)//for all the times in line sSchedual
+        //        {//check if currentTime-LeavingTime-travelTime more than zero and in the range of hour
+
+        //            if (lineSchedual[j].StartAt + timeTilStatin <= currentTime + hour
+        //                && lineSchedual[j].StartAt + timeTilStatin >= currentTime)
+        //            //check if the bus already passed the statioin   
+        //            {
+        //                if (currentTime - lineSchedual[j].StartAt >= TimeSpan.Zero)//if the line already get out from the station
+        //                {
+        //                    tmp = timeTilStatin - (currentTime - lineSchedual[j].StartAt);
+        //                }
+        //                else//if the line didnt get out from the station
+        //                    tmp = timeTilStatin + (lineSchedual[j].StartAt - currentTime);
+        //                //creat LineTiming and add to the list
+        //                times.Add(new LineTiming
+        //                {
+        //                    LineId = currentLineid,
+        //                    LineNum = listLines[i].LineNum,
+        //                    DestinationCode = listLines[i].Stations[listLines[i].Stations.Count() - 1].StationCode,
+        //                    SourceCode = listLines[i].Stations[0].StationCode,
+        //                    EstimatedTime = TimeSpan.Parse(tmp.ToString().Substring(0, 8))
+        //                });
+
+        //            }
+        //        }
+        //    }
+        //    times = times.OrderBy(lt => lt.EstimatedTime).ToList();
+        //    return times;
+
+        //}
+        //private TimeSpan travelTime(int stationCode, int lineID)
+        //{//func that return the time from first station in line to specific station
+        //    TimeSpan sumTime = TimeSpan.Zero;
+        //    BO.Line line = GetLine(lineID);
+        //    foreach (var s in line.Stations)
+        //    {
+        //        if (s.StationCode != stationCode)
+        //            sumTime += s.Time;
+        //        else
+        //        {
+        //            //sumTime += s.TimeFromPrevStation;
+        //            break;
+        //        }
+        //    }
+        //    return sumTime;
+        //}
         #endregion
 
         #region StationInLine
@@ -668,7 +729,28 @@ namespace BL
 
         #endregion
         #region Line Trip
-
+        //public void DeleteDepTime(int lineId, TimeSpan dep)
+        //{
+        //    try
+        //    {
+        //        dl.DeleteLineTrip(lineId, dep);
+        //    }
+        //    catch (DO.BadLineTripException ex)
+        //    {
+        //        throw new BO.BadLineTripException(ex.Message, ex);
+        //    }
+        //}
+        //public void AddDepTime(int lineId, TimeSpan dep)
+        //{
+        //    try
+        //    {
+        //        dl.AddLineTrip(new DO.LineTrip() { LineId = lineId, StartAt = dep, IsDeleted = false });
+        //    }
+        //    catch (DO.BadLineTripException ex)
+        //    {
+        //        throw new BO.BadLineTripException(ex.Message, ex);
+        //    }
+        //}
         #endregion
 
     }
