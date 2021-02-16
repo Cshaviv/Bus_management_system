@@ -501,6 +501,22 @@ namespace BL
             }
 
         }
+        public bool IsAdjacentStat(int code1, int code2)
+        {
+            try
+            {
+                dl.GetAdjacentStations(code1, code2);
+                return true;
+            }
+            catch (DO.BadLicenseNumException)
+            { 
+            return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         //public IEnumerable<LineTiming> GetLineTimingPerStation(BO.Station stationBO, TimeSpan currentTime)
         //{
         //    //list of lines that pass in the station
@@ -592,7 +608,7 @@ namespace BL
                 }
                 else if (index >= GetLine(lineID).Stations.Count - 1)
                 {
-                    if (!dl.ExistAdjacentStations(stationCode, prevStatCode))
+                    if (!dl.ExistAdjacentStations(prevStatCode, stationCode))
                     {
                         DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = prevStatCode, StationCode2 = stationCode, Distance = distancePrev, Time = timePrev };
                         dl.AddAdjacentStations(adj);
@@ -605,7 +621,7 @@ namespace BL
                         DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = stationCode, StationCode2 = nextStatCode, Distance = distanceNext, Time = timeNext };
                         dl.AddAdjacentStations(adj);
                     }
-                    if (!dl.ExistAdjacentStations(stationCode, prevStatCode))
+                    if (!dl.ExistAdjacentStations(prevStatCode, stationCode))
                     {
                         DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = prevStatCode, StationCode2 = stationCode, Distance = distancePrev, Time = timePrev };
                         dl.AddAdjacentStations(adj);
@@ -682,6 +698,23 @@ namespace BL
             {
                 throw new BO.BadStationCodeException(ex.stationCode, "קו אוטובוס זה לא עובר בתחנה זו");
             }
+        }
+        public void UpdateTandDinAdjacentStation(int code1, int code2, double distanceFromNext, TimeSpan timeFromNext)
+        {
+            try
+            {
+                DO.AdjacentStations adj = new DO.AdjacentStations() { StationCode1 = code1, StationCode2 = code2, Distance = distanceFromNext, Time = timeFromNext, IsDeleted = false };
+                dl.UpdateTandDinAdjacentStation(adj);
+            }
+            catch (DO.BadInputException ex)
+            {
+                throw new BO.BadInputException(ex.Message);
+            }
+            catch (Exception)
+            {
+                throw new Exception("מצטערים, לא היה ניתן לעדכן שדה זה");
+            }
+            
         }
         #endregion
 

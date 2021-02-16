@@ -277,6 +277,10 @@ namespace DL
                 return false;
             return true;
         }
+        public void UpdateTandDinAdjacentStation(DO.AdjacentStations adjacentStations)
+        {
+            ////
+        }
         #endregion
 
         #region Line

@@ -34,6 +34,7 @@ namespace DLAPI
         void UpdateAdjacentStations(int stationCode1, int stationCode2, Action<DO.AdjacentStations> update);
         void DeleteAdjacentStations(int stationCode1, int stationCode2);
         bool  ExistAdjacentStations(int stationCode1, int stationCode2);
+        void UpdateTandDinAdjacentStation(DO.AdjacentStations adjacentStations);
         #endregion
         #region Station
         IEnumerable<DO.Station> GetAllStations();

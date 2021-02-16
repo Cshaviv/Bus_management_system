@@ -43,12 +43,14 @@ namespace BLAPI
         void AddStation(BO.Station station);
         void DeleteStation(int code);
          void UpdateStation(BO.Station station);
+        bool IsAdjacentStat(int code1, int code2);
 
         #endregion
         #region StationInLine
         void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second);
         void AddStationInLine(int stationCode, int busID, int index, int indexNextCode, int indexPrevCode, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev);
         void DeleteStationInLine(int code, int lineID);
+        void UpdateTandDinAdjacentStation(int code1, int code2, double distanceFromNext, TimeSpan timeFromNext);
 
         #endregion
 

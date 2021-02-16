@@ -193,6 +193,18 @@ namespace DL
                 return true;
             return false;
         }//yes
+        public void UpdateTandDinAdjacentStation(DO.AdjacentStations adjacentStations)
+        {
+            DO.AdjacentStations adjacentStations1 = DataSource.ListAdjacentStations.Find(s => s.StationCode1 == adjacentStations.StationCode1 && s.StationCode2 == adjacentStations.StationCode2);
+
+            if (adjacentStations != null)
+            {
+                DataSource.ListAdjacentStations.Remove(adjacentStations1);
+                DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
+            }
+            else
+                AddAdjacentStations(adjacentStations);
+        }
         #endregion
 
         #region Line

@@ -93,13 +93,44 @@ namespace PL.WPF
             try
             {
                 BO.Station stat = (stationComboBox.SelectedItem) as BO.Station;
+                bool IsExist=bl.IsAdjacentStat(stat.Code, line.Stations[0].StationCode);
+                if (IsExist == false)
+                {
+                    double distance = double.Parse(NextDistanceTextBox.Text);
+                    TimeSpan time = TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text));
 
-               // BO.StationInLine stat = (stationComboBox.SelectedItem) as BO.StationInLine;
-                double distance = double.Parse(NextDistanceTextBox.Text);
-                TimeSpan time = TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text));
-                bl.AddStationInLine(stat.Code, line.LineId, 0,line.Stations[0].StationCode,0, distance, time, 0, new TimeSpan(0, 0, 0));
-                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                Close();
+                    bl.AddStationInLine(stat.Code, line.LineId, 0, line.Stations[0].StationCode, 0, distance, time, 0, new TimeSpan(0, 0, 0));
+                    MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
+                }
+                else
+                {
+                    //bool flag = false;
+                    double distance = 0;
+                    TimeSpan time = TimeSpan.FromMinutes(0);
+                    if (MessageBox.Show("התחנות הסמוכות קיימות במערכת, האם תרצה לעדכן את הזמן והמרחק שלהם", "add", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {       
+                        bl.UpdateTandDinAdjacentStation(stat.Code, line.Stations[0].StationCode, double.Parse(NextDistanceTextBox.Text), TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text)));
+
+                    }
+                    else
+                    {
+                        //אל תעשה כלום- כלומר לא ניגע בתחנות עוקבות שקיימות
+                    }
+                    bl.AddStationInLine(stat.Code, line.LineId, 0, line.Stations[0].StationCode, 0, distance, time, 0, new TimeSpan(0, 0, 0));
+                    MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
+
+                    //if(flag==true)
+                    //{
+                    //   // bl.UpdateTandDinAdjacentStation((stat.Code, line.Stations[0].StationCode, double.Parse(NextDistanceTextBox.Text, TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text)));
+                    //    //double distance = 0;
+                    //    //TimeSpan time = TimeSpan.FromMinutes(0);
+                    //    // bl.AddStationInLine(stat.Code, line.LineId, 0, line.Stations[0].StationCode, 0, distance, time, 0, new TimeSpan(0, 0, 0));
+                    //    line.Stations[0].DistanceFromNext = double.Parse(NextDistanceTextBox.Text);
+                    //    line.Stations[0].TimeFromNext = TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text));
+                    //}
+                }
             }
             catch (BO.BadStationCodeException ex)
             {
@@ -119,11 +150,36 @@ namespace PL.WPF
             try
             {
                 BO.Station stat = (stationComboBox.SelectedItem) as BO.Station;
+                bool IsExist = bl.IsAdjacentStat(line.Stations[line.Stations.Count - 1].StationCode, stat.Code);
                 double distance = double.Parse(PrevDistanceTextBox.Text);
                 TimeSpan time = TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text));
-                bl.AddStationInLine(stat.Code, line.LineId, line.Stations.Count, 0, line.Stations[line.Stations.Count-1].StationCode, 0, new TimeSpan(0, 0, 0), distance, time);
-                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                Close();
+                if (IsExist == false)
+                {
+                    //double distance = double.Parse(PrevDistanceTextBox.Text);
+                    //TimeSpan time = TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text));
+                    bl.AddStationInLine(stat.Code, line.LineId, line.Stations.Count, 0, line.Stations[line.Stations.Count - 1].StationCode, 0, new TimeSpan(0, 0, 0), distance, time);
+                    MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
+                }
+                else
+                {
+                    
+                    /*double*/ distance = 0;
+                    /*TimeSpan*/ time = TimeSpan.FromMinutes(0);
+                    if (MessageBox.Show("התחנות הסמוכות קיימות במערכת, האם תרצה לעדכן את הזמן והמרחק שלהם", "add", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        bl.UpdateTandDinAdjacentStation(line.Stations[line.Stations.Count - 1].StationCode, stat.Code, double.Parse(PrevDistanceTextBox.Text), TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text)));
+
+                    }
+                    else
+                    {
+                        //אל תעשה כלום- כלומר לא ניגע בתחנות עוקבות שקיימות
+                    }
+                      bl.AddStationInLine(stat.Code, line.LineId, line.Stations.Count, 0, line.Stations[line.Stations.Count - 1].StationCode, 0, new TimeSpan(0, 0, 0), distance, time);
+                      MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                      Close();
+                    
+                }
             }
             catch (BO.BadStationCodeException ex)
             {
@@ -144,13 +200,71 @@ namespace PL.WPF
             {
                 BO.Station stat = (stationComboBox.SelectedItem) as BO.Station;
                 BO.StationInLine prevStat = (PrevstationComboBox.SelectedItem) as BO.StationInLine;
+
                 double distanceNext = double.Parse(NextDistanceTextBox.Text);
                 TimeSpan timeNext = TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text));
                 double distancePrev = double.Parse(PrevDistanceTextBox.Text);
                 TimeSpan timePrev = TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text));
-                bl.AddStationInLine(stat.Code, line.LineId, prevStat.LineStationIndex + 1, line.Stations[prevStat.LineStationIndex + 1].StationCode , prevStat.StationCode,  distanceNext, timeNext, distancePrev, timePrev);
-                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                Close();
+                bool IsExist1 = bl.IsAdjacentStat(prevStat.StationCode, stat.Code);
+                bool IsExist2 = bl.IsAdjacentStat(line.Stations[prevStat.LineStationIndex + 1].StationCode, stat.Code);
+                if (IsExist1 == false && IsExist2 == false)
+                {
+                    bl.AddStationInLine(stat.Code, line.LineId, prevStat.LineStationIndex + 1, line.Stations[prevStat.LineStationIndex + 1].StationCode, prevStat.StationCode, distanceNext, timeNext, distancePrev, timePrev);
+                    MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
+                }
+                else {
+
+                    if (IsExist1 == true && IsExist2 == false)
+                    {
+                        distancePrev = 0;
+                        timePrev = TimeSpan.FromMinutes(0);
+                        if (MessageBox.Show("התחנות הסמוכות קיימות במערכת, האם תרצה לעדכן את הזמן והמרחק שלהם", "add", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            bl.UpdateTandDinAdjacentStation(prevStat.StationCode, stat.Code, double.Parse(PrevDistanceTextBox.Text), TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text)));
+
+                        }
+                        else
+                        {
+                            //אל תעשה כלום- כלומר לא ניגע בתחנות עוקבות שקיימות
+                        }
+                    }
+                    else if (IsExist1 == false && IsExist2 == true)
+                    {
+                        distanceNext = 0;
+                        timeNext = TimeSpan.FromMinutes(0);
+                        if (MessageBox.Show("התחנות הסמוכות קיימות במערכת, האם תרצה לעדכן את הזמן והמרחק שלהם", "add", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            bl.UpdateTandDinAdjacentStation(stat.Code, line.Stations[prevStat.LineStationIndex + 1].StationCode, double.Parse(NextDistanceTextBox.Text), TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text)));
+
+                        }
+                        else
+                        {
+                            //אל תעשה כלום- כלומר לא ניגע בתחנות עוקבות שקיימות
+                        }
+                    }
+                    else
+                    {
+                        distanceNext = 0;
+                        timeNext = TimeSpan.FromMinutes(0);
+                        distancePrev = 0;
+                        timePrev = TimeSpan.FromMinutes(0);
+                        if (MessageBox.Show("התחנות הסמוכות קיימות במערכת, האם תרצה לעדכן את הזמן והמרחק שלהם", "add", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            bl.UpdateTandDinAdjacentStation(stat.Code, line.Stations[prevStat.LineStationIndex + 1].StationCode, double.Parse(NextDistanceTextBox.Text), TimeSpan.FromMinutes(double.Parse(NextTimeTextBox.Text)));
+                            bl.UpdateTandDinAdjacentStation(prevStat.StationCode, stat.Code, double.Parse(PrevDistanceTextBox.Text), TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text)));
+
+                        }
+                        else
+                        {
+                            //אל תעשה כלום- כלומר לא ניגע בתחנות עוקבות שקיימות
+                        }
+
+                    }
+                    bl.AddStationInLine(stat.Code, line.LineId, prevStat.LineStationIndex + 1, line.Stations[prevStat.LineStationIndex + 1].StationCode, prevStat.StationCode, distanceNext, timeNext, distancePrev, timePrev);
+                    MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
+                }
             }
             catch (BO.BadStationCodeException ex)
             {
