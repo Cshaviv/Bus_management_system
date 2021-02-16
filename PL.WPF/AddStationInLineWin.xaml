@@ -25,11 +25,11 @@
         <ComboBox x:Name="PrevstationComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="13,183,0,0" VerticalAlignment="Top" Width="439" Height="39"/>
         <TextBlock x:Name="NextDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="639,229,0,0" TextWrapping="Wrap" Text="מרחק לתחנה הבאה" VerticalAlignment="Top" Height="28" Width="114" FontFamily="Dubai Medium"/>
         <TextBlock x:Name="NextTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="649,290,0,0" TextWrapping="Wrap" Text="זמן לתחנה הבאה" VerticalAlignment="Top" Height="28" Width="96" FontFamily="Dubai Medium"/>
-        <TextBox x:Name="NextDistanceTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="636,258,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="NextTimeTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="634,314,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="NextDistanceTextBox" KeyDown="keyCheck" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="636,258,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="NextTimeTextBox" KeyDown="keyCheck" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="634,314,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="PrevDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="495,231,0,0" TextWrapping="Wrap" Text="מרחק מתחנה קודמת" VerticalAlignment="Top" Height="28" Width="114" FontFamily="Dubai Medium"/>
         <TextBlock x:Name="PrevTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="506,290,0,0" TextWrapping="Wrap" Text="זמן מתחנה קודמת" VerticalAlignment="Top" Height="28" Width="96" FontFamily="Dubai Medium"/>
-        <TextBox x:Name="PrevDistanceTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="491,258,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="PrevTimeTextBox" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="492,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PrevDistanceTextBox" KeyDown="keyCheck" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="491,258,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PrevTimeTextBox" KeyDown="keyCheck" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="492,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

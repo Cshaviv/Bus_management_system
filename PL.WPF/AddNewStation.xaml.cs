@@ -51,6 +51,9 @@ namespace PL.WPF
                 if (station != null)
                 {
                     bl.AddStation(station);
+                    codeTextBox.BorderBrush = Brushes.Gray;
+                    nameTextBox.BorderBrush = Brushes.Gray;
+                    addressTextBox.BorderBrush = Brushes.Gray;
                     MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
@@ -91,6 +94,7 @@ namespace PL.WPF
                 addressTextBox.BorderBrush = Brushes.Red;
                 MessageBox.Show(message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
     }
 }

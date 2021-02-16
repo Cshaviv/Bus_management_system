@@ -12,7 +12,7 @@ namespace dotNet5781_01_7232_5482
 {
     class Program
     {
-        
+
         //All the functions we run in the main
         static int LicNum()//The function picks up a license number and checks if it is correct
         {
@@ -32,17 +32,17 @@ namespace dotNet5781_01_7232_5482
         }
         static bool CheckLicAndDt(int Lic_Num, DateTime dt)//The function checks if the date of commencement of operation of the bus and the length of the license number are correct
         {
-            if (!((dt.Year >= 2018) && (Lic_Num.ToString().Length == 8) || (dt.Year < 2018)&&(Lic_Num.ToString().Length == 7)))
+            if (!((dt.Year >= 2018) && (Lic_Num.ToString().Length == 8) || (dt.Year < 2018) && (Lic_Num.ToString().Length == 7)))
             {
                 Console.WriteLine("ERROR! ");
                 return false;
             }
-          
+
             return true;
         }
-        static bool CheeckLicenum( int Lic_Num)
+        static bool CheeckLicenum(int Lic_Num)
         {
-             int LicesNember = Lic_Num;
+            int LicesNember = Lic_Num;
             if (!((LicesNember.ToString().Length == 8) || (LicesNember.ToString().Length == 7)))//If the length of the license number is incorrect - print ERROR
             {
                 Console.WriteLine("The license number is incorrect");
@@ -61,7 +61,7 @@ namespace dotNet5781_01_7232_5482
                 Console.WriteLine("ERROR!, Please enter a valid date");
                 return StartDateTime();
             }
-            if((DT-(DateTime.Now )).TotalDays > 0)
+            if ((DT - (DateTime.Now)).TotalDays > 0)
             {
                 Console.WriteLine("Sorry, the date you typed is incorrect");
                 return StartDateTime();
@@ -109,7 +109,7 @@ namespace dotNet5781_01_7232_5482
         }//Data reception for the new bus
         static double LastTreat(double TotalKm)
         {
-            double My_TotalKm = TotalKm; 
+            double My_TotalKm = TotalKm;
             Console.WriteLine("Press 'Y' to update the number of kilometers the bus has traveled since last treatmant or 'N' to skip  ");
             string choose = Console.ReadLine();
             double KmFromLastTreat = 0.0;
@@ -151,7 +151,7 @@ namespace dotNet5781_01_7232_5482
             }
 
         }//Data reception for the new bus
-        static double LastRefueling(double TotalKm )
+        static double LastRefueling(double TotalKm)
         {
             Console.WriteLine("Press 'Y' to update the number of kilometers the bus has traveled since last refueling or 'N' to skip");
             string choose = Console.ReadLine();
@@ -170,7 +170,7 @@ namespace dotNet5781_01_7232_5482
                 if (KmFromLastrefueling > 1200)
                 {
                     Console.WriteLine("Sorry this km number could not be true");
-                   return LastRefueling(TotalKm);
+                    return LastRefueling(TotalKm);
                 }
                 if (KmFromLastrefueling > TotalKm)
                 {
@@ -196,7 +196,7 @@ namespace dotNet5781_01_7232_5482
 
         }//Data reception for the new bus
 
-        static DateTime DateOfLastTreat(DateTime My_DT) 
+        static DateTime DateOfLastTreat(DateTime My_DT)
         {
             DateTime StartDate = My_DT;
             Console.WriteLine("Press 'Y' To type in what date was the last treatment of the bus  or 'N' to skip ");
@@ -212,11 +212,11 @@ namespace dotNet5781_01_7232_5482
                     Console.WriteLine("ERROR!,Please enter a valid date");
                     DateOfLastTreat(StartDate);
                 }
-                if (((DT - (DateTime.Now)).TotalDays > 0)||((My_DT - (DT)).TotalDays>0)|| ((DT-(My_DT)).TotalDays>365))
+                if (((DT - (DateTime.Now)).TotalDays > 0) || ((My_DT - (DT)).TotalDays > 0) || ((DT - (My_DT)).TotalDays > 365))
                 {
                     Console.WriteLine("Sorry, the date you typed is incorrect");
                     DateOfLastTreat(StartDate);
-                }               
+                }
                 Console.WriteLine("This figure has been updated successfully");
                 return DT;
 
@@ -238,10 +238,10 @@ namespace dotNet5781_01_7232_5482
         static double RandKm()//The guerrilla function has a number. (km to ride)
         {
             Random randKm = new Random(DateTime.Now.Millisecond);
-            double KmForRide = randKm.NextDouble()*(1200.0-0.0)+(0.0);
+            double KmForRide = randKm.NextDouble() * (1200.0 - 0.0) + (0.0);
             return KmForRide;
         }
-        static void CheckBus(Bus b,double KmForRide)
+        static void CheckBus(Bus b, double KmForRide)
 
         {
             double My_Km = KmForRide;
@@ -261,9 +261,9 @@ namespace dotNet5781_01_7232_5482
             if (b.Kmafterrefueling + My_Km > 1200)//Check if the bus has enough fuel for the trip.
             {
                 Console.WriteLine("You do not have enough fuel to go on this trip");
-                return ;
+                return;
             }
-            
+
             b.Kmafterrefueling = b.Kmafterrefueling + KmForRide;//Update bus fields due to travel.
             b.Kmaftertreat = b.Kmaftertreat + KmForRide;
             b.Km = b.Km + KmForRide;
@@ -276,7 +276,7 @@ namespace dotNet5781_01_7232_5482
             Console.WriteLine("Type 1 if you are interested in refueling the bus.Type 2 if you are interested in treatment. Type 3 if yor are interested in treatment and refueling");
             string Choose1or2or3 = Console.ReadLine();//choose 1 or 2 or 3
             int YourChoose;
-           bool succes = Int32.TryParse(Choose1or2or3, out YourChoose);
+            bool succes = Int32.TryParse(Choose1or2or3, out YourChoose);
             if (!succes)
             {
                 Console.WriteLine("ERROR! ");//Incorrect input.
@@ -333,8 +333,8 @@ namespace dotNet5781_01_7232_5482
                             if (Lic_Num == 0)//Check if the number invalid. 
                             {
                                 break;
-                            }                           
-                            bool found=false;
+                            }
+                            bool found = false;
                             foreach (Bus b in Buss)// b ptr
                             {
                                 if (b.LicenseNum == Lic_Num)// Check if the number exists in the system.
@@ -345,14 +345,14 @@ namespace dotNet5781_01_7232_5482
 
                                 }
 
-                            }     
-                            if(found)//If the license number exists in the system, go to the main menu.
-                                {
-                                    break;
-                                }
-                            if(! (CheeckLicenum(Lic_Num)))
+                            }
+                            if (found)//If the license number exists in the system, go to the main menu.
+                            {
                                 break;
-                   
+                            }
+                            if (!(CheeckLicenum(Lic_Num)))
+                                break;
+
                             DateTime My_DT = StartDateTime();
                             if (!(CheckLicAndDt(Lic_Num, My_DT)))//Call to function of integrity check.
                                 break;
@@ -360,9 +360,9 @@ namespace dotNet5781_01_7232_5482
                             double KmFromLastTreat = LastTreat(TotalKm);
                             double KmFromLastRefuling = LastRefueling(TotalKm);
                             DateTime DateFromLastTreat = DateOfLastTreat(My_DT);
-                            Bus NewBus = new Bus(Lic_Num, My_DT, DateFromLastTreat, TotalKm, KmFromLastTreat, KmFromLastRefuling) ;// Add the bus to the list
+                            Bus NewBus = new Bus(Lic_Num, My_DT, DateFromLastTreat, TotalKm, KmFromLastTreat, KmFromLastRefuling);// Add the bus to the list
                             Buss.Add(NewBus);
-                            Console.WriteLine("The bus successfully added to the list of buses");                          
+                            Console.WriteLine("The bus successfully added to the list of buses");
                             break;
                         }
                     case "B":
@@ -380,7 +380,7 @@ namespace dotNet5781_01_7232_5482
                                 {
                                     found = true;
                                     double KmForRide = RandKm();
-                                    CheckBus( b,  KmForRide);
+                                    CheckBus(b, KmForRide);
                                     break;
                                 }
                             }
@@ -391,9 +391,9 @@ namespace dotNet5781_01_7232_5482
 
                             break;
                         }
-                                                  
+
                     case "C":
-                        {                       
+                        {
                             int Lic_Num = LicNum();//The license number entered by the user.
                             if (Lic_Num == 0)// Check if the number invalid.
                             {
@@ -407,9 +407,9 @@ namespace dotNet5781_01_7232_5482
                                     Found = true;
                                     Treat_OR_Refuel(b);
                                 }
-                              
+
                             }
-                             if(!Found)//the bus dosent exist in the list
+                            if (!Found)//the bus dosent exist in the list
                             {
                                 Console.WriteLine("The bus does not exist in the reservoir");
                             }
@@ -420,24 +420,24 @@ namespace dotNet5781_01_7232_5482
                             foreach (Bus b in Buss)
                             {
                                 b.get_LicesNum();//Printing of the list of buses with license number and km.
-                                Console.WriteLine(b.Km+"\n");
+                                Console.WriteLine(b.Km + "\n");
                             }
                         }
-                        
+
                         break;
                     default:
                         {
                             Console.WriteLine("Sorry, this option does not exist in the system");
                             break;
                         }
-                    
+
                 }
-               
+
             }
 
 
         }
     }
-    
-       
+
+
 }

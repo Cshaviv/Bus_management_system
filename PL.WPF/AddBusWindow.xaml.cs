@@ -55,6 +55,12 @@ namespace PL.WPF
                 if(b!=null)
                 { 
                     bl.AddBus(b);
+                    licenseNumTextBox.BorderBrush = Brushes.Gray;
+                    startDateDatePicker.BorderBrush = Brushes.Gray;
+                    dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
+                    kmLastTreatTextBox.BorderBrush = Brushes.Gray;
+                    fuelTankTextBox.BorderBrush = Brushes.Gray;
+                    totalKmTextBox.BorderBrush = Brushes.Gray;
                     MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
@@ -136,6 +142,7 @@ namespace PL.WPF
                 totalKmTextBox.BorderBrush = Brushes.Gray;
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+          
         }
 
         private void keyCheck(object sender, KeyEventArgs e)

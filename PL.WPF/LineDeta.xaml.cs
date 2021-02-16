@@ -47,7 +47,8 @@ namespace PL.WPF
                 {
                     bl.DeleteStationInLine(line.LineId, station.StationCode);
                     MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                    RefreshAllLine();
+                    //RefreshAllLine();
+                    Close();
                 }
                
                     return;

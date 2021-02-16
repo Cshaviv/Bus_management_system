@@ -55,7 +55,7 @@ namespace dotNet5781_03B_7232_5482
             data.timer.Visibility = Visibility.Visible;
             worker.RunWorkerAsync(data);//Activating the func Worker_DoWork of process
 
-        }
+         }
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             DataThread data = (DataThread)e.Argument;

@@ -97,8 +97,13 @@ namespace PL.WPF
                     double kmLastTreat = double.Parse(kmafterTreatTextBox.Text);
                     //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
                     double totalKm = double.Parse(totalKmTextBox.Text);
-                    BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, /*StatusBus = status,*/ TotalKm = totalKm, KmLastTreat = kmLastTreat };
+                    BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, /*StatusBus = status,*/ TotalKm = totalKm, KmLastTreat = kmLastTreat };             
                     bl.UpdateBusDetails(b);
+                    startDateDatePicker.BorderBrush = Brushes.Gray;
+                    lastTreatDatePicker.BorderBrush = Brushes.Gray;
+                    kmafterTreatTextBox.BorderBrush = Brushes.Gray;
+                    fuelTankTextBox.BorderBrush = Brushes.Gray;
+                    totalKmTextBox.BorderBrush = Brushes.Gray;
                     RefreshAllBuses();
                     MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
@@ -132,46 +137,46 @@ namespace PL.WPF
             {
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 startDateDatePicker.BorderBrush = Brushes.Red;
-                lastTreatDatePicker.BorderBrush = Brushes.Green;
-                kmafterTreatTextBox.BorderBrush = Brushes.Green;
-                fuelTankTextBox.BorderBrush = Brushes.Green;
-                totalKmTextBox.BorderBrush = Brushes.Green;
+                lastTreatDatePicker.BorderBrush = Brushes.Gray;
+                kmafterTreatTextBox.BorderBrush = Brushes.Gray;
+                fuelTankTextBox.BorderBrush = Brushes.Gray;
+                totalKmTextBox.BorderBrush = Brushes.Gray;
             }
             if (num == 2)
             {
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                startDateDatePicker.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Gray;
                 lastTreatDatePicker.BorderBrush = Brushes.Red;
-                kmafterTreatTextBox.BorderBrush = Brushes.Green;
-                fuelTankTextBox.BorderBrush = Brushes.Green;
-                totalKmTextBox.BorderBrush = Brushes.Green;
+                kmafterTreatTextBox.BorderBrush = Brushes.Gray;
+                fuelTankTextBox.BorderBrush = Brushes.Gray;
+                totalKmTextBox.BorderBrush = Brushes.Gray;
             }
             if (num == 3)
             {
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                startDateDatePicker.BorderBrush = Brushes.Green;
-                lastTreatDatePicker.BorderBrush = Brushes.Green;
-                kmafterTreatTextBox.BorderBrush = Brushes.Green;
-                fuelTankTextBox.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Gray;
+                lastTreatDatePicker.BorderBrush = Brushes.Gray;
+                kmafterTreatTextBox.BorderBrush = Brushes.Gray;
+                fuelTankTextBox.BorderBrush = Brushes.Gray;
                 totalKmTextBox.BorderBrush = Brushes.Red;
             }
             if (num == 4)
             {
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                startDateDatePicker.BorderBrush = Brushes.Green;
-                lastTreatDatePicker.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Gray;
+                lastTreatDatePicker.BorderBrush = Brushes.Gray;
                 kmafterTreatTextBox.BorderBrush = Brushes.Red;
-                fuelTankTextBox.BorderBrush = Brushes.Green;
-                totalKmTextBox.BorderBrush = Brushes.Green;
+                fuelTankTextBox.BorderBrush = Brushes.Gray;
+                totalKmTextBox.BorderBrush = Brushes.Gray;
             }
             if (num == 5)
             {
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                startDateDatePicker.BorderBrush = Brushes.Green;
-                lastTreatDatePicker.BorderBrush = Brushes.Green;
-                kmafterTreatTextBox.BorderBrush = Brushes.Green;
+                startDateDatePicker.BorderBrush = Brushes.Gray;
+                lastTreatDatePicker.BorderBrush = Brushes.Gray;
+                kmafterTreatTextBox.BorderBrush = Brushes.Gray;
                 fuelTankTextBox.BorderBrush = Brushes.Red;
-                totalKmTextBox.BorderBrush = Brushes.Green;
+                totalKmTextBox.BorderBrush = Brushes.Gray;
             }
             if (num == 6)
             {

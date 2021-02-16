@@ -56,28 +56,31 @@ namespace PL.WPF
                 BO.Station lastStation = (lastStationComboBox.SelectedItem) as BO.Station;
                 if (firstStation == lastStation)
                     throw new BO.BadLineIdException("לא ניתן להכניס שוב את אותה תחנה");
-                    //timeLabel.Visibility = Visibility.Visible;
-                    //TimeTextBox.Visibility = Visibility.Visible;
-                    //distanceLabel.Visibility = Visibility.Visible;
-                    //distanceTextBox.Visibility = Visibility.Visible;              
-                    //MessageBox.Show("מצטערים אך בזמן עיבוד הנתונים התגלה שחסר למערכת כמה נתונים, אנא השלם אותם כדי שנוכל להמשיך בפעולה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                    if (!Double.TryParse(distanceTextBox.Text, out double distance))
-                        throw new BadInputException(2, "מחרוזת קלט לא היתה בתבנית הנכונה");
-                    if (!Double.TryParse(TimeTextBox.Text, out double time_))
-                        throw new BadInputException(3, "מחרוזת קלט לא היתה בתבנית הנכונה");
-                    TimeSpan time = TimeSpan.FromMinutes(double.Parse(TimeTextBox.Text));
-                    BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString());
-                    BO.Line newline = new BO.Line() { LineNum = lineNum, Area = area, FirstStation = firstStation.Code, LastStation = lastStation.Code };
-                    newline.Stations = new List<BO.StationInLine>();
-                    BO.StationInLine firstStat = new BO.StationInLine() { lineNum = lineNum, StationCode = firstStation.Code, Name = firstStation.Name, LineStationIndex = 0, DistanceFromNext = distance, TimeFromNext = time };
-                    newline.Stations.Add(firstStat);
-                    BO.StationInLine lastStat = new BO.StationInLine() { lineNum = lineNum, StationCode = lastStation.Code, Name = lastStation.Name, LineStationIndex = 1, DistanceFromNext = 0, TimeFromNext = new TimeSpan(0, 0, 0) };
-                    newline.Stations.Add(lastStat);
-                    bl.AddNewLine(newline);
-                    MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Close();
-                
-          
+                //timeLabel.Visibility = Visibility.Visible;
+                //TimeTextBox.Visibility = Visibility.Visible;
+                //distanceLabel.Visibility = Visibility.Visible;
+                //distanceTextBox.Visibility = Visibility.Visible;              
+                //MessageBox.Show("מצטערים אך בזמן עיבוד הנתונים התגלה שחסר למערכת כמה נתונים, אנא השלם אותם כדי שנוכל להמשיך בפעולה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (!Double.TryParse(distanceTextBox.Text, out double distance))
+                    throw new BadInputException(2, "מחרוזת קלט לא היתה בתבנית הנכונה");
+                if (!Double.TryParse(TimeTextBox.Text, out double time_))
+                    throw new BadInputException(3, "מחרוזת קלט לא היתה בתבנית הנכונה");
+                TimeSpan time = TimeSpan.FromMinutes(double.Parse(TimeTextBox.Text));
+                BO.Area area = (BO.Area)Enum.Parse(typeof(BO.Area), AreaComboBox.SelectedItem.ToString());
+                BO.Line newline = new BO.Line() { LineNum = lineNum, Area = area, FirstStation = firstStation.Code, LastStation = lastStation.Code };
+                newline.Stations = new List<BO.StationInLine>();
+                BO.StationInLine firstStat = new BO.StationInLine() { lineNum = lineNum, StationCode = firstStation.Code, Name = firstStation.Name, LineStationIndex = 0, DistanceFromNext = distance, TimeFromNext = time };
+                newline.Stations.Add(firstStat);
+                BO.StationInLine lastStat = new BO.StationInLine() { lineNum = lineNum, StationCode = lastStation.Code, Name = lastStation.Name, LineStationIndex = 1, DistanceFromNext = 0, TimeFromNext = new TimeSpan(0, 0, 0) };
+                newline.Stations.Add(lastStat);
+                bl.AddNewLine(newline);
+                lineNumTextBox.BorderBrush = Brushes.Gray;
+                TimeTextBox.BorderBrush = Brushes.Gray;
+                distanceTextBox.BorderBrush = Brushes.Gray;
+                MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
+
+
 
 
             }
@@ -96,11 +99,11 @@ namespace PL.WPF
             catch (BO.BadInputException ex)
             {
                 Exceptions(ex.num, ex.Message);
-            }         
+            }
         }
-        private void Exceptions(int num,string message)
+        private void Exceptions(int num, string message)
         {
-            if(num==1)
+            if (num == 1)
             {
                 lineNumTextBox.BorderBrush = Brushes.Red;
                 TimeTextBox.BorderBrush = Brushes.Gray;
@@ -121,6 +124,7 @@ namespace PL.WPF
                 distanceTextBox.BorderBrush = Brushes.Gray;
                 MessageBox.Show(message, "ERROR ", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+           
         }
         private void keyCheck(object sender, KeyEventArgs e)
         {
