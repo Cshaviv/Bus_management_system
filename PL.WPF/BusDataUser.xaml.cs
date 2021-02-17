@@ -34,6 +34,7 @@ namespace PL.WPF
             totalKmTextBlock.Text = b.TotalKm.ToString();
             fuelTankTextBlock.Text = b.FuelTank.ToString();
             kmafterTreatTextBlock.Text = b.KmLastTreat.ToString();
+            
         }
     }
 }

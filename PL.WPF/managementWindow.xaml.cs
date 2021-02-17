@@ -26,13 +26,14 @@ namespace PL.WPF
         IBL bl;
       //  public ObservableCollection<Bus> BusesCollection;
         //BO.Student curStu;
-        public managementWindow(IBL _bl)
+        public managementWindow(IBL _bl, string userName)
         {
             InitializeComponent();
             bl = _bl;
             RefreshAllBuses();
            RefreshAllLinesList();
             RefreshAllStations();
+            userNameTextBlock.Text = userName;
         }
 
 
@@ -216,6 +217,11 @@ namespace PL.WPF
         public void nana()
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

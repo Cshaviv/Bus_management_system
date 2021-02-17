@@ -47,7 +47,7 @@ namespace PL.WPF
                 {
                     if (logtIn.managaccount)
                     {
-                        managementWindow win = new managementWindow(bl);
+                        managementWindow win = new managementWindow(bl, userName);
                         win.ShowDialog();
                     }
                     else
@@ -56,7 +56,7 @@ namespace PL.WPF
                 }
                 else if (rbUser.IsChecked == true)
                 {
-                    UserWindows win = new UserWindows(bl);
+                    UserWindows win = new UserWindows(bl, userName);
                     win.Show();
 
                 }

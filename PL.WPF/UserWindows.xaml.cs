@@ -22,13 +22,17 @@ namespace PL.WPF
     public partial class UserWindows : Window
     {
         IBL bl;
-        public UserWindows(IBL _bl)
+        private string userName1;
+
+        public UserWindows(IBL _bl, string userName)
         {
             InitializeComponent();
             bl = _bl;
             busesListBox.ItemsSource = bl.GetAllBuses().ToList();
             LineesListBox.ItemsSource = bl.GetAllLines().ToList();
             stationsListBox.ItemsSource = bl.GetAllStations().ToList();
+            userNameTextBlock.Text = userName;
+            string userName1 = userName;
 
         }
 
@@ -47,6 +51,7 @@ namespace PL.WPF
                 MessageBox.Show("לאוטובוס זה אין נתונים להציג", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;          
             }
+            
             ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
             ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
@@ -116,6 +121,11 @@ namespace PL.WPF
                 }
             }
             return null;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

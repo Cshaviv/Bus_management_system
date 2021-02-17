@@ -88,17 +88,20 @@
         </DataTemplate>
 
     </Window.Resources>
-    <Grid  Background="#FFF0F0F0" Margin="10,0,-1,-1.333">
+    <Grid  Background="#FFF0F0F0" Margin="10,0,-1,-1">
         <Grid.RowDefinitions>
             <RowDefinition Height="99*"/>
             <RowDefinition Height="322*"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="stationsListBox" Visibility="Hidden" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickStationInfromation" Margin="109,1,0,92" Grid.RowSpan="2" />
-        <ListBox x:Name="busesListBox" Visibility="Visible" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickBusInfromation" Margin="109,1,2,92" Grid.RowSpan="2" />
-        <ListBox x:Name="LineesListBox" Visibility="Hidden" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickLineInfromation" Margin="109,1,9,91" Grid.RowSpan="2" />
+        <ListBox x:Name="stationsListBox" Visibility="Hidden" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickStationInfromation" Margin="109,27,0,92" Grid.RowSpan="2" />
+        <ListBox x:Name="busesListBox" Visibility="Visible" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickBusInfromation" Margin="109,32,2,92" Grid.RowSpan="2" />
+        <ListBox x:Name="LineesListBox" Visibility="Hidden" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickLineInfromation" Margin="109,24,9,91" Grid.RowSpan="2" />
         <Button x:Name="Bus" Content="אוטובוסים" HorizontalAlignment="Left" Margin="14,32,0,0" VerticalAlignment="Top" Width="62" Height="70" Click="Bus_Click" Grid.RowSpan="2" FontWeight="Bold" FontFamily="Dubai Medium"/>
         <Button x:Name="Line" Content="קווים" HorizontalAlignment="Left" Margin="11,34.555,0,0" VerticalAlignment="Top" Width="68" Height="70" Grid.Row="1" Click="Line_Click" FontWeight="Bold" FontFamily="Dubai Medium"/>
         <Button x:Name="Station" Content="תחנות" HorizontalAlignment="Left" Margin="17,147.555,0,0" VerticalAlignment="Top" Width="59" Height="70" Grid.Row="1" Click="Station_Click" Background="LightGray" FontFamily="Dubai Medium" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="924,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="91"><Run FlowDirection="RightToLeft" Text="הנך מחובר בתור "/></TextBlock>
+        <TextBlock x:Name="userNameTextBlock"   HorizontalAlignment="Right" Margin="0,3,53,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Width="114"/>
+        <Button Content="התנתקות" HorizontalAlignment="Left" Margin="763,1,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>
 
