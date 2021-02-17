@@ -45,9 +45,9 @@ namespace PL.WPF
                     throw new BadInputException(1, "מחרוזת קלט לא היתה בתבנית הנכונה");
                 if (Int32.TryParse(addressTextBox.Text, out int address))
                     throw new BadInputException(2, "מחרוזת קלט לא היתה בתבנית הנכונה");
-                //string name = nameTextBox.Text;
-                //string address = addressTextBox.Text;
-                BO.Station station = new BO.Station() { Code = code, Name = name.ToString(), Address = address.ToString(), };
+                string name1 = nameTextBox.Text;
+                string address1 = addressTextBox.Text;
+                BO.Station station = new BO.Station() { Code = code, Name = name1, Address = address1, };
                 if (station != null)
                 {
                     bl.AddStation(station);
