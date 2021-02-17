@@ -1,4 +1,4 @@
-﻿<Window x:Class="PL.WPF.AddStationInLineWin"
+﻿  <Window x:Class="PL.WPF.AddStationInLineWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -24,12 +24,12 @@
         <TextBlock x:Name="PrevStatTextBlock" Visibility="Hidden"  HorizontalAlignment="Left"  Margin="467,190,0,0" TextWrapping="Wrap" Text="בחר את התחנה שנמצאת לפני התחנה שאתה רוצה להוסיף " VerticalAlignment="Top" Height="28" Width="306" FontFamily="Dubai Medium"/>
         <ComboBox x:Name="PrevstationComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="13,183,0,0" VerticalAlignment="Top" Width="439" Height="39"/>
         <TextBlock x:Name="NextDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="639,229,0,0" TextWrapping="Wrap" Text="מרחק לתחנה הבאה" VerticalAlignment="Top" Height="28" Width="114" FontFamily="Dubai Medium"/>
-        <TextBlock x:Name="NextTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="649,290,0,0" TextWrapping="Wrap" Text="זמן לתחנה הבאה" VerticalAlignment="Top" Height="28" Width="96" FontFamily="Dubai Medium"/>
+        <TextBlock x:Name="NextTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="649,290,0,0" TextWrapping="Wrap" Text="זמן(בדקות) לתחנה הבאה" VerticalAlignment="Top" Height="28" Width="96" FontFamily="Dubai Medium"/>
         <TextBox x:Name="NextDistanceTextBox" KeyDown="keyCheck" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="636,258,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="NextTimeTextBox" KeyDown="keyCheck" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="634,314,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="NextTimeTextBox" KeyDown="keyCheckNoPeroid" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="634,314,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="PrevDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="495,231,0,0" TextWrapping="Wrap" Text="מרחק מתחנה קודמת" VerticalAlignment="Top" Height="28" Width="114" FontFamily="Dubai Medium"/>
-        <TextBlock x:Name="PrevTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="506,290,0,0" TextWrapping="Wrap" Text="זמן מתחנה קודמת" VerticalAlignment="Top" Height="28" Width="96" FontFamily="Dubai Medium"/>
+        <TextBlock x:Name="PrevTimeTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="506,290,0,0" TextWrapping="Wrap" Text="זמן(בדקות) מתחנה קודמת" VerticalAlignment="Top" Height="28" Width="96" FontFamily="Dubai Medium"/>
         <TextBox x:Name="PrevDistanceTextBox" KeyDown="keyCheck" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="491,258,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="PrevTimeTextBox" KeyDown="keyCheck" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="492,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PrevTimeTextBox" KeyDown="keyCheckNoPeroid" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="492,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

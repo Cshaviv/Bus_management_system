@@ -56,5 +56,6 @@
         </Grid>
         <TextBlock  HorizontalAlignment="Left" Margin="245,56,0,0" TextWrapping="Wrap" Text="קוד" VerticalAlignment="Top" Height="43" Width="75" RenderTransformOrigin="3.519,0.393" FontFamily="Segoe UI Black" FontWeight="Bold" TextDecorations="{x:Null}" FontSize="16" Foreground="Black"/>
         <TextBlock   x:Name="stationCodeTextBlock"  HorizontalAlignment="Right"  Height="37" Margin="0,58,545,0" TextWrapping="Wrap" Text="{Binding Code}" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.944,1.261" FontFamily="Segoe UI Black" FontSize="16" Foreground="Black"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="645,383,0,0" VerticalAlignment="Top" Width="128" Height="25" Click="Button_Click"/>
     </Grid>
 </Window>

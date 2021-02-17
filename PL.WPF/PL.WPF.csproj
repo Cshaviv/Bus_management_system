@@ -90,6 +90,9 @@
     <Compile Include="NewUser.xaml.cs">
       <DependentUpon>NewUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SimulateOneStationWindow.xaml.cs">
+      <DependentUpon>SimulateOneStationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StationData.xaml.cs">
       <DependentUpon>StationData.xaml</DependentUpon>
     </Compile>
@@ -158,6 +161,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="managementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimulateOneStationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

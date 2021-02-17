@@ -30,7 +30,8 @@ namespace PL.WPF
             station = _station;
             nextStation = _nextStation;
             DistanceTextBox.Text= station.DistanceFromNext.ToString();
-            TimeTextBox.Text = station.TimeFromNext.Minutes.ToString();
+            string time= TimeFunc(station.TimeFromNext);
+            TimeTextBox.Text = time;
 
         }
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -59,6 +60,26 @@ namespace PL.WPF
         {
             if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.OemPeriod && e.Key != Key.Escape && e.Key != Key.Back)
                 e.Handled = true;
+        }
+        private string TimeFunc(TimeSpan time)
+        {
+            string hours = time.Hours.ToString();
+            string minutes = time.Minutes.ToString();
+            string seconds = time.Seconds.ToString();
+
+            if (time.Hours % 10 == time.Hours)
+            {
+                hours = "0" + time.Hours.ToString();
+            }
+            if (time.Minutes % 10 == time.Minutes)
+            {
+                minutes = "0" + time.Minutes.ToString();
+            }
+            if (time.Seconds % 10 == time.Seconds)
+            {
+                seconds   = "0" + time.Seconds.ToString();
+            }
+            return "" + hours + ":" + minutes + ":" + seconds;
         }
     }
     }

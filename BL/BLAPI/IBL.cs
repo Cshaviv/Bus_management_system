@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BL;
+using BO;
 
 namespace BLAPI
 {
@@ -70,7 +71,7 @@ namespace BLAPI
         void AddDepTime(int lineId, TimeSpan dep);
 
         #region Trip
-        
+        IEnumerable<LineTiming> GetLineTimingPerStation(BO.Station stationBO, TimeSpan currentTime);
         List<string> FindRoute(int stationCode1, int stationCode2);
         #endregion
     }

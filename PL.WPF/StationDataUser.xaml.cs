@@ -46,5 +46,11 @@ namespace PL.WPF
             // Load data by setting the CollectionViewSource.Source property:
             // stationViewSource.Source = [generic data source]
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SimulateOneStationWindow win = new SimulateOneStationWindow(BL,stat);
+            win.ShowDialog();
+        }
     }
 }

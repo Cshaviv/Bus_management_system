@@ -1725,7 +1725,7 @@ namespace DS
                 new LineTrip{LineId=1,StartAt=new TimeSpan(15,30,0)},
                 new LineTrip{LineId=1,StartAt=new TimeSpan(14,15,0)},
                 new LineTrip{LineId=1,StartAt=new TimeSpan(16,30,0)},
-                new LineTrip{LineId=1,StartAt=new TimeSpan(23,30,0)},
+                new LineTrip{LineId=1,StartAt=new TimeSpan(01,00,0)},
 
                 new LineTrip{LineId=2,StartAt=new TimeSpan(9,15,0)},
                 new LineTrip{LineId=2,StartAt=new TimeSpan(11,30,0)},
@@ -1733,7 +1733,7 @@ namespace DS
                 new LineTrip{LineId=2,StartAt=new TimeSpan(16,15,0)},
                 new LineTrip{LineId=2,StartAt=new TimeSpan(20,30,0)},
                 new LineTrip{LineId=2,StartAt=new TimeSpan(22,30,0)},
-                new LineTrip{LineId=2,StartAt=new TimeSpan(23,15,0)},
+                new LineTrip{LineId=2,StartAt=new TimeSpan(01,05,0)},
 
                 new LineTrip{LineId=3,StartAt=new TimeSpan(9,15,0)},
                 new LineTrip{LineId=3,StartAt=new TimeSpan(11,30,0)},
@@ -1742,7 +1742,7 @@ namespace DS
                 new LineTrip{LineId=3,StartAt=new TimeSpan(18,15,0)},
                 new LineTrip{LineId=3,StartAt=new TimeSpan(19,30,0)},
                 new LineTrip{LineId=3,StartAt=new TimeSpan(21,30,0)},
-                new LineTrip{LineId=3,StartAt=new TimeSpan(23,15,0)},
+                new LineTrip{LineId=3,StartAt=new TimeSpan(01,15,0)},
 
                 new LineTrip{LineId=4,StartAt=new TimeSpan(8,30,0)},
                 new LineTrip{LineId=4,StartAt=new TimeSpan(9,30,0)},
@@ -1797,7 +1797,9 @@ namespace DS
                 new LineTrip{LineId=8,StartAt=new TimeSpan(17,30,0)},
                 new LineTrip{LineId=8,StartAt=new TimeSpan(19,15,0)},
                 new LineTrip{LineId=8,StartAt=new TimeSpan(21,30,0)},
-                new LineTrip{LineId=8,StartAt=new TimeSpan(23,30,0)},
+                new LineTrip{LineId=8,StartAt=new TimeSpan(00,16,0)},
+                new LineTrip{LineId=8,StartAt=new TimeSpan(00,20,0)},
+
 
                 new LineTrip{LineId=9,StartAt=new TimeSpan(8,30,0)},
                 new LineTrip{LineId=9,StartAt=new TimeSpan(9,30,0)},
