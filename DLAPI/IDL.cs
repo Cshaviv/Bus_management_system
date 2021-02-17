@@ -78,11 +78,11 @@ namespace DLAPI
         #region LineTrip
         IEnumerable<DO.LineTrip> GetAllLineTrips();
         IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate);
-        DO.LineTrip GetLineTrip(int lineTripId);
+        DO.LineTrip GetLineTrip(int lineId, TimeSpan time);
         void AddLineTrip(DO.LineTrip lineTrip);//?
         void UpdateLineTrip(DO.LineTrip lineTrip);
-        void UpdateLineTrip(int lineTripId, Action<DO.LineTrip> update); //method that knows to updt specific fields in Bus
-        void DeleteLineTrip(int lineTripId);
+        void UpdateLineTrip(int lineId, TimeSpan time, Action<DO.LineTrip> update);
+        void DeleteLineTrip(int lineId, TimeSpan time);
         #endregion
         #region User
         IEnumerable<DO.User> GetAllUsers();

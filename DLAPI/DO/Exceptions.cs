@@ -45,6 +45,37 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad Line ID number: {ID}";
     }
+    [Serializable]
+    public class BadLineTripException : Exception
+    {
+        public int idLine;
+        public int code;
+
+        public BadLineTripException(int id) : base() => idLine = id;
+        public BadLineTripException(int id, string message) :
+            base(message) => idLine = id;
+
+        public BadLineTripException(int id, string message, Exception innerException) :
+            base(message, innerException) => idLine = id;
+
+        public override string ToString() => base.ToString() + $", bad Line ID number: {idLine}";
+    }
+    //public class BadLineTripException : Exception
+    //{
+    //    public int lineId;
+    //    public BadLineTripException(int LineId) : base()
+    //    {
+    //        lineId = LineId;
+    //    }
+
+    //    public BadLineTripException(int LineId, string message) :
+    //             base(message) => lineId = LineId;
+
+    //    //public override string ToString()
+    //    //{
+    //    //    return Message;
+    //    //}
+    //}
     public class BadStationCodeException : Exception
     {
         public int stationCode;
@@ -57,7 +88,21 @@ namespace DO
         public override string ToString() => base.ToString() + $", bad station code number: {stationCode}";
     }
 
-
+    //public class BadLineTripException : Exception
+    //{
+    //    public int lineId;
+    //    public TimeSpan depTime;//departure time
+    //    public BadLineTripException(int lineId, string message) :
+    //     base(message, innerException)
+    //    {
+    //        lineId = ((DO.BadLineTripException)innerException).lineId;
+    //        depTime = ((DO.BadLineTripException)innerException).depTime;
+    //    }
+    //    public override string ToString()
+    //    {
+    //        return Message;
+    //    }
+    //}
 }
 
 

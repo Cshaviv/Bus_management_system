@@ -222,7 +222,7 @@ namespace PL.WPF
                         if (MessageBox.Show("התחנות הסמוכות קיימות במערכת, האם תרצה לעדכן את הזמן והמרחק שלהם", "add", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                         {
                             bl.UpdateTandDinAdjacentStation(prevStat.StationCode, stat.Code, double.Parse(PrevDistanceTextBox.Text), TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text)));
-
+                            
                         }
                         else
                         {

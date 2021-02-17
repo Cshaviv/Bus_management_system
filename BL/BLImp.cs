@@ -761,30 +761,84 @@ namespace BL
         }
 
         #endregion
-        #region Line Trip
-        //public void DeleteDepTime(int lineId, TimeSpan dep)
-        //{
-        //    try
-        //    {
-        //        dl.DeleteLineTrip(lineId, dep);
-        //    }
-        //    catch (DO.BadLineTripException ex)
-        //    {
-        //        throw new BO.BadLineTripException(ex.Message, ex);
-        //    }
-        //}
-        //public void AddDepTime(int lineId, TimeSpan dep)
-        //{
-        //    try
-        //    {
-        //        dl.AddLineTrip(new DO.LineTrip() { LineId = lineId, StartAt = dep, IsDeleted = false });
-        //    }
-        //    catch (DO.BadLineTripException ex)
-        //    {
-        //        throw new BO.BadLineTripException(ex.Message, ex);
-        //    }
-        //}
+
+        #region LineTrip
+        public void DeleteDepTime(int lineId, TimeSpan dep)
+        {
+            try
+            {
+                dl.DeleteLineTrip(lineId, dep);
+            }
+            catch (DO.BadLineTripException ex)
+            {
+                throw new BO.BadLineTripException(ex.Message);
+            }
+        }
+        public void AddDepTime(int lineId, TimeSpan dep)
+        {
+            try
+            {
+                dl.AddLineTrip(new DO.LineTrip() { LineId = lineId, StartAt = dep, IsDeleted = false });
+            }
+            catch (DO.BadLineTripException ex)
+            {
+                throw new BO.BadLineTripException(ex.Message);
+            }
+        }
+
         #endregion
+
+        #region Trip
+        private int IsStationFound(BO.Line line, int stationCode)
+        {
+            foreach (BO.StationInLine stat in line.Stations)
+            {
+                if (stat.StationCode == stationCode)
+                    return stat.LineStationIndex;
+            }
+            return -1;
+        }
+        private TimeSpan TimeTravel(BO.Line line, int stationCode1, int stationCode2)
+        {
+            int index1 = IsStationFound(line, stationCode1);
+            int index2 = IsStationFound(line, stationCode2);
+            TimeSpan sum = TimeSpan.Zero;
+            for (int i = index1 - 1; i < index2 - 1; i++)
+            {
+                sum += line.Stations[i].TimeFromNext;
+            }
+            return sum;
+        }
+        public List<string> FindRoute(int stationCode1, int stationCode2)
+        {
+            if (stationCode1 == stationCode2)
+                throw new BO.BadInputException("The source station and the destination station must be different");
+            List<string> linesInRoute = new List<string>();//list of lines with line number and time travel
+            List<BO.Line> linesInRouteTemp = new List<BO.Line>();//list of lines that pass on the two stations-temp list
+            List<BO.Line> allLines = GetAllLines().ToList();//all lines
+            foreach (BO.Line line in allLines)
+            {
+
+                int index1 = IsStationFound(line, stationCode1);
+                int index2 = IsStationFound(line, stationCode2);
+                if (index1 != -1 && index2 != -1 && index1 < index2)
+                {
+                    linesInRouteTemp.Add(line);
+                }
+            }
+            if (linesInRouteTemp.Count == 0)
+                throw new BO.BadInputException("There are no lines in this route");
+            linesInRouteTemp = linesInRouteTemp.OrderBy(l => TimeTravel(l, stationCode1, stationCode2)).ToList();
+            foreach (BO.Line line in linesInRouteTemp)
+            {
+                linesInRoute.Add(line.LineNum + "\t" + TimeTravel(line, stationCode1, stationCode2));
+            }
+            return linesInRoute;
+        }
+
+       
+        #endregion
+
 
     }
 }

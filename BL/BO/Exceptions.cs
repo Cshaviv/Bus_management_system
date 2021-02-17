@@ -55,6 +55,18 @@ namespace BO
 
         public override string ToString() => base.ToString() + $", bad station code number: {stationCode}";
     }
+    public class BadLineTripException : Exception
+    {
+        public int idLine;
+        public int code;
 
+        public BadLineTripException(int id) : base() => idLine = id;
+        public BadLineTripException(int id, string message) :
+            base(message) => idLine = id;
+
+        public BadLineTripException(string message) : base(message) { }
+
+        public override string ToString() => base.ToString() + $", bad Line ID number: {idLine}";
+    }
 }
 

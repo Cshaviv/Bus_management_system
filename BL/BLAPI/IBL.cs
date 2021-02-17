@@ -19,6 +19,7 @@ namespace BLAPI
         void BusException(BO.Bus busBO);
 
         #endregion
+
         #region Line
         void AddNewLine(BO.Line lineBo);
         BO.Line GetLine(int lineId);
@@ -29,14 +30,17 @@ namespace BLAPI
         void DeleteLine(int LineId);
         
         #endregion
+
         #region LineStation
         void AddLineStation(BO.LineStation s);
         void DeleteLineStation(int lineId, int stationCode);
         #endregion
+
         #region AdjacentStations
         bool IsExistAdjacentStations(int stationCode1, int stationCode2);
         //void AddAdjacentStations(BO.AdjacentStation adjBO);
         #endregion
+
         #region Station
         IEnumerable<BO.Station> GetAllStations();
         BO.Station GetStation(int code);
@@ -46,6 +50,7 @@ namespace BLAPI
         bool IsAdjacentStat(int code1, int code2);
 
         #endregion
+
         #region StationInLine
         void UpdateTimeAndDistance(BO.StationInLine first, BO.StationInLine second);
         void AddStationInLine(int stationCode, int busID, int index, int indexNextCode, int indexPrevCode, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev);
@@ -61,5 +66,12 @@ namespace BLAPI
 
         #endregion
 
+        void DeleteDepTime(int lineId, TimeSpan dep);
+        void AddDepTime(int lineId, TimeSpan dep);
+
+        #region Trip
+        
+        List<string> FindRoute(int stationCode1, int stationCode2);
+        #endregion
     }
 }
