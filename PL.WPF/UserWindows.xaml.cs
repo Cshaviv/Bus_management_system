@@ -41,7 +41,16 @@ namespace PL.WPF
         {
             stationsListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
-            busesListBox.Visibility = Visibility.Visible;        
+            LineesDeletedListBox.Visibility = Visibility.Hidden;
+            busesListBox.Visibility = Visibility.Visible;
+            HistoryBus.Visibility = Visibility.Visible;
+            availableBus.Visibility = Visibility.Hidden;
+            HistoryLine.Visibility = Visibility.Hidden;
+            availableLine.Visibility = Visibility.Hidden;
+            HistoryStat.Visibility = Visibility.Hidden;
+            availableStat.Visibility = Visibility.Hidden;
+            busesListBox.ItemsSource = bl.GetAllBuses().ToList();
+
         }
         private void doubleClickBusInfromation(object sender, RoutedEventArgs e)//Clicking "double click" on a bus in the list will open a window showing the bus data
         {
@@ -58,13 +67,33 @@ namespace PL.WPF
             BusDataUser win = new BusDataUser(myBus, bl);
             win.ShowDialog();
         }
+        private void HistoryBusClick(object sender, RoutedEventArgs e)
+        {
+            HistoryBus.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Visible;
+            busesListBox.ItemsSource = bl.GetAllDeleteBuses().ToList();
+        }
+        private void availableBusClick(object sender, RoutedEventArgs e)
+        {
+            HistoryBus.Visibility = Visibility.Visible;
+            availableBus.Visibility = Visibility.Hidden;
+            busesListBox.ItemsSource = bl.GetAllBuses().ToList();
+        }
         #endregion
+
         #region Line
         private void Line_Click(object sender, RoutedEventArgs e)
         {
             stationsListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Hidden;
-            LineesListBox.Visibility = Visibility.Visible;      
+            LineesDeletedListBox.Visibility = Visibility.Hidden;
+            LineesListBox.Visibility = Visibility.Visible;
+            HistoryLine.Visibility = Visibility.Visible;
+            availableLine.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Hidden;
+            HistoryStat.Visibility = Visibility.Hidden;
+            availableStat.Visibility = Visibility.Hidden;
         }
         private void doubleClickLineInfromation(object sender, MouseButtonEventArgs e)
         {
@@ -81,26 +110,115 @@ namespace PL.WPF
             LineDataUser win = new LineDataUser(bl, line);
             win.ShowDialog();
         }
+        private void doubleClickDeletedLine(object sender, MouseButtonEventArgs e)
+        {
+            BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
+            if (line == null)
+            {
+                MessageBox.Show("לקו זה אין נתונים להציג", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            ListBoxItem myListBoxItem = (ListBoxItem)(LineesDeletedListBox.ItemContainerGenerator.ContainerFromItem(line));
+            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+            LineDataUser win = new LineDataUser(bl, line);
+            win.ShowDialog();
+        }    
+        private void HistoryLineClick(object sender, RoutedEventArgs e)
+        {
+            HistoryLine.Visibility = Visibility.Hidden;
+            availableLine.Visibility = Visibility.Visible;
+            LineesListBox.Visibility = Visibility.Hidden;
+            LineesDeletedListBox.Visibility = Visibility.Visible;
+            LineesDeletedListBox.ItemsSource = bl.GetAllDeletedLines().ToList();
+        }
+        private void availableLineClick(object sender, RoutedEventArgs e)
+        {
+            HistoryLine.Visibility = Visibility.Visible;
+            availableLine.Visibility = Visibility.Hidden;
+            LineesListBox.Visibility = Visibility.Visible;
+            LineesDeletedListBox.Visibility = Visibility.Hidden;
+            LineesListBox.ItemsSource = bl.GetAllLines().ToList();
+        }
         #endregion
 
         #region station
 
         private void Station_Click(object sender, RoutedEventArgs e)
         {
-            stationsListBox.Visibility = Visibility.Visible;
             busesListBox.Visibility = Visibility.Hidden;
+            LineesDeletedListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
+            HistoryLine.Visibility = Visibility.Hidden;
+            availableLine.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Hidden;
+            HistoryStat.Visibility = Visibility.Visible;
+            availableStat.Visibility = Visibility.Hidden;
+            stationsListBox.ItemsSource = bl.GetAllStations().ToList();
+            stationsListBox.Visibility = Visibility.Visible;
         }
         private void doubleClickStationInfromation(object sender, RoutedEventArgs e)//Clicking "double click" on a bus in the list will open a window showing the bus data
         {
+            bool isDeleted = false;
             BO.Station stat = (sender as ListBox).SelectedItem as BO.Station;
             if (stat == null)
             {
                 MessageBox.Show("לתחנה זו אין נתונים להציג", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            StationDataUser win = new StationDataUser(bl, stat, stationsListBox);
+            if(stat.IsDeleted==true)
+            {
+                isDeleted = true;
+            }
+            StationDataUser win = new StationDataUser(isDeleted,bl, stat, stationsListBox);
             win.ShowDialog();
+        }
+        void RefreshAllStations()//yes
+        {
+            try
+            {
+                stationsListBox.ItemsSource = bl.GetAllStations().ToList();
+            }
+            catch (BO.BadLineIdException)
+            {
+                MessageBox.Show("מצטערים חסר למערכת מידע", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadStationCodeException)
+            {
+                MessageBox.Show("מצטערים חסר למערכת מידע", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        void RefreshAllDeletedStations()//yes
+        {
+            try
+            {
+                stationsListBox.ItemsSource = bl.GetAllDeletedStations().ToList();
+            }
+            catch (BO.BadLineIdException)
+            {
+                MessageBox.Show("מצטערים חסר למערכת מידע", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.BadStationCodeException)
+            {
+                MessageBox.Show("מצטערים חסר למערכת מידע", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void HistoryStatClick(object sender, RoutedEventArgs e)
+        {
+            HistoryStat.Visibility = Visibility.Hidden;
+            availableStat.Visibility = Visibility.Visible;
+            LineesListBox.Visibility = Visibility.Hidden;
+            stationsListBox.Visibility = Visibility.Visible;
+            RefreshAllDeletedStations();
+        }
+        private void availableStatClick(object sender, RoutedEventArgs e)
+        {
+            HistoryStat.Visibility = Visibility.Visible;
+            availableStat.Visibility = Visibility.Hidden;
+            stationsListBox.Visibility = Visibility.Visible;
+            RefreshAllStations();
         }
         #endregion
 

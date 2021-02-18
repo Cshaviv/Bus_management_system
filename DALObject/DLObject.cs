@@ -461,7 +461,13 @@ namespace DL
         public IEnumerable<DO.Station> GetAllStations()
         {
             return from station in DataSource.ListStations
-                       //where station.IsDeleted == false
+                       where station.IsDeleted == false
+                   select station.Clone();
+        }
+        public IEnumerable<DO.Station> GetAllDeletedStations()
+        {
+            return from station in DataSource.ListStations
+                   where station.IsDeleted == true
                    select station.Clone();
         }
         /// <summary>
@@ -487,7 +493,8 @@ namespace DL
             if (stationFind != null)
                 return stationFind.Clone();
             else
-                throw new BadStationCodeException(code, "תחנה זו לא קיימת במערכת");
+                return null;
+                //throw new BadStationCodeException(code, "תחנה זו לא קיימת במערכת");
         }
         /// <summary>
         /// A function that receives a statioin and adds it to the system

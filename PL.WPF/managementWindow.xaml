@@ -137,7 +137,9 @@
         <Button x:Name="HistoryBus" Content="היסטוריה" HorizontalAlignment="Left"  Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="HistoryBusClick"/>
         <Button x:Name="availableBus" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="availableBusClick"/>
         <Button x:Name="HistoryLine" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="HistoryLineClick"/>
-        <Button x:Name="availableLine" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="availableLineClick"/>
+        <Button x:Name="availableLine" Content="קווים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="availableLineClick"/>
+        <Button x:Name="HistoryStat" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="HistoryStatClick"/>
+        <Button x:Name="availableStat" Content="תחנות זמינות" HorizontalAlignment="Left" Visibility="Hidden" Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="availableStatClick"/>
 
     </Grid>
 </Window>

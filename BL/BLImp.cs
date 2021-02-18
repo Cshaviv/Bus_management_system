@@ -453,6 +453,34 @@ namespace BL
                 //return stationBO;
                 stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code && l.IsDeleted == false)
                                             let line = dl.GetLine(l.LineId)
+                                            where line != null && dl.GetStation(line.LastStation)!=null
+                                            select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation = dl.GetStation(line.LastStation).Name }).ToList();
+                return stationBO;
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+            }
+
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.code, ex.Message);
+
+            }
+        }
+        public BO.Station DeletedStationDoBoAdapter(DO.Station stationDO)
+        {
+            try
+            {
+                BO.Station stationBO = new BO.Station();
+                int stationCode = stationDO.Code;
+                stationDO.CopyPropertiesTo(stationBO);
+                //stationBO.LinesInStation = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
+                //                            let line = dl.GetLine(stat.LineId)//line
+                //                            select line.CopyToLineInStation(stat)).ToList();
+                //return stationBO;
+                stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code && l.IsDeleted == true)
+                                            let line = dl.GetLine(l.LineId)
                                             where line != null
                                             select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation = dl.GetStation(line.LastStation).Name }).ToList();
                 return stationBO;
@@ -468,6 +496,7 @@ namespace BL
 
             }
         }
+
         /// <summary>
         /// A function that calls to another function in the Dl that get all stations 
         /// </summary>
@@ -476,6 +505,11 @@ namespace BL
         {
             return from item in dl.GetAllStations()
                    select StationDoBoAdapter(item);
+        }
+        public IEnumerable<BO.Station> GetAllDeletedStations()
+        {
+            return from item in dl.GetAllDeletedStations()
+                   select DeletedStationDoBoAdapter(item);
         }
         /// <summary>
         ///  A function that calls to another function in the Dl that get the station code and returns the station 

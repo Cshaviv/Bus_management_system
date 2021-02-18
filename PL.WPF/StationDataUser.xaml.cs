@@ -24,11 +24,15 @@ namespace PL.WPF
         IBL BL;
         BO.Station stat;
         ListBox stationsListBox;
-        public StationDataUser(IBL _bl, Station _stat, ListBox _stationsListBox)
+        public StationDataUser(bool isDeleted, IBL _bl, Station _stat, ListBox _stationsListBox)
         {
             InitializeComponent();
             BL = _bl;
             stat = _stat;
+          if(isDeleted==true)
+            {
+                Simulate.Visibility = Visibility.Hidden;
+            }
              stationsListBox = _stationsListBox;
             // IsDeletedRectangleStation = _IsDeletedRectangleStation;
             addressTextBlock.Text = stat.Address.ToString();

@@ -47,6 +47,7 @@ namespace BLAPI
 
         #region Station
         IEnumerable<BO.Station> GetAllStations();
+        IEnumerable<BO.Station> GetAllDeletedStations();
         BO.Station GetStation(int code);
         void AddStation(BO.Station station);
         void DeleteStation(int code);
