@@ -7,10 +7,33 @@
         mc:Ignorable="d"
         Title="managementWindow" Height="450" Width="959.088">
     <Window.Resources>
-
         <local:BrushColorConverter x:Key="BConverter"></local:BrushColorConverter>
-
         <DataTemplate x:Key="LineTemplate"
+                  DataType="local:BO.Line">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"  />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="70" />
+
+
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="7"  Text=":מספר קו" FontFamily="Dubai Medium" HorizontalAlignment="Right"  FontSize="14" FontWeight="Normal" />
+                <TextBlock Grid.Column="5" Text="{Binding Path=LineNum}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="3" Text=":אזור " FontFamily="Dubai Medium" HorizontalAlignment="Right"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="1" x:Name="kmTextBlock" Text="{Binding Path=Area}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DeletedLineTemplate"
                   DataType="local:BO.Line">
             <Grid>
                 <Grid.RowDefinitions>
@@ -92,17 +115,16 @@
                 <TextBlock Grid.Column="2" x:Name="statNameTextBlock" Text="{Binding Path=Name}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
             </Grid>
         </DataTemplate>
-
     </Window.Resources>
     <Grid  Background="#FFF0F0F0" Margin="10,0,-1,-1.333">
         <Grid.RowDefinitions>
             <RowDefinition Height="99*"/>
             <RowDefinition Height="322*"/>
-
         </Grid.RowDefinitions>
         <ListBox x:Name="stationsListBox" Visibility="Hidden"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickStationInfromation" Margin="109,27,0,92" Grid.RowSpan="2" />
         <ListBox x:Name="busesListBox" Visibility="Visible"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickBusInfromation" Margin="109,27,2,92" Grid.RowSpan="2" />
         <ListBox x:Name="LineesListBox" Visibility="Hidden" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickLineInfromation" Margin="109,24,9,91" Grid.RowSpan="2" />
+        <ListBox x:Name="LineesDeletedListBox" Visibility="Hidden" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource DeletedLineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickDeletedLine" Margin="109,24,9,91" Grid.RowSpan="2" />
         <Button x:Name="Bus" Content="אוטובוסים" HorizontalAlignment="Left" Margin="14,32,0,0" VerticalAlignment="Top" Width="62" Height="70" Click="Bus_Click" Grid.RowSpan="2" FontWeight="Bold" FontFamily="Dubai Medium"/>
         <Button x:Name="Line" Content="קווים" HorizontalAlignment="Left" Margin="14,37,0,0" VerticalAlignment="Top" Width="62" Height="70" Grid.Row="1" Click="Line_Click" FontWeight="Bold" FontFamily="Dubai Medium"/>
         <Button x:Name="Station" Content="תחנות" HorizontalAlignment="Left" Margin="14,148,0,0" VerticalAlignment="Top" Width="62" Height="70" Grid.Row="1" Click="Station_Click" Background="LightGray" FontFamily="Dubai Medium" FontWeight="Bold"/>
@@ -114,6 +136,8 @@
         <Button Content="התנתקות" HorizontalAlignment="Left" Margin="690,2,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Button x:Name="HistoryBus" Content="היסטוריה" HorizontalAlignment="Left"  Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="HistoryBusClick"/>
         <Button x:Name="availableBus" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="availableBusClick"/>
+        <Button x:Name="HistoryLine" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="HistoryLineClick"/>
+        <Button x:Name="availableLine" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="availableLineClick"/>
 
     </Grid>
 </Window>

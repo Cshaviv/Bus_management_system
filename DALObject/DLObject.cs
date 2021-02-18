@@ -226,6 +226,13 @@ namespace DL
                    select line.Clone();
 
         }
+        public IEnumerable<DO.Line> GetAllDeletedLines()
+        {
+            return from line in DataSource.ListLines
+                   where line.IsDeleted == true
+                   select line.Clone();
+
+        }
         /// <summary>
         ///  A function that returns the list of lines that exist in the system according predicate
         /// </summary>
@@ -244,13 +251,14 @@ namespace DL
         /// <param name="lineId"></param>
         /// <returns>line</returns>
         public DO.Line GetLine(int lineId)
-        {
-            DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
-
+        { 
+                DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
             if (lineFind != null)
                 return lineFind.Clone();
+
             else
-                throw new BadLineIdException(lineId, "קו זה לא קיים במערכת");
+                return null;        
+                //throw new BadLineIdException(lineId, "קו זה לא קיים במערכת");
         }
         /// <summary>
         /// A function that receives a line and adds it to the system

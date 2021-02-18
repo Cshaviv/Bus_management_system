@@ -22,7 +22,7 @@ namespace PL.WPF
     public partial class UserWindows : Window
     {
         IBL bl;
-        private string userName1;
+       // private string userName1;
 
         public UserWindows(IBL _bl, string userName)
         {

@@ -44,6 +44,8 @@ namespace PL.WPF
             LineesListBox.Visibility = Visibility.Hidden;
             availableBus.Visibility = Visibility.Hidden;
             HistoryBus.Visibility = Visibility.Visible;
+            HistoryLine.Visibility = Visibility.Hidden;
+            availableLine.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Visible;
             AddBus.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Hidden;
@@ -163,6 +165,10 @@ namespace PL.WPF
         {        
             LineesListBox.ItemsSource = bl.GetAllLines().ToList();
         }//yes
+        public void RefreshAllDeletedLinesList()
+        {
+            LineesDeletedListBox.ItemsSource = bl.GetAllDeletedLines().ToList();
+        }
         private void Line_Click(object sender, RoutedEventArgs e)
         {
             stationsListBox.Visibility = Visibility.Hidden;
@@ -170,6 +176,8 @@ namespace PL.WPF
             AddBus.Visibility = Visibility.Hidden;
             availableBus.Visibility = Visibility.Hidden;
             HistoryBus.Visibility = Visibility.Hidden;
+            HistoryLine.Visibility = Visibility.Visible;
+            availableLine.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Visible;
             AddStation.Visibility = Visibility.Hidden;
@@ -179,12 +187,30 @@ namespace PL.WPF
         {
            BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
             if (line == null)
+            {
+                MessageBox.Show("לקו זה אין נתונים להציג", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
+            }
             ListBoxItem myListBoxItem = (ListBoxItem)(LineesListBox.ItemContainerGenerator.ContainerFromItem(line));
             ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
             LineDeta win = new LineDeta(bl, line);
             win.Closing += winUpdate_Closing;
+            win.ShowDialog();
+        }
+        private void doubleClickDeletedLine(object sender, MouseButtonEventArgs e)
+        {
+            BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
+            if (line == null)
+            {
+                MessageBox.Show("לקו זה אין נתונים להציג", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            ListBoxItem myListBoxItem = (ListBoxItem)(LineesDeletedListBox.ItemContainerGenerator.ContainerFromItem(line));
+            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+            LineDataUser win = new LineDataUser(bl, line);
             win.ShowDialog();
         }
         private void winUpdate_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -197,7 +223,24 @@ namespace PL.WPF
             win.ShowDialog();
             RefreshAllLinesList();
         }
-
+        private void HistoryLineClick(object sender, RoutedEventArgs e)
+        {
+            HistoryLine.Visibility = Visibility.Hidden;
+            availableLine.Visibility = Visibility.Visible;
+            LineesListBox.Visibility = Visibility.Hidden;
+            LineesDeletedListBox.Visibility = Visibility.Visible;
+            RefreshAllDeletedLinesList();
+        }
+  
+        
+        private void availableLineClick(object sender, RoutedEventArgs e)
+        {
+            HistoryLine.Visibility = Visibility.Visible;
+            availableLine.Visibility = Visibility.Hidden;
+            LineesListBox.Visibility = Visibility.Visible;
+            LineesDeletedListBox.Visibility = Visibility.Hidden;
+            RefreshAllLinesList();
+        }
         #endregion
 
         #region Station
@@ -210,6 +253,8 @@ namespace PL.WPF
             AddLine.Visibility = Visibility.Hidden;
             availableBus.Visibility = Visibility.Hidden;
             HistoryBus.Visibility = Visibility.Hidden;
+            HistoryLine.Visibility = Visibility.Hidden;
+            availableLine.Visibility = Visibility.Hidden;
             AddStation.Visibility = Visibility.Visible;
             RefreshAllStations();
         }
@@ -250,7 +295,6 @@ namespace PL.WPF
         {
 
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
