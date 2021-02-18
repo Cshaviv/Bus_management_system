@@ -242,5 +242,17 @@
   <ItemGroup>
     <Resource Include="StationSign.png111.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="51-517955_yellow-bus-yellow-bus-icon-png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="הורדה.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="clockIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="picture.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

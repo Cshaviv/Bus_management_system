@@ -38,9 +38,9 @@ namespace PL.WPF
             BL = _bl;
             station = _stat;
             gridOneStation.DataContext =station;
-            //statName.Text = _stat.Name;
-            //statCode.Text = _stat.Code.ToString();
-            //statAdress.Text = _stat.Address;
+            statName.Text = _stat.Name;
+            statCode.Text = _stat.Code.ToString();
+            statAdress.Text = _stat.Address;
             stopwatch = new Stopwatch();
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;

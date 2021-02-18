@@ -22,10 +22,10 @@
 
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="3" TextWrapping="Wrap" Grid.Row="3" Text=":מספר קו" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="2" TextWrapping="Wrap" Grid.Row="3" Text="{Binding Path=LineNum}" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="1" TextWrapping="Wrap" Grid.Row="3" Text=":תחנת יעד" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="0" TextWrapping="Wrap" Grid.Row="3" Text="{Binding Path=TargetStation}" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="3" TextWrapping="Wrap" Grid.Row="3" Text=":מספר קו" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="12"/>
+                <TextBlock Grid.Column="2" TextWrapping="Wrap" Grid.Row="3" Text="{Binding Path=LineNum}" HorizontalAlignment="Right" FlowDirection="RightToLeft" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="12"/>
+                <TextBlock Grid.Column="1" TextWrapping="Wrap" Grid.Row="3" Text=":תחנת יעד" HorizontalAlignment="Right" FlowDirection="RightToLeft" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="12"/>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap" Grid.Row="3" Text="{Binding Path=TargetStation}" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Top" FontFamily="Dubai Light"  FontSize="12"/>
 
             </Grid>
         </DataTemplate>

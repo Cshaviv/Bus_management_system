@@ -1725,7 +1725,7 @@ namespace DS
                 new LineTrip{LineId=1,StartAt=new TimeSpan(15,30,0)},
                 new LineTrip{LineId=1,StartAt=new TimeSpan(14,30,0)},
                 new LineTrip{LineId=1,StartAt=new TimeSpan(15,20,0)},
-                new LineTrip{LineId=1,StartAt=new TimeSpan(01,00,0)},
+                new LineTrip{LineId=1,StartAt=new TimeSpan(1,00,0)},
 
                 new LineTrip{LineId=2,StartAt=new TimeSpan(9,15,0)},
                 new LineTrip{LineId=2,StartAt=new TimeSpan(11,30,0)},
