@@ -85,5 +85,6 @@ namespace PL.WPF
             data.Bus.StatusBus = BusStatus.Available;
             data.km.Text = (double.Parse(data.km.Text) + (data.distance)).ToString();
         }
+           
     }
 }
