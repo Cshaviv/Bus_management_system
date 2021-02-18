@@ -29,22 +29,33 @@ namespace PL.WPF
         public Label action { get; set; }
         public Label timer { get; set; }
 
-        public BusData(Bus _bus,IBL _bl,  ListBox _busesListBox ,ProgressBar p, Label l, Label a,  Label t)
+        public BusData(bool _isDelete, Bus _bus, IBL _bl, ListBox _busesListBox, ProgressBar p, Label l, Label a, Label t)
         {
             InitializeComponent();
             bl = _bl;
             bus = _bus;
+           if(_isDelete==true)
+            {
+                delete.Visibility = Visibility.Hidden;
+                updateButton.Visibility = Visibility.Hidden;
+                reful.Visibility = Visibility.Hidden;
+                treat.Visibility = Visibility.Hidden;
+            }
+            GetBus(bus);
             busesListBox = _busesListBox;
+            prop = p;
+            label = l;
+            action = a;
+            timer = t;
+        }
+        void GetBus(Bus bus)
+        {
             licenseNumTextBlock.Text = bus.LicenseNum.ToString();
             startDateDatePicker.Text = bus.StartDate.Day + "/" + bus.StartDate.Month + "/" + bus.StartDate.Year;
             lastTreatDatePicker.Text = bus.DateLastTreat.Day + "/" + bus.DateLastTreat.Month + "/" + bus.DateLastTreat.Year;
             totalKmTextBox.Text = bus.TotalKm.ToString();
             fuelTankTextBox.Text = bus.FuelTank.ToString();
             kmafterTreatTextBox.Text = bus.KmLastTreat.ToString();
-            prop = p;
-            label = l;
-            action = a;
-            timer = t;
         }
         void RefreshAllBuses()
         {
@@ -207,12 +218,12 @@ namespace PL.WPF
 
         private void reful_Click(object sender, RoutedEventArgs e)
         {
-            if (bus.StatusBus == BusStatus.OnTreatment || bus.StatusBus == BusStatus.OnRefueling )// Check if the bus can be sent for refueling
+            if (bus.StatusBus == BusStatus.OnTreatment || bus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
             {
                 MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if (bus.FuelTank==1200)
+            if (bus.FuelTank == 0)
             {
                 MessageBox.Show("The fuel tank if full", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
@@ -221,13 +232,13 @@ namespace PL.WPF
             prop.Foreground = Brushes.Yellow;//the prop will be painted yellow
             action.Content = "on refueling...";
             string massage = "The bus was refueled successfully.";
-            string title = "Refuel  ";
-            
-            DataThread data = new DataThread(prop, label, 12, bus, massage, title, action,timer);//Sending the necessary data for the process
+            string title = "Refuel";
+            DataThread data = new DataThread(bl, prop, label, 12, bus, busesListBox, massage, title, action, timer);//Sending the necessary data for the process
             data.Start(data);//Start of the procession
-            Close();
-            BO.Bus b = new BO.Bus() { LicenseNum = bus.LicenseNum, FuelTank = 1200, StartDate = bus.StartDate, DateLastTreat = bus.DateLastTreat, /*StatusBus = status,*/ TotalKm = bus.TotalKm, KmLastTreat = bus.KmLastTreat };
+            BO.Bus b = new BO.Bus() { LicenseNum = bus.LicenseNum, FuelTank = 0, StartDate = bus.StartDate, DateLastTreat = bus.DateLastTreat, /*StatusBus = status,*/ TotalKm = bus.TotalKm, KmLastTreat = bus.KmLastTreat };
             bl.UpdateBusDetails(b);
+            RefreshAllBuses();
+            closeButton_Click(sender, e);
         }
 
         private void treat_Click(object sender, RoutedEventArgs e)
@@ -248,11 +259,17 @@ namespace PL.WPF
             string title = "Treat  ";
             action.Content = "in traetment...";
 
-            DataThread data = new DataThread(prop, label, 144, bus, massage, title, action, timer);//Sending the necessary data for the process
+            DataThread data = new DataThread(bl,prop, label, 144, bus,busesListBox, massage, title, action, timer);//Sending the necessary data for the process
             data.Start(data);//Start of the procession
-            Close();
             BO.Bus b = new BO.Bus() { LicenseNum = bus.LicenseNum, FuelTank = bus.FuelTank, StartDate = bus.StartDate, DateLastTreat = DateTime.Now, /*StatusBus = status,*/ TotalKm = bus.TotalKm, KmLastTreat = 0 };
             bl.UpdateBusDetails(b);
+            closeButton_Click(sender, e);
         }
+        private void closeButton_Click(object sender, RoutedEventArgs e)//this func close the window
+        {
+            this.Close();
+        }
+
+      
     }
 }

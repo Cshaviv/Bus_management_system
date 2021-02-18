@@ -62,9 +62,14 @@ namespace PL.WPF
                 Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
                 Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
                 Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
-                BusData win = new BusData(myBus, bl, busesListBox, prop, precent, action, timer);
+                bool isDelete = false;
+                if(myBus.IsDeleted==true)
+                {
+                    isDelete=true;
+                }
+                BusData win = new BusData(isDelete, myBus, bl, busesListBox, prop, precent, action, timer);
                 win.ShowDialog();
-                RefreshAllBuses();          
+               // RefreshAllBuses();          
             }
 
         }

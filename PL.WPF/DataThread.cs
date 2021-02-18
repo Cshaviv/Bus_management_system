@@ -9,28 +9,33 @@ using System.Windows;
 using System.Windows.Shapes;
 using System.Windows.Media;
 using BO;
+using BLAPI;
 
 namespace PL.WPF
 {
     class DataThread
     {
+        IBL bl;
+        ListBox busesListBox;
         public ProgressBar ProgressBar { get; set; }
         public Label Label { get; set; }
         BackgroundWorker worker;
         public int Seconds { get; set; }
-        public Bus Bus { get; set; }
+        public Bus bus { get; set; }
         public string message { get; set; }
         public string title { get; set; }
         public Label action { get; set; }
         public Label timer { get; set; }
         public TextBlock km { get; set; }
         public double distance { get; set; }
-        public DataThread(ProgressBar pb, Label label, int sec, Bus b, string m, string t, Label a, Label time)//ctor
+        public DataThread(IBL _bl,ProgressBar pb, Label label, int sec, Bus b, ListBox _busesListBox, string m, string t, Label a, Label time)//ctor
         {
+            bl = _bl;
             ProgressBar = pb;
             Label = label;
             Seconds = sec;
-            Bus = b;
+            bus = b;
+            busesListBox = _busesListBox;
             message = m;
             title = t;
             action = a;
@@ -76,15 +81,17 @@ namespace PL.WPF
         }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)//End the process and update the fields
         {
+            BO.Bus b = new BO.Bus() { LicenseNum = bus.LicenseNum, FuelTank = 0, StartDate = bus.StartDate, DateLastTreat = bus.DateLastTreat, /*StatusBus = status,*/ TotalKm = bus.TotalKm, KmLastTreat = bus.KmLastTreat };
+            bl.UpdateBusDetails(b);
             MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
             DataThread data = ((DataThread)(e.Result));
             data.ProgressBar.Visibility = Visibility.Hidden;
             data.Label.Visibility = Visibility.Hidden;
             data.action.Visibility = Visibility.Hidden;
             data.timer.Visibility = Visibility.Hidden;
-            data.Bus.StatusBus = BusStatus.Available;
-            data.km.Text = (double.Parse(data.km.Text) + (data.distance)).ToString();
+            data.bus.StatusBus = BusStatus.Available;
+         
         }
-           
+
     }
 }

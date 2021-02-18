@@ -99,11 +99,6 @@ namespace dotNet5781_03B_7232_5482
                 myBus.Kmafterrefueling = 0;
             }
             closeButton_Click(sender, e);//close the window of data bus
-
-
-
-
-
         }
         private void closeButton_Click(object sender, RoutedEventArgs e)//this func close the window
         {

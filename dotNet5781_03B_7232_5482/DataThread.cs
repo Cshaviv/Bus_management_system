@@ -85,7 +85,7 @@ namespace dotNet5781_03B_7232_5482
             data.action.Visibility = Visibility.Hidden;
             data.timer.Visibility = Visibility.Hidden;
             data.Bus.myStatus = STATUS.Available;
-            data.km.Text =(double.Parse(data.km.Text)+( data.distance)).ToString();
+           // data.km.Text =(double.Parse(data.km.Text)+( data.distance)).ToString();
         }
 
 

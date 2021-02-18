@@ -12,7 +12,7 @@
     </Window.Resources>
     <Grid Background="#FFF0F0F0"  DataContext="{StaticResource busViewSource}" Margin="0,0,0,-3">
         <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="66,330,0,0" VerticalAlignment="Top" Width="140" Height="41" FontWeight="Bold"/>
-        <Button  Content="עדכון נתונים" Click="updateButtonClick" Name="updateButton" Margin="244,330,409,44" FontWeight="Bold" />
+        <Button  Name="updateButton" Content="עדכון נתונים" Click="updateButtonClick" Margin="244,330,409,44" FontWeight="Bold" />
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="117,33,0,0" HorizontalAlignment="Left" DataContext="{StaticResource busViewSource}" Height="208" Width="260">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -30,7 +30,7 @@
             <Label VerticalAlignment="Center" Grid.Row="2" Margin="0,3.667,3,3" HorizontalAlignment="Right" Grid.Column="1" Content="תאריך טיפול אחרון" Width="127"/>
             <DatePicker x:Name="lastTreatDatePicker" VerticalAlignment="Center" SelectedDate="{Binding DateLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3,4,0,4.333" HorizontalAlignment="Left" Grid.Column="0" Width="120"/>
             <Label VerticalAlignment="Center" Grid.Row="5" Margin="0,1,-18.667,5" HorizontalAlignment="Right" Content=":ק''מ מאז תדלוק אחרון" Grid.ColumnSpan="2" Width="164"/>
-            <TextBox x:Name="fuelTankTextBox" KeyDown="keyCheck" Width="120" VerticalAlignment="Center" Text="{Binding FuelTank, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <TextBox x:Name="fuelTankTextBox" KeyDown="keyCheck" Width="120" VerticalAlignment="Center" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0" />
             <Label VerticalAlignment="Center" Grid.Row="4" Margin="0,1.667,-94.667,5" HorizontalAlignment="Right" Content=":ק''מ מאז טיפול אחרון" Width="238" Grid.ColumnSpan="2"/>
             <TextBox x:Name="kmafterTreatTextBox" KeyDown="keyCheck" Width="120" VerticalAlignment="Center" Text="{Binding KmLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="34,6,23.667,8"  HorizontalAlignment="Center" Grid.Column="1" Content=":מספר רישוי" Width="73"/>
