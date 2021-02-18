@@ -7,9 +7,17 @@
         mc:Ignorable="d"
         Title="SimulateOneStationWindow" Height="450" Width="800">
     <Grid>
-        <ListBox x:Name="gridOneStation" HorizontalAlignment="Left" Height="99" Margin="24,56,0,0" VerticalAlignment="Top" Width="622"/>
+        <ListBox x:Name="gridOneStation" HorizontalAlignment="Left" Height="99" Margin="24,56,0,0" VerticalAlignment="Top" Width="285">
+        </ListBox>
+        <TextBlock x:Name="statName" TextWrapping="Wrap"  Text="{Binding ''}" Height="25" Width="224" Margin="343,57,225,337"/>
+        <TextBlock x:Name="statCode" TextWrapping="Wrap" Text="{Binding}" Height="24" Width="216" Margin="349,113,227,282"/>
         <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" Margin="47,346,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="49" Width="249"/>
         <ListBox x:Name="nisayon" HorizontalAlignment="Left" Height="100" Margin="308,230,-27.667,0" VerticalAlignment="Top" Width="513"/>
+        <TextBlock x:Name="statAdress" HorizontalAlignment="Left" Margin="349,87,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Height="21" Width="216"/>
+        <Label Content=":שם התחנה" HorizontalAlignment="Right" Margin="0,52,71,337" Grid.Row="0" VerticalAlignment="Center" Width="122" FontFamily="Dubai Medium" FontWeight="Bold"/>
+        <Label Content=":כתובת" HorizontalAlignment="Right" Margin="0,78,78,311" VerticalAlignment="Center" Width="115" FontFamily="Dubai Medium" FontWeight="Bold"/>
+        <Label Content=":קוד" HorizontalAlignment="Right" Margin="0,107,71,282" VerticalAlignment="Center" Width="115" FontFamily="Dubai Medium" FontWeight="Bold"/>
 
     </Grid>
+
 </Window>
