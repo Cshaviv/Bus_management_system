@@ -56,6 +56,11 @@ namespace BL
             return from item in dl.GetAllBuses()
                    select busDoBoAdapter(item);
         }
+        public IEnumerable<BO.Bus> GetAllDeleteBuses()
+        {
+            return from item in dl.GetAllDeleteBuses()
+                   select busDoBoAdapter(item);
+        }
         /// <summary>
         /// A function that calls to another function in the Dl that get the license number and returns the bus 
         /// </summary>
@@ -73,7 +78,7 @@ namespace BL
                 throw new BO.BadLicenseNumException(ex.licenseNum, ex.Message);
             }
             return busDoBoAdapter(busDO);
-        } 
+        }  
         public IEnumerable<Bus> GetBusesBy(Predicate<Bus> predicate)///??
         {
             throw new NotImplementedException();

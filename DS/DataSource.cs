@@ -920,7 +920,7 @@ namespace DS
             ListBuses = new List<Bus>
             {
                 new Bus
-                {LicenseNum=1234567 , FuelTank=65.8,StatusBus=BusStatus.Available,TotalKm=3646.9, IsDeleted=true,  DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
+                {LicenseNum=1234567 , FuelTank=65.8,StatusBus=BusStatus.Available,TotalKm=3646.9, IsDeleted=true,  DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2017, 12,1 )},
                 new Bus
                 {LicenseNum=59694581 , FuelTank=65.8,StatusBus=BusStatus.Refueling,TotalKm=3646.9, IsDeleted=false ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
                 new Bus

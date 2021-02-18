@@ -30,6 +30,12 @@ namespace DL
                    where bus.IsDeleted == false
                    select bus.Clone();
         }
+        public IEnumerable<DO.Bus> GetAllDeleteBuses()
+        {
+            return from bus in DataSource.ListBuses
+                   where bus.IsDeleted == true
+                   select bus.Clone();
+        }
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)//???
         {
             return from bus in DataSource.ListBuses
@@ -50,6 +56,7 @@ namespace DL
             else
                 throw new BadLicenseNumException(licenseNumber, "The bus does not exist");
         }
+      
         /// <summary>
         /// A function that receives a bus and adds it to the system
         /// </summary>

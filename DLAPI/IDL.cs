@@ -19,6 +19,8 @@ namespace DLAPI
         #region Bus
         IEnumerable<DO.Bus> GetAllBuses();
         IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate);
+        IEnumerable<DO.Bus> GetAllDeleteBuses();
+
         DO.Bus GetBus(int licenseNumber);
         void AddBus(DO.Bus bus);
         void UpdateBus(DO.Bus bus);

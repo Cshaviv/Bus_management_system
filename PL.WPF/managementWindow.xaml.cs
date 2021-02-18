@@ -42,6 +42,8 @@ namespace PL.WPF
         {
             stationsListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Visible;
             busesListBox.Visibility = Visibility.Visible;
             AddBus.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Hidden;
@@ -128,6 +130,24 @@ namespace PL.WPF
         {
             busesListBox.ItemsSource = bl.GetAllBuses().ToList();
         }//yes
+        void RefreshAllDeleteBuses()
+        {
+            busesListBox.ItemsSource = bl.GetAllDeleteBuses().ToList();
+        }//yes
+        private void HistoryBusClick(object sender, RoutedEventArgs e)
+        {
+            HistoryBus.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Visible;
+            RefreshAllDeleteBuses();
+
+        }
+        private void availableBusClick(object sender, RoutedEventArgs e)
+        {
+            HistoryBus.Visibility = Visibility.Visible;
+            availableBus.Visibility = Visibility.Hidden;
+            RefreshAllBuses();
+        }
+        
         #endregion
 
         #region Lines 
@@ -140,6 +160,8 @@ namespace PL.WPF
             stationsListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Hidden;
             AddBus.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Visible;
             AddStation.Visibility = Visibility.Hidden;
@@ -178,6 +200,8 @@ namespace PL.WPF
             stationsListBox.Visibility = Visibility.Visible;
             AddBus.Visibility = Visibility.Hidden;
             AddLine.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Hidden;
             AddStation.Visibility = Visibility.Visible;
             RefreshAllStations();
         }
@@ -223,6 +247,8 @@ namespace PL.WPF
         {
             Close();
         }
+
+     
     }
 }
 #endregion

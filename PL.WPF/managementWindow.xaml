@@ -108,5 +108,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="847,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="27" Width="91"><Run FlowDirection="RightToLeft" Text="הנך מחובר בתור"/></TextBlock>
         <TextBlock  x:Name="userNameTextBlock" HorizontalAlignment="Right" Margin="0,4,99.667,0" TextWrapping="Wrap" Text="{Binding}" FlowDirection="RightToLeft" VerticalAlignment="Top" Width="68"/>
         <Button Content="התנתקות" HorizontalAlignment="Left" Margin="690,2,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button x:Name="HistoryBus" Content="היסטוריה" HorizontalAlignment="Left"  Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="HistoryBusClick"/>
+        <Button x:Name="availableBus" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="availableBusClick"/>
+
     </Grid>
 </Window>
