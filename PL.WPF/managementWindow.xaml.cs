@@ -58,7 +58,11 @@ namespace PL.WPF
                 ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                BusData win = new BusData(myBus, bl, busesListBox);
+                ProgressBar prop = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
+                Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
+                Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
+                Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
+                BusData win = new BusData(myBus, bl, busesListBox, prop, precent, action, timer);
                 win.ShowDialog();
                 RefreshAllBuses();          
             }
@@ -136,10 +140,9 @@ namespace PL.WPF
         }//yes
         private void HistoryBusClick(object sender, RoutedEventArgs e)
         {
-            HistoryBus.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Hidden;           
             availableBus.Visibility = Visibility.Visible;
             RefreshAllDeleteBuses();
-
         }
         private void availableBusClick(object sender, RoutedEventArgs e)
         {

@@ -80,6 +80,7 @@
     <Compile Include="BusDataUser.xaml.cs">
       <DependentUpon>BusDataUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataThread.cs" />
     <Compile Include="Ibl.cs" />
     <Compile Include="LineDataUser.xaml.cs">
       <DependentUpon>LineDataUser.xaml</DependentUpon>

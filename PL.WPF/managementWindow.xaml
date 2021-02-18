@@ -59,8 +59,12 @@
                 <TextBlock Grid.Column="7" Text="{Binding}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="5" Text=":קילומטר" FontFamily="Dubai Medium" HorizontalAlignment="Right"  FontSize="14" FontWeight="Normal" />
                 <TextBlock Grid.Column="4" x:Name="kmTextBlock" Text="{Binding Path=TotalKm}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
-                <Button  Content="תדלוק" Click="RefuelClick" HorizontalAlignment="Left" Name="ButtonRefuel"  Grid.Column="1" Width="70" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />
-                <Button  Content="טיפול" Click="TreatClick" HorizontalAlignment="Left" Name="TreatButton" Grid.Column="2" Width="70" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />
+                <ProgressBar Grid.Column="1" Name="pbThread" Visibility="Hidden"/>
+                <Label Grid.Column="1" x:Name="action" HorizontalAlignment="Left" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
+                <Label Grid.Column="1" x:Name="progressLabel" HorizontalContentAlignment="Right" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
+                <Label Grid.Column="2" x:Name="timer" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14"/>
+                <!--<Button x:Name="RefuelButton"  Content="תדלוק" Click="RefuelClick" HorizontalAlignment="Left"  Grid.Column="1" Width="70" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />-->
+                <!--<Button x:Name="TreatButton" Content="טיפול" Click="TreatClick" HorizontalAlignment="Left" Grid.Column="2" Width="70" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />-->
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="StationTemplate"
