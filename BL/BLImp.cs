@@ -573,9 +573,10 @@ namespace BL
                     {
                         LineId = currentLineid,
                         LineNum = listLines[i].LineNum,
+                        StartStation = listLines[i].Stations[0].Name,
                         DestinationStation = listLines[i].Stations[listLines[i].Stations.Count() - 1].Name,
                         Stringtimes = timesString,
-                    });
+                    }) ;
 
                 }
                 numOfTimes = 0;

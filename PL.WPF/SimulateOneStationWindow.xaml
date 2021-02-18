@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="SimulateOneStationWindow" Height="450" Width="800">
     <Window.Resources>
+
         <local:BrushColorConverter x:Key="BConverter"></local:BrushColorConverter>
+
         <DataTemplate x:Key="LineTemplate"
                   DataType="local:BO.LineTiming" >
             <Grid>
@@ -17,20 +19,26 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="230" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="230" />
+                    <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding Path=LineNum}" FlowDirection="RightToLeft" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="2" x:Name="kmTextBlock" Text="{Binding Path=DestinationStation}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
-                <TextBlock Grid.Column="4" x:Name="lala" Text="{Binding Path=Stringtimes}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+                <TextBlock Grid.Column="4" x:Name="startStat" Text="{Binding Path=StartStation}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+                <TextBlock Grid.Column="6" x:Name="lala" Text="{Binding Path=Stringtimes}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+
+                
             </Grid>
         </DataTemplate>
     </Window.Resources>
+
     <Grid>
         <ListBox x:Name="gridOneStation" HorizontalAlignment="Left"  Height="38" Margin="24,56,0,0" VerticalAlignment="Top" Width="172"/>
-        <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" Margin="47,346,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="49" Width="249"/>
-        <ListBox x:Name="nisayon" FlowDirection="RightToLeft" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="217" Margin="363,17,0,0" VerticalAlignment="Top" Width="417"/>
+        <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" Margin="437,26,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="49" Width="249"/>
+        <ListBox x:Name="nisayon" FlowDirection="RightToLeft" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="217" Margin="0,102,36,0" VerticalAlignment="Top" Width="417"/>
 
     </Grid>
 </Window>
