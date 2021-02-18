@@ -946,6 +946,11 @@ namespace DL
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Bus> GetAllDeleteBuses()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

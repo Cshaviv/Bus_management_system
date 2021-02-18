@@ -64,7 +64,7 @@ namespace PL.WPF
                 Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
                 BusData win = new BusData(myBus, bl, busesListBox, prop, precent, action, timer);
                 win.ShowDialog();
-                RefreshAllBuses();          
+               // RefreshAllBuses();          
             }
 
         }
