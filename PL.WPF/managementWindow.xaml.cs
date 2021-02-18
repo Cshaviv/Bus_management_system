@@ -42,6 +42,8 @@ namespace PL.WPF
         {
             stationsListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Visible;
             busesListBox.Visibility = Visibility.Visible;
             AddBus.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Hidden;
@@ -56,7 +58,11 @@ namespace PL.WPF
                 ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
                 ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                BusData win = new BusData(myBus, bl, busesListBox);
+                ProgressBar prop = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
+                Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
+                Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
+                Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
+                BusData win = new BusData(myBus, bl, busesListBox, prop, precent, action, timer);
                 win.ShowDialog();
                 RefreshAllBuses();          
             }
@@ -128,6 +134,23 @@ namespace PL.WPF
         {
             busesListBox.ItemsSource = bl.GetAllBuses().ToList();
         }//yes
+        void RefreshAllDeleteBuses()
+        {
+            busesListBox.ItemsSource = bl.GetAllDeleteBuses().ToList();
+        }//yes
+        private void HistoryBusClick(object sender, RoutedEventArgs e)
+        {
+            HistoryBus.Visibility = Visibility.Hidden;           
+            availableBus.Visibility = Visibility.Visible;
+            RefreshAllDeleteBuses();
+        }
+        private void availableBusClick(object sender, RoutedEventArgs e)
+        {
+            HistoryBus.Visibility = Visibility.Visible;
+            availableBus.Visibility = Visibility.Hidden;
+            RefreshAllBuses();
+        }
+        
         #endregion
 
         #region Lines 
@@ -140,6 +163,8 @@ namespace PL.WPF
             stationsListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Hidden;
             AddBus.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Visible;
             AddStation.Visibility = Visibility.Hidden;
@@ -178,6 +203,8 @@ namespace PL.WPF
             stationsListBox.Visibility = Visibility.Visible;
             AddBus.Visibility = Visibility.Hidden;
             AddLine.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Hidden;
             AddStation.Visibility = Visibility.Visible;
             RefreshAllStations();
         }
@@ -223,6 +250,8 @@ namespace PL.WPF
         {
             Close();
         }
+
+     
     }
 }
 #endregion

@@ -920,9 +920,9 @@ namespace DS
             ListBuses = new List<Bus>
             {
                 new Bus
-                {LicenseNum=1234567 , FuelTank=65.8,StatusBus=BusStatus.Available,TotalKm=3646.9, IsDeleted=true,  DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
+                {LicenseNum=1234567 , FuelTank=65.8,StatusBus=BusStatus.Available,TotalKm=3646.9, IsDeleted=true,  DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2017, 12,1 )},
                 new Bus
-                {LicenseNum=59694581 , FuelTank=65.8,StatusBus=BusStatus.Refueling,TotalKm=3646.9, IsDeleted=false ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
+                {LicenseNum=59694581 , FuelTank=65.8,StatusBus=BusStatus.Available,TotalKm=3646.9, IsDeleted=false ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
                 new Bus
                 {LicenseNum=98695485 , FuelTank=65.8,StatusBus=BusStatus.Available,TotalKm=3646.9, IsDeleted=false ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
                 new Bus
@@ -930,13 +930,13 @@ namespace DS
                  new Bus
                 {LicenseNum=98567845 , FuelTank=60.8,StatusBus=BusStatus.Available,TotalKm=3646.9, IsDeleted=true ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
                 new Bus
-                {LicenseNum=51194581 , FuelTank=15.8,StatusBus=BusStatus.Refueling,TotalKm=3646.9, IsDeleted=false ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
+                {LicenseNum=51194581 , FuelTank=15.8,StatusBus=BusStatus.Available,TotalKm=3646.9, IsDeleted=false ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
                 new Bus
                 {LicenseNum=91195485 , FuelTank=65.8,StatusBus=BusStatus.Available,TotalKm=3646.9, IsDeleted=false ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
                 new Bus
                 {LicenseNum=61174586 , FuelTank=25.8,StatusBus=BusStatus.Available,TotalKm=3646.9, IsDeleted=false ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )},
                 new Bus
-                {LicenseNum=51146598 , FuelTank=61.8 ,StatusBus=BusStatus.InTravel,TotalKm=4898.9, IsDeleted=false ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )}
+                {LicenseNum=51146598 , FuelTank=61.8 ,StatusBus=BusStatus.Available,TotalKm=4898.9, IsDeleted=false ,DateLastTreat=new DateTime(2020, 12,1 ),StartDate=new DateTime(2019, 12,1 )}
             };
             #endregion
 

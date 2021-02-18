@@ -59,8 +59,12 @@
                 <TextBlock Grid.Column="7" Text="{Binding}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="5" Text=":קילומטר" FontFamily="Dubai Medium" HorizontalAlignment="Right"  FontSize="14" FontWeight="Normal" />
                 <TextBlock Grid.Column="4" x:Name="kmTextBlock" Text="{Binding Path=TotalKm}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
-                <Button  Content="תדלוק" Click="RefuelClick" HorizontalAlignment="Left" Name="ButtonRefuel"  Grid.Column="1" Width="70" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />
-                <Button  Content="טיפול" Click="TreatClick" HorizontalAlignment="Left" Name="TreatButton" Grid.Column="2" Width="70" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />
+                <ProgressBar Grid.Column="1" Name="pbThread" Visibility="Hidden"/>
+                <Label Grid.Column="1" x:Name="action" HorizontalAlignment="Left" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
+                <Label Grid.Column="1" x:Name="progressLabel" HorizontalContentAlignment="Right" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
+                <Label Grid.Column="2" x:Name="timer" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14"/>
+                <!--<Button x:Name="RefuelButton"  Content="תדלוק" Click="RefuelClick" HorizontalAlignment="Left"  Grid.Column="1" Width="70" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />-->
+                <!--<Button x:Name="TreatButton" Content="טיפול" Click="TreatClick" HorizontalAlignment="Left" Grid.Column="2" Width="70" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />-->
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="StationTemplate"
@@ -108,5 +112,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="847,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="27" Width="91"><Run FlowDirection="RightToLeft" Text="הנך מחובר בתור"/></TextBlock>
         <TextBlock  x:Name="userNameTextBlock" HorizontalAlignment="Right" Margin="0,4,99.667,0" TextWrapping="Wrap" Text="{Binding}" FlowDirection="RightToLeft" VerticalAlignment="Top" Width="68"/>
         <Button Content="התנתקות" HorizontalAlignment="Left" Margin="690,2,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button x:Name="HistoryBus" Content="היסטוריה" HorizontalAlignment="Left"  Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="HistoryBusClick"/>
+        <Button x:Name="availableBus" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="availableBusClick"/>
+
     </Grid>
 </Window>

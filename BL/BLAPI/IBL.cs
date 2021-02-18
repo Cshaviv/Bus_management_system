@@ -13,6 +13,7 @@ namespace BLAPI
         #region Bus
         BO.Bus GetBus(int licenseNum);//ll
         IEnumerable<BO.Bus> GetAllBuses();
+         IEnumerable<BO.Bus> GetAllDeleteBuses();
         IEnumerable<BO.Bus> GetBusesBy(Predicate<BO.Bus> predicate);
         void UpdateBusDetails(BO.Bus bus);
         void DeleteBus(int licenseNum);
