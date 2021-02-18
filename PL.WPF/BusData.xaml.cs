@@ -29,13 +29,20 @@ namespace PL.WPF
         public Label action { get; set; }
         public Label timer { get; set; }
 
-        public BusData(Bus _bus,IBL _bl,  ListBox _busesListBox ,ProgressBar p, Label l, Label a,  Label t)
+        public BusData(bool _isDelete, Bus _bus, IBL _bl, ListBox _busesListBox, ProgressBar p, Label l, Label a, Label t)
         {
-            InitializeComponent();        
+            InitializeComponent();
             bl = _bl;
             bus = _bus;
+           if(_isDelete==true)
+            {
+                delete.Visibility = Visibility.Hidden;
+                updateButton.Visibility = Visibility.Hidden;
+                reful.Visibility = Visibility.Hidden;
+                treat.Visibility = Visibility.Hidden;
+            }
             GetBus(bus);
-            busesListBox = _busesListBox;        
+            busesListBox = _busesListBox;
             prop = p;
             label = l;
             action = a;
@@ -228,6 +235,9 @@ namespace PL.WPF
             string title = "Refuel";
             DataThread data = new DataThread(bl, prop, label, 12, bus, busesListBox, massage, title, action, timer);//Sending the necessary data for the process
             data.Start(data);//Start of the procession
+            BO.Bus b = new BO.Bus() { LicenseNum = bus.LicenseNum, FuelTank = 0, StartDate = bus.StartDate, DateLastTreat = bus.DateLastTreat, /*StatusBus = status,*/ TotalKm = bus.TotalKm, KmLastTreat = bus.KmLastTreat };
+            bl.UpdateBusDetails(b);
+            RefreshAllBuses();
             closeButton_Click(sender, e);
         }
 

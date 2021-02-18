@@ -16,6 +16,8 @@ namespace BO
         public BusStatus StatusBus { get; set; }//(סטטוס האוטובוס (באיזה מצב נמצא
         public DateTime DateLastTreat { get; set; }//תאריך הטיפול הקודם
         public double KmLastTreat { get; set; }// כמה קילומטר נסע מהטיפול הקודם
+        public bool IsDeleted { get; set; }//האם מחוק
+
         public override string ToString()//הדפסה של המספר רישוי . יש הבדל במספר הספרות של המספר לפי תאריך ההתחלה של האוטובוס 
         {
             int year = StartDate.Year;// שנת תחילת הפעילות

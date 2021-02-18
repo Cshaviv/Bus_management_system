@@ -12,7 +12,7 @@
     </Window.Resources>
     <Grid Background="#FFF0F0F0"  DataContext="{StaticResource busViewSource}" Margin="0,0,0,-3">
         <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="66,330,0,0" VerticalAlignment="Top" Width="140" Height="41" FontWeight="Bold"/>
-        <Button  Content="עדכון נתונים" Click="updateButtonClick" Name="updateButton" Margin="244,330,409,44" FontWeight="Bold" />
+        <Button  Name="updateButton" Content="עדכון נתונים" Click="updateButtonClick" Margin="244,330,409,44" FontWeight="Bold" />
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="117,33,0,0" HorizontalAlignment="Left" DataContext="{StaticResource busViewSource}" Height="208" Width="260">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
