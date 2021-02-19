@@ -26,13 +26,18 @@ namespace PL.WPF
        ListBox stationsListBox;
        //Rectangle IsDeletedRectangleStation;
        
-        public StationData( IBL _bl, BO.Station _station , ListBox _stationsListBox ) //ctor
+        public StationData(bool isDeleted, IBL _bl, BO.Station _station , ListBox _stationsListBox ) //ctor
         {
             InitializeComponent();
             bl = _bl;
             station = _station;
             stationsListBox = _stationsListBox;
-           // IsDeletedRectangleStation = _IsDeletedRectangleStation;
+            if(isDeleted==true)
+            {
+                deleteStation.Visibility = Visibility.Hidden;
+                updateStation.Visibility = Visibility.Hidden;
+            }
+            // IsDeletedRectangleStation = _IsDeletedRectangleStation;
             addressTextBox.Text= station.Address.ToString();
             nameTextBox.Text= station.Name.ToString();
             LineInStationListBox.ItemsSource = station.LinesInStation;

@@ -226,6 +226,13 @@ namespace DL
                    select line.Clone();
 
         }
+        public IEnumerable<DO.Line> GetAllDeletedLines()
+        {
+            return from line in DataSource.ListLines
+                   where line.IsDeleted == true
+                   select line.Clone();
+
+        }
         /// <summary>
         ///  A function that returns the list of lines that exist in the system according predicate
         /// </summary>
@@ -244,13 +251,14 @@ namespace DL
         /// <param name="lineId"></param>
         /// <returns>line</returns>
         public DO.Line GetLine(int lineId)
-        {
-            DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
-
+        { 
+                DO.Line lineFind = DataSource.ListLines.Find(line => line.LineId == lineId && line.IsDeleted == false);
             if (lineFind != null)
                 return lineFind.Clone();
+
             else
-                throw new BadLineIdException(lineId, "קו זה לא קיים במערכת");
+                return null;        
+                //throw new BadLineIdException(lineId, "קו זה לא קיים במערכת");
         }
         /// <summary>
         /// A function that receives a line and adds it to the system
@@ -453,7 +461,13 @@ namespace DL
         public IEnumerable<DO.Station> GetAllStations()
         {
             return from station in DataSource.ListStations
-                       //where station.IsDeleted == false
+                       where station.IsDeleted == false
+                   select station.Clone();
+        }
+        public IEnumerable<DO.Station> GetAllDeletedStations()
+        {
+            return from station in DataSource.ListStations
+                   where station.IsDeleted == true
                    select station.Clone();
         }
         /// <summary>
@@ -479,7 +493,8 @@ namespace DL
             if (stationFind != null)
                 return stationFind.Clone();
             else
-                throw new BadStationCodeException(code, "תחנה זו לא קיימת במערכת");
+                return null;
+                //throw new BadStationCodeException(code, "תחנה זו לא קיימת במערכת");
         }
         /// <summary>
         /// A function that receives a statioin and adds it to the system

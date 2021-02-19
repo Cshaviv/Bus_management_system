@@ -218,52 +218,58 @@ namespace PL.WPF
 
         private void reful_Click(object sender, RoutedEventArgs e)
         {
-            if (bus.StatusBus == BusStatus.OnTreatment || bus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
-            {
-                MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
+            //if (bus.StatusBus == BusStatus.OnTreatment || bus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
+            //{
+            //    MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            //    return;
+            //}
             if (bus.FuelTank == 0)
             {
                 MessageBox.Show("The fuel tank if full", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            bus.StatusBus = BusStatus.OnRefueling;
-            prop.Foreground = Brushes.Yellow;//the prop will be painted yellow
-            action.Content = "on refueling...";
-            string massage = "The bus was refueled successfully.";
-            string title = "Refuel";
-            DataThread data = new DataThread(bl, prop, label, 12, bus, busesListBox, massage, title, action, timer);//Sending the necessary data for the process
-            data.Start(data);//Start of the procession
             BO.Bus b = new BO.Bus() { LicenseNum = bus.LicenseNum, FuelTank = 0, StartDate = bus.StartDate, DateLastTreat = bus.DateLastTreat, /*StatusBus = status,*/ TotalKm = bus.TotalKm, KmLastTreat = bus.KmLastTreat };
             bl.UpdateBusDetails(b);
             RefreshAllBuses();
             closeButton_Click(sender, e);
+            //bus.StatusBus = BusStatus.OnRefueling;
+            //prop.Foreground = Brushes.Yellow;//the prop will be painted yellow
+            //action.Content = "on refueling...";
+            //string massage = "The bus was refueled successfully.";
+            //string title = "Refuel";
+            //DataThread data = new DataThread(bl, prop, label, 12, bus, busesListBox, massage, title, action, timer);//Sending the necessary data for the process
+            //data.Start(data);//Start of the procession
+            //BO.Bus b = new BO.Bus() { LicenseNum = bus.LicenseNum, FuelTank = 0, StartDate = bus.StartDate, DateLastTreat = bus.DateLastTreat, /*StatusBus = status,*/ TotalKm = bus.TotalKm, KmLastTreat = bus.KmLastTreat };
+            //bl.UpdateBusDetails(b);
+            //RefreshAllBuses();
         }
 
         private void treat_Click(object sender, RoutedEventArgs e)
         {
-            if (bus.StatusBus == BusStatus.OnTreatment || bus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
-            {
-                MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
+            //if (bus.StatusBus == BusStatus.OnTreatment || bus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
+            //{
+            //    MessageBox.Show("The bus is unavailable.", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            //    return;
+            //}
             if (bus.KmLastTreat == 0 && (DateTime.Now == bus.DateLastTreat))//If he did the treatment today and has not traveled since
             {
                 MessageBox.Show("The bus was already treatmented", "WARNING", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            bus.StatusBus = BusStatus.OnTreatment;
-            prop.Foreground = Brushes.DeepPink;//the prop will be painted yellow
-            string massage = "Treatment successfully";
-            string title = "Treat  ";
-            action.Content = "in traetment...";
-
-            DataThread data = new DataThread(bl,prop, label, 144, bus,busesListBox, massage, title, action, timer);//Sending the necessary data for the process
-            data.Start(data);//Start of the procession
             BO.Bus b = new BO.Bus() { LicenseNum = bus.LicenseNum, FuelTank = bus.FuelTank, StartDate = bus.StartDate, DateLastTreat = DateTime.Now, /*StatusBus = status,*/ TotalKm = bus.TotalKm, KmLastTreat = 0 };
             bl.UpdateBusDetails(b);
             closeButton_Click(sender, e);
+            //bus.StatusBus = BusStatus.OnTreatment;
+            //prop.Foreground = Brushes.DeepPink;//the prop will be painted yellow
+            //string massage = "Treatment successfully";
+            //string title = "Treat  ";
+            //action.Content = "in traetment...";
+
+            //DataThread data = new DataThread(bl,prop, label, 144, bus,busesListBox, massage, title, action, timer);//Sending the necessary data for the process
+            //data.Start(data);//Start of the procession
+            //BO.Bus b = new BO.Bus() { LicenseNum = bus.LicenseNum, FuelTank = bus.FuelTank, StartDate = bus.StartDate, DateLastTreat = DateTime.Now, /*StatusBus = status,*/ TotalKm = bus.TotalKm, KmLastTreat = 0 };
+            //bl.UpdateBusDetails(b);
+            //closeButton_Click(sender, e);
         }
         private void closeButton_Click(object sender, RoutedEventArgs e)//this func close the window
         {

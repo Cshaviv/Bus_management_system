@@ -1376,11 +1376,11 @@ namespace DS
                 },
                  new Line//22
                 {
-                    LineId=2,LineNum=22,Area=Area.Jerusalem,FirstStation=73,LastStation=106,IsDeleted=false
+                    LineId=2,LineNum=22,Area=Area.Jerusalem,FirstStation=73,LastStation=106,IsDeleted=true
                 },
                  new Line//33
                 {
-                    LineId=3,LineNum=33,Area=Area.Center,LastStation=77,FirstStation=78,IsDeleted=false
+                    LineId=3,LineNum=33,Area=Area.Center,LastStation=77,FirstStation=78,IsDeleted=true
                 },
                 new Line//44
                 {
@@ -1443,48 +1443,48 @@ namespace DS
                 #region line 22
                
                 new LineStation
-                {/*NextStationCode=77,PrevStationCode=0,*/LineId=2,IsDeleted=false,StationCode=73,LineStationIndex=0},
+                {/*NextStationCode=77,PrevStationCode=0,*/LineId=2,IsDeleted=true,StationCode=73,LineStationIndex=0},
                 new LineStation
-                {/*NextStationCode=83,PrevStationCode=73,*/LineId=2,IsDeleted=false,StationCode=77,LineStationIndex=1},
+                {/*NextStationCode=83,PrevStationCode=73,*/LineId=2,IsDeleted=true,StationCode=77,LineStationIndex=1},
                  new LineStation
-                {/*NextStationCode=78,PrevStationCode=77,*/LineId=2,IsDeleted=false,StationCode=83,LineStationIndex=2},
+                {/*NextStationCode=78,PrevStationCode=77,*/LineId=2,IsDeleted=true,StationCode=83,LineStationIndex=2},
                 new LineStation
-                {/*NextStationCode=0,PrevStationCode=83,*/LineId=2,IsDeleted=false,StationCode=78,LineStationIndex=3},
+                {/*NextStationCode=0,PrevStationCode=83,*/LineId=2,IsDeleted=true,StationCode=78,LineStationIndex=3},
                     new LineStation
-                {/*NextStationCode=77,PrevStationCode=0,*/LineId=2,IsDeleted=false,StationCode=110,LineStationIndex=4},
+                {/*NextStationCode=77,PrevStationCode=0,*/LineId=2,IsDeleted=true,StationCode=110,LineStationIndex=4},
                 new LineStation
-                {/*NextStationCode=83,PrevStationCode=73,*/LineId=2,IsDeleted=false,StationCode=111,LineStationIndex=5},
+                {/*NextStationCode=83,PrevStationCode=73,*/LineId=2,IsDeleted=true,StationCode=111,LineStationIndex=5},
                  new LineStation
-                {/*NextStationCode=78,PrevStationCode=77,*/LineId=2,IsDeleted=false,StationCode=113,LineStationIndex=6},
+                {/*NextStationCode=78,PrevStationCode=77,*/LineId=2,IsDeleted=true,StationCode=113,LineStationIndex=6},
                 new LineStation
-                {/*NextStationCode=0,PrevStationCode=83,*/LineId=2,IsDeleted=false,StationCode=91,LineStationIndex=7},
+                {/*NextStationCode=0,PrevStationCode=83,*/LineId=2,IsDeleted=true,StationCode=91,LineStationIndex=7},
                 new LineStation
-                {/*NextStationCode=78,PrevStationCode=77,*/LineId=2,IsDeleted=false,StationCode=121,LineStationIndex=8},
+                {/*NextStationCode=78,PrevStationCode=77,*/LineId=2,IsDeleted=true,StationCode=121,LineStationIndex=8},
                 new LineStation
-                {/*NextStationCode=0,PrevStationCode=83,*/LineId=2,IsDeleted=false,StationCode=106,LineStationIndex=9}
+                {/*NextStationCode=0,PrevStationCode=83,*/LineId=2,IsDeleted=true,StationCode=106,LineStationIndex=9}
 
                 #endregion
                 #region line 33
                  ,new LineStation
-                {/*NextStationCode=73,*/LineId=3,IsDeleted=false,StationCode=77,LineStationIndex=0},
+                {/*NextStationCode=73,*/LineId=3,IsDeleted=true,StationCode=77,LineStationIndex=0},
                 new LineStation
-                {/*extStationCode=85,*/LineId=3,IsDeleted=false,StationCode=110,LineStationIndex=1},
+                {/*extStationCode=85,*/LineId=3,IsDeleted=true,StationCode=110,LineStationIndex=1},
                  new LineStation
-                {/*NextStationCode=75,*/LineId=3,IsDeleted=false,StationCode=111,LineStationIndex=2},
+                {/*NextStationCode=75,*/LineId=3,IsDeleted=true,StationCode=111,LineStationIndex=2},
                 new LineStation
-                {/*NextStationCode=88,*/LineId=3,IsDeleted=false,StationCode=1512,LineStationIndex=3},
+                {/*NextStationCode=88,*/LineId=3,IsDeleted=true,StationCode=1512,LineStationIndex=3},
                  new LineStation
-                {/*NextStationCode=73,*/LineId=3,IsDeleted=false,StationCode=91,LineStationIndex=4},
+                {/*NextStationCode=73,*/LineId=3,IsDeleted=true,StationCode=91,LineStationIndex=4},
                 new LineStation
-                {/*extStationCode=85,*/LineId=3,IsDeleted=false,StationCode=89,LineStationIndex=5},
+                {/*extStationCode=85,*/LineId=3,IsDeleted=true,StationCode=89,LineStationIndex=5},
                  new LineStation
-                {/*NextStationCode=75,*/LineId=3,IsDeleted=false,StationCode=116,LineStationIndex=6},
+                {/*NextStationCode=75,*/LineId=3,IsDeleted=true,StationCode=116,LineStationIndex=6},
                 new LineStation
-                {/*NextStationCode=88,*/LineId=3,IsDeleted=false,StationCode=102,LineStationIndex=7},
+                {/*NextStationCode=88,*/LineId=3,IsDeleted=true,StationCode=102,LineStationIndex=7},
                       new LineStation
-                {/*NextStationCode=75,*/LineId=3,IsDeleted=false,StationCode=83,LineStationIndex=8},
+                {/*NextStationCode=75,*/LineId=3,IsDeleted=true,StationCode=83,LineStationIndex=8},
                 new LineStation
-                {/*NextStationCode=88,*/LineId=3,IsDeleted=false,StationCode=78,LineStationIndex=9},
+                {/*NextStationCode=88,*/LineId=3,IsDeleted=true,StationCode=78,LineStationIndex=9},
                 #endregion
                 #region line 44
                

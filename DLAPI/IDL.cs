@@ -40,6 +40,7 @@ namespace DLAPI
         #endregion
         #region Station
         IEnumerable<DO.Station> GetAllStations();
+        IEnumerable<DO.Station> GetAllDeletedStations();
         IEnumerable<DO.Station> GetAllStationsBy(Predicate<DO.Station> predicate);
         DO.Station GetStation(int code);
         void AddStation(DO.Station station);//?
@@ -49,6 +50,8 @@ namespace DLAPI
         #endregion 
         #region Line
         IEnumerable<DO.Line> GetAllLines();
+        IEnumerable<DO.Line> GetAllDeletedLines();
+
        // IEnumerable<DO.Line> GetAllLinesDelete();
         IEnumerable<DO.Line> GetAllLinesBy(Predicate<DO.Line> predicate);
         DO.Line GetLine(int lineId);

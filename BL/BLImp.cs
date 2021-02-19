@@ -208,6 +208,39 @@ namespace BL
             }
 
         }
+        BO.Line DeletedlineDoBoAdapter(DO.Line lineDO)
+        {
+            try
+            {
+                BO.Line lineBO = new BO.Line();
+                lineDO.CopyPropertiesTo(lineBO);
+                int id = lineBO.LineId;
+                lineBO.Stations = (from stat in dl.GetStationInLineList(s => s.LineId == id && s.IsDeleted == true) //רמחפשים תחנות שעוברות בקו מסוים
+                                   select new StationInLine { StationCode = stat.StationCode, Name = GetStation(stat.StationCode).Name, LineStationIndex = stat.LineStationIndex }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
+                if (lineBO.Stations.Count != 0)// 
+                {
+                    lineBO.Stations[lineBO.Stations.Count - 1].TimeFromNext = new TimeSpan(0, 0, 0);
+                    lineBO.Stations[lineBO.Stations.Count - 1].DistanceFromNext = 0;
+                }
+                if (lineBO.Stations.Count >= 2)
+                {
+                    lineBO.FirstStation = lineBO.Stations[0].StationCode;
+                    lineBO.LastStation = lineBO.Stations[lineBO.Stations.Count - 1].StationCode;
+                }
+                for (int i = 0; i < lineBO.Stations.Count - 1; i++)
+                {
+                    DO.AdjacentStations adjacentStations = dl.GetAdjacentStations(lineBO.Stations[i].StationCode, lineBO.Stations[i + 1].StationCode);
+                    lineBO.Stations[i].DistanceFromNext = adjacentStations.Distance;
+                    lineBO.Stations[i].TimeFromNext = adjacentStations.Time;
+                }
+                return lineBO;
+            }
+            catch (DO.BadInputException ex)
+            {
+                throw new BO.BadInputException(ex.Message);
+            }
+
+        }
         /// <summary>
         ///  A function that calls to another function in the Dl that get the line id and returns the line
         /// </summary>
@@ -284,6 +317,12 @@ namespace BL
             return from item in dl.GetAllLines()
                    where (item.IsDeleted == false)
                    select lineDoBoAdapter(item);
+        }
+        public IEnumerable<BO.Line> GetAllDeletedLines()
+        {
+            return from item in dl.GetAllDeletedLines()
+                   where (item.IsDeleted == true)
+                   select DeletedlineDoBoAdapter(item);
         }
         public IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate)
         {
@@ -412,8 +451,9 @@ namespace BL
                 //                            let line = dl.GetLine(stat.LineId)//line
                 //                            select line.CopyToLineInStation(stat)).ToList();
                 //return stationBO;
-                stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code&& l.IsDeleted == false)
+                stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code && l.IsDeleted == false)
                                             let line = dl.GetLine(l.LineId)
+                                            where line != null && dl.GetStation(line.LastStation)!=null
                                             select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation = dl.GetStation(line.LastStation).Name }).ToList();
                 return stationBO;
             }
@@ -424,9 +464,39 @@ namespace BL
 
             catch (DO.BadLineIdException ex)
             {
-                throw new BO.BadLineIdException(ex.ID, ex.Message);
+                throw new BO.BadLineIdException(ex.code, ex.Message);
+
             }
         }
+        public BO.Station DeletedStationDoBoAdapter(DO.Station stationDO)
+        {
+            try
+            {
+                BO.Station stationBO = new BO.Station();
+                int stationCode = stationDO.Code;
+                stationDO.CopyPropertiesTo(stationBO);
+                //stationBO.LinesInStation = (from stat in dl.GetAllLineStationsBy(stat => stat.StationCode == stationCode && stat.IsDeleted == false)//Linestation
+                //                            let line = dl.GetLine(stat.LineId)//line
+                //                            select line.CopyToLineInStation(stat)).ToList();
+                //return stationBO;
+                stationBO.LinesInStation = (from l in dl.GetAllLineStationsBy(l => l.StationCode == stationBO.Code && l.IsDeleted == true)
+                                            let line = dl.GetLine(l.LineId)
+                                            where line != null
+                                            select new LineInStation { LineNum = line.LineNum, LineId = l.LineId, TargetStation = dl.GetStation(line.LastStation).Name }).ToList();
+                return stationBO;
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException(ex.stationCode, ex.Message);
+            }
+
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException(ex.code, ex.Message);
+
+            }
+        }
+
         /// <summary>
         /// A function that calls to another function in the Dl that get all stations 
         /// </summary>
@@ -435,6 +505,11 @@ namespace BL
         {
             return from item in dl.GetAllStations()
                    select StationDoBoAdapter(item);
+        }
+        public IEnumerable<BO.Station> GetAllDeletedStations()
+        {
+            return from item in dl.GetAllDeletedStations()
+                   select DeletedStationDoBoAdapter(item);
         }
         /// <summary>
         ///  A function that calls to another function in the Dl that get the station code and returns the station 
