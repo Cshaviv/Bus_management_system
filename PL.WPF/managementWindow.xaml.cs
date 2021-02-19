@@ -176,6 +176,7 @@ namespace PL.WPF
         }
         private void Line_Click(object sender, RoutedEventArgs e)
         {
+           
             stationsListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Hidden;
             LineesDeletedListBox.Visibility = Visibility.Hidden;

@@ -142,9 +142,7 @@ namespace PL.WPF
             LineesListBox.ItemsSource = bl.GetAllLines().ToList();
         }
         #endregion
-
         #region station
-
         private void Station_Click(object sender, RoutedEventArgs e)
         {
             busesListBox.Visibility = Visibility.Hidden;
