@@ -35,11 +35,13 @@ namespace PL.WPF
             RefreshAllStations();
             userNameTextBlock.Text = userName;
         }
-
-
+        
         #region Buses 
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
+            Bus.Background = Brushes.Gray;
+            Line.Background = Brushes.LightGray;
+            Station.Background = Brushes.LightGray;
             stationsListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
             LineesDeletedListBox.Visibility = Visibility.Hidden;
@@ -176,7 +178,9 @@ namespace PL.WPF
         }
         private void Line_Click(object sender, RoutedEventArgs e)
         {
-           
+            Line.Background = Brushes.Gray;
+            Station.Background = Brushes.LightGray;
+            Bus.Background = Brushes.LightGray;
             stationsListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Hidden;
             LineesDeletedListBox.Visibility = Visibility.Hidden;
@@ -255,6 +259,9 @@ namespace PL.WPF
         #region Station
         private void Station_Click(object sender, RoutedEventArgs e)
         {
+            Station.Background = Brushes.Gray;
+            Bus.Background = Brushes.LightGray;
+            Line.Background = Brushes.LightGray;
             LineesDeletedListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Hidden;

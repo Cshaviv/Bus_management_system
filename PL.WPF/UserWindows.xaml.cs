@@ -39,6 +39,9 @@ namespace PL.WPF
         #region Bus
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
+            Bus.Background = Brushes.Gray;
+            Line.Background = Brushes.LightGray;
+            Station.Background = Brushes.LightGray;
             stationsListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
             LineesDeletedListBox.Visibility = Visibility.Hidden;
@@ -84,6 +87,9 @@ namespace PL.WPF
         #region Line
         private void Line_Click(object sender, RoutedEventArgs e)
         {
+            Line.Background = Brushes.Gray;
+            Station.Background = Brushes.LightGray;
+            Bus.Background = Brushes.LightGray;
             stationsListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Hidden;
             LineesDeletedListBox.Visibility = Visibility.Hidden;
@@ -142,9 +148,13 @@ namespace PL.WPF
             LineesListBox.ItemsSource = bl.GetAllLines().ToList();
         }
         #endregion
+
         #region station
         private void Station_Click(object sender, RoutedEventArgs e)
         {
+            Station.Background = Brushes.Gray;
+            Bus.Background = Brushes.LightGray;
+            Line.Background = Brushes.LightGray;
             busesListBox.Visibility = Visibility.Hidden;
             LineesDeletedListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
