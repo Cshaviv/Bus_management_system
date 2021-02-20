@@ -24,37 +24,31 @@ namespace PL.WPF
     public partial class managementWindow : Window
     {
         IBL bl;
-      //  public ObservableCollection<Bus> BusesCollection;
+        int historyNum = 1;
+        int availableNum = 1;
+        //  public ObservableCollection<Bus> BusesCollection;
         //BO.Student curStu;
         public managementWindow(IBL _bl, string userName)
         {
             InitializeComponent();
             bl = _bl;
             RefreshAllBuses();
-           RefreshAllLinesList();
+            RefreshAllLinesList();
             RefreshAllStations();
-            userNameTextBlock.Text = userName;
+            userNameTextBlock.Text = userName;            
         }
-        
+
         #region Buses 
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
             Bus.Background = Brushes.Gray;
             Line.Background = Brushes.LightGray;
             Station.Background = Brushes.LightGray;
-            stationsListBox.Visibility = Visibility.Hidden;
-            LineesListBox.Visibility = Visibility.Hidden;
-            LineesDeletedListBox.Visibility = Visibility.Hidden;
-            availableBus.Visibility = Visibility.Hidden;
-            HistoryBus.Visibility = Visibility.Visible;
-            HistoryLine.Visibility = Visibility.Hidden;
-            availableLine.Visibility = Visibility.Hidden;
+            Hidden();
             busesListBox.Visibility = Visibility.Visible;
             AddBus.Visibility = Visibility.Visible;
-            AddLine.Visibility = Visibility.Hidden;
-            AddStation.Visibility = Visibility.Hidden;
-            HistoryStat.Visibility = Visibility.Hidden;
-            availableStat.Visibility = Visibility.Hidden;
+            historyNum = 1;
+            availableNum = 1;
             RefreshAllBuses();
         }//yes
         private void doubleClickBusInfromation(object sender, RoutedEventArgs e)//yes Clicking "double click" on a bus in the list will open a window showing the bus data
@@ -70,13 +64,13 @@ namespace PL.WPF
                 Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
                 Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
                 bool isDelete = false;
-                if(myBus.IsDeleted==true)
+                if (myBus.IsDeleted == true)
                 {
-                    isDelete=true;
+                    isDelete = true;
                 }
                 BusData win = new BusData(isDelete, myBus, bl, busesListBox, prop, precent, action, timer);
                 win.ShowDialog();
-               // RefreshAllBuses();          
+                // RefreshAllBuses();          
             }
 
         }
@@ -150,26 +144,11 @@ namespace PL.WPF
         {
             busesListBox.ItemsSource = bl.GetAllDeleteBuses().ToList();
         }//yes
-        private void HistoryBusClick(object sender, RoutedEventArgs e)
-        {
-            HistoryBus.Visibility = Visibility.Hidden;           
-            availableBus.Visibility = Visibility.Visible;
-            AddBus.Visibility = Visibility.Hidden;
-            RefreshAllDeleteBuses();
-        }
-        private void availableBusClick(object sender, RoutedEventArgs e)
-        {
-            HistoryBus.Visibility = Visibility.Visible;
-            availableBus.Visibility = Visibility.Hidden;
-            AddBus.Visibility = Visibility.Visible;
-            RefreshAllBuses();
-        }
-        
         #endregion
 
         #region Lines 
         public void RefreshAllLinesList()
-        {        
+        {
             LineesListBox.ItemsSource = bl.GetAllLines().ToList();
         }//yes
         public void RefreshAllDeletedLinesList()
@@ -181,24 +160,16 @@ namespace PL.WPF
             Line.Background = Brushes.Gray;
             Station.Background = Brushes.LightGray;
             Bus.Background = Brushes.LightGray;
-            stationsListBox.Visibility = Visibility.Hidden;
-            busesListBox.Visibility = Visibility.Hidden;
-            LineesDeletedListBox.Visibility = Visibility.Hidden;
-            AddBus.Visibility = Visibility.Hidden;
-            availableBus.Visibility = Visibility.Hidden;
-            HistoryBus.Visibility = Visibility.Hidden;
-            HistoryLine.Visibility = Visibility.Visible;
-            availableLine.Visibility = Visibility.Hidden;
+            Hidden();
             LineesListBox.Visibility = Visibility.Visible;
-            AddLine.Visibility = Visibility.Visible;
-            AddStation.Visibility = Visibility.Hidden;
-            HistoryStat.Visibility = Visibility.Hidden;
-            availableStat.Visibility = Visibility.Hidden;
+            AddLine.Visibility = Visibility.Visible;     
             RefreshAllLinesList();
+            historyNum = 2;
+            availableNum = 2;
         }
         private void doubleClickLineInfromation(object sender, MouseButtonEventArgs e)
         {
-           BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
+            BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
             if (line == null)
             {
                 MessageBox.Show("לקו זה אין נתונים להציג", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -235,25 +206,7 @@ namespace PL.WPF
             AddNewLine win = new AddNewLine(bl);
             win.ShowDialog();
             RefreshAllLinesList();
-        }
-        private void HistoryLineClick(object sender, RoutedEventArgs e)
-        {
-            HistoryLine.Visibility = Visibility.Hidden;
-            availableLine.Visibility = Visibility.Visible;
-            LineesListBox.Visibility = Visibility.Hidden;
-            LineesDeletedListBox.Visibility = Visibility.Visible;
-            AddLine.Visibility = Visibility.Hidden;
-            RefreshAllDeletedLinesList();
-        }       
-        private void availableLineClick(object sender, RoutedEventArgs e)
-        {
-            HistoryLine.Visibility = Visibility.Visible;
-            availableLine.Visibility = Visibility.Hidden;
-            LineesListBox.Visibility = Visibility.Visible;
-            LineesDeletedListBox.Visibility = Visibility.Hidden;
-            AddLine.Visibility = Visibility.Visible;
-            RefreshAllLinesList();
-        }
+        }  
         #endregion
 
         #region Station
@@ -262,20 +215,12 @@ namespace PL.WPF
             Station.Background = Brushes.Gray;
             Bus.Background = Brushes.LightGray;
             Line.Background = Brushes.LightGray;
-            LineesDeletedListBox.Visibility = Visibility.Hidden;
-            LineesListBox.Visibility = Visibility.Hidden;
-            busesListBox.Visibility = Visibility.Hidden;
+            Hidden();     
             stationsListBox.Visibility = Visibility.Visible;
-            AddBus.Visibility = Visibility.Hidden;
-            AddLine.Visibility = Visibility.Hidden;
-            availableBus.Visibility = Visibility.Hidden;
-            HistoryBus.Visibility = Visibility.Hidden;
-            HistoryLine.Visibility = Visibility.Hidden;
-            availableLine.Visibility = Visibility.Hidden;
             AddStation.Visibility = Visibility.Visible;
-            HistoryStat.Visibility = Visibility.Visible;
-            availableStat.Visibility = Visibility.Hidden;
             RefreshAllStations();
+            historyNum = 3;
+            availableNum = 3;
         }
         void RefreshAllStations()//yes
         {
@@ -283,7 +228,7 @@ namespace PL.WPF
             {
                 stationsListBox.ItemsSource = bl.GetAllStations().ToList();
             }
-            catch(BO.BadLineIdException)
+            catch (BO.BadLineIdException)
             {
                 MessageBox.Show("מצטערים חסר למערכת מידע", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -322,40 +267,73 @@ namespace PL.WPF
             ListBoxItem myListBoxItem = (ListBoxItem)(stationsListBox.ItemContainerGenerator.ContainerFromItem(station));
             ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-            if(station.IsDeleted==true)
+            if (station.IsDeleted == true)
             {
                 isDeleted = true;
             }
-            StationData win = new StationData(isDeleted,bl, station, stationsListBox);
+            StationData win = new StationData(isDeleted, bl, station, stationsListBox);
             win.ShowDialog();
         }
-        private void HistoryStatClick(object sender, RoutedEventArgs e)
+        #endregion
+        private void Hidden()
         {
-            HistoryStat.Visibility = Visibility.Hidden;
-            availableStat.Visibility = Visibility.Visible;
-            AddStation.Visibility = Visibility.Hidden;
+            stationsListBox.Visibility = Visibility.Hidden;
+            busesListBox.Visibility = Visibility.Hidden;
+            LineesDeletedListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
-            stationsListBox.Visibility = Visibility.Visible;
-            RefreshAllDeletedStations();
+            AddBus.Visibility = Visibility.Hidden;
+            AddLine.Visibility = Visibility.Hidden;
+            AddStation.Visibility = Visibility.Hidden;
+            available.Visibility = Visibility.Hidden;
+            History.Visibility = Visibility.Visible;        
         }
-        private void availableStatClick(object sender, RoutedEventArgs e)
+        private void HistoryClick(object sender, RoutedEventArgs e)
         {
-            AddStation.Visibility = Visibility.Visible;
-            HistoryStat.Visibility = Visibility.Visible;
-            availableStat.Visibility = Visibility.Hidden;
-            stationsListBox.Visibility = Visibility.Visible;
-            RefreshAllStations();
-        }
-        public void nana()
-        {
+            if (historyNum == 1)
+            {
+                RefreshAllDeleteBuses();
+                available.Visibility = Visibility.Visible;
+                History.Visibility = Visibility.Hidden;
+            }
+            if (historyNum == 2)
+            {
+                LineesListBox.Visibility = Visibility.Hidden;
+                LineesDeletedListBox.Visibility = Visibility.Visible;
+                RefreshAllDeletedLinesList();
+                available.Visibility = Visibility.Visible;
+                History.Visibility = Visibility.Hidden;
+            }
+            if (historyNum == 3)
+            {
+                RefreshAllDeletedStations();
+                available.Visibility = Visibility.Visible;
+                History.Visibility = Visibility.Hidden;
+            }
 
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AvailableClick(object sender, RoutedEventArgs e)
         {
-            Close();
-        }
+            if (availableNum == 1)
+            {
+                RefreshAllBuses();
+                available.Visibility = Visibility.Hidden;
+                History.Visibility = Visibility.Visible;
+            }
+            if (availableNum == 2)
+            {
+                LineesListBox.Visibility = Visibility.Visible;
+                LineesDeletedListBox.Visibility = Visibility.Hidden;
+                RefreshAllLinesList();
+                available.Visibility = Visibility.Hidden;
+                History.Visibility = Visibility.Visible;
+            }
+            if (availableNum == 3)
+            {
+                RefreshAllStations();
+                available.Visibility = Visibility.Hidden;
+                History.Visibility = Visibility.Visible;
+            }
 
-     
+        }
     }
 }
-#endregion

@@ -37,7 +37,7 @@ namespace PL.WPF
             InitializeComponent();
             BL = _bl;
             station = _stat;
-            //gridOneStation.DataContext =station;
+           // gridOneStation.DataContext =station;
             statName.Text = _stat.Name;
             statCode.Text = _stat.Code.ToString();
             statAdress.Text = _stat.Address;

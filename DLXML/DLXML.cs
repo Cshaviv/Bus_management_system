@@ -951,6 +951,16 @@ namespace DL
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Station> GetAllDeletedStations()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Line> GetAllDeletedLines()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

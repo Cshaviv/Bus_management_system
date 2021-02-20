@@ -56,6 +56,10 @@ namespace BL
             return from item in dl.GetAllBuses()
                    select busDoBoAdapter(item);
         }
+        /// <summary>
+        /// A function that calls to another function in the Dl that get all deletted buses 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BO.Bus> GetAllDeleteBuses()
         {
             return from item in dl.GetAllDeleteBuses()
@@ -319,6 +323,10 @@ namespace BL
                    where (item.IsDeleted == false)
                    select lineDoBoAdapter(item);
         }
+        /// <summary>
+        /// A function that calls to another function in the Dl that get all deleted lines
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BO.Line> GetAllDeletedLines()
         {
             return from item in dl.GetAllDeletedLines()
