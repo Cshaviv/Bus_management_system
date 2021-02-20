@@ -81,6 +81,7 @@ namespace PL.WPF
                         bl.DeleteBus(bus.LicenseNum);
                         MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                         Close();
+                        RefreshAllBuses();
                     }
                 }
                 else

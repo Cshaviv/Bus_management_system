@@ -34,7 +34,6 @@
     </Window.Resources>
 
     <Grid Background="#FFF0F0F0">
-        <ListBox x:Name="gridOneStation" HorizontalAlignment="Left"  Height="38" Margin="24,56,0,0" VerticalAlignment="Top" Width="172"/>
         <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" FlowDirection="RightToLeft" Margin="363,39,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="35" Width="249" FontSize="16" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
         <ListBox x:Name="nisayon" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="217" Margin="339,102,36,0" VerticalAlignment="Top" Width="417" Background="#FF0F0F0F"/>
         <Canvas HorizontalAlignment="Left" Visibility="Visible" Height="32" Margin="339,70,0,0" VerticalAlignment="Top" Width="409" Background="Black"/>
