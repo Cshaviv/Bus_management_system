@@ -35,7 +35,9 @@ namespace PL.WPF
             RefreshAllBuses();
             RefreshAllLinesList();
             RefreshAllStations();
-            userNameTextBlock.Text = userName;            
+            userNameTextBlock.Text = userName;
+            sarchLineInArea.ItemsSource= Enum.GetValues(typeof(BO.Area));
+            sarchLineInArea.Visibility = Visibility.Hidden;
         }
 
         #region Buses 
@@ -161,12 +163,23 @@ namespace PL.WPF
             Station.Background = Brushes.LightGray;
             Bus.Background = Brushes.LightGray;
             Hidden();
+            sarchLineInArea.Visibility = Visibility.Visible;
             LineesListBox.Visibility = Visibility.Visible;
-            AddLine.Visibility = Visibility.Visible;     
+            AddLine.Visibility = Visibility.Visible;
             RefreshAllLinesList();
+           // searchLineInArea();
             historyNum = 2;
             availableNum = 2;
         }
+        public void searchLineInArea()
+        {
+            if (/*sarchLineInArea.Text == null*/sarchLineInArea.SelectedItem==null)
+                LineesListBox.ItemsSource = bl.GetAllLines().ToList();
+            else
+                LineesListBox.ItemsSource = bl.GetAllLinesInArea(sarchLineInArea.Text).ToList();
+            
+        }
+        
         private void doubleClickLineInfromation(object sender, MouseButtonEventArgs e)
         {
             BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
@@ -340,5 +353,18 @@ namespace PL.WPF
         {
             Close();
         }
-    }
+
+        //private void areaChangeClick(object sender, SelectionChangedEventArgs e)
+        //{
+        //    LineesListBox.ItemsSource = bl.GetAllLinesInArea(sarchLineInArea.Text).ToList();
+        //}
+
+
+        private void areaChangeClick(object sender, SelectionChangedEventArgs e)
+        {
+            searchLineInArea();
+        }
+
+
+    }  
 }

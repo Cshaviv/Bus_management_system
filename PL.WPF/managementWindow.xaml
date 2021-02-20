@@ -142,7 +142,7 @@
         <Button x:Name="AddLine" Content="הוספת קו" HorizontalAlignment="Left" Visibility="Hidden"  Margin="438,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="AddLine_Click" FontFamily="Dubai Medium" FontWeight="Bold"/>
         <Button x:Name="AddStation" Content="הוספת תחנה" HorizontalAlignment="Left" Visibility="Hidden" Margin="438,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="AddStation_Click" FontWeight="Bold" FontFamily="Dubai Medium"/>
         <TextBlock HorizontalAlignment="Left" Margin="847,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="27" Width="91"><Run FlowDirection="RightToLeft" Text="הנך מחובר בתור"/></TextBlock>
-        <TextBlock  x:Name="userNameTextBlock" HorizontalAlignment="Right" Margin="0,2,100,0" TextWrapping="Wrap" Text="{Binding}" FlowDirection="RightToLeft" VerticalAlignment="Top" Width="68"/>
+        <TextBlock x:Name="userNameTextBlock" HorizontalAlignment="Right" Margin="0,2,100,0" TextWrapping="Wrap" Text="{Binding}" FlowDirection="RightToLeft" VerticalAlignment="Top" Width="68"/>
         <Button Content="התנתקות" HorizontalAlignment="Left" Margin="690,2,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <!--<Button x:Name="HistoryBus" Content="היסטוריה" HorizontalAlignment="Left"  Margin="666,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="HistoryBusClick" FontWeight="Bold"/>-->
         <!--<Button x:Name="availableBus" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="665,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="availableBusClick" FontWeight="Bold"/>-->
@@ -152,5 +152,6 @@
         <!--<Button x:Name="HistoryStat" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="667,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="HistoryStatClick" FontWeight="Bold"/>-->
         <!--<Button x:Name="availableStat" Content="תחנות זמינות" HorizontalAlignment="Left"  Margin="667,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="availableStatClick" FontWeight="Bold"/>-->
         <Button x:Name="available" Content="תחנות זמינות" HorizontalAlignment="Left" Visibility="Hidden" Margin="667,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="AvailableClick" FontWeight="Bold"/>
+        <ComboBox Name="sarchLineInArea" HorizontalAlignment="Left" Margin="409,-4,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="areaChangeClick"    />
     </Grid>
 </Window>
