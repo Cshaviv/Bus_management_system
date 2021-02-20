@@ -27,7 +27,7 @@ namespace BLAPI
         BO.Line GetLine(int lineId);
         IEnumerable<BO.Line> GetAllLines();
         IEnumerable<BO.Line> GetAllDeletedLines();
-
+        IEnumerable<BO.Line> GetAllLinesInArea(string area);
         //IEnumerable<BO.ListedPerson> GetStudentIDNameList();
         IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate);
         void UpdateLineDetails(BO.Line line);

@@ -50,6 +50,7 @@ namespace DLAPI
         #endregion 
         #region Line
         IEnumerable<DO.Line> GetAllLines();
+        IEnumerable<DO.Line> GetAllLinesInArea(string area);
         IEnumerable<DO.Line> GetAllDeletedLines();
 
        // IEnumerable<DO.Line> GetAllLinesDelete();

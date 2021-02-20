@@ -35,7 +35,7 @@ namespace DL
             return from bus in DataSource.ListBuses
                    where bus.IsDeleted == true
                    select bus.Clone();
-        }
+        } 
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)//???
         {
             return from bus in DataSource.ListBuses
@@ -230,6 +230,13 @@ namespace DL
         {
             return from line in DataSource.ListLines
                    where line.IsDeleted == true
+                   select line.Clone();
+
+        }
+        public IEnumerable<DO.Line> GetAllLinesInArea(string area)
+        {
+            return from line in DataSource.ListLines
+                   where (line.IsDeleted == false&&line.Area.ToString()==area)
                    select line.Clone();
 
         }

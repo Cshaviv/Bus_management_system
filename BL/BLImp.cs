@@ -65,6 +65,7 @@ namespace BL
             return from item in dl.GetAllDeleteBuses()
                    select busDoBoAdapter(item);
         }
+        
         /// <summary>
         /// A function that calls to another function in the Dl that get the license number and returns the bus 
         /// </summary>
@@ -331,6 +332,12 @@ namespace BL
             return from item in dl.GetAllDeletedLines()
                    where (item.IsDeleted == true)
                    select DeletedlineDoBoAdapter(item);
+        }
+        public IEnumerable<BO.Line> GetAllLinesInArea(string area)
+        {
+            return from item in dl.GetAllLinesInArea(area)
+                   where (item.IsDeleted == false&&item.Area.ToString()==area)
+                   select lineDoBoAdapter(item);
         }
         public IEnumerable<BO.Line> GelAllLinesBy(Predicate<BO.Line> predicate)
         {
