@@ -140,5 +140,6 @@
         <Button x:Name="availableLine" Content="קווים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="availableLineClick"/>
         <Button x:Name="HistoryStat" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="HistoryStatClick"/>
         <Button x:Name="availableStat" Content="תחנות זמינות" HorizontalAlignment="Left" Visibility="Hidden" Margin="671,248.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="216" Height="48" Click="availableStatClick"/>
+        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Margin="1117,220.667,-273.333,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>
