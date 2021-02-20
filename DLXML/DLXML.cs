@@ -296,6 +296,14 @@ namespace DL
                    select line;
 
         }
+        public IEnumerable<DO.Line> GetAllLinesInArea(string area)
+        {
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
+            return from line in ListLines
+                   where (line.IsDeleted == false && line.Area.ToString() == area)
+                   select line;
+
+        }
         /// <summary>
         ///  A function that returns the list of lines that exist in the system according predicate
         /// </summary>

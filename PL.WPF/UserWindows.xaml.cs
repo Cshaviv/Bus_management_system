@@ -33,12 +33,17 @@ namespace PL.WPF
             stationsListBox.ItemsSource = bl.GetAllStations().ToList();
             userNameTextBlock.Text = userName;
             string userName1 = userName;
-
+            userNameTextBlock.Text = userName;
+            sarchLineInArea.ItemsSource = Enum.GetValues(typeof(BO.Area));
+            sarchLineInArea.Visibility = Visibility.Hidden;
+            areaLabel.Visibility = Visibility.Hidden;
         }
 
         #region Bus
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
+            areaLabel.Visibility = Visibility.Hidden;
+            sarchLineInArea.Visibility = Visibility.Hidden;
             Bus.Background = Brushes.Gray;
             Line.Background = Brushes.LightGray;
             Station.Background = Brushes.LightGray;
@@ -87,6 +92,8 @@ namespace PL.WPF
         #region Line
         private void Line_Click(object sender, RoutedEventArgs e)
         {
+            areaLabel.Visibility = Visibility.Visible;
+            sarchLineInArea.Visibility = Visibility.Visible;
             Line.Background = Brushes.Gray;
             Station.Background = Brushes.LightGray;
             Bus.Background = Brushes.LightGray;
@@ -100,6 +107,14 @@ namespace PL.WPF
             availableBus.Visibility = Visibility.Hidden;
             HistoryStat.Visibility = Visibility.Hidden;
             availableStat.Visibility = Visibility.Hidden;
+        }
+        private void areaChangeClick(object sender, SelectionChangedEventArgs e)
+        {
+            if (sarchLineInArea.SelectedItem == null)
+                LineesListBox.ItemsSource = bl.GetAllLines().ToList();
+            else
+                LineesListBox.ItemsSource = bl.GetAllLinesInArea(sarchLineInArea.SelectedItem.ToString()).ToList();
+
         }
         private void doubleClickLineInfromation(object sender, MouseButtonEventArgs e)
         {
@@ -152,6 +167,8 @@ namespace PL.WPF
         #region station
         private void Station_Click(object sender, RoutedEventArgs e)
         {
+            areaLabel.Visibility = Visibility.Hidden;
+            sarchLineInArea.Visibility = Visibility.Hidden;
             Station.Background = Brushes.Gray;
             Bus.Background = Brushes.LightGray;
             Line.Background = Brushes.LightGray;

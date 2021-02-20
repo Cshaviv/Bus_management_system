@@ -38,11 +38,14 @@ namespace PL.WPF
             userNameTextBlock.Text = userName;
             sarchLineInArea.ItemsSource= Enum.GetValues(typeof(BO.Area));
             sarchLineInArea.Visibility = Visibility.Hidden;
+            areaLabel.Visibility = Visibility.Hidden;
         }
 
         #region Buses 
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
+            areaLabel.Visibility = Visibility.Hidden;
+            sarchLineInArea.Visibility = Visibility.Hidden;
             Bus.Background = Brushes.Gray;
             Line.Background = Brushes.LightGray;
             Station.Background = Brushes.LightGray;
@@ -159,6 +162,7 @@ namespace PL.WPF
         }
         private void Line_Click(object sender, RoutedEventArgs e)
         {
+            areaLabel.Visibility = Visibility.Visible;
             Line.Background = Brushes.Gray;
             Station.Background = Brushes.LightGray;
             Bus.Background = Brushes.LightGray;
@@ -171,15 +175,14 @@ namespace PL.WPF
             historyNum = 2;
             availableNum = 2;
         }
-        public void searchLineInArea()
+        private void areaChangeClick(object sender, SelectionChangedEventArgs e)
         {
-            if (/*sarchLineInArea.Text == null*/sarchLineInArea.SelectedItem==null)
+            if (sarchLineInArea.SelectedItem == null)
                 LineesListBox.ItemsSource = bl.GetAllLines().ToList();
             else
-                LineesListBox.ItemsSource = bl.GetAllLinesInArea(sarchLineInArea.Text).ToList();
-            
+                LineesListBox.ItemsSource = bl.GetAllLinesInArea(sarchLineInArea.SelectedItem.ToString()).ToList();
+
         }
-        
         private void doubleClickLineInfromation(object sender, MouseButtonEventArgs e)
         {
             BO.Line line = (sender as ListBox).SelectedItem as BO.Line;
@@ -225,6 +228,8 @@ namespace PL.WPF
         #region Station
         private void Station_Click(object sender, RoutedEventArgs e)
         {
+            areaLabel.Visibility = Visibility.Hidden;
+            sarchLineInArea.Visibility = Visibility.Hidden;
             Station.Background = Brushes.Gray;
             Bus.Background = Brushes.LightGray;
             Line.Background = Brushes.LightGray;
@@ -353,17 +358,7 @@ namespace PL.WPF
         {
             Close();
         }
-
-        //private void areaChangeClick(object sender, SelectionChangedEventArgs e)
-        //{
-        //    LineesListBox.ItemsSource = bl.GetAllLinesInArea(sarchLineInArea.Text).ToList();
-        //}
-
-
-        private void areaChangeClick(object sender, SelectionChangedEventArgs e)
-        {
-            searchLineInArea();
-        }
+       
 
 
     }  

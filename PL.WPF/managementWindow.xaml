@@ -152,6 +152,7 @@
         <!--<Button x:Name="HistoryStat" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="667,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="HistoryStatClick" FontWeight="Bold"/>-->
         <!--<Button x:Name="availableStat" Content="תחנות זמינות" HorizontalAlignment="Left"  Margin="667,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="availableStatClick" FontWeight="Bold"/>-->
         <Button x:Name="available" Content="תחנות זמינות" HorizontalAlignment="Left" Visibility="Hidden" Margin="667,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="AvailableClick" FontWeight="Bold"/>
-        <ComboBox Name="sarchLineInArea" HorizontalAlignment="Left" Margin="409,-4,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="areaChangeClick"    />
+        <ComboBox Name="sarchLineInArea" HorizontalAlignment="Left" Margin="409,2,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="areaChangeClick"    />
+        <Label Name="areaLabel" Content="חיפוש לפי איזור" HorizontalAlignment="Left" Height="25" Margin="542,2,0,0" VerticalAlignment="Top" Width="114"/>
     </Grid>
 </Window>
