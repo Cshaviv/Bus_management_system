@@ -42,7 +42,7 @@
         <Image HorizontalAlignment="Left" Height="29" Margin="717,72,0,0" VerticalAlignment="Top" Width="29" Source="הורדה.png" OpacityMask="#FF0C0C0C"/>
         <Label Content="שם התחנה:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="204,116,0,0" VerticalAlignment="Top" Width="82" FontFamily="Yu Gothic UI Semibold"/>
         <Label Content="כתובת:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="234,157,0,0" VerticalAlignment="Top" Width="48" FontFamily="Yu Gothic UI Semibold"/>
-        <Label Content="קוד התחנה::::" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="214,198,0,0" VerticalAlignment="Top" Width="68" FontFamily="Yu Gothic UI Semibold"/>
+        <Label Content="קוד התחנה:" FlowDirection="RightToLeft" HorizontalAlignment="Left" Height="36" Margin="194,198,0,0" VerticalAlignment="Top" Width="88" FontFamily="Yu Gothic UI Semibold"/>
         <TextBlock x:Name="statName"  FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="16,120,0,0" TextWrapping="Wrap" Text="{Binding Path= station.Name}" VerticalAlignment="Top" Height="22" Width="191"/>
         <TextBlock x:Name="statAdress"  FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="12,162,0,0" TextWrapping="Wrap" Text="{Binding Path= station.Name}" VerticalAlignment="Top" Height="31" Width="218"/>
         <TextBlock x:Name="statCode"  FlowDirection="RightToLeft" HorizontalAlignment="Left" Margin="47,202,0,0" TextWrapping="Wrap" Text="{Binding Path= station.Name}" VerticalAlignment="Top" Height="32" Width="160"/>
