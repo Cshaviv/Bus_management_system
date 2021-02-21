@@ -33,7 +33,7 @@ namespace PL.WPF
             stationsListBox.ItemsSource = bl.GetAllStations().ToList();
             userNameTextBlock.Text = userName;
             string userName1 = userName;
-            userNameTextBlock.Text = userName;
+            userNameTextBlock.Text = ("Hi "+ userName).ToString();
             sarchLineInArea.ItemsSource = Enum.GetValues(typeof(BO.Area));
             sarchLineInArea.Visibility = Visibility.Hidden;
             areaLabel.Visibility = Visibility.Hidden;
@@ -44,9 +44,6 @@ namespace PL.WPF
         {
             areaLabel.Visibility = Visibility.Hidden;
             sarchLineInArea.Visibility = Visibility.Hidden;
-            Bus.Background = Brushes.Gray;
-            Line.Background = Brushes.LightGray;
-            Station.Background = Brushes.LightGray;
             stationsListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;
             LineesDeletedListBox.Visibility = Visibility.Hidden;
@@ -94,9 +91,6 @@ namespace PL.WPF
         {
             areaLabel.Visibility = Visibility.Visible;
             sarchLineInArea.Visibility = Visibility.Visible;
-            Line.Background = Brushes.Gray;
-            Station.Background = Brushes.LightGray;
-            Bus.Background = Brushes.LightGray;
             stationsListBox.Visibility = Visibility.Hidden;
             busesListBox.Visibility = Visibility.Hidden;
             LineesDeletedListBox.Visibility = Visibility.Hidden;
@@ -169,9 +163,6 @@ namespace PL.WPF
         {
             areaLabel.Visibility = Visibility.Hidden;
             sarchLineInArea.Visibility = Visibility.Hidden;
-            Station.Background = Brushes.Gray;
-            Bus.Background = Brushes.LightGray;
-            Line.Background = Brushes.LightGray;
             busesListBox.Visibility = Visibility.Hidden;
             LineesDeletedListBox.Visibility = Visibility.Hidden;
             LineesListBox.Visibility = Visibility.Hidden;

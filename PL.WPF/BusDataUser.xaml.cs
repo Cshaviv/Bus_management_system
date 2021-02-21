@@ -28,7 +28,7 @@ namespace PL.WPF
             InitializeComponent();
             bl = _bl;
             bus = b;
-            licenseNumTextBlock.Text = b.LicenseNum.ToString();
+            licenseNumTextBlock.Text = b.ToString();
             startDateTextBlock.Text = b.StartDate.Day + "/" + b.StartDate.Month + "/" + b.StartDate.Year;
             lastTreatTextBlock.Text = b.DateLastTreat.Day + "/" + b.DateLastTreat.Month + "/" + b.DateLastTreat.Year;
             totalKmTextBlock.Text = b.TotalKm.ToString();

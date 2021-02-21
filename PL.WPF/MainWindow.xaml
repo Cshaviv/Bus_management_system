@@ -16,7 +16,7 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid Background="#FFF0F0F0">
+    <Grid Background="#FFF0F0F0" OpacityMask="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="43*"/>
             <ColumnDefinition Width="9*"/>
@@ -35,6 +35,19 @@
         <TextBlock HorizontalAlignment="Left" Margin="468,252,0,0" TextWrapping="Wrap" Text=":סיסמא" VerticalAlignment="Top" Height="32" Width="126" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
         <PasswordBox x:Name="passwordTextBox" PasswordChar="*"  HorizontalAlignment="Left" Height="33" Margin="281,247,0,0" VerticalAlignment="Top" Width="139"/>
         <Button Content="אני רוצה ליצור משתמש חדש" HorizontalAlignment="Left" Margin="284,300,0,0" VerticalAlignment="Top" Width="236" Height="30" Click="Button_Click" FontFamily="Dubai Medium"/>
+        <TextBox x:Name="passwordTextBox2" Visibility="Hidden"   HorizontalAlignment="Left" Height="33" Margin="281,247,0,0" VerticalAlignment="Top" Width="139"/>
+        <Button Content="" Name="closeEyeBotton" Visibility="Visible" HorizontalAlignment="Left" Height="33" Margin="394,247,0,0" VerticalAlignment="Top" Width="26" Click="passwordEye_Click_" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="עין מכוסה.png"/>
+            </Button.Background>
+        </Button>
+        <Button Name="eyeBotton" Content="" HorizontalAlignment="Left" Visibility="Hidden" Height="33" Margin="394,247,0,0" VerticalAlignment="Top" Width="26" Click="passwordOpenEye_Click" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="עין .png"/>
+            </Button.Background>
+
+        </Button>
+
 
     </Grid>
 </Window>

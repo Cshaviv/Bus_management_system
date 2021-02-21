@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="UserWindows" Height="450" Width="1042.348">
+        Title="UserWindows" Height="450" Width="959.088">
     <Window.Resources>
 
         <local:BrushColorConverter x:Key="BConverter"></local:BrushColorConverter>
@@ -93,7 +93,7 @@
                 <TextBlock Grid.Column="3" Text="{Binding}" FlowDirection="RightToLeft" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="5" Text="קילומטר:" FlowDirection="RightToLeft" FontFamily="Dubai Medium" HorizontalAlignment="Right"  FontSize="14" FontWeight="Normal" />
                 <TextBlock Grid.Column="6" x:Name="kmTextBlock" FlowDirection="RightToLeft" Text="{Binding Path=TotalKm}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
-          </Grid>
+            </Grid>
         </DataTemplate>
         <DataTemplate x:Key="StationTemplate"
                   DataType="local:BO.Station">
@@ -123,29 +123,39 @@
         </DataTemplate>
 
     </Window.Resources>
-    <Grid  Background="#FFF0F0F0" Margin="10,0,-1,-1">
+    <Grid  Background="#FFF0F0F0" Margin="0,0,2,-1">
         <Grid.RowDefinitions>
             <RowDefinition Height="99*"/>
             <RowDefinition Height="322*"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="stationsListBox" Visibility="Hidden" FlowDirection="RightToLeft"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickStationInfromation" Margin="230,27,23,92" Grid.RowSpan="2" />
-        <ListBox x:Name="busesListBox" Visibility="Visible" FlowDirection="RightToLeft" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickBusInfromation" Margin="399,27,21,92" Grid.RowSpan="2" />
-        <ListBox x:Name="LineesListBox" Visibility="Hidden" FlowDirection="RightToLeft"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickLineInfromation" Margin="377,24,24,91" Grid.RowSpan="2" />
-        <ListBox x:Name="LineesDeletedListBox" Visibility="Hidden"  FlowDirection="RightToLeft"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource DeletedLineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickDeletedLine" Margin="377,24,24,91" Grid.RowSpan="2" />
-        <Button x:Name="Bus" Content="אוטובוסים" HorizontalAlignment="Left" Margin="14,32,0,0" VerticalAlignment="Top" Width="62" Height="70" Click="Bus_Click" Grid.RowSpan="2" FontWeight="Bold" FontFamily="Dubai Medium"/>
-        <Button x:Name="Line" Content="קווים" HorizontalAlignment="Left" Margin="14,37,0,0" VerticalAlignment="Top" Width="62" Height="70" Grid.Row="1" Click="Line_Click" FontWeight="Bold" FontFamily="Dubai Medium"/>
-        <Button x:Name="Station" Content="תחנות" HorizontalAlignment="Left" Margin="14,148,0,0" VerticalAlignment="Top" Width="62" Height="70" Grid.Row="1" Click="Station_Click" Background="LightGray" FontFamily="Dubai Medium" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Margin="924,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="91"><Run FlowDirection="RightToLeft" Text="הנך מחובר בתור "/></TextBlock>
-        <TextBlock x:Name="userNameTextBlock"   FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="0,4,98,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Width="114"/>
-        <Button Content="התנתקות" HorizontalAlignment="Left" Margin="741,2,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button x:Name="HistoryBus" Content="היסטוריה" HorizontalAlignment="Left"  Margin="666,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="HistoryBusClick" FontWeight="Bold"/>
-        <Button x:Name="availableBus" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="665,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="availableBusClick" FontWeight="Bold"/>
-        <Button x:Name="HistoryLine" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="667,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="HistoryLineClick" FontWeight="Bold"/>
-        <Button x:Name="availableLine" Content="קווים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="667,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="availableLineClick" FontWeight="Bold"/>
-        <Button x:Name="HistoryStat" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="667,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="HistoryStatClick" FontWeight="Bold"/>
-        <Button x:Name="availableStat" Content="תחנות זמינות" HorizontalAlignment="Left" Visibility="Hidden" Margin="667,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="167" Height="55" Click="availableStatClick" FontWeight="Bold"/>
-        <ComboBox Name="sarchLineInArea" HorizontalAlignment="Left" Margin="420,1,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="areaChangeClick"    />
-        <Label Name="areaLabel" Content="חיפוש לפי איזור" HorizontalAlignment="Left" Height="25" Margin="542,2,0,0" VerticalAlignment="Top" Width="114"/>
+        <Image HorizontalAlignment="Left" Height="110" Margin="17,227,0,-16" Grid.Row="1" VerticalAlignment="Top" Width="205" Source="CarBus1.png"/>
+
+        <ListBox x:Name="stationsListBox" Visibility="Hidden" FlowDirection="RightToLeft"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickStationInfromation" Margin="17,32,239,87" Grid.RowSpan="2" BorderBrush="#FFABADB3" />
+        <ListBox x:Name="busesListBox" Visibility="Hidden" FlowDirection="RightToLeft" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickBusInfromation"  Margin="17,32,239,87" Grid.RowSpan="2" />
+        <ListBox x:Name="LineesListBox" Visibility="Visible" FlowDirection="RightToLeft"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickLineInfromation"  Margin="17,32,239,87" Grid.RowSpan="2" />
+        <ListBox x:Name="LineesDeletedListBox" Visibility="Hidden"  FlowDirection="RightToLeft"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource DeletedLineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickDeletedLine"  Margin="17,32,239,87" Grid.RowSpan="2" />
+        <Grid Margin="815,2,-10,0" Grid.RowSpan="2" Background="Gray">
+            <Button x:Name="Bus" Content="אוטובוסים" HorizontalAlignment="Left" VerticalAlignment="Top" Width="137" Height="70" Click="Bus_Click" FontWeight="Bold" Background="Gray" FontFamily="Dubai Medium" BorderBrush="{x:Null}" FontSize="20" Margin="0,106,0,0" RenderTransformOrigin="0.622,0.486"/>
+            <Button x:Name="Line" Content="קווים" HorizontalAlignment="Left" Margin="0,178,0,0" VerticalAlignment="Top" Width="137" Height="76" Click="Line_Click" Background="Gray" FontWeight="Bold" FontFamily="Dubai Medium" BorderBrush="{x:Null}" FontSize="20"/>
+            <Button x:Name="Station" Content="תחנות" HorizontalAlignment="Left" Margin="0,257,0,0" VerticalAlignment="Top" Width="137" Height="78" Click="Station_Click" Background="Gray" FontFamily="Dubai Medium" FontWeight="Bold" BorderBrush="{x:Null}" FontSize="20"/>
+        </Grid>
+        <!--<TextBlock HorizontalAlignment="Left" Margin="870,3,-12,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="91" FontSize="10"><Run FlowDirection="RightToLeft" Text="הנך מחובר בתור "/></TextBlock>-->
+        <!--<TextBlock  HorizontalAlignment="Center" Margin="34,65,0,0"   TextWrapping="Wrap" Text="{Binding Path=UserName}" VerticalAlignment="Top"/>-->
+        <Button Content="התנתקות" HorizontalAlignment="Left" Margin="849,264,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Row="1" Background="Gray"/>
+        <Button x:Name="HistoryBus" Content="היסטוריה" HorizontalAlignment="Left"  Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryBusClick" FontWeight="Bold"/>
+        <Button x:Name="availableBus" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="availableBusClick" FontWeight="Bold"/>
+        <Button x:Name="HistoryLine" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryLineClick" FontWeight="Bold"/>
+        <Button x:Name="availableLine" Content="קווים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="availableLineClick" FontWeight="Bold"/>
+        <Button x:Name="HistoryStat" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryStatClick" FontWeight="Bold"/>
+        <Button x:Name="availableStat" Content="תחנות זמינות" HorizontalAlignment="Left" Visibility="Hidden" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="availableStatClick" FontWeight="Bold"/>
+        <ComboBox Name="sarchLineInArea" HorizontalAlignment="Left" Margin="17,2,0,0" Background="Yellow" VerticalAlignment="Top" Width="120" SelectionChanged="areaChangeClick"   />
+        <Label Name="areaLabel" Content="חיפוש לפי איזור" HorizontalAlignment="Left" Height="25" Margin="135,2,0,0" VerticalAlignment="Top" Width="114"/>
+        <Ellipse HorizontalAlignment="Left" Height="41" Margin="863,22,0,0" VerticalAlignment="Top" Width="41">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="משתמש.gif"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <TextBlock x:Name="userNameTextBlock" HorizontalAlignment="Center" Margin="849,67,23,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Width="70"/>
 
     </Grid>
 </Window>

@@ -35,7 +35,7 @@ namespace PL.WPF
             RefreshAllBuses();
             RefreshAllLinesList();
             RefreshAllStations();
-            userNameTextBlock.Text = userName;
+            userNameTextBlock.Text = ("Hi " + userName).ToString(); 
             sarchLineInArea.ItemsSource= Enum.GetValues(typeof(BO.Area));
             sarchLineInArea.Visibility = Visibility.Hidden;
             areaLabel.Visibility = Visibility.Hidden;
@@ -44,10 +44,7 @@ namespace PL.WPF
         #region Buses 
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
-            Bus.Background = Brushes.Gray;
-            Line.Background = Brushes.LightGray;
-            Station.Background = Brushes.LightGray;
-            Hidden();
+             Hidden();
             busesListBox.Visibility = Visibility.Visible;
             AddBus.Visibility = Visibility.Visible;
             historyNum = 1;
@@ -161,9 +158,7 @@ namespace PL.WPF
         private void Line_Click(object sender, RoutedEventArgs e)
         {
            
-            Station.Background = Brushes.LightGray;
-            Bus.Background = Brushes.LightGray;
-            Hidden();
+             Hidden();
             sarchLineInArea.Visibility = Visibility.Visible;
             LineesListBox.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Visible;
@@ -228,10 +223,7 @@ namespace PL.WPF
         private void Station_Click(object sender, RoutedEventArgs e)
         {
  
-            Station.Background = Brushes.Gray;
-            Bus.Background = Brushes.LightGray;
-            Line.Background = Brushes.LightGray;
-            Hidden();     
+             Hidden();     
             stationsListBox.Visibility = Visibility.Visible;
             AddStation.Visibility = Visibility.Visible;
             RefreshAllStations();
