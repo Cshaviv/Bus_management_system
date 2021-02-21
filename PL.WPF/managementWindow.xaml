@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="managementWindow" Height="450" Width="959.088">
     <Window.Resources>
+        
         <local:BrushColorConverter x:Key="BConverter"></local:BrushColorConverter>
         <DataTemplate x:Key="LineTemplate"
                   DataType="local:BO.Line">

@@ -11,7 +11,7 @@
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
     </Window.Resources>
     <Grid Background="#FFF0F0F0"  DataContext="{StaticResource busViewSource}" Margin="0,0,2,-3">
-        <Image HorizontalAlignment="Left" Height="27" Margin="479,73,0,0" VerticalAlignment="Top" Width="120" Source="licenseNumImage.png"/>
+        <Image HorizontalAlignment="Left" Height="27" Margin="479,73,0,0" VerticalAlignment="Top" Width="120" Source="licenseNumImage1.png"/>
 
 
         <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="154,84,0,0" VerticalAlignment="Top" Width="138" Height="41" FontWeight="Bold"/>
