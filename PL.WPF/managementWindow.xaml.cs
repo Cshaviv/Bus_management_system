@@ -44,8 +44,6 @@ namespace PL.WPF
         #region Buses 
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
-            areaLabel.Visibility = Visibility.Hidden;
-            sarchLineInArea.Visibility = Visibility.Hidden;
             Bus.Background = Brushes.Gray;
             Line.Background = Brushes.LightGray;
             Station.Background = Brushes.LightGray;
@@ -162,14 +160,15 @@ namespace PL.WPF
         }
         private void Line_Click(object sender, RoutedEventArgs e)
         {
-            areaLabel.Visibility = Visibility.Visible;
-            Line.Background = Brushes.Gray;
+           
             Station.Background = Brushes.LightGray;
             Bus.Background = Brushes.LightGray;
             Hidden();
             sarchLineInArea.Visibility = Visibility.Visible;
             LineesListBox.Visibility = Visibility.Visible;
             AddLine.Visibility = Visibility.Visible;
+            areaLabel.Visibility = Visibility.Visible;
+            Line.Background = Brushes.Gray;
             RefreshAllLinesList();
            // searchLineInArea();
             historyNum = 2;
@@ -228,8 +227,7 @@ namespace PL.WPF
         #region Station
         private void Station_Click(object sender, RoutedEventArgs e)
         {
-            areaLabel.Visibility = Visibility.Hidden;
-            sarchLineInArea.Visibility = Visibility.Hidden;
+ 
             Station.Background = Brushes.Gray;
             Bus.Background = Brushes.LightGray;
             Line.Background = Brushes.LightGray;
@@ -303,7 +301,9 @@ namespace PL.WPF
             AddLine.Visibility = Visibility.Hidden;
             AddStation.Visibility = Visibility.Hidden;
             available.Visibility = Visibility.Hidden;
-            History.Visibility = Visibility.Visible;        
+            History.Visibility = Visibility.Visible;
+            areaLabel.Visibility = Visibility.Hidden;
+            sarchLineInArea.Visibility = Visibility.Hidden;
         }
         private void HistoryClick(object sender, RoutedEventArgs e)
         {
@@ -320,6 +320,8 @@ namespace PL.WPF
                 RefreshAllDeletedLinesList();
                 available.Visibility = Visibility.Visible;
                 History.Visibility = Visibility.Hidden;
+                areaLabel.Visibility = Visibility.Hidden;
+                sarchLineInArea.Visibility = Visibility.Hidden;
             }
             if (historyNum == 3)
             {
@@ -344,6 +346,8 @@ namespace PL.WPF
                 RefreshAllLinesList();
                 available.Visibility = Visibility.Hidden;
                 History.Visibility = Visibility.Visible;
+                areaLabel.Visibility = Visibility.Visible;
+                sarchLineInArea.Visibility = Visibility.Visible;
             }
             if (availableNum == 3)
             {

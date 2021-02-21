@@ -44,7 +44,10 @@ namespace PL.WPF
            // LineInStationListBox.DataContext = station.LinesInStation;
             LineInStationListBox.Visibility = Visibility.Visible;
              stationCodeTextBlock.Text = station.Code.ToString();
-            
+            if(station.DisabledAccess==true)
+            {
+
+            }
             
         }
 
