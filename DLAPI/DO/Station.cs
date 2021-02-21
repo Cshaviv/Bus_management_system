@@ -15,5 +15,6 @@ namespace DO
         public string Address { get; set; }//כתובת
         public bool DisabledAccess { get; set; }//גישה לנכים
         public bool IsDeleted { get; set; }// האם מחוק
+
     }
 }

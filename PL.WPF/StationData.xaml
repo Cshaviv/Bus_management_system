@@ -38,7 +38,7 @@
                  ItemTemplate="{StaticResource MyDataTemplate}" Background="#FFFFFF08"   Width="370"/>
         <Button x:Name="deleteStation" Content="מחיקת תחנה" HorizontalAlignment="Left" Margin="480,338,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="deleteStation_Click" FontSize="14" FontFamily="Segoe UI Black" />
         <Button x:Name="updateStation" Content="עידכון תחנה" HorizontalAlignment="Left" Margin="124,338,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="updateStation_Click" FontSize="14" FontWeight="Bold" />
-        <Image HorizontalAlignment="Left" Height="113" Margin="29,10,0,0" VerticalAlignment="Top" Width="370" Source="StationSign.png111.png"/>
+        <Image HorizontalAlignment="Left" Height="113" Margin="37,10,0,0" VerticalAlignment="Top" Width="370" Source="StationSign.png111.png"/>
         <Grid x:Name="grid1" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Right" Margin="0,55,1,0" VerticalAlignment="Top" Height="73" Width="357">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

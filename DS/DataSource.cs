@@ -950,7 +950,7 @@ namespace DS
                                                   Address = "רחוב:שדרות גולדה מאיר  עיר: ירושלים ",
                                                   Latitude = 31.825302,
                                                   Longitude = 35.188624,
-                                                  IsDeleted=false
+                                                  DisabledAccess=true
                                              },
                                            new Station
                                             {
@@ -959,8 +959,9 @@ namespace DS
                                                 Address = "רחוב:אל מדינה אל מונאוורה  עיר: ירושלים",
                                                 Latitude = 31.738425,
                                                 Longitude = 35.228765,
-                                                IsDeleted=false
-                                            }
+                                                DisabledAccess=true,
+
+                                           }
                                            , new Station
                                             {
                                                 Code = 77,
@@ -968,7 +969,8 @@ namespace DS
                                                 Address = "רחוב:אל מדינה אל מונאוורה  עיר: ירושלים ",
                                                 Latitude = 31.738676,
                                                 Longitude = 35.226704,
-                                                IsDeleted=false
+                                                DisabledAccess=true
+
                                             },
                                             new Station
                                             {
@@ -977,7 +979,8 @@ namespace DS
                                                 Address = "רחוב:שדרות שרי ישראל 15 עיר: ירושלים",
                                                 Latitude = 31.789128,
                                                 Longitude = 35.206146,
-                                                IsDeleted=false
+                                                DisabledAccess=true
+
                                             },
                                             new Station
                                             {
@@ -986,7 +989,6 @@ namespace DS
                                                 Address = "רחוב:בטן אל הווא  עיר: ירושלים",
                                                 Latitude = 31.766358,
                                                 Longitude = 35.240417,
-                                                IsDeleted=false
                                             },
                                             new Station
                                             {
@@ -995,7 +997,6 @@ namespace DS
                                                 Address = " רחוב:מלכי ישראל 77 עיר: ירושלים ",
                                                 Latitude = 31.790758,
                                                 Longitude = 35.209791,
-                                                IsDeleted=false
                                             }
                                           ,  new Station
                                             {
@@ -1004,7 +1005,6 @@ namespace DS
                                                 Address = "רחוב:אלמדארס  עיר: ירושלים",
                                                 Latitude = 31.768643,
                                                 Longitude = 35.238509,
-                                                IsDeleted=false
                                             },
                                             new Station
                                             {
@@ -1013,7 +1013,6 @@ namespace DS
                                                 Address = "רחוב:אלמדארס  עיר: ירושלים",
                                                 Latitude = 31.769899,
                                                 Longitude = 35.23973,
-                                                IsDeleted=false
                                             },
                                             new Station
                                             {
@@ -1022,7 +1021,6 @@ namespace DS
                                                 Address = " רחוב:בטן אל הווא  עיר: ירושלים",
                                                 Latitude = 31.767064,
                                                 Longitude = 35.238443,
-                                                IsDeleted=false
                                             },
                                             new Station
                                             {
