@@ -76,6 +76,24 @@ namespace PL.WPF
             NewUser win = new NewUser(bl);
             win.ShowDialog();
         }
+
+        private void passwordEye_Click_(object sender, RoutedEventArgs e)
+        {
+            closeEyeBotton.Visibility = Visibility.Hidden;
+            eyeBotton.Visibility = Visibility.Visible;
+            passwordTextBox.Visibility= Visibility.Hidden;
+            passwordTextBox2.Visibility = Visibility.Visible;
+            passwordTextBox2.Text = passwordTextBox.Password;
+        }
+        private void passwordOpenEye_Click(object sender, RoutedEventArgs e)
+        {
+            closeEyeBotton.Visibility = Visibility.Visible;
+            eyeBotton.Visibility = Visibility.Hidden;
+            passwordTextBox.Visibility = Visibility.Visible;
+            passwordTextBox2.Visibility = Visibility.Hidden;
+            passwordTextBox.Password= passwordTextBox2.Text ;
+        }
+        
     }
 } 
 

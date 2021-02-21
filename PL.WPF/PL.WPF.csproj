@@ -276,5 +276,20 @@
   <ItemGroup>
     <Resource Include="licenseNumImage22.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="עין מכוסה.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="עין .png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="משתמש.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CarBus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CarBus1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
