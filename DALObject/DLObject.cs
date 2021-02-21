@@ -267,6 +267,10 @@ namespace DL
                 return null;        
                 //throw new BadLineIdException(lineId, "קו זה לא קיים במערכת");
         }
+        public int GetNewLineId()
+        {
+            return Config.LineId++;
+        }
         /// <summary>
         /// A function that receives a line and adds it to the system
         /// </summary>

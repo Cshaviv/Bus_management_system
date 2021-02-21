@@ -255,5 +255,26 @@
   <ItemGroup>
     <Resource Include="picture.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="זמין לנכים.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus-stop-computer-icons-transport-bus-vector.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="download_20200910_105029 %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus-clipart-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="licenseNumImage.png11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="licenseNumImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="licenseNumImage22.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

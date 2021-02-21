@@ -10,10 +10,13 @@
     <Window.Resources>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
     </Window.Resources>
-    <Grid Background="#FFF0F0F0"  DataContext="{StaticResource busViewSource}" Margin="0,0,0,-3">
-        <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="56,326,0,0" VerticalAlignment="Top" Width="138" Height="41" FontWeight="Bold"/>
-        <Button  Name="updateButton" Content="עדכון נתונים" Click="updateButtonClick" Margin="228,326,424,54"  HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top" Width="138" Height="41" />
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="117,33,0,0" HorizontalAlignment="Left" DataContext="{StaticResource busViewSource}" Height="208" Width="260">
+    <Grid Background="#FFF0F0F0"  DataContext="{StaticResource busViewSource}" Margin="0,0,2,-3">
+        <Image HorizontalAlignment="Left" Height="27" Margin="479,73,0,0" VerticalAlignment="Top" Width="120" Source="licenseNumImage.png"/>
+
+
+        <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="154,84,0,0" VerticalAlignment="Top" Width="138" Height="41" FontWeight="Bold"/>
+        <Button x:Name="updateButton" Content="עדכון נתונים" Click="updateButtonClick" HorizontalAlignment="Left" Margin="550,322,0,0" VerticalAlignment="Top" Width="138" Height="41" FontWeight="Bold"/>
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="475,65,0,0" HorizontalAlignment="Left" DataContext="{StaticResource busViewSource}" Height="208" Width="260">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -34,16 +37,20 @@
             <Label VerticalAlignment="Center" Grid.Row="4" Margin="0,1.667,-94.667,5" HorizontalAlignment="Right" Content=":ק''מ מאז טיפול אחרון" Width="238" Grid.ColumnSpan="2"/>
             <TextBox x:Name="kmafterTreatTextBox" KeyDown="keyCheck" Width="120" VerticalAlignment="Center" Text="{Binding KmLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="34,6,23.667,8"  HorizontalAlignment="Center" Grid.Column="1" Content=":מספר רישוי" Width="73"/>
-            <TextBlock x:Name="licenseNumTextBlock" Width="120" VerticalAlignment="Center" Text="{Binding LicenseNum, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="0,3.667,11.333,6.333" HorizontalAlignment="Right" Content=":תאריך תחילת פעולה" Width="134" Grid.ColumnSpan="2"/>
             <DatePicker x:Name="startDateDatePicker" VerticalAlignment="Center" SelectedDate="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3,3.333,0,3.333" HorizontalAlignment="Left" Grid.Column="0" Width="120"/>
             <!--<Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Right" Grid.Column="1" Content="Status Bus:"/>-->
             <!--<ComboBox x:Name="busStatusCombo" Width="120" VerticalAlignment="Center" Text="{Binding StatusBus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>-->
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="0,2.667,-70.667,5.333" HorizontalAlignment="Right" Grid.Column="1" Content="ק''מ" Width="125"/>
             <TextBox x:Name="totalKmTextBox" KeyDown="keyCheck" Width="120" VerticalAlignment="Center" Text="{Binding TotalKm, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
+            <TextBlock x:Name="licenseNumTextBlock"  Width="120" VerticalAlignment="Center" Grid.Row="0" Margin="-19,12,0,4"  Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Left" Grid.Column="0"><Run Text="0">
+                    <Run.Background>
+                        <ImageBrush/>
+                    </Run.Background>
+                </Run></TextBlock>
         </Grid>
-        <Button x:Name="reful" Content="תדלוק" HorizontalAlignment="Left" Margin="430,326,0,0" VerticalAlignment="Top" Width="138" Height="41" Click="reful_Click" FontWeight="Bold"/>
-        <Button x:Name="treat" Content="טיפול" HorizontalAlignment="Left" Margin="600,326,0,0" VerticalAlignment="Top" Width="138" Height="41" Click="treat_Click" FontWeight="Bold"/>
+        <Button x:Name="reful" Content="תדלוק" HorizontalAlignment="Left" Margin="158,240,0,0" VerticalAlignment="Top" Width="138" Height="41" Click="reful_Click" FontWeight="Bold"/>
+        <Button x:Name="treat" Content="טיפול" HorizontalAlignment="Left" Margin="156,164,0,0" VerticalAlignment="Top" Width="138" Height="41" Click="treat_Click" FontWeight="Bold"/>
 
 
     </Grid>

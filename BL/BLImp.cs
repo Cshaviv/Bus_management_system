@@ -272,7 +272,8 @@ namespace BL
         {
             DO.Line lineDo = new DO.Line();
             lineBo.CopyPropertiesTo(lineDo);
-            lineDo.LineId = DO.Config.LineId++;
+            //lineDo.LineId = DO.Config.LineId++;
+            lineDo.LineId = dl.GetNewLineId();
             int stationCode1 = lineBo.Stations[0].StationCode;//stationCode of the first station
             int stationCode2 = lineBo.Stations[1].StationCode;//station Code of the last station
             lineDo.FirstStation = stationCode1;

@@ -49,6 +49,7 @@ namespace DLAPI
         void DeleteStation(int code);
         #endregion 
         #region Line
+        int GetNewLineId();
         IEnumerable<DO.Line> GetAllLines();
         IEnumerable<DO.Line> GetAllLinesInArea(string area);
         IEnumerable<DO.Line> GetAllDeletedLines();

@@ -23,14 +23,14 @@ namespace DL
         #region DS XML Files
 
         string lineTripsPath = @"LineTripsXml.xml"; //XElement
-               
+        string tripPath = @"TripXml.xml";
         string busesPath = @"BusesXml.xml"; //XMLSerializer
         string adjacentStationsPath = @"AdjacentStationsXml.xml"; //XElement
         string linesPath = @"LinesXml.xml"; //XMLSerializer
         string lineStationsPath = @"LineStationsXml.xml"; //XMLSerializer
         string stationsPath = @"StationsXml.xml"; //XMLSerializer
         string usersPath = @"UserXml.xml"; //XMLSerializer
-        string runningNumberPath = @"TripsXml.xml"; //XMLSerializer
+        string runningNumberPath = @"runningNumbersXml.xml"; //XMLSerializer
         #endregion
         //private DLXML()
         //{
@@ -86,6 +86,13 @@ namespace DL
             List<Bus> ListBuses = XMLTools.LoadListFromXMLSerializer<Bus>(busesPath);
             return from bus in ListBuses
                    where bus.IsDeleted == false
+                   select bus;
+        }
+         public IEnumerable<DO.Bus> GetAllDeleteBuses()
+        {
+            List<Bus> ListBuses = XMLTools.LoadListFromXMLSerializer<Bus>(busesPath);
+            return from bus in ListBuses
+                   where bus.IsDeleted == true
                    select bus;
         }
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)//???
@@ -296,6 +303,26 @@ namespace DL
                    select line;
 
         }
+        public int GetNewLineId()
+        {
+            XElement lineIdRootElem = XMLTools.LoadListFromXMLElement(runningNumberPath);
+            XElement id = (from lineId in lineIdRootElem.Elements()
+                           select lineId.Element("LineId")).FirstOrDefault();
+            if (id != null)
+            {
+                id.Value = (int.Parse(id.Value) + 1).ToString();
+                XMLTools.SaveListToXMLElement(lineIdRootElem, runningNumberPath);
+            }
+            return int.Parse(id.Value) - 1;
+        }
+        public IEnumerable<DO.Line> GetAllDeletedLines()
+        {
+            List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
+            return from line in ListLines
+                   where line.IsDeleted == true
+                   select line;
+
+        }
         public IEnumerable<DO.Line> GetAllLinesInArea(string area)
         {
             List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
@@ -330,7 +357,8 @@ namespace DL
             if (lineFind != null)
                 return lineFind;
             else
-                throw new BadLineIdException(lineId, "קו זה לא קיים במערכת");
+                return null;
+            //throw new BadLineIdException(lineId, "קו זה לא קיים במערכת");
         }
         /// <summary>
         /// A function that receives a line and adds it to the system
@@ -339,7 +367,7 @@ namespace DL
         public void AddLine(DO.Line line)
         {
             List<Line> ListLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
-            line.LineId =  XMLTools.GetRunningNumber(runningNumberPath);
+            //line.LineId =  XMLTools.GetRunningNumber(runningNumberPath);
             if (ListLines.FirstOrDefault(_line => _line.LineId == line.LineId && _line.IsDeleted == false) != null)
                 throw new BadLineIdException(line.LineId, "קו זה כבר קיים במערכת");
             ListLines.Add(line);
@@ -558,7 +586,14 @@ namespace DL
         {
             List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
             return from station in ListStations
-                       //where station.IsDeleted == false
+                   where station.IsDeleted == false
+                   select station;
+        }
+        public IEnumerable<DO.Station> GetAllDeletedStations()
+        {
+            List<Station> ListStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
+            return from station in ListStations
+                   where station.IsDeleted == true
                    select station;
         }
         /// <summary>
@@ -903,10 +938,31 @@ namespace DL
                 throw new Exception();
                 //throw new BadLineTripException(lineId, time, "The line trip does not exist");
         }
-
+        //public void DeleteLineTrip(int lineTripId)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        #region Trip
         public IEnumerable<Trip> GetAllTrips()
         {
-            throw new NotImplementedException();
+
+            XElement TripsRootElem = XMLTools.LoadListFromXMLElement(tripPath);
+
+            return (from Trip in TripsRootElem.Elements()
+                    where bool.Parse(Trip.Element("IsDeleted").Value) == false
+                    select new Trip()
+                    {
+                        TripId = int.Parse(Trip.Element("TripId").Value),
+                        UserName = (Trip.Element("UserName").Value),
+                        LineId = int.Parse(Trip.Element("LineId").Value),
+                        GetOnStation = int.Parse(Trip.Element("GetOnStation").Value),
+                        GetOnTime = TimeSpan.Parse(Trip.Element("GetOnTime").Value),
+                        GetOutStation = int.Parse(Trip.Element("GetOutStation").Value),
+                        GetOutTime = TimeSpan.Parse(Trip.Element("GetOutTime").Value),
+                        IsDeleted = bool.Parse(Trip.Element("IsDeleted").Value)
+                    }
+                      );
+
         }
 
         public IEnumerable<Trip> GetAllTripsBy(Predicate<Trip> predicate)
@@ -916,6 +972,7 @@ namespace DL
 
         public Trip GetTrip(int tripId)
         {
+          
             throw new NotImplementedException();
         }
 
@@ -939,35 +996,33 @@ namespace DL
             throw new NotImplementedException();
         }
 
-        public LineTrip GetLineTrip(int lineTripId)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
+        //public LineTrip GetLineTrip(int lineTripId)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void UpdateLineTrip(int lineTripId, Action<LineTrip> update)
-        {
-            throw new NotImplementedException();
-        }
+        //public void UpdateLineTrip(int lineTripId, Action<LineTrip> update)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void DeleteLineTrip(int lineTripId)
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<Bus> GetAllDeleteBuses()
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<Station> GetAllDeletedStations()
-        {
-            throw new NotImplementedException();
-        }
+        //public IEnumerable<Bus> GetAllDeleteBuses()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public IEnumerable<Line> GetAllDeletedLines()
-        {
-            throw new NotImplementedException();
-        }
+        //public IEnumerable<Station> GetAllDeletedStations()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public IEnumerable<Line> GetAllDeletedLines()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         #endregion
     }

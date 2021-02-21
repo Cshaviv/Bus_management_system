@@ -46,7 +46,7 @@ namespace PL.WPF
              stationCodeTextBlock.Text = station.Code.ToString();
             if(station.DisabledAccess==true)
             {
-
+                DisabledAccessImage.Visibility = Visibility.Visible;
             }
             
         }

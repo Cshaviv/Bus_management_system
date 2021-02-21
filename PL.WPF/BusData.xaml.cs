@@ -50,7 +50,7 @@ namespace PL.WPF
         }
         void GetBus(Bus bus)
         {
-            licenseNumTextBlock.Text = bus.LicenseNum.ToString();
+            licenseNumTextBlock.Text = bus.ToString();
             startDateDatePicker.Text = bus.StartDate.Day + "/" + bus.StartDate.Month + "/" + bus.StartDate.Year;
             lastTreatDatePicker.Text = bus.DateLastTreat.Day + "/" + bus.DateLastTreat.Month + "/" + bus.DateLastTreat.Year;
             totalKmTextBox.Text = bus.TotalKm.ToString();

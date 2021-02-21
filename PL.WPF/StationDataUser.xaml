@@ -49,7 +49,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content=":כתובת" Grid.Column="1" HorizontalAlignment="Right" Margin="0,5,-65,4" Grid.Row="4" VerticalAlignment="Center" Width="115" FontFamily="Dubai Medium" FontWeight="Bold"/>
+            <Label Content="כתובת:" Grid.Column="1" HorizontalAlignment="Right" FlowDirection="RightToLeft" Margin="0,5,-12,4" Grid.Row="4" VerticalAlignment="Center" Width="62" FontFamily="Dubai Medium" FontWeight="Bold"/>
             <TextBlock x:Name="addressTextBlock" Grid.Column="0" FlowDirection="RightToLeft" HorizontalAlignment="Right" Height="22" Margin="0,11,3,6" Grid.Row="4" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="220"/>
             <Label Content=":שם התחנה" Grid.Column="1" HorizontalAlignment="Right" Margin="0,8,-65,4" Grid.Row="0" VerticalAlignment="Center" Width="122" FontFamily="Dubai Medium" FontWeight="Bold"/>
             <TextBlock x:Name="nameTextBlock" FlowDirection="RightToLeft" Grid.Column="0" Height="22" Margin="1,15,3,5" Grid.Row="0" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
@@ -57,5 +57,7 @@
         <TextBlock  HorizontalAlignment="Left" Margin="245,56,0,0" TextWrapping="Wrap" Text="קוד" VerticalAlignment="Top" Height="43" Width="75" RenderTransformOrigin="3.519,0.393" FontFamily="Segoe UI Black" FontWeight="Bold" TextDecorations="{x:Null}" FontSize="16" Foreground="Black"/>
         <TextBlock   x:Name="stationCodeTextBlock"  HorizontalAlignment="Left"  Height="37" Margin="180,58,0,0" TextWrapping="Wrap" Text="{Binding Code}" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.944,1.261" FontFamily="Segoe UI Black" FontSize="16" Foreground="Black"/>
         <Button x:Name="Simulate" Content="Simulate" HorizontalAlignment="Left" Margin="605,344,0,0" VerticalAlignment="Top" Width="158" Height="42" Click="Button_Click"/>
+        <Image x:Name="DisabledAccessImage" HorizontalAlignment="Left" Height="63" Margin="662,146,0,0" VerticalAlignment="Top" Width="53" Source="זמין לנכים.jpg" RenderTransformOrigin="0.233,0.455"  Visibility="Hidden"/>
+
     </Grid>
 </Window>

@@ -41,8 +41,8 @@ namespace DL
                 }
                 else
                 {
-                    XElement rootElem = new XElement(dir + filePath);
-                    rootElem.Save(dir + filePath);
+                    XElement rootElem = new XElement(dir+filePath);
+                    rootElem.Save(dir+filePath);
                     return rootElem;
                 }
             }
