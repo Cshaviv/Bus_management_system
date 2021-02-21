@@ -35,7 +35,7 @@
         </DataTemplate>
     </Window.Resources>
     <Grid  Background="#FFF0F0F0">
-        <ListBox x:Name="linesListBox" Background="#FFF0F0F0"  ItemsSource="{Binding}" Height="277" Margin="118,29,8,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+        <ListBox x:Name="linesListBox" Background="#FFF0F0F0"  ItemsSource="{Binding}" Height="277" Margin="92,29,8,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" />
         <Button x:Name="deleteLine" Content="מחיקת קו" HorizontalAlignment="Left" Margin="324,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="deleteLine_Click" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />
         <Button x:Name="update" Content="עידכון נתונים" HorizontalAlignment="Left" Margin="118,327,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="update_Click" FontWeight="Bold" FontFamily="Dubai Medium" FontSize="14" />
@@ -43,7 +43,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="20,110,0,0" TextWrapping="Wrap" Text=":מספר קו" VerticalAlignment="Top" Height="29" Width="87" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
         <TextBlock x:Name="LineNumTextBlock"  HorizontalAlignment="Right" Margin="0,139,666,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="28" Width="87" FontSize="14"/>
         <TextBox x:Name="LineNumTextBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="4,137,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87"/>
-        <TextBlock x:Name="AreaTextBlock"  HorizontalAlignment="Left" Margin="13,171,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87" FontSize="14"/>
+        <TextBlock x:Name="AreaTextBlock"  HorizontalAlignment="Left" Margin="23,171,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87" FontSize="14"/>
         <ComboBox x:Name="AreaComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="5,175,0,0"  VerticalAlignment="Top" Height="29" Width="87"/>
         <Button x:Name="Save" Content="שמור" Click="SaveClick" Visibility="Hidden" HorizontalAlignment="Left" Margin="11,212,0,0" VerticalAlignment="Top" Width="75" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
         <Button x:Name="Cancel" Content="בטל" Click="CancelClick" Visibility="Hidden" HorizontalAlignment="Left" Margin="11,242,0,0" VerticalAlignment="Top" Width="75" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>

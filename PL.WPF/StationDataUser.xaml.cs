@@ -41,7 +41,10 @@ namespace PL.WPF
             // LineInStationListBox.DataContext = station.LinesInStation;
             LineInStationListBox.Visibility = Visibility.Visible;
              stationCodeTextBlock.Text = stat.Code.ToString();
-
+            if (stat.DisabledAccess == true)
+            {
+                DisabledAccessImage.Visibility = Visibility.Visible;
+            }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

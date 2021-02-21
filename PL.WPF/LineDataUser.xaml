@@ -33,11 +33,11 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <ListBox x:Name="linesListBox" Background="#FFF0F0F0"  ItemsSource="{Binding}" Height="277" Margin="118,29,8,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
+        <ListBox x:Name="linesListBox" Background="#FFF0F0F0"  ItemsSource="{Binding}" Height="277" Margin="84,29,8,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" />
         <TextBlock HorizontalAlignment="Left" Margin="20,110,0,0" TextWrapping="Wrap" Text=":מספר קו" VerticalAlignment="Top" Height="29" Width="87" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
         <TextBlock x:Name="LineNumTextBlock"  HorizontalAlignment="Right" Margin="0,139,666,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="28" Width="87" FontSize="14"/>
-        <TextBlock x:Name="AreaTextBlock"  HorizontalAlignment="Left" Margin="13,171,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87" FontSize="14"/>
+        <TextBlock x:Name="AreaTextBlock"  HorizontalAlignment="Left" Margin="23,171,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="29" Width="87" FontSize="14"/>
     </Grid>
 
 </Window>
