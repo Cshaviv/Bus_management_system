@@ -39,6 +39,7 @@ namespace PL.WPF
             sarchLineInArea.ItemsSource= Enum.GetValues(typeof(BO.Area));
             sarchLineInArea.Visibility = Visibility.Hidden;
             areaLabel.Visibility = Visibility.Hidden;
+            
         }
 
         #region Buses 
@@ -168,6 +169,7 @@ namespace PL.WPF
            // searchLineInArea();
             historyNum = 2;
             availableNum = 2;
+
         }
         private void areaChangeClick(object sender, SelectionChangedEventArgs e)
         {
