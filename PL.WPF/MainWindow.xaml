@@ -5,49 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-
-    <Window.Resources>
-        <DataTemplate x:Key="BusTemplate"
-                  DataType="local:Bus">
-            <Grid>
-                <Label x:Name="action" HorizontalAlignment="Left" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
-            </Grid>
-        </DataTemplate>
-    </Window.Resources>
-
-    <Grid Background="#FFF0F0F0" OpacityMask="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="43*"/>
-            <ColumnDefinition Width="9*"/>
-        </Grid.ColumnDefinitions>
-        <Label Content="Welcome to our Perfect University! " HorizontalAlignment="Left" Margin="173,25,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
-        <GroupBox Header=":בחר אפשרות" HorizontalAlignment="Left" Height="103" Margin="217,81,0,0" VerticalAlignment="Top" Width="342" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" FlowDirection="RightToLeft">
-            <StackPanel Margin="21,20,226,-11" Height="66" VerticalAlignment="Top" >
-                <RadioButton x:Name ="rbManagement" Content="מנהל" HorizontalAlignment="Stretch" Height="24" IsChecked="True"/>
-                <RadioButton x:Name ="rbUser" Content=" משתמש" HorizontalAlignment="Stretch" Height="23" Margin="0,0,-11,0"/>
-
-            </StackPanel>
-        </GroupBox>
-        <Button x:Name="btnGO" Content="כניסה" Background="LightGray" HorizontalAlignment="Left" Height="42" Margin="356,352,0,0" VerticalAlignment="Top" Width="104"  FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="441,201,0,0" TextWrapping="Wrap" Text=":שם משתמש" VerticalAlignment="Top" Height="32" Width="90" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
-        <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="33" Margin="281,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
-        <TextBlock HorizontalAlignment="Left" Margin="468,252,0,0" TextWrapping="Wrap" Text=":סיסמא" VerticalAlignment="Top" Height="32" Width="126" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
-        <PasswordBox x:Name="passwordTextBox" PasswordChar="*"  HorizontalAlignment="Left" Height="33" Margin="281,247,0,0" VerticalAlignment="Top" Width="139"/>
-        <Button Content="אני רוצה ליצור משתמש חדש" HorizontalAlignment="Left" Margin="284,300,0,0" VerticalAlignment="Top" Width="236" Height="30" Click="Button_Click" FontFamily="Dubai Medium"/>
-        <TextBox x:Name="passwordTextBox2" Visibility="Hidden"   HorizontalAlignment="Left" Height="33" Margin="281,247,0,0" VerticalAlignment="Top" Width="139"/>
-        <Button Content="" Name="closeEyeBotton" Visibility="Visible" HorizontalAlignment="Left" Height="33" Margin="394,247,0,0" VerticalAlignment="Top" Width="26" Click="passwordEye_Click_" BorderBrush="{x:Null}" Foreground="{x:Null}">
-            <Button.Background>
-                <ImageBrush ImageSource="עין מכוסה.png"/>
-            </Button.Background>
-        </Button>
-        <Button Name="eyeBotton" Content="" HorizontalAlignment="Left" Visibility="Hidden" Height="33" Margin="394,247,0,0" VerticalAlignment="Top" Width="26" Click="passwordOpenEye_Click" BorderBrush="{x:Null}">
-            <Button.Background>
-                <ImageBrush ImageSource="עין .png"/>
-            </Button.Background>
-
-        </Button>
-
+        Title="Window1" Height="530.071" Width="765.836" Background="#FFF0F0F0">
+    <Grid>
+        <Image HorizontalAlignment="Left" Height="204" Margin="149,17,0,0" VerticalAlignment="Top" Width="455" Source="CarBus1.png"/>
+        <Label Content="Made by Chagit Shaviv and Ayala Israeli"  HorizontalAlignment="Left" Margin="216,402,0,0" VerticalAlignment="Top" Height="33" Width="298" Foreground="#FFA89C9C" FontSize="16"/>
+        <Label Content="as a final project for the C# course"  HorizontalAlignment="Left" Margin="238,429,0,0" VerticalAlignment="Top" Height="30" Width="257" Foreground="#FFA89C9C" FontSize="16"/>
+        <Label Content="2021 ©Copyright"  HorizontalAlignment="Left" Margin="290,455,0,0" VerticalAlignment="Top" Height="30" Width="162" Foreground="#FFA89C9C" FontSize="16"/>
+        <Button Content="לחץ עלי" HorizontalAlignment="Left" Margin="277,303,0,0" VerticalAlignment="Top" Width="175" Height="63" FontSize="22" FontFamily="Segoe UI Black" Click="Button_Click"/>
 
     </Grid>
 </Window>
