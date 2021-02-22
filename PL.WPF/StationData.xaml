@@ -8,6 +8,24 @@
         mc:Ignorable="d"
         Title="StationData" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
+        <Style x:Key="round" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid" >
+                            <Border x:Name="border" CornerRadius="15" BorderBrush="Gray" Background="LightGray"  BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <DataTemplate x:Key="MyDataTemplate" DataType="local: BO.StationInLine">
             <Grid>
                 <Grid.RowDefinitions>
@@ -36,8 +54,8 @@
     <Grid Background="#FFF0F0F0">
         <ListBox x:Name="LineInStationListBox" ItemsSource="{Binding}" FlowDirection="RightToLeft" HorizontalAlignment="Right" Height="199" Margin="0,123,392,0" VerticalAlignment="Top" RenderTransformOrigin="0.98,0.419" 
                  ItemTemplate="{StaticResource MyDataTemplate}" Background="#FFFFFF08"   Width="370"/>
-        <Button x:Name="deleteStation" Content="מחיקת תחנה" HorizontalAlignment="Left" Margin="480,338,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="deleteStation_Click" FontSize="14" FontFamily="Segoe UI Black" />
-        <Button x:Name="updateStation" Content="עידכון תחנה" HorizontalAlignment="Left" Margin="124,338,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="updateStation_Click" FontSize="14" FontWeight="Bold" />
+        <Button x:Name="deleteStation" Style="{StaticResource round}"  Content="מחיקת תחנה" HorizontalAlignment="Left" Margin="480,338,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="deleteStation_Click" FontSize="14" FontFamily="Segoe UI Black" />
+        <Button x:Name="updateStation" Style="{StaticResource round}" Content="עידכון תחנה" HorizontalAlignment="Left" Margin="124,338,0,0" VerticalAlignment="Top" Width="180" Height="49" Click="updateStation_Click" FontSize="14" FontWeight="Bold" />
         <Image HorizontalAlignment="Left" Height="113" Margin="23,10,0,0" VerticalAlignment="Top" Width="370" Source="StationSign.png111.png"/>
         <Grid x:Name="grid1" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Right" Margin="0,55,1,0" VerticalAlignment="Top" Height="73" Width="357">
             <Grid.ColumnDefinitions>
