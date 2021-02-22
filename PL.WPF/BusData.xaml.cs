@@ -118,7 +118,7 @@ namespace PL.WPF
                     DateTime startDate = DateTime.Parse(startDateDatePicker.Text);
                     DateTime lastDate = DateTime.Parse(lastTreatDatePicker.Text);
                     double kmLastTreat = double.Parse(kmafterTreatTextBox.Text);
-                    //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus), busStatusCombo.SelectedItem.ToString());
+                    //BO.BusStatus status = (BO.BusStatus)Enum.Parse(typeof(BO.BusStatus);//, //busStatusCombo.SelectedItem.ToString());
                     double totalKm = double.Parse(totalKmTextBox.Text);
                     BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, /*StatusBus = status,*/ TotalKm = totalKm, KmLastTreat = kmLastTreat };             
                     bl.UpdateBusDetails(b);
