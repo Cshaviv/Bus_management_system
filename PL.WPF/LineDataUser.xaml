@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="LineDataUser" Height="450" Width="800" Background="#FFF0F0F0">
+        Title="LineDataUser" Height="431" Width="800" Background="#FFF0F0F0">
     <Window.Resources>
         <DataTemplate x:Key="MyDataTemplate" DataType="local: BO.StationInLine">
             <Grid>

@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:PL.WPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.WPF.AddNewLine"
         mc:Ignorable="d"
-        Title="AddNewLine" Height="388" Width="542" Loaded="Window_Loaded" FontFamily="Dubai Medium" FontWeight="Bold">
+        Title="AddNewLine" Height="388" Width="490"  Loaded="Window_Loaded" FontFamily="Dubai Medium" FontWeight="Bold">
     <Window.Resources>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
     </Window.Resources>
-    <Grid Background="#FFF0F0F0" DataContext="{StaticResource lineViewSource}" Margin="0,0,97.333,-0.333">
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="173,43,0,0" VerticalAlignment="Top" Width="224" Height="210">
+    <Grid Background="#FFF0F0F0" DataContext="{StaticResource lineViewSource}" Margin="0,0,-2.667,-0.333">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="148,43,0,0" VerticalAlignment="Top" Width="224" Height="210">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -64,6 +64,6 @@
             <Label  Name="distanceLabel" Content=":מרחק בין תחנות"  HorizontalAlignment="Left" Margin="125,24.667,0,-41.333" Grid.Row="8" VerticalAlignment="Center" Grid.ColumnSpan="2" FontWeight="Bold"/>
             <TextBox x:Name="distanceTextBox" KeyDown="keyCheck" Grid.Column="0"  HorizontalAlignment="Left" Height="24" Margin="3,39,0,-54" Grid.Row="6" VerticalAlignment="Center" Width="120" FontFamily="Dubai Light"/>
         </Grid>
-        <Button x:Name="AddLine" Content="הוספה" Click="AddLineClick" HorizontalAlignment="Left" Margin="182,292,0,0" VerticalAlignment="Top" Width="189" Height="35" FontWeight="Bold" FontSize="14"/>
+        <Button x:Name="AddLine" Content="הוספה" Click="AddLineClick" HorizontalAlignment="Left" Margin="162,298,0,0" VerticalAlignment="Top" Width="158" Height="29" FontWeight="Bold" FontSize="14"/>
     </Grid>
 </Window>

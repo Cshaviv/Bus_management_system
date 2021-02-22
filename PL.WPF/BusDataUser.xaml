@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="BusDataWindows" Height="388" Width="490">
-    <Grid Background="#FFF0F0F0" Margin="0,0,-8,0" HorizontalAlignment="Right" Width="640">
+        Title="BusDataWindows" Height="388" Width="526">
+    <Grid Background="#FFF0F0F0" Margin="-170,0,-1.667,-0.333" HorizontalAlignment="Right" Width="655">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="621*"/>
+            <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="271,69,-14,0" VerticalAlignment="Top" Width="383" Height="219">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="271,69,-20,0" VerticalAlignment="Top" Width="383" Height="219" Grid.ColumnSpan="2">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="154"/>

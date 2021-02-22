@@ -6,17 +6,17 @@
         xmlns:local="clr-namespace:PL.WPF"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.WPF.BusData"
         mc:Ignorable="d"
-        Title="BusData" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="BusData" Height="450" Width="721.333" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
     </Window.Resources>
-    <Grid Background="#FFF0F0F0"  DataContext="{StaticResource busViewSource}" Margin="0,0,2,-3">
-        <Image HorizontalAlignment="Left" Height="27" Margin="479,73,0,0" VerticalAlignment="Top" Width="120" Source="licenseNumImage1.png"/>
+    <Grid Background="#FFF0F0F0"  DataContext="{StaticResource busViewSource}" Margin="0,0,-2,-3.333">
+        <Image HorizontalAlignment="Left" Height="27" Margin="352,73,0,0" VerticalAlignment="Top" Width="120" Source="licenseNumImage1.png"/>
 
 
-        <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="154,84,0,0" VerticalAlignment="Top" Width="138" Height="41" FontWeight="Bold"/>
-        <Button x:Name="updateButton" Content="עדכון נתונים" Click="updateButtonClick" HorizontalAlignment="Left" Margin="550,322,0,0" VerticalAlignment="Top" Width="138" Height="41" FontWeight="Bold"/>
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="475,65,0,0" HorizontalAlignment="Left" DataContext="{StaticResource busViewSource}" Height="208" Width="260">
+        <Button x:Name="delete" Content="מחיקת אוטובוס" Click="delete_Click" HorizontalAlignment="Left" Margin="102,84,0,0" VerticalAlignment="Top" Width="138" Height="41" FontWeight="Bold"/>
+        <Button x:Name="updateButton" Content="עדכון נתונים" Click="updateButtonClick" HorizontalAlignment="Left" Margin="424,322,0,0" VerticalAlignment="Top" Width="138" Height="41" FontWeight="Bold"/>
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="347,65,0,0" HorizontalAlignment="Left" DataContext="{StaticResource busViewSource}" Height="208" Width="260">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -43,14 +43,14 @@
             <!--<ComboBox x:Name="busStatusCombo" Width="120" VerticalAlignment="Center" Text="{Binding StatusBus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>-->
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="0,2.667,-70.667,5.333" HorizontalAlignment="Right" Grid.Column="1" Content="ק''מ" Width="125"/>
             <TextBox x:Name="totalKmTextBox" KeyDown="keyCheck" Width="120" VerticalAlignment="Center" Text="{Binding TotalKm, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
-            <TextBlock x:Name="licenseNumTextBlock"  Width="120" VerticalAlignment="Center" Grid.Row="0" Margin="-19,12,0,4"  Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Left" Grid.Column="0"><Run Text="0">
+            <TextBlock x:Name="licenseNumTextBlock"  Width="120" VerticalAlignment="Center" Grid.Row="0" Margin="-7,12,0,4"  Height="24" FlowDirection="RightToLeft" HorizontalAlignment="Left" Grid.Column="0" FontSize="16"><Run Text="0">
                     <Run.Background>
                         <ImageBrush/>
                     </Run.Background>
                 </Run></TextBlock>
         </Grid>
-        <Button x:Name="reful" Content="תדלוק" HorizontalAlignment="Left" Margin="158,240,0,0" VerticalAlignment="Top" Width="138" Height="41" Click="reful_Click" FontWeight="Bold"/>
-        <Button x:Name="treat" Content="טיפול" HorizontalAlignment="Left" Margin="156,164,0,0" VerticalAlignment="Top" Width="138" Height="41" Click="treat_Click" FontWeight="Bold"/>
+        <Button x:Name="reful" Content="תדלוק" HorizontalAlignment="Left" Margin="102,240,0,0" VerticalAlignment="Top" Width="138" Height="41" Click="reful_Click" FontWeight="Bold"/>
+        <Button x:Name="treat" Content="טיפול" HorizontalAlignment="Left" Margin="102,164,0,0" VerticalAlignment="Top" Width="138" Height="41" Click="treat_Click" FontWeight="Bold"/>
 
 
     </Grid>

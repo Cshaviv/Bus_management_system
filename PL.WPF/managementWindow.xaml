@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="managementWindow" Height="450" Width="959.088">
     <Window.Resources>
-        
+
         <local:BrushColorConverter x:Key="BConverter"></local:BrushColorConverter>
         <DataTemplate x:Key="LineTemplate"
                   DataType="local:BO.Line">
@@ -19,8 +19,8 @@
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="60" />
                     <ColumnDefinition Width="30 " />
+                    <ColumnDefinition Width="90" />
                     <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="70" />
@@ -39,7 +39,11 @@
                 </Canvas>-->
                 <!--<Image HorizontalAlignment="Stretch" Grid.Column="2" Height="36"  Grid.Row="1" VerticalAlignment="Top" Width="74" Source="licenseNumImage22.png"/>-->
 
-                <TextBlock Grid.Column="3" Text="{Binding Path=LineNum}" FlowDirection="RightToLeft"  HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
+                <TextBlock Grid.Column="3" Text="{Binding Path=LineNum}" FlowDirection="RightToLeft"  HorizontalAlignment="Left" FontFamily="Dubai Light"  FontSize="14" RenderTransformOrigin="1,1">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="licenseNumImage22.png"/>
+                    </TextBlock.Background>
+                </TextBlock>
                 <TextBlock Grid.Column="5" Text="אזור:" FontFamily="Dubai Medium" FlowDirection="RightToLeft"  HorizontalAlignment="Right"  FontSize="14" FontWeight="Bold" />
                 <TextBlock Grid.Column="7" x:Name="AreaTextBlock" Text="{Binding Path=Area}" FlowDirection="LeftToRight"  HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
 
@@ -142,8 +146,8 @@
         <Image HorizontalAlignment="Left" Height="110" Margin="17,227,0,-16" Grid.Row="1" VerticalAlignment="Top" Width="205" Source="CarBus1.png"/>
 
         <ListBox x:Name="stationsListBox" Visibility="Hidden" FlowDirection="RightToLeft"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickStationInfromation" Margin="17,32,239,87" Grid.RowSpan="2" BorderBrush="#FFABADB3" />
-        <ListBox x:Name="busesListBox" Visibility="Hidden" FlowDirection="RightToLeft" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickBusInfromation"  Margin="17,32,239,87" Grid.RowSpan="2" />
-        <ListBox x:Name="LineesListBox" Visibility="Visible" FlowDirection="RightToLeft"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickLineInfromation"  Margin="17,32,239,87" Grid.RowSpan="2" />
+        <ListBox x:Name="busesListBox" Visibility="Visible" FlowDirection="RightToLeft" Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickBusInfromation"  Margin="17,32,239,87" Grid.RowSpan="2" />
+        <ListBox x:Name="LineesListBox" Visibility="Hidden" FlowDirection="RightToLeft"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickLineInfromation"  Margin="17,32,239,87" Grid.RowSpan="2" />
         <ListBox x:Name="LineesDeletedListBox" Visibility="Hidden"  FlowDirection="RightToLeft"  Background="#FFF0F0F0" ItemsSource="{Binding}" ItemTemplate="{StaticResource DeletedLineTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="doubleClickDeletedLine"  Margin="17,32,239,87" Grid.RowSpan="2" />
         <Grid Margin="819,2,-14,0" Grid.RowSpan="2" Background="Gray">
             <Button x:Name="Bus" Content="אוטובוסים" HorizontalAlignment="Left" VerticalAlignment="Top" Width="137" Height="70" Click="Bus_Click" FontWeight="Bold" Background="Gray" FontFamily="Dubai Medium" BorderBrush="{x:Null}" FontSize="20" Margin="0,106,0,0" RenderTransformOrigin="0.622,0.486"/>
@@ -159,13 +163,14 @@
 
         </ComboBox>
         <Label Name="areaLabel" Content="חיפוש לפי איזור" HorizontalAlignment="Left" Height="25" Margin="142,0,0,0" VerticalAlignment="Top" Width="114" BorderBrush="#FFE2CB64"/>
-        <Image HorizontalAlignment="Left" Height="36" Margin="253,243,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74" Source="licenseNumImage22.png"/>
         <Ellipse HorizontalAlignment="Left" Height="41" Margin="863,22,0,0" VerticalAlignment="Top" Width="41">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="משתמש.gif"/>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBlock x:Name="userNameTextBlock" HorizontalAlignment="Center" Margin="849,67,23,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Width="70"/>
+        <TextBlock x:Name="userNameTextBlock" HorizontalAlignment="Center" Margin="834,67,23.667,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Width="86" Height="20"/>
         <Button Content="התנתקות" HorizontalAlignment="Left" Margin="849,264,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Row="1" Background="Gray"/>
+        <Image HorizontalAlignment="Left" Height="30" Margin="347,255.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="47" Source="licenseNumImage22.png" RenderTransformOrigin="0.5,0.5"/>
+
     </Grid>
 </Window>
