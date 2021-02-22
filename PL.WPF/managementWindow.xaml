@@ -16,36 +16,20 @@
                     <RowDefinition Height="Auto"  />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="60" />
-                    <ColumnDefinition Width="30 " />
-                    <ColumnDefinition Width="90" />
-                    <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="35" />
+                    <ColumnDefinition Width="0" />
+                    <ColumnDefinition Width="40 " />
+                    <ColumnDefinition Width="500" />
+                   
 
                 </Grid.ColumnDefinitions>
-                <Rectangle Grid.Column="9"  Name="IsDeletedRectangleLine" Fill="{Binding Path=IsDeleted,  Converter={StaticResource BConverter}}" Width="10" Height="10" />
-                <Rectangle Grid.Column="9"  Name="ffff" Fill="LightGreen"  Width="10" Height="10" />
-                <TextBlock Grid.Column="1"  Text="מספר קו:" FlowDirection="RightToLeft"  FontFamily="Dubai Medium" HorizontalAlignment="Right"  FontSize="14" FontWeight="Normal" />
-                <!--<Canvas Margin="142,53,712,234" Grid.Column="2"   Background="White">
-
-                    <Image HorizontalAlignment="Right" FlowDirection="RightToLeft" Height="25" VerticalAlignment="Top" Width="25" Source="bus-clipart-icon.png" Canvas.Left="-122" Canvas.Top="-55"/>
-                    <TextBlock Grid.Column="3" Text="{Binding Path=LineNum}" FlowDirection="RightToLeft"  HorizontalAlignment="Right" FontFamily="Dubai Light" Canvas.Left="-95" Canvas.Top="-52" FontSize="14"/>
-                    
-                </Canvas>-->
-                <!--<Image HorizontalAlignment="Stretch" Grid.Column="2" Height="36"  Grid.Row="1" VerticalAlignment="Top" Width="74" Source="licenseNumImage22.png"/>-->
-
-                <TextBlock Grid.Column="3" Text="{Binding Path=LineNum}" FlowDirection="RightToLeft"  HorizontalAlignment="Left" FontFamily="Dubai Light"  FontSize="14" RenderTransformOrigin="1,1">
-                    <TextBlock.Background>
-                        <ImageBrush ImageSource="licenseNumImage22.png"/>
-                    </TextBlock.Background>
-                </TextBlock>
-                <TextBlock Grid.Column="5" Text="אזור:" FontFamily="Dubai Medium" FlowDirection="RightToLeft"  HorizontalAlignment="Right"  FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="7" x:Name="AreaTextBlock" Text="{Binding Path=Area}" FlowDirection="LeftToRight"  HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+                <!--<Rectangle Grid.Column="9"  Name="IsDeletedRectangleLine" Fill="{Binding Path=IsDeleted,  Converter={StaticResource BConverter}}" Width="10" Height="10" />
+                <Rectangle Grid.Column="9"  Name="ffff" Fill="LightGreen"  Width="10" Height="10" />-->
+                <Image HorizontalAlignment="Left" Height="22"  Grid.Row="1" VerticalAlignment="Top" Width="20" Source="licenseNumImage22.png" RenderTransformOrigin="0.1,0.1"/>
+                <TextBlock Grid.Column="2" Text="{Binding Path=LineNum}" FlowDirection="RightToLeft"  HorizontalAlignment="Left" FontFamily="Franklin Gothic Demi"  FontSize="16" RenderTransformOrigin="1,1" FontWeight="Bold"/>
+                <!--<TextBlock Grid.Column="5" Text="אזור:" FontFamily="Dubai Medium" FlowDirection="RightToLeft"  HorizontalAlignment="Right"  FontSize="14" FontWeight="Bold" />
+                <TextBlock Grid.Column="7" x:Name="AreaTextBlock" Text="{Binding Path=Area}" FlowDirection="LeftToRight"  HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />-->
+                <TextBlock x:Name="firstStat" Grid.Column="3" Text="{Binding}"  FontFamily="Dubai Light"  FontSize="16" />
 
             </Grid>
         </DataTemplate>
@@ -56,24 +40,21 @@
                     <RowDefinition Height="Auto"  />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="60" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="35" />
+                    <ColumnDefinition Width="0" />
+                    <ColumnDefinition Width="40 " />
+                    <ColumnDefinition Width="500" />
 
                 </Grid.ColumnDefinitions>
-                <Rectangle Grid.Column="9"  Name="IsDeletedRectangleLine" Fill="{Binding Path=IsDeleted,  Converter={StaticResource BConverter}}" Width="10" Height="10" />
+                <Image HorizontalAlignment="Left" Height="22"  Grid.Row="1" VerticalAlignment="Top" Width="20" Source="licenseNumImage22.png" RenderTransformOrigin="0.1,0.1"/>
+                <TextBlock Grid.Column="2" Text="{Binding Path=LineNum}" FlowDirection="RightToLeft"  HorizontalAlignment="Left" FontFamily="Dubai Light"  FontSize="16" RenderTransformOrigin="1,1" FontWeight="Bold"/>
+                <TextBlock x:Name="firstStat" Grid.Column="3" Text="{Binding}"  FontFamily="Dubai Light"  FontSize="16" />
+                <!--<Rectangle Grid.Column="9"  Name="IsDeletedRectangleLine" Fill="{Binding Path=IsDeleted,  Converter={StaticResource BConverter}}" Width="10" Height="10" />
                 <Rectangle Grid.Column="9"  Name="ffff" Fill="Red"  Width="10" Height="10" />
                 <TextBlock Grid.Column="1"  Text="מספר קו:" FlowDirection="RightToLeft"  FontFamily="Dubai Medium" HorizontalAlignment="Right"  FontSize="14" FontWeight="Normal" />
                 <TextBlock Grid.Column="3" Text="{Binding Path=LineNum}" FlowDirection="RightToLeft"  HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
                 <TextBlock Grid.Column="5" Text="אזור:" FontFamily="Dubai Medium" FlowDirection="RightToLeft"  HorizontalAlignment="Right"  FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="7" x:Name="kmTextBlock" Text="{Binding Path=Area}" FlowDirection="RightToLeft"  HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+                <TextBlock Grid.Column="7" x:Name="kmTextBlock" Text="{Binding Path=Area}" FlowDirection="RightToLeft"  HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />-->
 
             </Grid>
         </DataTemplate>
@@ -99,14 +80,11 @@
                 </Grid.ColumnDefinitions>
 
                 <Rectangle Grid.Column="8"  Name="IsDeletedRectangle" Fill="{Binding Path=IsDeleted,  Converter={StaticResource BConverter}}" Width="10" Height="10"/>
-                <TextBlock Grid.Column="1" Visibility="Visible" Text="מספר רישוי:" FlowDirection="RightToLeft" HorizontalAlignment="Right" FontFamily="Dubai Medium" FontSize="14" FontWeight="Bold" />
-                <TextBlock Grid.Column="3" Text="{Binding}" FlowDirection="RightToLeft" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14"/>
-                <TextBlock Grid.Column="5" Text="קילומטר:" FlowDirection="RightToLeft" FontFamily="Dubai Medium" HorizontalAlignment="Right"  FontSize="14" FontWeight="Normal" />
-                <TextBlock Grid.Column="6" x:Name="kmTextBlock" FlowDirection="RightToLeft" Text="{Binding Path=TotalKm}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="14" />
+                <TextBlock Grid.Column="1" Visibility="Visible" Text="מספר רישוי:" FlowDirection="RightToLeft" HorizontalAlignment="Right" FontFamily="Dubai Medium" FontSize="16" FontWeight="Bold" />
+                <TextBlock Grid.Column="3" Text="{Binding}" FlowDirection="RightToLeft" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="16"/>
+                <TextBlock Grid.Column="5" Text="קילומטר:" FlowDirection="RightToLeft" FontFamily="Dubai Medium" HorizontalAlignment="Right"  FontSize="16" FontWeight="Normal" />
+                <TextBlock Grid.Column="6" x:Name="kmTextBlock" FlowDirection="RightToLeft" Text="{Binding Path=TotalKm}" HorizontalAlignment="Right" FontFamily="Dubai Light"  FontSize="16" />
                 <ProgressBar Grid.Column="1" Name="pbThread" Visibility="Hidden"/>
-                <Label Grid.Column="1" x:Name="action" HorizontalAlignment="Left" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
-                <Label Grid.Column="1" x:Name="progressLabel" HorizontalContentAlignment="Right" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14" />
-                <Label Grid.Column="2" x:Name="timer" Visibility="Hidden" FontFamily="Dubai Light"  FontSize="14"/>
                 <!--<Button x:Name="RefuelButton"  Content="תדלוק" Click="RefuelClick" HorizontalAlignment="Left"  Grid.Column="1" Width="70" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />-->
                 <!--<Button x:Name="TreatButton" Content="טיפול" Click="TreatClick" HorizontalAlignment="Left" Grid.Column="2" Width="70" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14" />-->
             </Grid>

@@ -14,11 +14,12 @@ namespace BO
         public int FirstStation { get; set; }//תחנה ראשונה
         public int LastStation { get; set; }//תחנה אחרונה
         public List<StationInLine> Stations { get; set; }//רשימת התחנות של הקו
+
         public override string ToString()// פונקצית הדפסה
         {
-            return "Line ID: " + LineId + " Line number: " + LineNum;  
+            return Stations[0].Name + "  ← ← ←  " + Stations[Stations.Count-1].Name;
         }
-        
+
     }
 }
 
