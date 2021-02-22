@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="746.667">
 
     <Window.Resources>
        
@@ -53,7 +53,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="441,201,0,0" TextWrapping="Wrap" Text=":שם משתמש" VerticalAlignment="Top" Height="32" Width="90" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
         <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="33" Margin="281,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
         <TextBlock HorizontalAlignment="Left" Margin="468,252,0,0" TextWrapping="Wrap" Text=":סיסמא" VerticalAlignment="Top" Height="32" Width="126" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
-        <PasswordBox x:Name="passwordTextBox" PasswordChar="*"  HorizontalAlignment="Left" Height="33" Margin="281,247,0,0" VerticalAlignment="Top" Width="139"/>
+        <PasswordBox x:Name="passwordTextBox" PasswordChar="*"  HorizontalAlignment="Left" Height="33" Margin="281,247,0,0" VerticalAlignment="Top" Width="139" FontWeight="Bold" FontSize="24"/>
         <Button Content="אני רוצה ליצור משתמש חדש" Style="{StaticResource round}"  HorizontalAlignment="Left" Margin="284,300,0,0" VerticalAlignment="Top" Width="236" Height="30" Click="Button_Click" FontFamily="Dubai Medium"/>
         <TextBox x:Name="passwordTextBox2" Visibility="Hidden"   HorizontalAlignment="Left" Height="33" Margin="281,247,0,0" VerticalAlignment="Top" Width="139"/>
         <Button Content="" Name="closeEyeBotton" Visibility="Visible" HorizontalAlignment="Left" Height="33" Margin="394,247,0,0" VerticalAlignment="Top" Width="26" Click="passwordEye_Click_" BorderBrush="{x:Null}" Foreground="{x:Null}">
