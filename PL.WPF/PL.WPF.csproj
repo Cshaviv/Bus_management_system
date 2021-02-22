@@ -290,5 +290,14 @@
   <ItemGroup>
     <Resource Include="מיקום.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus-logo-abstract_7315-17.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="busLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bus.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

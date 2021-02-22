@@ -200,7 +200,7 @@ namespace DL
                         ).FirstOrDefault();
 
             if (adjStation == null)
-                throw new Exception();
+                throw new DO.BadInputException(code1, "מצטערים חסר מידע על תחנה זו");
             //throw new DO.BadAdjacentStationsException(stationCode1, stationCode2, "The adjacent stations does not exist");
 
             return adjStation;

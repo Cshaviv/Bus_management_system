@@ -35,6 +35,7 @@ namespace PL.WPF
         public SimulateOneStationWindow(IBL _bl, Station _stat)
         {
             InitializeComponent();
+            Closing += Window_Closing;
             BL = _bl;
             station = _stat;
            // gridOneStation.DataContext =station;
@@ -51,8 +52,8 @@ namespace PL.WPF
             isTimerRun = true;
 
             //הוספנו מעצמינו
-          //  LBLineTiming.DataContext = lineTimingList;
-            this.Closing += Window_Closing;
+            //  LBLineTiming.DataContext = lineTimingList;
+            
 
             timerworker.RunWorkerAsync();
 
@@ -71,7 +72,7 @@ namespace PL.WPF
             this.timerTextBlock.Text = timmerText;
             //לממש את הפונקציה!
             nisayon.ItemsSource = BL.GetLineTimingPerStation(station, tsCurrentTime).ToList();
-            lineTimingList = new ObservableCollection<BO.LineTiming>(BL.GetLineTimingPerStation(station, tsCurrentTime)); //התצוגה תתעדכן כי זה אובזרוובל קוללקשיין
+            //lineTimingList = new ObservableCollection<BO.LineTiming>(BL.GetLineTimingPerStation(station, tsCurrentTime)); //התצוגה תתעדכן כי זה אובזרוובל קוללקשיין
         }
          
         private void Worker_DoWork(object sender, DoWorkEventArgs e)

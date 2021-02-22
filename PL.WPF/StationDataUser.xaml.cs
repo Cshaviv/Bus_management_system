@@ -57,6 +57,7 @@ namespace PL.WPF
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             SimulateOneStationWindow win = new SimulateOneStationWindow(BL,stat);
+            //win.Closing += Win_Closing;
             win.ShowDialog();
         }
     }

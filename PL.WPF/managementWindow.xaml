@@ -71,7 +71,7 @@
                     <ColumnDefinition Width="95" />
                     <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
-                <Image HorizontalAlignment="Left" Height="22"  Grid.Row="0" VerticalAlignment="Top" Width="20" Source="מיקום.png" RenderTransformOrigin="0.1,0.1"/>
+                <Image HorizontalAlignment="Left" Height="22"  Grid.Row="0" VerticalAlignment="Top" Width="22" Source="bus.png" RenderTransformOrigin="0.1,0.1"/>
                 <!--<Rectangle Grid.Column="8"  Name="IsDeletedRectangle" Fill="{Binding Path=IsDeleted,  Converter={StaticResource BConverter}}" Width="10" Height="10"/>-->
                 <!--<TextBlock Grid.Column="1" Visibility="Visible" Text="מספר רישוי:" FlowDirection="RightToLeft" HorizontalAlignment="Right" FontFamily="Dubai Medium" FontSize="16" FontWeight="Bold" />-->
                 <TextBlock Grid.Column="1" Text="{Binding}" FontFamily="Franklin Gothic Demi" FontSize="16"/>
