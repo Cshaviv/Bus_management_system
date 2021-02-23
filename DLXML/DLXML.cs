@@ -784,8 +784,8 @@ namespace DL
             if (ListLineStations.FirstOrDefault(sil => (sil.StationCode == statCode && sil.LineId == lineID)) != null)
                 throw new DO.BadStationCodeException(statCode, "התחנה כבר קיימת בקו זה");
             DO.LineStation lineStation = new DO.LineStation() { StationCode = statCode, LineId = lineID, LineStationIndex = index };
-            foreach (DO.LineStation lineStat in GetAllLineStationsBy(s => s.LineId == lineID))
-                if (lineStat.LineStationIndex >= index)
+            foreach (DO.LineStation lineStat in ListLineStations)
+                if (lineStat.LineStationIndex >= index&&lineStat.LineId==lineID)
                     lineStat.LineStationIndex++;
             ListLineStations.Add(lineStation);
             XMLTools.SaveListToXMLSerializer(ListLineStations, lineStationsPath);

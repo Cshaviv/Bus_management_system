@@ -724,7 +724,7 @@ namespace BL
                         dl.AddAdjacentStations(adj);
                     }
                 }
-                else if (index >= GetLine(lineID).Stations.Count - 1)
+                else if (index >= GetLine(lineID).Stations.Count )
                 {
                     if (!dl.ExistAdjacentStations(prevStatCode, stationCode))
                     {
