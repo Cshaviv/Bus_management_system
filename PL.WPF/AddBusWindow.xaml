@@ -8,6 +8,23 @@
         mc:Ignorable="d"
         Title="AddBusWindow" Height="388" Width="490" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        <Style x:Key="round" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid" >
+                            <Border x:Name="border" CornerRadius="15" BorderBrush="Gray" Background="LightGray" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
     </Window.Resources>
     <Grid Background="#FFF0F0F0">
@@ -41,7 +58,7 @@
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="0,2.667,-70.667,5.333" HorizontalAlignment="Right" Grid.Column="1" Content="ק''מ" Width="125" FontFamily="Dubai Medium"/>
             <TextBox x:Name="totalKmTextBox" KeyDown="keyCheck" Width="120" VerticalAlignment="Center" Text="{Binding TotalKm, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="0"/>
         </Grid>
-        <Button Content="הוספה" HorizontalAlignment="Left" Margin="159,276,0,0" VerticalAlignment="Top" Width="168" Height="44"   Click="AddBus_Click" IsDefault="True" FontFamily="Dubai Medium" FontSize="14"/>
+        <Button Content="הוספה" Style="{StaticResource round}" HorizontalAlignment="Left" Margin="159,276,0,0" VerticalAlignment="Top" Width="168" Height="44"   Click="AddBus_Click" IsDefault="True" FontFamily="Dubai Medium" FontSize="14"/>
 
     </Grid>
 </Window>

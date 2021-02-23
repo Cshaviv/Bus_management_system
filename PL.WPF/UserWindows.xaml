@@ -7,7 +7,23 @@
         mc:Ignorable="d"
         Title="UserWindows" Height="450" Width="959.088">
     <Window.Resources>
+        <Style x:Key="round" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid" >
+                            <Border x:Name="border" CornerRadius="15" BorderBrush="Gray" Background="LightGray" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
 
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <local:BrushColorConverter x:Key="BConverter"></local:BrushColorConverter>
 
         <DataTemplate x:Key="LineTemplate"
@@ -114,12 +130,12 @@
         <!--<TextBlock HorizontalAlignment="Left" Margin="870,3,-12,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="91" FontSize="10"><Run FlowDirection="RightToLeft" Text="הנך מחובר בתור "/></TextBlock>-->
         <!--<TextBlock  HorizontalAlignment="Center" Margin="34,65,0,0"   TextWrapping="Wrap" Text="{Binding Path=UserName}" VerticalAlignment="Top"/>-->
         <Button Content="התנתקות" HorizontalAlignment="Left" Margin="849,264,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Row="1" Background="Gray"/>
-        <Button x:Name="HistoryBus" Content="היסטוריה" HorizontalAlignment="Left"  Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryBusClick" FontWeight="Bold"/>
-        <Button x:Name="availableBus" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="availableBusClick" FontWeight="Bold"/>
-        <Button x:Name="HistoryLine" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryLineClick" FontWeight="Bold"/>
-        <Button x:Name="availableLine" Content="קווים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="availableLineClick" FontWeight="Bold"/>
-        <Button x:Name="HistoryStat" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryStatClick" FontWeight="Bold"/>
-        <Button x:Name="availableStat" Content="תחנות זמינות" HorizontalAlignment="Left" Visibility="Hidden" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="availableStatClick" FontWeight="Bold"/>
+        <Button x:Name="HistoryBus" Style="{StaticResource round}" Content="היסטוריה" HorizontalAlignment="Left"  Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryBusClick" FontWeight="Bold"/>
+        <Button x:Name="availableBus"  Style="{StaticResource round}" Content="אוטובוסים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="availableBusClick" FontWeight="Bold"/>
+        <Button x:Name="HistoryLine" Style="{StaticResource round}" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left"  Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryLineClick" FontWeight="Bold"/>
+        <Button x:Name="availableLine" Style="{StaticResource round}" Content="קווים זמינים" HorizontalAlignment="Left" Visibility="Hidden" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="availableLineClick" FontWeight="Bold"/>
+        <Button x:Name="HistoryStat" Style="{StaticResource round}" Visibility="Hidden" Content="היסטוריה" HorizontalAlignment="Left" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryStatClick" FontWeight="Bold"/>
+        <Button x:Name="availableStat" Style="{StaticResource round}" Content="תחנות זמינות" HorizontalAlignment="Left" Visibility="Hidden" Margin="614,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="availableStatClick" FontWeight="Bold"/>
         <ComboBox Name="sarchLineInArea" HorizontalAlignment="Left" Margin="17,2,0,0" Background="Yellow" VerticalAlignment="Top" Width="120" SelectionChanged="areaChangeClick"   />
         <Label Name="areaLabel" Content="חיפוש לפי איזור" HorizontalAlignment="Left" Height="25" Margin="135,2,0,0" VerticalAlignment="Top" Width="114"/>
         <Ellipse HorizontalAlignment="Left" Height="41" Margin="863,22,0,0" VerticalAlignment="Top" Width="41">

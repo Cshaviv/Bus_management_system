@@ -8,6 +8,23 @@
         mc:Ignorable="d"
         Title="AddNewStation" Height="388" Width="490"  Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        <Style x:Key="round" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid" >
+                            <Border x:Name="border" CornerRadius="15" BorderBrush="Gray" Background="LightGray" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
     </Window.Resources>
     <Grid Background="#FFF0F0F0">
@@ -31,7 +48,7 @@
             <Label VerticalAlignment="Bottom" Grid.Row="2" Margin="15.667,0,0,6" HorizontalAlignment="Left" Grid.Column="1" Content=":שם תחנה" FontFamily="Dubai Medium" FontWeight="Bold"/>
             <TextBox x:Name="nameTextBox" Width="250" VerticalAlignment="Center" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3,5,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="0" FontFamily="Dubai Light"/>
         </Grid>
-        <Button Name="addButton" Content="הוספה" HorizontalAlignment="Left" Margin="130,228,0,0" VerticalAlignment="Top" Width="200" Height="38" Click="addButton_click" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
+        <Button Name="addButton" Style="{StaticResource round}" Content="הוספה" HorizontalAlignment="Left" Margin="130,228,0,0" VerticalAlignment="Top" Width="200" Height="38" Click="addButton_click" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
         <CheckBox x:Name="DisabledAccess" Content="תחנת נכים" HorizontalAlignment="Left" FlowDirection="RightToLeft" Margin="142,157,0,0" VerticalAlignment="Top" Height="20" Width="140"/>
 
     </Grid>

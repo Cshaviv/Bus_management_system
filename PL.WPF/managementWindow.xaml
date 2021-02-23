@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="managementWindow" Height="450" Width="959.088">
     <Window.Resources>
+        <Style x:Key="round" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid" >
+                            <Border x:Name="border" CornerRadius="15" BorderBrush="Gray" Background="LightGray" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <local:BrushColorConverter x:Key="BConverter"></local:BrushColorConverter>
         <DataTemplate x:Key="LineTemplate"
@@ -116,11 +133,11 @@
             <Button x:Name="Line" Content="קווים" HorizontalAlignment="Left" Margin="0,178,0,0" VerticalAlignment="Top" Width="137" Height="76" Click="Line_Click" Background="Gray" FontWeight="Bold" FontFamily="Dubai Medium" BorderBrush="{x:Null}" FontSize="20"/>
             <Button x:Name="Station" Content="תחנות" HorizontalAlignment="Left" Margin="0,257,0,0" VerticalAlignment="Top" Width="137" Height="78" Click="Station_Click" Background="Gray" FontFamily="Dubai Medium" FontWeight="Bold" BorderBrush="{x:Null}" FontSize="20"/>
         </Grid>
-        <Button x:Name="AddBus" Content="הוספת אוטובוס" HorizontalAlignment="Left" Visibility="Visible"  Margin="483,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="AddBus_Click" FontWeight="Bold"/>
-        <Button x:Name="AddLine" Content="הוספת קו" HorizontalAlignment="Left" Visibility="Hidden"  Margin="483,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="AddLine_Click" FontWeight="Bold"/>
-        <Button x:Name="AddStation" Content="הוספת תחנה" HorizontalAlignment="Left" Visibility="Hidden" Margin="483,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="AddStation_Click" FontWeight="Bold"/>
-        <Button x:Name="History" Content="היסטוריה" HorizontalAlignment="Left"  Margin="602,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryClick" FontWeight="Bold"/>
-        <Button x:Name="available" Content="תחנות זמינות" HorizontalAlignment="Left" Visibility="Hidden" Margin="602,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="AvailableClick" FontWeight="Bold"/>
+        <Button x:Name="AddBus" Style="{StaticResource round}" Content="הוספת אוטובוס" HorizontalAlignment="Left" Visibility="Visible"  Margin="483,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="AddBus_Click" FontWeight="Bold"/>
+        <Button x:Name="AddLine" Style="{StaticResource round}" Content="הוספת קו" HorizontalAlignment="Left" Visibility="Hidden"  Margin="483,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="AddLine_Click" FontWeight="Bold"/>
+        <Button x:Name="AddStation" Style="{StaticResource round}" Content="הוספת תחנה" HorizontalAlignment="Left" Visibility="Hidden" Margin="483,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="AddStation_Click" FontWeight="Bold"/>
+        <Button x:Name="History" Style="{StaticResource round}" Content="היסטוריה" HorizontalAlignment="Left"  Margin="602,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="HistoryClick" FontWeight="Bold"/>
+        <Button x:Name="available" Style="{StaticResource round}" Content="תחנות זמינות" HorizontalAlignment="Left" Visibility="Hidden" Margin="602,240,0,0" Grid.Row="1" VerticalAlignment="Top" Width="94" Height="39" Click="AvailableClick" FontWeight="Bold"/>
         <ComboBox Name="sarchLineInArea" HorizontalAlignment="Left" Margin="17,2,0,0" Background="Yellow" VerticalAlignment="Top" Width="120" SelectionChanged="areaChangeClick"    >
 
         </ComboBox>

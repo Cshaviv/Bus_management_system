@@ -6,6 +6,25 @@
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
         Title="AddStationInLineWin" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="round" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid" >
+                            <Border x:Name="border" CornerRadius="15" BorderBrush="Gray"  BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Background="#FFF0F0F0">
         <TextBlock HorizontalAlignment="Left" Margin="505,157,0,0" FlowDirection="RightToLeft" TextWrapping="Wrap" Text="בחר את התחנה שאתה רוצה להוסיף" VerticalAlignment="Top" Height="28" Width="268" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="16"/>
         <ComboBox x:Name="stationComboBox" HorizontalAlignment="Left" Margin="22,151,0,0" VerticalAlignment="Top" Width="472" Height="39"/>
@@ -17,9 +36,9 @@
                 <RadioButton x:Name ="rbLast" Content=" לסוף"  Height="24" Margin="0,0,314,0" Checked="rbLast_Checked" FontWeight="Bold" FontStyle="Normal" FontFamily="Dubai Medium"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="AddFirst" Content="הוספה" Visibility="Hidden" Click="AddFirstClick" HorizontalAlignment="Left" Margin="77,355,0,0" VerticalAlignment="Top" Width="172" Height="50" FontFamily="Dubai Medium" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="AddLast" Content="הוספה" Visibility="Hidden" Click="AddLastClick"  HorizontalAlignment="Left" Margin="77,355,0,0" VerticalAlignment="Top" Width="172" Height="50" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
-        <Button x:Name="AddMiddle" Content=" הוספה" Visibility="Hidden" Click="AddMiddleClick"  HorizontalAlignment="Left" Margin="77,355,0,0" VerticalAlignment="Top" Width="172" Height="50" FontFamily="Dubai Medium" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="AddFirst" Style="{StaticResource round}" Content="הוספה" Visibility="Hidden" Click="AddFirstClick" HorizontalAlignment="Left" Margin="77,355,0,0" VerticalAlignment="Top" Width="172" Height="50" FontFamily="Dubai Medium" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="AddLast" Style="{StaticResource round}" Content="הוספה" Visibility="Hidden" Click="AddLastClick"  HorizontalAlignment="Left" Margin="77,355,0,0" VerticalAlignment="Top" Width="172" Height="50" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
+        <Button x:Name="AddMiddle" Style="{StaticResource round}" Content=" הוספה" Visibility="Hidden" Click="AddMiddleClick"  HorizontalAlignment="Left" Margin="77,355,0,0" VerticalAlignment="Top" Width="172" Height="50" FontFamily="Dubai Medium" FontSize="14" FontWeight="Bold"/>
         <TextBlock x:Name="PrevStatTextBlock" Visibility="Hidden"  HorizontalAlignment="Left" FlowDirection="RightToLeft"  Margin="510,223,0,0" TextWrapping="Wrap" Text="בחר לאחר איזה תחנה תרצה להוסיף" VerticalAlignment="Top" FontSize="16" Height="28" Width="264" FontFamily="Dubai Medium"/>
         <ComboBox x:Name="PrevstationComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="22,219,0,0" VerticalAlignment="Top"  Width="472" Height="39" SelectionChanged="PrevstationComboBox_SelectionChanged"/>
         <TextBlock x:Name="NextDistanceTextBlock" Visibility="Hidden" HorizontalAlignment="Left" Margin="632,286,0,0" TextWrapping="Wrap" Text="מרחק לתחנה הבאה" VerticalAlignment="Top" Height="28" Width="114" FontFamily="Dubai Medium"/>

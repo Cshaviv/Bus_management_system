@@ -8,6 +8,23 @@
         mc:Ignorable="d"
         Title="AddNewLine" Height="388" Width="490"  Loaded="Window_Loaded" FontFamily="Dubai Medium" FontWeight="Bold">
     <Window.Resources>
+        <Style x:Key="round" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid" >
+                            <Border x:Name="border" CornerRadius="15" BorderBrush="Gray" Background="LightGray" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
     </Window.Resources>
     <Grid Background="#FFF0F0F0" DataContext="{StaticResource lineViewSource}" Margin="0,0,-2.667,-0.333">
@@ -64,6 +81,6 @@
             <Label  Name="distanceLabel" Content=":מרחק בין תחנות"  HorizontalAlignment="Left" Margin="125,24.667,0,-41.333" Grid.Row="8" VerticalAlignment="Center" Grid.ColumnSpan="2" FontWeight="Bold"/>
             <TextBox x:Name="distanceTextBox" KeyDown="keyCheck" Grid.Column="0"  HorizontalAlignment="Left" Height="24" Margin="3,39,0,-54" Grid.Row="6" VerticalAlignment="Center" Width="120" FontFamily="Dubai Light"/>
         </Grid>
-        <Button x:Name="AddLine" Content="הוספה" Click="AddLineClick" HorizontalAlignment="Left" Margin="162,298,0,0" VerticalAlignment="Top" Width="158" Height="29" FontWeight="Bold" FontSize="14"/>
+        <Button x:Name="AddLine" Style="{StaticResource round}" Content="הוספה" Click="AddLineClick" HorizontalAlignment="Left" Margin="162,298,0,0" VerticalAlignment="Top" Width="158" Height="29" FontWeight="Bold" FontSize="14"/>
     </Grid>
 </Window>

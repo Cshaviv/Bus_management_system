@@ -6,8 +6,27 @@
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
         Title="UpdateDistanceAndTime" Height="450" Width="580">
+    <Window.Resources>
+        <Style x:Key="round" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid" >
+                            <Border x:Name="border" CornerRadius="15" BorderBrush="Gray"  BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Background="#FFF0F0F0" >
-        <Button x:Name="save" Content="שמירת שינויים" Click="Save_Click" HorizontalAlignment="Left" Margin="180,304,0,0" VerticalAlignment="Top" Width="197" Height="58" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
+        <Button x:Name="save" Style="{StaticResource round}" Content="שמירת שינויים" Click="Save_Click" HorizontalAlignment="Left" Margin="180,304,0,0" VerticalAlignment="Top" Width="197" Height="58" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="14"/>
         <TextBox x:Name="TimeTextBox" KeyDown="keyCheck" HorizontalAlignment="Left" Height="42" Margin="135,157,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153"/>
         <TextBox x:Name="DistanceTextBox" KeyDown="keyCheck" HorizontalAlignment="Left" Height="42" Margin="135,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153"/>
         <TextBlock Name="TimeTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text=": (זמן (בדקות" VerticalAlignment="Top" Margin="359,167,0,0" Height="29" Width="117" FontFamily="Dubai Medium" FontWeight="Bold" FontSize="18"/>

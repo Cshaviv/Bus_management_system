@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
         Title="BusDataWindows" Height="388" Width="526">
-    <Grid Background="#FFF0F0F0" Margin="-170,0,-1.667,-0.333" HorizontalAlignment="Right" Width="655">
+    <Grid Background="#FFF0F0F0" Margin="-113,0,-2,0" HorizontalAlignment="Right" Width="633">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="621*"/>
             <ColumnDefinition Width="13*"/>
