@@ -213,9 +213,8 @@ namespace PL.WPF
                     MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
-                else {
-
-                    if (IsExist1 == true && IsExist2 == false)
+                else{
+                if (IsExist1 == true && IsExist2 == false)
                     {
                         distancePrev = 0;
                         timePrev = TimeSpan.FromMinutes(0);
