@@ -5,33 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="AddLineTrip" Height="328.74" Width="559.787" Background="#FFF0F0F0">
-    <!--<Window.Resources>
-        <DataTemplate x:Key="TimeTemplate" >
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"  />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="90" />
-                <ColumnDefinition Width="40 " />
-
-
-            </Grid.ColumnDefinitions>
-
-                <TextBlock x:Name="timeTextBlock" Grid.Column="0"  FlowDirection="RightToLeft" HorizontalAlignment="Left" FontFamily="Franklin Gothic Demi"  FontSize="16" RenderTransformOrigin="1,1" FontWeight="Bold"/>
-                <Button x:Name="firstStat" Content="מחיקה" Grid.Column="2"  FontFamily="Dubai Light"  FontSize="16" />
-
-        </Grid>
-    </DataTemplate>
-    </Window.Resources>-->
-
+        Title="AddLineTrip" Height="328.74" Width="528.787" Background="#FFF0F0F0">
+ 
     <Grid>
         <Button  Content="add" HorizontalAlignment="Left" Margin="64,135,0,0" VerticalAlignment="Top" Width="199" Height="46" Click="Add_Click"/>
         <Button  Content="delete" HorizontalAlignment="Left" Margin="66,197,0,0" VerticalAlignment="Top" Width="197" Height="44" Click="Delete_Click" />
-        <ComboBox Name="HourCombo" HorizontalAlignment="Left" Margin="96,73,0,0" VerticalAlignment="Top" Width="52" Height="40"/>
-        <ComboBox Name="MinutesCombo" HorizontalAlignment="Left" Margin="176,73,0,0" VerticalAlignment="Top" Width="52" Height="40"/>
-        <ListBox x:Name="TimeListBox"  HorizontalAlignment="Left" ItemsSource="{Binding}"  Height="300" VerticalAlignment="Top" Width="161" Margin="367,1,0,-1.667"/>
+        <ComboBox Name="HourCombo" HorizontalAlignment="Left" Margin="96,73,0,0" FontFamily="Franklin Gothic Demi" VerticalAlignment="Top" Width="52" Height="40" FontSize="16" FontWeight="Bold"/>
+        <ComboBox Name="MinutesCombo" HorizontalAlignment="Left" Margin="176,73,0,0"  FontFamily="Franklin Gothic Demi" VerticalAlignment="Top" Width="52" Height="40" FontSize="16" FontWeight="Bold"/>
+        <ListBox x:Name="TimeListBox"  HorizontalAlignment="Left" FontFamily="Franklin Gothic Demi" ItemsSource="{Binding}"  Height="300" VerticalAlignment="Top" Width="144" Margin="348,1,0,-1.667" FontSize="16" FontWeight="Bold"/>
         <Label Content="בחר את השעה שתרצה למחוק/להוסיף" HorizontalAlignment="Left" Margin="34,23,0,0" VerticalAlignment="Top" Height="29" Width="253" FontSize="14" FontWeight="Bold"/>
         <Label Content=":" HorizontalAlignment="Left" Margin="153,58,0,0" VerticalAlignment="Top" Height="75" Width="18" FontSize="36"/>
 
