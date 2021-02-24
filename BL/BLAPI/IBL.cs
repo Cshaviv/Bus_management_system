@@ -71,6 +71,7 @@ namespace BLAPI
 
         #endregion
 
+        IEnumerable<TimeSpan> GetAllLineTrip(int currentLineid);
         void DeleteDepTime(int lineId, TimeSpan dep);
         void AddDepTime(int lineId, TimeSpan dep);
 

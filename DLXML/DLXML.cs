@@ -898,7 +898,7 @@ namespace DL
                                   select lt).FirstOrDefault();
 
             if (lineTrip1 != null)
-                throw new BadLineTripException(lineTrip.LineId);
+                throw new BadLineTripException(lineTrip.LineId,"שעת יציאה זו כבר קיים במערכת");
 
             XElement lineTripElem = new XElement("LineTrip",
                                     new XElement("LineId", lineTrip.LineId.ToString()),
@@ -947,8 +947,8 @@ namespace DL
                 XMLTools.SaveListToXMLElement(lineTripsRootElem, lineTripsPath);
             }
             else
-                throw new Exception();
-                //throw new BadLineTripException(lineId, time, "The line trip does not exist");
+                //throw new Exception();
+                throw new BadLineTripException(lineId, "שעת יציאה זו לא קיימת במערכת");
         }
         //public void DeleteLineTrip(int lineTripId)
         //{
@@ -1014,27 +1014,7 @@ namespace DL
         //    throw new NotImplementedException();
         //}
 
-        //public void UpdateLineTrip(int lineTripId, Action<LineTrip> update)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-
-
-        //public IEnumerable<Bus> GetAllDeleteBuses()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public IEnumerable<Station> GetAllDeletedStations()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public IEnumerable<Line> GetAllDeletedLines()
-        //{
-        //    throw new NotImplementedException();
-        //}
+       
 
         #endregion
     }

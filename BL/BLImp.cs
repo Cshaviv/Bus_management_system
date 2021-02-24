@@ -904,14 +904,16 @@ namespace BL
                 throw new BO.BadLineTripException(ex.Message);
             }
         }
-     //public void GetAllLineTrip()
-        //{
-
-        //}
+        public IEnumerable<TimeSpan> GetAllLineTrip(int currentLineid)
+        {
+            List<TimeSpan> listLines = (from l in dl.GetAllLineTripsBy(trip => trip.LineId == currentLineid && trip.IsDeleted == false).ToList()
+                                        select l.StartAt).ToList();
+            return listLines.OrderBy(lt => lt.Ticks).ToList();
+        }
         #endregion
 
         #region Trip
-        
+
         private int IsStationFound(BO.Line line, int stationCode)
         {
             foreach (BO.StationInLine stat in line.Stations)

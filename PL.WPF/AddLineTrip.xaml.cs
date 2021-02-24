@@ -30,9 +30,61 @@ namespace PL.WPF
             InitializeComponent();
             bl = _bl;
             line = _line;
+            TimeListBox.ItemsSource = bl.GetAllLineTrip(line.LineId).ToList();
             Hours = new List<string>();
             Minutes = new List<string>();
+            HourList();
+            MinutesList();
+            HourCombo.ItemsSource = Hours;
+            HourCombo.Text = Hours[0];
+            MinutesCombo.ItemsSource = Minutes;
+            MinutesCombo.Text = Minutes[0];
+        }
+        private void RefreshTimeListBox()
+        {
+            TimeListBox.ItemsSource = bl.GetAllLineTrip(line.LineId).ToList();
+        }
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string hour = HourCombo.SelectedItem.ToString();
+                string minutes = MinutesCombo.SelectedItem.ToString();
+                TimeSpan lineTime = new TimeSpan(Int32.Parse(hour), Int32.Parse(minutes), 00);
+                //List<TimeSpan> t = bl.GetAllLineTrip(line.LineId).ToList();
+                bl.AddDepTime(line.LineId, lineTime);
+                MessageBox.Show("הפעולה בוצעה בהצלחה", "הוספה", MessageBoxButton.OK, MessageBoxImage.Information);
+                RefreshTimeListBox();
+            }
+            catch(BO.BadLineTripException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
 
+
+        }    
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string hour = HourCombo.SelectedItem.ToString();
+                string minutes = MinutesCombo.SelectedItem.ToString();
+                TimeSpan lineTime = new TimeSpan(Int32.Parse(hour), Int32.Parse(minutes), 00);
+                bl.DeleteDepTime(line.LineId, lineTime);
+                MessageBox.Show("הפעולה בוצעה בהצלחה", "הוספה", MessageBoxButton.OK, MessageBoxImage.Information);
+                RefreshTimeListBox();
+            }
+            catch (BO.BadLineTripException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+
+        }
+        private void HourList()
+        {
             for (int i = 0; i <= 9; i++)
             {
                 Hours.Add("0" + i);
@@ -41,7 +93,9 @@ namespace PL.WPF
             {
                 Hours.Add(i.ToString());
             }
-
+        }
+        private void MinutesList()
+        {
             for (int i = 0; i <= 9; i++)
             {
                 Minutes.Add("0" + i);
@@ -50,21 +104,6 @@ namespace PL.WPF
             {
                 Minutes.Add(i.ToString());
             }
-            HourCombo.ItemsSource = Hours;
-            HourCombo.Text = Hours[0];
-            MinutesCombo.ItemsSource = Minutes;
-            MinutesCombo.Text = Minutes[0];
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string hour = HourCombo.SelectedItem.ToString();
-            string minutes = MinutesCombo.SelectedItem.ToString();
-            TimeSpan lineTime = new TimeSpan(Int32.Parse(hour), Int32.Parse(minutes), 00);
-            bl.AddDepTime(line.LineId, lineTime);
-            nmnm.Text = lineTime.ToString();
-            MessageBox.Show("לjjjjjjj", "Empty", MessageBoxButton.OK, MessageBoxImage.Information);
-            //Close();
         }
     }
 }

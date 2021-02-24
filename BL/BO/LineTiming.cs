@@ -13,7 +13,7 @@ namespace BO
         public int LineNum { get; set; }
         public string DestinationStation { get; set; }
         public string Stringtimes { get; set; }
-        
+
         //public override string ToString()
         //{
         //    return DestinationStation + "  " + Stringtimes + "   " + LineNum;
