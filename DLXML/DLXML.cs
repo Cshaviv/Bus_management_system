@@ -286,7 +286,20 @@ namespace DL
         }
         public void UpdateTandDinAdjacentStation(DO.AdjacentStations adjacentStations)
         {
-            ////
+            XElement adjStationssRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
+            XElement adjStat = (from adj in adjStationssRootElem.Elements()
+                                where int.Parse(adj.Element("StationCode1").Value) == adjacentStations.StationCode1 && int.Parse(adj.Element("StationCode2").Value) == adjacentStations.StationCode2 && bool.Parse(adj.Element("IsDeleted").Value) == false
+                                select adj).FirstOrDefault();
+
+            if (adjacentStations != null)
+            {
+                adjStat.Element("Distance").Value = adjacentStations.Distance.ToString();
+                adjStat.Element("Time").Value = adjacentStations.Time.ToString();
+                XMLTools.SaveListToXMLElement(adjStationssRootElem, adjacentStationsPath);
+            }
+            else
+                AddAdjacentStations(adjacentStations);
+            
         }
         #endregion
 

@@ -195,6 +195,7 @@ namespace PL.WPF
             }
         }
         private void AddMiddleClick(object sender, RoutedEventArgs e)
+        
         {
             try
             {
