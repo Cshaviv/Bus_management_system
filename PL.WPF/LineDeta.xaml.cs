@@ -164,5 +164,11 @@ namespace PL.WPF
             win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }
+
+        private void LineTrip_Click(object sender, RoutedEventArgs e)
+        {
+            AddLineTrip win = new AddLineTrip(bl,line);
+            win.ShowDialog();
+        }
     }
 }

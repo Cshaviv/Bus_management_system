@@ -896,14 +896,18 @@ namespace BL
         {
             try
             {
-                dl.AddLineTrip(new DO.LineTrip() { LineId = lineId, StartAt = dep, IsDeleted = false });
+                DO.LineTrip line1= (new DO.LineTrip() { LineId = lineId, StartAt = dep, IsDeleted = false });
+                dl.AddLineTrip(line1);
             }
             catch (DO.BadLineTripException ex)
             {
                 throw new BO.BadLineTripException(ex.Message);
             }
         }
+     //public void GetAllLineTrip()
+        //{
 
+        //}
         #endregion
 
         #region Trip
