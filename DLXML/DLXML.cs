@@ -893,17 +893,16 @@ namespace DL
         {
             XElement lineTripsRootElem = XMLTools.LoadListFromXMLElement(lineTripsPath);
 
-            XElement line_Trip = (from lTrip in lineTripsRootElem.Elements()
-                                  where int.Parse(lTrip.Element("LineId").Value) == lineTrip.LineId && TimeSpan.Parse(lTrip.Element("StartAt").Value) == lineTrip.StartAt && bool.Parse(lTrip.Element("IsDeleted").Value) == false
-                                  select lTrip).FirstOrDefault();
+            XElement lineTrip1 = (from lt in lineTripsRootElem.Elements()
+                                  where int.Parse(lt.Element("LineId").Value) == lineTrip.LineId && TimeSpan.Parse(lt.Element("StartAt").Value) == lineTrip.StartAt && bool.Parse(lt.Element("IsDeleted").Value) == false
+                                  select lt).FirstOrDefault();
 
-            if (line_Trip != null)
-                throw new Exception();
-                //throw new BadLineTripException(lineTrip.LineId, lineTrip.StartAt, "This user name is already exist");
+            if (lineTrip1 != null)
+                throw new BadLineTripException(lineTrip.LineId,"שעת יציאה זו כבר קיים במערכת");
 
             XElement lineTripElem = new XElement("LineTrip",
-                                    new XElement("LineId", lineTrip.LineId).ToString(),
-                                    new XElement("StartAt", lineTrip.StartAt).ToString(),
+                                    new XElement("LineId", lineTrip.LineId.ToString()),
+                                    new XElement("StartAt", lineTrip.StartAt.ToString()),
                                     new XElement("IsDeleted", lineTrip.IsDeleted.ToString()));
             lineTripsRootElem.Add(lineTripElem);
             XMLTools.SaveListToXMLElement(lineTripsRootElem, lineTripsPath);
@@ -948,8 +947,8 @@ namespace DL
                 XMLTools.SaveListToXMLElement(lineTripsRootElem, lineTripsPath);
             }
             else
-                throw new Exception();
-                //throw new BadLineTripException(lineId, time, "The line trip does not exist");
+                //throw new Exception();
+                throw new BadLineTripException(lineId, "שעת יציאה זו לא קיימת במערכת");
         }
         //public void DeleteLineTrip(int lineTripId)
         //{
@@ -1015,27 +1014,7 @@ namespace DL
         //    throw new NotImplementedException();
         //}
 
-        //public void UpdateLineTrip(int lineTripId, Action<LineTrip> update)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-
-
-        //public IEnumerable<Bus> GetAllDeleteBuses()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public IEnumerable<Station> GetAllDeletedStations()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public IEnumerable<Line> GetAllDeletedLines()
-        //{
-        //    throw new NotImplementedException();
-        //}
+       
 
         #endregion
     }

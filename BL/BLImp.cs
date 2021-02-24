@@ -274,6 +274,8 @@ namespace BL
             lineBo.CopyPropertiesTo(lineDo);
             //lineDo.LineId = DO.Config.LineId++;
             lineDo.LineId = dl.GetNewLineId();
+            lineBo.Stations[0].StationCode = lineBo.FirstStation;
+            lineBo.Stations[1].StationCode = lineBo.LastStation;
             int stationCode1 = lineBo.Stations[0].StationCode;//stationCode of the first station
             int stationCode2 = lineBo.Stations[1].StationCode;//station Code of the last station
             lineDo.FirstStation = stationCode1;
@@ -896,18 +898,24 @@ namespace BL
         {
             try
             {
-                dl.AddLineTrip(new DO.LineTrip() { LineId = lineId, StartAt = dep, IsDeleted = false });
+                DO.LineTrip line1= (new DO.LineTrip() { LineId = lineId, StartAt = dep, IsDeleted = false });
+                dl.AddLineTrip(line1);
             }
             catch (DO.BadLineTripException ex)
             {
                 throw new BO.BadLineTripException(ex.Message);
             }
         }
-
+        public IEnumerable<TimeSpan> GetAllLineTrip(int currentLineid)
+        {
+            List<TimeSpan> listLines = (from l in dl.GetAllLineTripsBy(trip => trip.LineId == currentLineid && trip.IsDeleted == false).ToList()
+                                        select l.StartAt).ToList();
+            return listLines.OrderBy(lt => lt.Ticks).ToList();
+        }
         #endregion
 
         #region Trip
-        
+
         private int IsStationFound(BO.Line line, int stationCode)
         {
             foreach (BO.StationInLine stat in line.Stations)

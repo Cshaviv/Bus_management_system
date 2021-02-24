@@ -66,7 +66,7 @@ namespace BO
 
         public BadLineTripException(string message) : base(message) { }
 
-        public override string ToString() => base.ToString() + $", bad Line ID number: {idLine}";
+        //public override string ToString() => base.ToString() + $", bad Line ID number: {idLine}";
     }
 }
 
