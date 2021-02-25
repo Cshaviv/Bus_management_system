@@ -702,18 +702,6 @@ namespace BL
         #endregion
 
         #region StationInLine
-        /// <summary>
-        /// A function that calls to another function in the Dl that add stationInLine to line in the system
-        /// </summary>
-        /// <param name="stationCode">code of station</param>
-        /// <param name="lineID">line id</param>
-        /// <param name="index">index-The index to which you want to add the station</param>
-        /// <param name="nextStatCode">code of next station</param>
-        /// <param name="prevStatCode">code of prev station</param>
-        /// <param name="distanceNext"><distance to next station/param>
-        /// <param name="timeNext">time to next station</param>
-        /// <param name="distancePrev">distance from prev station</param>
-        /// <param name="timePrev">time from prev station</param>
         public void AddStationInLine(int stationCode, int lineID, int index, int nextStatCode, int prevStatCode, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
         {
             try

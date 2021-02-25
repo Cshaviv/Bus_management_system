@@ -20,7 +20,6 @@ namespace DLAPI
         IEnumerable<DO.Bus> GetAllBuses();
         IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate);
         IEnumerable<DO.Bus> GetAllDeleteBuses();
-
         DO.Bus GetBus(int licenseNumber);
         void AddBus(DO.Bus bus);
         void UpdateBus(DO.Bus bus);
@@ -47,6 +46,7 @@ namespace DLAPI
         void UpdateStation(DO.Station station);
         void UpdateStation(int code, Action<DO.Station> update); //method that knows to updt specific fields in Station
         void DeleteStation(int code);
+
         #endregion 
         #region Line
         int GetNewLineId();
@@ -61,6 +61,8 @@ namespace DLAPI
         void UpdateLine(DO.Line line);
         void UpdateLine(int lineId, Action<DO.Line> update); //method that knows to updt specific fields in Bus
         void DeleteLine(int lineId);
+        IEnumerable<DO.LineStation> GetStationInLineList(Predicate<DO.LineStation> predicate);
+
         #endregion
         #region LineStation
         IEnumerable<DO.LineStation> GetAllLineStations();
@@ -72,6 +74,8 @@ namespace DLAPI
         void UpdateLineStation(DO.LineStation lineStation);
         void UpdateLineStation(int lineId, int stationCode, Action<DO.LineStation> update);
         void DeleteLineStation(int lineId, int stationCode);
+        IEnumerable<DO.Line> GetLinesInStationList(Predicate<DO.LineStation> predicate);
+
         #endregion
         #region Trip
         IEnumerable<DO.Trip> GetAllTrips();
@@ -101,8 +105,6 @@ namespace DLAPI
         void DeleteUser(string userName);
         // void AddStationInLine(LineStation first);
         #endregion
-        IEnumerable<DO.LineStation> GetStationInLineList(Predicate<DO.LineStation> predicate);
-        IEnumerable<DO.Line> GetLinesInStationList(Predicate<DO.LineStation> predicate);
     }
 }
 
