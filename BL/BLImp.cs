@@ -20,6 +20,7 @@ namespace BL
         BLImp() { } // default => private
         public static BLImp Instance { get => instance; }// The public Instance property to use
         #endregion
+
         #region Bus
         /// <summary>
         /// A function that converts the bus from the DO to the BO
@@ -119,8 +120,6 @@ namespace BL
             {
                 BusException(busBO);
                 dl.AddBus(busDO);
-                //BusException(busBO);
-
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -382,10 +381,10 @@ namespace BL
         #endregion
 
         #region LineStation לא ברור
-        /// <summary>
-        /// A function that calls to another function in the Dl that add Linestation to the system
-        /// </summary>
-        /// <param name="lineStat">line station</param>
+        / <summary>
+        / A function that calls to another function in the Dl that add Linestation to the system
+        / </summary>
+        / <param name = "lineStat" > line station</param>
         public void AddLineStation(BO.LineStation lineStat)
         {
             DO.LineStation lineStatDO = (DO.LineStation)lineStat.CopyPropertiesToNew(typeof(DO.LineStation));
@@ -394,8 +393,8 @@ namespace BL
                 dl.AddLineStation(lineStatDO);
                 List<DO.LineStation> lst = ((dl.GetAllLineStationsBy(stat => stat.LineId == lineStatDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
 
-                //DO.LineStation prev = lst[s.LineStationIndex - 2];
-                //DO.LineStation next = lst[s.LineStationIndex + 1];
+                DO.LineStation prev = lst[s.LineStationIndex - 2];
+                DO.LineStation next = lst[s.LineStationIndex + 1];
                 if (lineStat.LineStationIndex != 1)//if its the first station- it doesnt have prev
                 {
                     DO.LineStation prev = lst[lineStat.LineStationIndex - 2];
@@ -421,7 +420,7 @@ namespace BL
                 throw new Exception();
             }
         }
-        
+
         public void DeleteLineStation(int lineId, int stationCode)//?? חסר חריגה?
         {
             try
@@ -702,18 +701,6 @@ namespace BL
         #endregion
 
         #region StationInLine
-        /// <summary>
-        /// A function that calls to another function in the Dl that add stationInLine to line in the system
-        /// </summary>
-        /// <param name="stationCode">code of station</param>
-        /// <param name="lineID">line id</param>
-        /// <param name="index">index-The index to which you want to add the station</param>
-        /// <param name="nextStatCode">code of next station</param>
-        /// <param name="prevStatCode">code of prev station</param>
-        /// <param name="distanceNext"><distance to next station/param>
-        /// <param name="timeNext">time to next station</param>
-        /// <param name="distancePrev">distance from prev station</param>
-        /// <param name="timePrev">time from prev station</param>
         public void AddStationInLine(int stationCode, int lineID, int index, int nextStatCode, int prevStatCode, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
         {
             try
@@ -838,7 +825,7 @@ namespace BL
         }
         #endregion
 
-         #region user
+        #region user
         /// <summary>
         ///  A function that calls to another function in the Dl that get the username and password and returns the user
         /// </summary>
