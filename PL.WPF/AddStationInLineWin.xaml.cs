@@ -207,7 +207,7 @@ namespace PL.WPF
                 double distancePrev = double.Parse(PrevDistanceTextBox.Text);
                 TimeSpan timePrev = TimeSpan.FromMinutes(double.Parse(PrevTimeTextBox.Text));
                 bool IsExist1 = bl.IsAdjacentStat(prevStat.StationCode, stat.Code);
-                bool IsExist2 = bl.IsAdjacentStat(line.Stations[prevStat.LineStationIndex + 1].StationCode, stat.Code);
+                bool IsExist2 = bl.IsAdjacentStat( stat.Code, line.Stations[prevStat.LineStationIndex + 1].StationCode);
                 if (IsExist1 == false && IsExist2 == false)
                 {
                     bl.AddStationInLine(stat.Code, line.LineId, prevStat.LineStationIndex + 1, line.Stations[prevStat.LineStationIndex + 1].StationCode, prevStat.StationCode, distanceNext, timeNext, distancePrev, timePrev);
