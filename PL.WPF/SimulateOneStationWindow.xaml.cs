@@ -42,46 +42,44 @@ namespace PL.WPF
             statName.Text = _stat.Name;
             statCode.Text = _stat.Code.ToString();
             statAdress.Text = _stat.Address;
-            stopwatch = new Stopwatch();
-            timerworker = new BackgroundWorker();
-            timerworker.DoWork += Worker_DoWork;
-            timerworker.ProgressChanged += Worker_ProgressChanged;
-            timerworker.WorkerReportsProgress = true;
-            tsStartTime = DateTime.Now.TimeOfDay;
-            stopwatch.Restart();
-            isTimerRun = true;
+            stopwatch = new Stopwatch();// יצירת שעון עצר
+            timerworker = new BackgroundWorker();//יצירת תהליכון
+            timerworker.DoWork += Worker_DoWork;// הרשמה לפונקציה
+            timerworker.ProgressChanged += Worker_ProgressChanged;// הרשמה לפונקציה
+            timerworker.WorkerReportsProgress = true;//דגל לדיווח על התקדמות התהליך
+            tsStartTime = DateTime.Now.TimeOfDay;//הזמן שהתחלנו את התהליך-הזמן האמיתי
+            stopwatch.Restart();// השעון עצר מתחיל לזוז
+            isTimerRun = true;//דגל האם השעון רץ-עדיין באמצע התהליך
 
             //הוספנו מעצמינו
             //  LBLineTiming.DataContext = lineTimingList;
             
 
-            timerworker.RunWorkerAsync();
+            timerworker.RunWorkerAsync();//הפעלת התהליכון
 
         }
-        private void Window_Closing(object sender, CancelEventArgs e)
-        {
-            stopwatch.Stop();
-            isTimerRun = false;
-        }
-
-        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            
-            TimeSpan tsCurrentTime = tsStartTime + stopwatch.Elapsed;
-            string timmerText = tsCurrentTime.ToString().Substring(0, 8);
-            this.timerTextBlock.Text = timmerText;
-            //לממש את הפונקציה!
-            nisayon.ItemsSource = BL.GetLineTimingPerStation(station, tsCurrentTime).ToList();
-            //lineTimingList = new ObservableCollection<BO.LineTiming>(BL.GetLineTimingPerStation(station, tsCurrentTime)); //התצוגה תתעדכן כי זה אובזרוובל קוללקשיין
-        }
-         
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)//כל עוד אנחנו באמצע התהליך תעצור שנייה ותשלח לפונקציית ההתקדמות
         {
             while (isTimerRun)
             {
-                timerworker.ReportProgress(231);
-                Thread.Sleep(1000);
+                timerworker.ReportProgress(231);//דיווח על התקדמות
+                Thread.Sleep(1000);//תעצור שנייה
             }
+        }
+       
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)//פונקציית ההתקדמות של השעון ושל הדקות
+        {
+            
+            TimeSpan tsCurrentTime = tsStartTime + stopwatch.Elapsed;//בזמן שהתחלנו בו את התהליכון +הזמן שעבר=הזמן הנוכחי
+            string timmerText = tsCurrentTime.ToString().Substring(0, 8);//הזמן שיוצג זה 8 הספרות השמאליות - בפורמט 00:00:00
+            this.timerTextBlock.Text = timmerText;//השעה הנוכחית שיהיה בתצוגה בשעון
+            
+            nisayon.ItemsSource = BL.GetLineTimingPerStation(station, tsCurrentTime).ToList();// עדכון הגריד שמראה את כל הזמנים והאוטובוסים שאמורים להגיע בקרוב לפי הזמן הנוכחי
+        }
+        private void Window_Closing(object sender, CancelEventArgs e)//עוצר את השעון ומפסיק את התהליך עם סגירת החלון
+        {
+            stopwatch.Stop();
+            isTimerRun = false;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
