@@ -23,19 +23,28 @@ namespace DL
         /// <summary>
         ///  A function that returns the list of buses that exist in the system
         /// </summary>
-        /// <returns>buses list</returns>
+        /// <returns>buses list</returns>  
         public IEnumerable<DO.Bus> GetAllBuses()
         {
             return from bus in DataSource.ListBuses
                    where bus.IsDeleted == false
                    select bus.Clone();
         }
+        /// <summary>
+        /// A function that returns the list of buses that exist in the system
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.Bus> GetAllDeleteBuses()
         {
             return from bus in DataSource.ListBuses
                    where bus.IsDeleted == true
                    select bus.Clone();
         }
+        /// <summary>
+        /// A function that returns the list of buses that exist in the system
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<DO.Bus> GetAllBusesBy(Predicate<DO.Bus> predicate)//???
         {
             return from bus in DataSource.ListBuses
@@ -54,7 +63,7 @@ namespace DL
             if (bus != null)
                 return bus.Clone();
             else
-                throw new BadLicenseNumException(licenseNumber, "The bus does not exist");
+                throw new BadLicenseNumException(licenseNumber, "אוטובוס זה לא קיים במערכת");
         }
         /// <summary>
         /// A function that receives a bus and adds it to the system
@@ -69,7 +78,7 @@ namespace DL
         /// <summary>
         /// A function that recived a bus and updates the bus details
         /// </summary>
-        /// <param name="bus"> bus</param>
+        /// <param name="bus"> bus</param>      
         public void UpdateBus(DO.Bus bus)
         {
             DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == bus.LicenseNum && bus_.IsDeleted == false);
@@ -78,11 +87,16 @@ namespace DL
             DataSource.ListBuses.Remove(busFind);
             DataSource.ListBuses.Add(bus.Clone());
         }//yes
+        /// <summary>
+        ///  A function that recived a bus and updates the bus details
+        /// </summary>
+        /// <param name="licenseNumber"></param>
+        /// <param name="update"></param>
         public void UpdateBus(int licenseNumber, Action<DO.Bus> update)//???
         {
             DO.Bus busFind = DataSource.ListBuses.Find(bus_ => bus_.LicenseNum == licenseNumber && bus_.IsDeleted == false);
             if (busFind == null)
-                throw new BadLicenseNumException(licenseNumber, "The bus does not exist");
+                throw new BadLicenseNumException(licenseNumber, "אוטובוס זה לא קיים במערכת");
             update(busFind);
         }
         /// <summary>
@@ -319,149 +333,149 @@ namespace DL
         }
         #endregion
 
-        //#region LineStation
-        ///// <summary>
-        ///// A function that returns the list of line station that exist in the system
-        ///// </summary>
-        ///// <returns>list if line station</returns>
-        //public IEnumerable<DO.LineStation> GetAllLineStations()
-        //{
-        //    return from lineStation in DataSource.ListLineStations
-        //           select lineStation.Clone();
-        //}
-        ///// <summary>
-        ///// A function that returns the list of line station that exist in the system
-        ///// </summary>
-        ///// <param name="predicate"></param>
-        ///// <returns></returns>
-        //public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate)
-        //{
-        //    return from sil in DataSource.ListLineStations
-        //           where predicate(sil)
-        //           orderby sil.LineStationIndex
-        //           select sil;
-        //}//yes
-        ///// <summary>
-        ///// A function that receives a line id and station code and adds it to the system
-        ///// </summary>
-        ///// <param name="lineId"></param>
-        ///// <param name="stationCode"></param>
-        ///// <returns></returns>
-        //public DO.LineStation GetLineStation(int lineId, int stationCode)
-        //{
-        //    DO.LineStation lineStationFind = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineId && lineStat.StationCode == stationCode));
+        #region LineStation
+        /// <summary>
+        /// A function that returns the list of line station that exist in the system
+        /// </summary>
+        /// <returns>list if line station</returns>
+        public IEnumerable<DO.LineStation> GetAllLineStations()
+        {
+            return from lineStation in DataSource.ListLineStations
+                   select lineStation.Clone();
+        }
+        /// <summary>
+        /// A function that returns the list of line station that exist in the system
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate)
+        {
+            return from sil in DataSource.ListLineStations
+                   where predicate(sil)
+                   orderby sil.LineStationIndex
+                   select sil;
+        }//yes
+        /// <summary>
+        /// A function that receives a line id and station code and adds it to the system
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <param name="stationCode"></param>
+        /// <returns></returns>
+        public DO.LineStation GetLineStation(int lineId, int stationCode)
+        {
+            DO.LineStation lineStationFind = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineId && lineStat.StationCode == stationCode));
 
-        //    if (lineStationFind != null)
-        //        return lineStationFind.Clone();
-        //    else
-        //        throw new Exception();
-        //}
-        ///// <summary>
-        /////  A function that receives a line station and adds it to the system
-        ///// </summary>
-        ///// <param name="lineStation">line station</param>
-        //public void AddLineStation(DO.LineStation lineStation)
-        //{
-        //    if (DataSource.ListLineStations.FirstOrDefault(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.StationCode == lineStation.StationCode && lineStat.IsDeleted == false)) != null)//if this line station already exists in the list
-        //        throw new Exception();
-        //    // update the line station index of all the next station
-        //    DO.LineStation next = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.LineStationIndex == lineStation.LineStationIndex && lineStat.IsDeleted == false));
-        //    DO.LineStation temp;
-        //    int index;
-        //    while (next != null)
-        //    {
+            if (lineStationFind != null)
+                return lineStationFind.Clone();
+            else
+                throw new Exception();
+        }
+        /// <summary>
+        ///  A function that receives a line station and adds it to the system
+        /// </summary>
+        /// <param name="lineStation">line station</param>
+        public void AddLineStation(DO.LineStation lineStation)
+        {
+            if (DataSource.ListLineStations.FirstOrDefault(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.StationCode == lineStation.StationCode && lineStat.IsDeleted == false)) != null)//if this line station already exists in the list
+                throw new Exception();
+            // update the line station index of all the next station
+            DO.LineStation next = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.LineStationIndex == lineStation.LineStationIndex && lineStat.IsDeleted == false));
+            DO.LineStation temp;
+            int index;
+            while (next != null)
+            {
 
-        //        temp = next;
-        //        index = next.LineStationIndex + 1;
-        //        temp = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.LineStationIndex == index && lineStat.IsDeleted == false));
-        //        ++next.LineStationIndex;
-        //        next = temp;
-        //    }
+                temp = next;
+                index = next.LineStationIndex + 1;
+                temp = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.LineStationIndex == index && lineStat.IsDeleted == false));
+                ++next.LineStationIndex;
+                next = temp;
+            }
 
-        //    //update prev and next
-        //    DO.LineStation prev = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.LineStationIndex == lineStation.LineStationIndex - 1 && lineStat.IsDeleted == false));
-        //    next = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.LineStationIndex == lineStation.LineStationIndex + 1 && lineStat.IsDeleted == false));
-        //    if (prev != null)
-        //    {
-        //        prev.NextStationCode = lineStation.StationCode;
-        //        lineStation.PrevStationCode = prev.StationCode;
-        //    }
-        //    if (next != null)
-        //    {
-        //        lineStation.NextStationCode = next.StationCode;
-        //        next.PrevStationCode = lineStation.StationCode;
-        //    }
-        //    DataSource.ListLineStations.Add(lineStation.Clone());
-        //}
-        ///// <summary>
-        ///// A function that recived a line station and updates the bus details
-        ///// </summary>
-        ///// <param name="lineStation">line station</param>
-        //public void UpdateLineStation(DO.LineStation lineStation)
-        //{
-        //    DO.LineStation lineStationFind = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.StationCode == lineStation.StationCode && lineStat.IsDeleted == false));
-        //    if (lineStationFind == null)
-        //        throw new Exception();
-        //    DO.LineStation newAdj = lineStation.Clone();//copy of the line station that the function got
-        //    lineStationFind = newAdj;//update
-        //}
-        //public void UpdateLineStation(int lineId, int stationCode, Action<DO.LineStation> update)
-        //{
-        //    DO.LineStation lineStationFind = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineId && lineStat.StationCode == stationCode && lineStat.IsDeleted == false));
-        //    if (lineStationFind == null)
-        //        throw new Exception();
-        //    update(lineStationFind);
-        //}
-        ///// <summary>
-        ///// A function that delete line station from the system
-        ///// </summary>
-        ///// <param name="lineId"> lineId of line</param>
-        ///// <param name="stationCode">station Code of station</param>
-        //public void DeleteLineStation(int lineId, int stationCode)
-        //{
-        //    DO.LineStation lineStationFind = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineId && lineStat.StationCode == stationCode && lineStat.IsDeleted == false));
-        //    if (lineStationFind == null)
-        //        throw new Exception();
-        //    lineStationFind.IsDeleted = true;
-        //    DO.LineStation NextFind;
-        //    if (lineStationFind.LineStationIndex > 1)
-        //    {
-        //        DO.LineStation PrevFind = DataSource.ListLineStations.Find(prevLineStat => (prevLineStat.LineId == lineId && prevLineStat.LineStationIndex == lineStationFind.LineStationIndex - 1 && prevLineStat.IsDeleted == false));
-        //        NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId && next.LineStationIndex == lineStationFind.LineStationIndex + 1 && next.IsDeleted == false));
-        //        if (NextFind != null)//if its not the last station
-        //        {
-        //            PrevFind.NextStationCode = NextFind.StationCode;
-        //            NextFind.PrevStationCode = PrevFind.StationCode;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        NextFind = DataSource.ListLineStations.Find(nextLineStat => (nextLineStat.LineId == lineId && nextLineStat.LineStationIndex == lineStationFind.LineStationIndex + 1 && nextLineStat.IsDeleted == false));
-        //        if (NextFind != null)
-        //        {
-        //            NextFind.PrevStationCode = 0;
-        //        }
-        //    }
-        //    int index;
-        //    while (NextFind != null)
-        //    {
-        //        index = NextFind.LineStationIndex;
-        //        NextFind.LineStationIndex = NextFind.LineStationIndex - 1;
-        //        NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId && next.LineStationIndex == index + 1 && next.IsDeleted == false));
-        //    }
-        //}
-        ///// <summary>
-        /////  A function that returns the list of line in station that exist in the system
-        ///// </summary>
-        ///// <param name="predicate"></param>
-        ///// <returns>list of line in station</returns>
-        //public IEnumerable<DO.Line> GetLinesInStationList(Predicate<DO.LineStation> predicate)
-        //{
-        //    return from sil in DataSource.ListLineStations
-        //           where predicate(sil)
-        //           select GetLine(sil.LineId);
-        //}
-        //#endregion
+            //update prev and next
+            DO.LineStation prev = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.LineStationIndex == lineStation.LineStationIndex - 1 && lineStat.IsDeleted == false));
+            next = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.LineStationIndex == lineStation.LineStationIndex + 1 && lineStat.IsDeleted == false));
+            if (prev != null)
+            {
+                prev.NextStationCode = lineStation.StationCode;
+                lineStation.PrevStationCode = prev.StationCode;
+            }
+            if (next != null)
+            {
+                lineStation.NextStationCode = next.StationCode;
+                next.PrevStationCode = lineStation.StationCode;
+            }
+            DataSource.ListLineStations.Add(lineStation.Clone());
+        }
+        /// <summary>
+        /// A function that recived a line station and updates the bus details
+        /// </summary>
+        /// <param name="lineStation">line station</param>
+        public void UpdateLineStation(DO.LineStation lineStation)
+        {
+            DO.LineStation lineStationFind = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineStation.LineId && lineStat.StationCode == lineStation.StationCode && lineStat.IsDeleted == false));
+            if (lineStationFind == null)
+                throw new Exception();
+            DO.LineStation newAdj = lineStation.Clone();//copy of the line station that the function got
+            lineStationFind = newAdj;//update
+        }
+        public void UpdateLineStation(int lineId, int stationCode, Action<DO.LineStation> update)
+        {
+            DO.LineStation lineStationFind = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineId && lineStat.StationCode == stationCode && lineStat.IsDeleted == false));
+            if (lineStationFind == null)
+                throw new Exception();
+            update(lineStationFind);
+        }
+        /// <summary>
+        /// A function that delete line station from the system
+        /// </summary>
+        /// <param name="lineId"> lineId of line</param>
+        /// <param name="stationCode">station Code of station</param>
+        public void DeleteLineStation(int lineId, int stationCode)
+        {
+            DO.LineStation lineStationFind = DataSource.ListLineStations.Find(lineStat => (lineStat.LineId == lineId && lineStat.StationCode == stationCode && lineStat.IsDeleted == false));
+            if (lineStationFind == null)
+                throw new Exception();
+            lineStationFind.IsDeleted = true;
+            DO.LineStation NextFind;
+            if (lineStationFind.LineStationIndex > 1)
+            {
+                DO.LineStation PrevFind = DataSource.ListLineStations.Find(prevLineStat => (prevLineStat.LineId == lineId && prevLineStat.LineStationIndex == lineStationFind.LineStationIndex - 1 && prevLineStat.IsDeleted == false));
+                NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId && next.LineStationIndex == lineStationFind.LineStationIndex + 1 && next.IsDeleted == false));
+                if (NextFind != null)//if its not the last station
+                {
+                    PrevFind.NextStationCode = NextFind.StationCode;
+                    NextFind.PrevStationCode = PrevFind.StationCode;
+                }
+            }
+            else
+            {
+                NextFind = DataSource.ListLineStations.Find(nextLineStat => (nextLineStat.LineId == lineId && nextLineStat.LineStationIndex == lineStationFind.LineStationIndex + 1 && nextLineStat.IsDeleted == false));
+                if (NextFind != null)
+                {
+                    NextFind.PrevStationCode = 0;
+                }
+            }
+            int index;
+            while (NextFind != null)
+            {
+                index = NextFind.LineStationIndex;
+                NextFind.LineStationIndex = NextFind.LineStationIndex - 1;
+                NextFind = DataSource.ListLineStations.Find(next => (next.LineId == lineId && next.LineStationIndex == index + 1 && next.IsDeleted == false));
+            }
+        }
+        /// <summary>
+        ///  A function that returns the list of line in station that exist in the system
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns>list of line in station</returns>
+        public IEnumerable<DO.Line> GetLinesInStationList(Predicate<DO.LineStation> predicate)
+        {
+            return from sil in DataSource.ListLineStations
+                   where predicate(sil)
+                   select GetLine(sil.LineId);
+        }
+        #endregion
 
         #region Station
         /// <summary>

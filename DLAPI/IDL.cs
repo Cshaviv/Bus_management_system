@@ -26,6 +26,7 @@ namespace DLAPI
         void UpdateBus(int licenseNumber, Action<DO.Bus> update); //method that knows to updt specific fields in Bus
         void DeleteBus(int licenseNumber);
         #endregion
+
         #region AdjacentStations
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStations();
         IEnumerable<DO.AdjacentStations> GetAllAdjacentStationsBy(Predicate<DO.AdjacentStations> predicate);
@@ -37,6 +38,7 @@ namespace DLAPI
         bool  ExistAdjacentStations(int stationCode1, int stationCode2);
         void UpdateTandDinAdjacentStation(DO.AdjacentStations adjacentStations);
         #endregion
+
         #region Station
         IEnumerable<DO.Station> GetAllStations();
         IEnumerable<DO.Station> GetAllDeletedStations();
@@ -48,6 +50,7 @@ namespace DLAPI
         void DeleteStation(int code);
 
         #endregion 
+
         #region Line
         int GetNewLineId();
         IEnumerable<DO.Line> GetAllLines();
@@ -64,6 +67,7 @@ namespace DLAPI
         IEnumerable<DO.LineStation> GetStationInLineList(Predicate<DO.LineStation> predicate);
 
         #endregion
+
         #region LineStation
         IEnumerable<DO.LineStation> GetAllLineStations();
         IEnumerable<DO.LineStation> GetAllLineStationsBy(Predicate<DO.LineStation> predicate);
@@ -77,6 +81,7 @@ namespace DLAPI
         IEnumerable<DO.Line> GetLinesInStationList(Predicate<DO.LineStation> predicate);
 
         #endregion
+
         #region Trip
         IEnumerable<DO.Trip> GetAllTrips();
        IEnumerable<DO.Trip> GetAllTripsBy(Predicate<DO.Trip> predicate);
@@ -86,6 +91,7 @@ namespace DLAPI
        void UpdateTrip(int tripId, Action<DO.Trip> update); //method that knows to updt specific fields in Trip
        void DeleteTrip(int tripId);
        #endregion
+
         #region LineTrip
         IEnumerable<DO.LineTrip> GetAllLineTrips();
         IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate);
@@ -95,6 +101,7 @@ namespace DLAPI
         void UpdateLineTrip(int lineId, TimeSpan time, Action<DO.LineTrip> update);
         void DeleteLineTrip(int lineId, TimeSpan time);
         #endregion
+
         #region User
         IEnumerable<DO.User> GetAllUsers();
         IEnumerable<DO.User> GetAllUsersBy(Predicate<DO.User> predicate);

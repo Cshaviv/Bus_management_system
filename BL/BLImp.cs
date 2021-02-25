@@ -382,10 +382,10 @@ namespace BL
         #endregion
 
         #region LineStation לא ברור
-        /// <summary>
-        /// A function that calls to another function in the Dl that add Linestation to the system
-        /// </summary>
-        /// <param name="lineStat">line station</param>
+        / <summary>
+        / A function that calls to another function in the Dl that add Linestation to the system
+        / </summary>
+        / <param name = "lineStat" > line station</param>
         public void AddLineStation(BO.LineStation lineStat)
         {
             DO.LineStation lineStatDO = (DO.LineStation)lineStat.CopyPropertiesToNew(typeof(DO.LineStation));
@@ -394,8 +394,8 @@ namespace BL
                 dl.AddLineStation(lineStatDO);
                 List<DO.LineStation> lst = ((dl.GetAllLineStationsBy(stat => stat.LineId == lineStatDO.LineId && stat.IsDeleted == false)).OrderBy(stat => stat.LineStationIndex)).ToList();
 
-                //DO.LineStation prev = lst[s.LineStationIndex - 2];
-                //DO.LineStation next = lst[s.LineStationIndex + 1];
+                DO.LineStation prev = lst[s.LineStationIndex - 2];
+                DO.LineStation next = lst[s.LineStationIndex + 1];
                 if (lineStat.LineStationIndex != 1)//if its the first station- it doesnt have prev
                 {
                     DO.LineStation prev = lst[lineStat.LineStationIndex - 2];
@@ -421,7 +421,7 @@ namespace BL
                 throw new Exception();
             }
         }
-        
+
         public void DeleteLineStation(int lineId, int stationCode)//?? חסר חריגה?
         {
             try
