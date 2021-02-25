@@ -20,6 +20,7 @@ namespace BL
         BLImp() { } // default => private
         public static BLImp Instance { get => instance; }// The public Instance property to use
         #endregion
+
         #region Bus
         /// <summary>
         /// A function that converts the bus from the DO to the BO
@@ -119,8 +120,6 @@ namespace BL
             {
                 BusException(busBO);
                 dl.AddBus(busDO);
-                //BusException(busBO);
-
             }
             catch (DO.BadLicenseNumException ex)
             {
@@ -826,7 +825,7 @@ namespace BL
         }
         #endregion
 
-         #region user
+        #region user
         /// <summary>
         ///  A function that calls to another function in the Dl that get the username and password and returns the user
         /// </summary>

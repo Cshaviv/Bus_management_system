@@ -185,7 +185,7 @@ namespace DL
         {
             DO.AdjacentStations adjStationsFind = DataSource.ListAdjacentStations.Find(adjStations => (adjStations.StationCode1 == stationCode1 && adjStations.StationCode2 == stationCode2 && adjStations.IsDeleted == false));
             if (adjStationsFind == null)
-                throw new Exception();
+                throw new BadInputException("אין מידע במערכת על תחנות עוקבות אלו");
             update(adjStationsFind);
         }
         /// <summary>
@@ -197,7 +197,7 @@ namespace DL
         {
             DO.AdjacentStations adjStationsFind = DataSource.ListAdjacentStations.Find(adjStations => (adjStations.StationCode1 == stationCode1 && adjStations.StationCode2 == stationCode2 && adjStations.IsDeleted == false));
             if (adjStationsFind == null)
-                throw new Exception();
+                throw new BadInputException(" תחנות עוקבות אלו לא קימות במערכת");
             adjStationsFind.IsDeleted = true;
         }
         /// <summary>
@@ -213,6 +213,10 @@ namespace DL
                 return true;
             return false;
         }//yes
+        /// <summary>
+        ///  A function that recived a adjacent Stations and updates the adjacent Stations details
+        /// </summary>
+        /// <param name="adjacentStations"></param>
         public void UpdateTandDinAdjacentStation(DO.AdjacentStations adjacentStations)
         {
             DO.AdjacentStations adjacentStations1 = DataSource.ListAdjacentStations.Find(s => s.StationCode1 == adjacentStations.StationCode1 && s.StationCode2 == adjacentStations.StationCode2);
@@ -231,7 +235,7 @@ namespace DL
         /// <summary>
         ///   A function that returns the list of lines that exist in the system
         /// </summary>
-        /// <returns>list of lines</returns>       
+        /// <returns>list of lines</returns>             
         public IEnumerable<DO.Line> GetAllLines()
         {
             return from line in DataSource.ListLines
@@ -239,6 +243,10 @@ namespace DL
                    select line.Clone();
 
         }
+        /// <summary>
+        /// A function that returns the list of lines that exist in the system
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.Line> GetAllDeletedLines()
         {
             return from line in DataSource.ListLines
@@ -246,6 +254,11 @@ namespace DL
                    select line.Clone();
 
         }
+        /// <summary>
+        /// A function that returns the list of lines that exist in the system
+        /// </summary>
+        /// <param name="area"></param>
+        /// <returns></returns>
         public IEnumerable<DO.Line> GetAllLinesInArea(string area)
         {
             return from line in DataSource.ListLines
@@ -280,6 +293,10 @@ namespace DL
                 return null;
             //throw new BadLineIdException(lineId, "קו זה לא קיים במערכת");
         }
+      /// <summary>
+      /// function that gave a id to new line
+      /// </summary>
+      /// <returns></returns>
         public int GetNewLineId()
         {
             return Config.LineId++;
