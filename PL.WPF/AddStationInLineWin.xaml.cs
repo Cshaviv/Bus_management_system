@@ -261,7 +261,7 @@ namespace PL.WPF
                         }
 
                     }
-                    bl.AddStationInLine(stat.Code, line.LineId, prevStat.LineStationIndex + 1, line.Stations[prevStat.LineStationIndex + 1].StationCode, prevStat.StationCode, distanceNext, timeNext, distancePrev, timePrev);
+                     bl.AddStationInLine(stat.Code, line.LineId, prevStat.LineStationIndex + 1, line.Stations[prevStat.LineStationIndex + 1].StationCode, prevStat.StationCode, distanceNext, timeNext, distancePrev, timePrev);
                     MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
@@ -289,9 +289,6 @@ namespace PL.WPF
             if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9)  && e.Key != Key.Escape && e.Key != Key.Back)
                 e.Handled = true;
         }
-        private void PrevstationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+      
     }
 }

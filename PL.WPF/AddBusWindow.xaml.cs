@@ -26,17 +26,18 @@ namespace PL.WPF
         {
             InitializeComponent();
             bl = _bl;
-        }//yes
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             System.Windows.Data.CollectionViewSource busViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("busViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // busViewSource.Source = [generic data source]
-        }//yes
-        private void AddBus_Click(object sender, RoutedEventArgs e)//yes
+        }
+        private void AddBus_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                HelpExceptions();
                 int licenseNum;
                 if(!Int32.TryParse(licenseNumTextBox.Text, out licenseNum))
                     throw new BadInputException(6, "מחרוזת קלט לא היתה בתבנית הנכונה");
@@ -54,13 +55,7 @@ namespace PL.WPF
                 BO.Bus b = new BO.Bus() { LicenseNum = licenseNum, FuelTank = fuel, StartDate = startDate, DateLastTreat = lastDate, StatusBus = BusStatus.Available, TotalKm = totalKm, KmLastTreat = kmLastTreat };
                 if(b!=null)
                 { 
-                    bl.AddBus(b);
-                    licenseNumTextBox.BorderBrush = Brushes.Gray;
-                    startDateDatePicker.BorderBrush = Brushes.Gray;
-                    dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
-                    kmLastTreatTextBox.BorderBrush = Brushes.Gray;
-                    fuelTankTextBox.BorderBrush = Brushes.Gray;
-                    totalKmTextBox.BorderBrush = Brushes.Gray;
+                    bl.AddBus(b);              
                     MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
@@ -80,71 +75,55 @@ namespace PL.WPF
        
 
         }
-        private void Exceptions(int num,string massage)//yes
+        private void HelpExceptions()
+        {
+            licenseNumTextBox.BorderBrush = Brushes.Gray;
+            startDateDatePicker.BorderBrush = Brushes.Gray;
+            dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
+            kmLastTreatTextBox.BorderBrush = Brushes.Gray;
+            fuelTankTextBox.BorderBrush = Brushes.Gray;
+            totalKmTextBox.BorderBrush = Brushes.Gray;
+        }
+        private void Exceptions(int num,string massage)
         {
             if (num == 1)
             {
-                licenseNumTextBox.BorderBrush = Brushes.Gray;
-                startDateDatePicker.BorderBrush = Brushes.Red;
-                dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
-                kmLastTreatTextBox.BorderBrush = Brushes.Gray;
-                fuelTankTextBox.BorderBrush = Brushes.Gray;
-                totalKmTextBox.BorderBrush = Brushes.Gray;
+                HelpExceptions();
+                startDateDatePicker.BorderBrush = Brushes.Red;        
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (num == 2)
             {
-                licenseNumTextBox.BorderBrush = Brushes.Gray;
-                startDateDatePicker.BorderBrush = Brushes.Gray;
+                HelpExceptions();
                 dateLastTreatDatePicker.BorderBrush = Brushes.Red;
-                kmLastTreatTextBox.BorderBrush = Brushes.Gray;
-                fuelTankTextBox.BorderBrush = Brushes.Gray;
-                totalKmTextBox.BorderBrush = Brushes.Gray;
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (num == 3)
             {
-                licenseNumTextBox.BorderBrush = Brushes.Gray;
-                startDateDatePicker.BorderBrush = Brushes.Gray;
-                dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
-                kmLastTreatTextBox.BorderBrush = Brushes.Gray;
-                fuelTankTextBox.BorderBrush = Brushes.Gray;
+                HelpExceptions();
                 totalKmTextBox.BorderBrush = Brushes.Red;
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (num == 4)
             {
-                licenseNumTextBox.BorderBrush = Brushes.Gray;
-                startDateDatePicker.BorderBrush = Brushes.Gray;
-                dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
+                HelpExceptions();    
                 kmLastTreatTextBox.BorderBrush = Brushes.Red;
-                fuelTankTextBox.BorderBrush = Brushes.Gray;
-                totalKmTextBox.BorderBrush = Brushes.Gray;
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (num == 5)
             {
-                licenseNumTextBox.BorderBrush = Brushes.Gray;
-                startDateDatePicker.BorderBrush = Brushes.Gray;
-                dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
-                kmLastTreatTextBox.BorderBrush = Brushes.Gray;
+                HelpExceptions();
                 fuelTankTextBox.BorderBrush = Brushes.Red;
-                totalKmTextBox.BorderBrush = Brushes.Gray;
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (num == 6)
             {
-                licenseNumTextBox.BorderBrush = Brushes.Red;
-                startDateDatePicker.BorderBrush = Brushes.Gray;
-                dateLastTreatDatePicker.BorderBrush = Brushes.Gray;
-                kmLastTreatTextBox.BorderBrush = Brushes.Gray;
-                fuelTankTextBox.BorderBrush = Brushes.Gray;
-                totalKmTextBox.BorderBrush = Brushes.Gray;
+                HelpExceptions();
+                licenseNumTextBox.BorderBrush = Brushes.Red;           
                 MessageBox.Show(massage, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
           
         }
-
         private void keyCheck(object sender, KeyEventArgs e)
         {
             if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.OemPeriod && e.Key != Key.Escape && e.Key != Key.Back)

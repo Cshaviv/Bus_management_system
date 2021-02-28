@@ -28,14 +28,12 @@ namespace PL.WPF
             InitializeComponent();
             bl = _bl;
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // busViewSource.Source = [generic data source]
         }
-
         private void addButton_click(object sender, RoutedEventArgs e)
         {
             try

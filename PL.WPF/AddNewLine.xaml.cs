@@ -29,11 +29,9 @@ namespace PL.WPF
             List<BO.Station> station = bl.GetAllStations().ToList();
             firstStationComboBox.ItemsSource = station;
             firstStationComboBox.SelectedItem = "Code";
-            //firstStationComboBox.DisplayMemberPath = "Code";       
             firstStationComboBox.SelectedIndex = 0;
             lastStationComboBox.ItemsSource = station;
             lastStationComboBox.SelectedItem = "Code";
-            //lastStationComboBox.DisplayMemberPath = "Code";
             lastStationComboBox.SelectedIndex = 1;
             AreaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Area));
         }
@@ -56,11 +54,6 @@ namespace PL.WPF
                 BO.Station lastStation = (lastStationComboBox.SelectedItem) as BO.Station;
                 if (firstStation == lastStation)
                     throw new BO.BadLineIdException("לא ניתן להכניס שוב את אותה תחנה");
-                //timeLabel.Visibility = Visibility.Visible;
-                //TimeTextBox.Visibility = Visibility.Visible;
-                //distanceLabel.Visibility = Visibility.Visible;
-                //distanceTextBox.Visibility = Visibility.Visible;              
-                //MessageBox.Show("מצטערים אך בזמן עיבוד הנתונים התגלה שחסר למערכת כמה נתונים, אנא השלם אותם כדי שנוכל להמשיך בפעולה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 if (!Double.TryParse(distanceTextBox.Text, out double distance))
                     throw new BadInputException(2, "מחרוזת קלט לא היתה בתבנית הנכונה");
                 if (!Double.TryParse(TimeTextBox.Text, out double time_))
@@ -79,10 +72,6 @@ namespace PL.WPF
                 distanceTextBox.BorderBrush = Brushes.Gray;
                 MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
-
-
-
-
             }
             catch (BO.BadLineIdException ex)
             {

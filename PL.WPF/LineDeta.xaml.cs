@@ -47,11 +47,10 @@ namespace PL.WPF
                 {
                     bl.DeleteStationInLine(line.LineId, station.StationCode);
                     MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //RefreshAllLine();
-                    Close();
+                    RefreshAllLine();                   
                 }
-               
-                    return;
+
+                return;
                 
             }
             catch (BO.BadLineIdException ex)
@@ -84,10 +83,7 @@ namespace PL.WPF
                     {
                         bl.DeleteLine(line.LineId);
                         MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                        Close();
-                        //RefreshAllLine();
-                        //Close();
-                    }
+                        Close();                    }
                 }
                 return;         
             }
@@ -130,7 +126,7 @@ namespace PL.WPF
             {
                 bl.UpdateLineDetails(lineUpdate);
                 MessageBox.Show("הפעולה בוצעה בהצלחה", "successfully", MessageBoxButton.OK, MessageBoxImage.Information);
-                Close();
+                RefreshAllLine();
                 return;
             }
             catch (BO.BadLineIdException ex)
@@ -164,7 +160,6 @@ namespace PL.WPF
             win.Closing += winUpdate_Closing;
             win.ShowDialog();
         }
-
         private void LineTrip_Click(object sender, RoutedEventArgs e)
         {
             AddLineTrip win = new AddLineTrip(bl,line);
