@@ -14,7 +14,7 @@ namespace BLAPI
             switch (type)
             {
                 case "1":
-                    return /*new*/ BLImp.Instance;
+                     return /*new*/ BLImp.Instance;
                 default:
                     return /*new*/ BLImp.Instance/*()*/;
             }

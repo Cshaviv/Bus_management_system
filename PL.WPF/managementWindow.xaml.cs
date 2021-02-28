@@ -26,8 +26,6 @@ namespace PL.WPF
         IBL bl;
         int historyNum = 1;
         int availableNum = 1;
-        //  public ObservableCollection<Bus> BusesCollection;
-        //BO.Student curStu;
         public managementWindow(IBL _bl, string userName)
         {
             InitializeComponent();
@@ -75,24 +73,6 @@ namespace PL.WPF
             }
 
         }
-        private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is childItem)
-                {
-                    return (childItem)child;
-                }
-                else
-                {
-                    childItem childOfChild = FindVisualChild<childItem>(child);
-                    if (childOfChild != null)
-                        return childOfChild;
-                }
-            }
-            return null;
-        }  //yes
         private void RefuelClick(object sender, RoutedEventArgs e)
         {
             Bus myBus = (sender as Button).DataContext as Bus;
@@ -351,13 +331,30 @@ namespace PL.WPF
             }
 
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-       
+        private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is childItem)
+                {
+                    return (childItem)child;
+                }
+                else
+                {
+                    childItem childOfChild = FindVisualChild<childItem>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }  
 
 
-    }  
+
+    }
 }
