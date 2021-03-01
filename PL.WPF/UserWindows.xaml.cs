@@ -22,8 +22,6 @@ namespace PL.WPF
     public partial class UserWindows : Window
     {
         IBL bl;
-       // private string userName1;
-
         public UserWindows(IBL _bl, string userName)
         {
             InitializeComponent();
@@ -42,18 +40,9 @@ namespace PL.WPF
         #region Bus
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
-            areaLabel.Visibility = Visibility.Hidden;
-            sarchLineInArea.Visibility = Visibility.Hidden;
-            stationsListBox.Visibility = Visibility.Hidden;
-            LineesListBox.Visibility = Visibility.Hidden;
-            LineesDeletedListBox.Visibility = Visibility.Hidden;
+            Hidden();
             busesListBox.Visibility = Visibility.Visible;
-            HistoryBus.Visibility = Visibility.Visible;
-            availableBus.Visibility = Visibility.Hidden;
-            HistoryLine.Visibility = Visibility.Hidden;
-            availableLine.Visibility = Visibility.Hidden;
-            HistoryStat.Visibility = Visibility.Hidden;
-            availableStat.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Visible;   
             busesListBox.ItemsSource = bl.GetAllBuses().ToList();
 
         }
@@ -89,18 +78,11 @@ namespace PL.WPF
         #region Line
         private void Line_Click(object sender, RoutedEventArgs e)
         {
+            Hidden();
             areaLabel.Visibility = Visibility.Visible;
-            sarchLineInArea.Visibility = Visibility.Visible;
-            stationsListBox.Visibility = Visibility.Hidden;
-            busesListBox.Visibility = Visibility.Hidden;
-            LineesDeletedListBox.Visibility = Visibility.Hidden;
+            sarchLineInArea.Visibility = Visibility.Visible;        
             LineesListBox.Visibility = Visibility.Visible;
-            HistoryLine.Visibility = Visibility.Visible;
-            availableLine.Visibility = Visibility.Hidden;
-            HistoryBus.Visibility = Visibility.Hidden;
-            availableBus.Visibility = Visibility.Hidden;
-            HistoryStat.Visibility = Visibility.Hidden;
-            availableStat.Visibility = Visibility.Hidden;
+            HistoryLine.Visibility = Visibility.Visible;       
         }
         private void areaChangeClick(object sender, SelectionChangedEventArgs e)
         {
@@ -161,17 +143,8 @@ namespace PL.WPF
         #region station
         private void Station_Click(object sender, RoutedEventArgs e)
         {
-            areaLabel.Visibility = Visibility.Hidden;
-            sarchLineInArea.Visibility = Visibility.Hidden;
-            busesListBox.Visibility = Visibility.Hidden;
-            LineesDeletedListBox.Visibility = Visibility.Hidden;
-            LineesListBox.Visibility = Visibility.Hidden;
-            HistoryLine.Visibility = Visibility.Hidden;
-            availableLine.Visibility = Visibility.Hidden;
-            HistoryBus.Visibility = Visibility.Hidden;
-            availableBus.Visibility = Visibility.Hidden;
+            Hidden();
             HistoryStat.Visibility = Visibility.Visible;
-            availableStat.Visibility = Visibility.Hidden;
             stationsListBox.ItemsSource = bl.GetAllStations().ToList();
             stationsListBox.Visibility = Visibility.Visible;
         }
@@ -191,7 +164,7 @@ namespace PL.WPF
             StationDataUser win = new StationDataUser(isDeleted,bl, stat, stationsListBox);
             win.ShowDialog();
         }
-        void RefreshAllStations()//yes
+        void RefreshAllStations()
         {
             try
             {
@@ -206,7 +179,7 @@ namespace PL.WPF
                 MessageBox.Show("מצטערים חסר למערכת מידע", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        void RefreshAllDeletedStations()//yes
+        void RefreshAllDeletedStations()
         {
             try
             {
@@ -256,7 +229,21 @@ namespace PL.WPF
             }
             return null;
         }
-
+        private void Hidden()
+        {
+            areaLabel.Visibility = Visibility.Hidden;
+            sarchLineInArea.Visibility = Visibility.Hidden;
+            stationsListBox.Visibility = Visibility.Hidden;
+            busesListBox.Visibility = Visibility.Hidden;
+            LineesDeletedListBox.Visibility = Visibility.Hidden;
+            LineesListBox.Visibility = Visibility.Hidden;
+            HistoryLine.Visibility = Visibility.Hidden;
+            availableLine.Visibility = Visibility.Hidden;
+            HistoryBus.Visibility = Visibility.Hidden;
+            availableBus.Visibility = Visibility.Hidden;
+            HistoryStat.Visibility = Visibility.Hidden;
+            availableStat.Visibility = Visibility.Hidden;
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();

@@ -26,8 +26,6 @@ namespace PL.WPF
         IBL bl;
         int historyNum = 1;
         int availableNum = 1;
-        //  public ObservableCollection<Bus> BusesCollection;
-        //BO.Student curStu;
         public managementWindow(IBL _bl, string userName)
         {
             InitializeComponent();
@@ -51,48 +49,22 @@ namespace PL.WPF
             historyNum = 1;
             availableNum = 1;
             RefreshAllBuses();
-        }//yes
-        private void doubleClickBusInfromation(object sender, RoutedEventArgs e)//yes Clicking "double click" on a bus in the list will open a window showing the bus data
+        }//
+        private void doubleClickBusInfromation(object sender, RoutedEventArgs e)// Clicking "double click" on a bus in the list will open a window showing the bus data
         {
             Bus myBus = (sender as ListBox).SelectedItem as Bus;
             if (myBus != null)
             {
-                ListBoxItem myListBoxItem = (ListBoxItem)(busesListBox.ItemContainerGenerator.ContainerFromItem(myBus));
-                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
-                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                ProgressBar prop = (ProgressBar)myDataTemplate.FindName("pbThread", myContentPresenter);
-                Label precent = (Label)myDataTemplate.FindName("progressLabel", myContentPresenter);
-                Label action = (Label)myDataTemplate.FindName("action", myContentPresenter);
-                Label timer = (Label)myDataTemplate.FindName("timer", myContentPresenter);
                 bool isDelete = false;
                 if (myBus.IsDeleted == true)
                 {
                     isDelete = true;
                 }
-                BusData win = new BusData(isDelete, myBus, bl, busesListBox, prop, precent, action, timer);
+                BusData win = new BusData(isDelete, myBus, bl, busesListBox);
                 win.ShowDialog();
-                // RefreshAllBuses();          
             }
 
         }
-        private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is childItem)
-                {
-                    return (childItem)child;
-                }
-                else
-                {
-                    childItem childOfChild = FindVisualChild<childItem>(child);
-                    if (childOfChild != null)
-                        return childOfChild;
-                }
-            }
-            return null;
-        }  //yes
         private void RefuelClick(object sender, RoutedEventArgs e)
         {
             Bus myBus = (sender as Button).DataContext as Bus;
@@ -108,8 +80,8 @@ namespace PL.WPF
             }
             myBus.StatusBus = BusStatus.OnRefueling;//update status
             myBus.FuelTank = 0;//update fields
-        }//לא בשימוש בנתיים
-        private void TreatClick(object sender, RoutedEventArgs e)//לא בשימוש בנתיים
+        }//
+        private void TreatClick(object sender, RoutedEventArgs e)//
         {
             Bus myBus = (sender as Button).DataContext as Bus;
             if (myBus.StatusBus == BusStatus.InTravel || myBus.StatusBus == BusStatus.OnTreatment || myBus.StatusBus == BusStatus.OnRefueling)// Check if the bus can be sent for refueling
@@ -131,7 +103,7 @@ namespace PL.WPF
                 myBus.FuelTank = 0;
             }
         }
-        private void AddBus_Click(object sender, RoutedEventArgs e)//yes
+        private void AddBus_Click(object sender, RoutedEventArgs e)//
         {
             AddBusWindow win = new AddBusWindow(bl);
             win.ShowDialog();
@@ -140,11 +112,11 @@ namespace PL.WPF
         void RefreshAllBuses()
         {
             busesListBox.ItemsSource = bl.GetAllBuses().ToList();
-        }//yes
+        }
         void RefreshAllDeleteBuses()
         {
             busesListBox.ItemsSource = bl.GetAllDeleteBuses().ToList();
-        }//yes
+        } 
         #endregion
 
         #region Lines 
@@ -351,13 +323,30 @@ namespace PL.WPF
             }
 
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-       
+        private childItem FindVisualChild<childItem>(DependencyObject obj) where childItem : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is childItem)
+                {
+                    return (childItem)child;
+                }
+                else
+                {
+                    childItem childOfChild = FindVisualChild<childItem>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }  
 
 
-    }  
+
+    }
 }

@@ -5,28 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="746.667">
+        Title="MainWindow" Height="450" Width="696">
 
     <Window.Resources>
-       
-       <Style x:Key="round" TargetType="{x:Type Button}">
-                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Padding" Value="1"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Grid x:Name="grid" >
-                            <Border x:Name="border" CornerRadius="15" BorderBrush="Gray" Background="LightGray" BorderThickness="1">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
 
-                                </Border>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
+        <Style x:Key="round" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid" >
+                            <Border x:Name="border" CornerRadius="15" BorderBrush="Gray" Background="LightGray" BorderThickness="1">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontWeight="Bold"/>
+
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
-        
+
 
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
@@ -42,26 +42,26 @@
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
         <!--<Label Content="Welcome to our Perfect University! " HorizontalAlignment="Left" Margin="173,25,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>-->
-        <GroupBox Header=":בחר אפשרות" HorizontalAlignment="Left" Height="103" Margin="217,81,0,0" VerticalAlignment="Top" Width="342" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" FlowDirection="RightToLeft">
+        <GroupBox Header=":בחר אפשרות" HorizontalAlignment="Left" Height="103" Margin="179,81,0,0" VerticalAlignment="Top" Width="342" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" FlowDirection="RightToLeft" BorderBrush="#FF161D21" Background="#FFE2E2E2">
             <StackPanel Margin="21,20,226,-11" Height="66" VerticalAlignment="Top" >
                 <RadioButton x:Name ="rbManagement" Content="מנהל" HorizontalAlignment="Stretch" Height="24" IsChecked="True"/>
                 <RadioButton x:Name ="rbUser" Content=" משתמש" HorizontalAlignment="Stretch" Height="23" Margin="0,0,-11,0"/>
 
             </StackPanel>
         </GroupBox>
-        <Button x:Name="btnGO" Style="{StaticResource round}"  Content="כניסה" Background="LightGray" HorizontalAlignment="Left" Height="42" Margin="356,352,0,0" VerticalAlignment="Top" Width="104"  FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="441,201,0,0" TextWrapping="Wrap" Text=":שם משתמש" VerticalAlignment="Top" Height="32" Width="90" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
-        <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="33" Margin="281,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
-        <TextBlock HorizontalAlignment="Left" Margin="468,252,0,0" TextWrapping="Wrap" Text=":סיסמא" VerticalAlignment="Top" Height="32" Width="126" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
-        <PasswordBox x:Name="passwordTextBox" PasswordChar="*"  HorizontalAlignment="Left" Height="33" Margin="281,247,0,0" VerticalAlignment="Top" Width="139" FontWeight="Bold" FontSize="24"/>
-        <Button Content="אני רוצה ליצור משתמש חדש" Style="{StaticResource round}"  HorizontalAlignment="Left" Margin="284,300,0,0" VerticalAlignment="Top" Width="236" Height="30" Click="Button_Click" FontFamily="Dubai Medium"/>
-        <TextBox x:Name="passwordTextBox2" Visibility="Hidden"   HorizontalAlignment="Left" Height="33" Margin="281,247,0,0" VerticalAlignment="Top" Width="139"/>
-        <Button Content="" Name="closeEyeBotton" Visibility="Visible" HorizontalAlignment="Left" Height="33" Margin="394,247,0,0" VerticalAlignment="Top" Width="26" Click="passwordEye_Click_" BorderBrush="{x:Null}" Foreground="{x:Null}">
+        <Button x:Name="btnGO" Style="{StaticResource round}"  Content="כניסה" Background="LightGray" HorizontalAlignment="Left" Height="42" Margin="314,352,0,0" VerticalAlignment="Top" Width="104"  FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="397,201,0,0" TextWrapping="Wrap" Text=":שם משתמש" VerticalAlignment="Top" Height="32" Width="90" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
+        <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="33" Margin="239,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
+        <TextBlock HorizontalAlignment="Left" Margin="426,252,0,0" TextWrapping="Wrap" Text=":סיסמא" VerticalAlignment="Top" Height="32" Width="126" FontSize="14" FontFamily="Dubai Medium" FontWeight="Bold"/>
+        <PasswordBox x:Name="passwordTextBox" PasswordChar="*"  HorizontalAlignment="Left" Height="33" Margin="239,247,0,0" VerticalAlignment="Top" Width="139" FontWeight="Bold" FontSize="24"/>
+        <Button Content="אני רוצה ליצור משתמש חדש" Style="{StaticResource round}"  HorizontalAlignment="Left" Margin="242,300,0,0" VerticalAlignment="Top" Width="236" Height="30" Click="Button_Click" FontFamily="Dubai Medium"/>
+        <TextBox x:Name="passwordTextBox2" Visibility="Hidden"   HorizontalAlignment="Left" Height="33" Margin="239,247,0,0" VerticalAlignment="Top" Width="139"/>
+        <Button Content="" Name="closeEyeBotton" Visibility="Visible" HorizontalAlignment="Left" Height="33" Margin="352,247,0,0" VerticalAlignment="Top" Width="26" Click="passwordEye_Click_" BorderBrush="{x:Null}" Foreground="{x:Null}">
             <Button.Background>
                 <ImageBrush ImageSource="עין מכוסה.png"/>
             </Button.Background>
         </Button>
-        <Button Name="eyeBotton" Content="" HorizontalAlignment="Left" Visibility="Hidden" Height="33" Margin="394,247,0,0" VerticalAlignment="Top" Width="26" Click="passwordOpenEye_Click" BorderBrush="{x:Null}">
+        <Button Name="eyeBotton" Content="" HorizontalAlignment="Left" Visibility="Hidden" Height="33" Margin="352,247,0,0" VerticalAlignment="Top" Width="26" Click="passwordOpenEye_Click" BorderBrush="{x:Null}">
             <Button.Background>
                 <ImageBrush ImageSource="עין .png"/>
             </Button.Background>
