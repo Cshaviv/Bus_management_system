@@ -212,7 +212,7 @@ namespace DL
             if (adjStationsFind != null)
                 return true;
             return false;
-        }//yes
+        }
         /// <summary>
         ///  A function that recived a adjacent Stations and updates the adjacent Stations details
         /// </summary>
