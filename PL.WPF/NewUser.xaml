@@ -27,9 +27,9 @@
     </Window.Resources>
     <Grid Background="#FFF0F0F0" Margin="0,0,6.333,-0.333">
         <TextBlock HorizontalAlignment="Left" Margin="214,143,0,0" TextWrapping="Wrap" Text="שם משתמש" VerticalAlignment="Top" Height="32" Width="90" RenderTransformOrigin="-1.341,-0.186" FontFamily="Dubai Medium" FontSize="14"/>
-        <TextBox x:Name="userNameTextBox" HorizontalAlignment="Left" Height="33" Margin="186,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <TextBox x:Name="userNameTextBox" KeyDown="keyCheckUserName" HorizontalAlignment="Left" Height="33" Margin="186,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
         <TextBlock HorizontalAlignment="Left" Margin="244,217,0,0" TextWrapping="Wrap" Text="סיסמא" VerticalAlignment="Top" Height="32" Width="126" FontFamily="Dubai Medium" FontSize="14"/>
-        <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="33" Margin="186,246,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="144"/>
+        <TextBox x:Name="passwordTextBox" KeyDown="keyCheckPassword" HorizontalAlignment="Left" Height="33" Margin="186,246,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="144"/>
         <Button Content="הרשמה" Style="{StaticResource round}" HorizontalAlignment="Left" Margin="172,337,0,0" VerticalAlignment="Top" Width="166" Height="43" Click="Button_Click" FontFamily="Dubai Medium" FontSize="14" FontWeight="Bold"/>
         <CheckBox x:Name="AcountTypeCheckBox" Content="חשבון מנהל" HorizontalAlignment="Stretch" Margin="172,298,225.667,0" VerticalAlignment="Top" Height="23" FlowDirection="RightToLeft" FontSize="14" FontFamily="Dubai Medium"/>
         <Ellipse HorizontalAlignment="Left" Height="128" Margin="190,10,0,0" VerticalAlignment="Top" Width="128">
