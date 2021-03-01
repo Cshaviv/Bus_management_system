@@ -48,7 +48,16 @@ namespace PL.WPF
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+        }
+        private void keyCheckPassword(object sender, KeyEventArgs e)// הפונקציה גורמת לזה שיוכלו להכניס רק קלט של מספרים ולא אותיות
+        {
+            if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.NumPad9)   && e.Key != Key.Back)
+                e.Handled = true;
+        }
+        private void keyCheckUserName(object sender, KeyEventArgs e)// הפונקציה גורמת לזה שיוכלו להכניס רק קלט של מספרים ולא אותיות
+        {
+            if (((int)e.Key < (int)Key.D0  || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.OemMinus && e.Key != Key.OemPeriod && e.Key != Key.Escape && e.Key != Key.Back)
+                e.Handled = true;
         }
     }
 }
