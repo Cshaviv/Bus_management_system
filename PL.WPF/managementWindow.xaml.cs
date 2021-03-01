@@ -107,7 +107,7 @@ namespace PL.WPF
         {
             AddBusWindow win = new AddBusWindow(bl);
             win.ShowDialog();
-            RefreshAllBuses();
+            RefreshAllBuses();// refresh the list of buses
         }
         void RefreshAllBuses()
         {
@@ -123,7 +123,7 @@ namespace PL.WPF
         public void RefreshAllLinesList()
         {
             LineesListBox.ItemsSource = bl.GetAllLines().ToList();
-        }//yes
+        }
         public void RefreshAllDeletedLinesList()
         {
             LineesDeletedListBox.ItemsSource = bl.GetAllDeletedLines().ToList();
@@ -138,7 +138,6 @@ namespace PL.WPF
             areaLabel.Visibility = Visibility.Visible;
             Line.Background = Brushes.Gray;
             RefreshAllLinesList();
-           // searchLineInArea();
             historyNum = 2;
             availableNum = 2;
 
@@ -257,6 +256,10 @@ namespace PL.WPF
             win.ShowDialog();
         }
         #endregion
+        
+        /// <summary>
+        ///   The function hides all the lists and buttons that are in the window and each time we define in the appropriate function what things will be seen  
+        /// </summary>
         private void Hidden()
         {
             stationsListBox.Visibility = Visibility.Hidden;

@@ -186,7 +186,7 @@ namespace BL
                 BO.Line lineBO = new BO.Line();
                 lineDO.CopyPropertiesTo(lineBO);
                 int id = lineBO.LineId;
-                lineBO.Stations = (from stat in dl.GetStationInLineList(s => s.LineId == id && s.IsDeleted == false) //רמחפשים תחנות שעוברות בקו מסוים
+                lineBO.Stations = (from stat in dl.GetStationInLineList(s => s.LineId == id && s.IsDeleted == false) //מחפשים תחנות שעוברות בקו מסוים
                                    select new StationInLine { StationCode = stat.StationCode, Name = GetStation(stat.StationCode).Name, LineStationIndex = stat.LineStationIndex }).ToList();//יוצרים רשימה של כל התחנות שעוברות בקו
                 if (lineBO.Stations.Count != 0)// 
                 {

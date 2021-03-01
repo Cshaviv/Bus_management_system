@@ -84,7 +84,12 @@ namespace PL.WPF
             fuelTankTextBox.BorderBrush = Brushes.Gray;
             totalKmTextBox.BorderBrush = Brushes.Gray;
         }
-        private void Exceptions(int num,string massage)
+        /// <summary>
+        /// הפונקציה הזאת זורקת חריגה עם ההודעה המתאימה ומסמנת את הטעות עם מסגרת אדומה, בפונקציה מקבלת מספר כך שכל מספר מתאים לחריגה של טעות קלט אחרת
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="massage"></param>
+        void Exceptions(int num,string massage)
         {
             if (num == 1)
             {
@@ -124,7 +129,7 @@ namespace PL.WPF
             }
           
         }
-        private void keyCheck(object sender, KeyEventArgs e)
+        private void keyCheck(object sender, KeyEventArgs e)// הפונקציה גורמת לזה שיוכלו להכניס רק קלט של מספרים ולא אותיות
         {
             if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.OemPeriod && e.Key != Key.Escape && e.Key != Key.Back)
                 e.Handled = true;
