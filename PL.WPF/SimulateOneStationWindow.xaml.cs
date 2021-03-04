@@ -51,10 +51,7 @@ namespace PL.WPF
             stopwatch.Restart();// השעון עצר מתחיל לזוז
             isTimerRun = true;//דגל האם השעון רץ-עדיין באמצע התהליך
 
-            //הוספנו מעצמינו
-            //  LBLineTiming.DataContext = lineTimingList;
-            
-
+           
             timerworker.RunWorkerAsync();//הפעלת התהליכון
 
         }

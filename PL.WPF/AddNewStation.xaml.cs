@@ -62,8 +62,7 @@ namespace PL.WPF
             }
             catch (BO.BadInputException ex)
             {
-                Exceptions(ex.num, ex.Message);
-                //MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                Exceptions(ex.num, ex.Message);                
             }
             catch (Exception ex)
             {
@@ -76,7 +75,7 @@ namespace PL.WPF
             if (((int)e.Key < (int)Key.D0 || (int)e.Key > (int)Key.D9) && ((int)e.Key < (int)Key.NumPad0 || (int)e.Key > (int)Key.NumPad9) && e.Key != Key.Enter && e.Key != Key.Escape && e.Key != Key.Back)
                 e.Handled = true;
         }
-        private void Exceptions(int num, string message)
+        private void Exceptions(int num, string message)//חריגות וגם בתצוגה תהיה מסגרת אדומה בנתון הלא תקין 
         {
             if (num == 1)
             {

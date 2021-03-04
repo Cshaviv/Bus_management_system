@@ -627,24 +627,24 @@ namespace BL
             TimeSpan hour = new TimeSpan(1, 0, 0);//help to find the times that in the range of one hour from currentTime                           
             for (int i = 0; i < listLines.Count(); i++)//for all the lines that pass in the station
             {//calculate the times 
-                TimeSpan tmp;//the current time
-                int currentLineid = listLines[i].LineId;// line id of the current line
-                List<DO.LineTrip> lineSchedual = dl.GetAllLineTripsBy(trip => trip.LineId == currentLineid && trip.IsDeleted == false).ToList();// times of the current Line
-                TimeSpan timeTilStatin = travelTime(stationBO.Code, currentLineid);
+                TimeSpan tmp;//the current time-זמן הנוכחי
+                int currentLineid = listLines[i].LineId;// line id of the current line-id של הקו
+                List<DO.LineTrip> lineSchedual = dl.GetAllLineTripsBy(trip => trip.LineId == currentLineid && trip.IsDeleted == false).ToList();// times of the current Line   רשימת זמני היציאה של הקו
+                TimeSpan timeTilStatin = travelTime(stationBO.Code, currentLineid); // הזמן מאז שהקו יוצא עד שמגיע  לתחנה המבוקשת
                 int numOfTimes = 0;
-                List<int> timesOfCurrentLine = new List<int>();
-                for (int j = 0; j < lineSchedual.Count && numOfTimes < 3; j++)//for all the times in line sSchedual
+                List<int> timesOfCurrentLine = new List<int>(); // רשימה של דקות הגעה
+                for (int j = 0; j < lineSchedual.Count && numOfTimes < 3; j++)//for all the times in line sSchedual- לכל קו מציגים עד 3 זמנים
                 {
                     //check if currentTime-LeavingTime-travelTime more than zero and in the range of hour
-                    if (lineSchedual[j].StartAt + timeTilStatin <= currentTime + hour
-                        && lineSchedual[j].StartAt + timeTilStatin >= currentTime)
+                    if (lineSchedual[j].StartAt + timeTilStatin <= currentTime + hour //מגיע בשעה הקרובה
+                        && lineSchedual[j].StartAt + timeTilStatin >= currentTime)//מגיע בעתיד ולא הגיע כבר
                     //check if the bus already passed the statioin   
                     {
-                        if (currentTime - lineSchedual[j].StartAt >= TimeSpan.Zero)//if the line already get out from the station
+                        if (currentTime - lineSchedual[j].StartAt >= TimeSpan.Zero)//if the line already get out from the station- קו שיצא ויגיע בזמן הקרוב
                         {
                             tmp = timeTilStatin - (currentTime - lineSchedual[j].StartAt);
                         }
-                        else//if the line didnt get out from the station
+                        else//if the line didnt get out from the station-קו שעדיין לא יצא ויגיע בקרוב
                             tmp = timeTilStatin + (lineSchedual[j].StartAt - currentTime);
 
                         timesOfCurrentLine.Add(tmp.Minutes);
@@ -697,6 +697,18 @@ namespace BL
         #endregion
 
         #region StationInLine
+        /// <summary>
+        /// this punction checks whether the station to which the adjacent station is to be added exists as consecutive stations and whether there are no such stations And at the end adds the station to the line.
+        /// </summary>
+        /// <param name="stationCode"></param>
+        /// <param name="lineID"></param>
+        /// <param name="index"></param>
+        /// <param name="nextStatCode"></param>
+        /// <param name="prevStatCode"></param>
+        /// <param name="distanceNext"></param>
+        /// <param name="timeNext"></param>
+        /// <param name="distancePrev"></param>
+        /// <param name="timePrev"></param>
         public void AddStationInLine(int stationCode, int lineID, int index, int nextStatCode, int prevStatCode, double distanceNext, TimeSpan timeNext, double distancePrev, TimeSpan timePrev)
         {
             try

@@ -560,7 +560,7 @@ namespace DL
             DataSource.ListStations.Remove(stationFind);
             DataSource.ListStations.Add(station.Clone());
         }
-        public void UpdateStation(int code, Action<DO.Station> update)//?
+        public void UpdateStation(int code, Action<DO.Station> update)
         {
             DO.Station stationFind = DataSource.ListStations.Find(stat => stat.Code == code && stat.IsDeleted == false);
             if (stationFind == null)
@@ -573,15 +573,11 @@ namespace DL
         /// <param name="code">code of station</param>
         public void DeleteStation(int code)
         {
-            DO.Station statFind = DataSource.ListStations.FirstOrDefault(s => s.Code == code && s.IsDeleted == false);// chrck if station exist in list station
+            DO.Station statFind = DataSource.ListStations.FirstOrDefault(s => s.Code == code && s.IsDeleted == false);// check if station exist in list station
             if (statFind == null)
                 throw new BadStationCodeException(code, "תחנה זו לא קיימת במערכת");
             statFind.IsDeleted = true;
-            //foreach (DO.AdjacentStations stat in DataSource.ListAdjacentStations)//delete from adjacent Station
-            //{
-            //    if ((stat.StationCode1 == code || stat.StationCode2 == code) && stat.IsDeleted == false)
-            //        stat.IsDeleted = true;
-            //}
+            
         }
 
         #endregion
@@ -629,7 +625,7 @@ namespace DL
         public void AddLineTrip(DO.LineTrip lineTrip)
         {
             if (DataSource.ListLineTrips.FirstOrDefault(l => l.LineId == lineTrip.LineId && l.StartAt == lineTrip.StartAt && l.IsDeleted == false) != null)
-                throw new BadLineTripException(lineTrip.LineId, "זמןיציאה זה כבר קיים במערכת");
+                throw new BadLineTripException(lineTrip.LineId, "זמן יציאה זה כבר קיים במערכת");
             DataSource.ListLineTrips.Add(lineTrip.Clone());
         }
         /// <summary>
@@ -656,7 +652,7 @@ namespace DL
         {
             DO.LineTrip lTripFind = DataSource.ListLineTrips.Find(l => l.LineId == lineId && l.StartAt == time && l.IsDeleted == false);
             if (lTripFind == null)
-                throw new BadLineTripException(lineId, "זמןיציאה זה לא קיים במערכת");
+                throw new BadLineTripException(lineId, "זמן יציאה זה לא קיים במערכת");
             update(lTripFind);
         }
         /// <summary>
@@ -669,7 +665,7 @@ namespace DL
 
             DO.LineTrip lineTrip = DataSource.ListLineTrips.Find(l => l.LineId == lineId && l.StartAt == time && l.IsDeleted == false);
             if (lineTrip == null)
-                throw new BadLineTripException(lineId, "זמןיציאה זה לא קיים במערכת");
+                throw new BadLineTripException(lineId, "זמן יציאה זה לא קיים במערכת");
             lineTrip.IsDeleted = true;
         }
 

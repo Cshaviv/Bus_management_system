@@ -203,7 +203,7 @@ namespace PL.WPF
             historyNum = 3;
             availableNum = 3;
         }
-        void RefreshAllStations()//yes
+        void RefreshAllStations()
         {
             try
             {
@@ -218,7 +218,7 @@ namespace PL.WPF
                 MessageBox.Show("מצטערים חסר למערכת מידע", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        void RefreshAllDeletedStations()//yes
+        void RefreshAllDeletedStations()
         {
             try
             {
